@@ -3,4 +3,9 @@
     <string name="os_name" translatable="false">SIOS</string>
     <string name="setup_services">SIOS features</string>
     <color name="lineage_accent">#FFF4F1EA</color>
+    <!-- La casilla es la estadística de LineageOS (va a sus servidores, no a SIOS): se dice tal cual y viene apagada. -->
+    <string name="services_help_improve_cm">Help improve LineageOS</string>
+    <string name="services_metrics_label">%1$s, the base of SIOS, by sending anonymous statistics (device model, version, country and carrier) to stats.lineageos.org. SIOS itself collects nothing. Off unless you tick it.</string>
+    <string name="services_pp_explanation">These services extend what your device can do. Your data is handled according to the SIOS privacy policy.</string>
+    <string name="services_privacy_policy_uri" translatable="false">https://neuroaigency.github.io/superintelligence-os/privacidad.html</string>
 </resources>

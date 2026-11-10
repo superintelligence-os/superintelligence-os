@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="setup_services">Funciones de SIOS</string>
+    <!-- La casilla es la estadística de LineageOS (va a sus servidores, no a SIOS): se dice tal cual y viene apagada. -->
+    <string name="services_help_improve_cm">Ayuda a mejorar LineageOS</string>
+    <string name="services_metrics_label">%1$s, la base de SIOS, enviando estadísticas anónimas (modelo, versión, país y operador) a stats.lineageos.org. SIOS no recoge nada. Desmarcado salvo que lo actives.</string>
+    <string name="services_pp_explanation">Estos servicios amplían lo que puede hacer tu dispositivo. Tus datos se tratan según la política de privacidad de SIOS.</string>
 </resources>
