@@ -7,5 +7,5 @@
     <string name="services_help_improve_cm">Help improve LineageOS</string>
     <string name="services_metrics_label">%1$s, the base of SIOS, by sending anonymous statistics (device model, version, country and carrier) to stats.lineageos.org. SIOS itself collects nothing. Off unless you tick it.</string>
     <string name="services_pp_explanation">These services extend what your device can do. Your data is handled according to the SIOS privacy policy.</string>
-    <string name="services_privacy_policy_uri" translatable="false">https://neuroaigency.github.io/superintelligence-os/privacidad.html</string>
+    <string name="services_privacy_policy_uri" translatable="false">https://superintelligence-os.github.io/privacidad.html</string>
 </resources>

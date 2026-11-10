@@ -2,6 +2,8 @@
 
 **English** · [Español](README.es.md)
 
+Website: https://superintelligence-os.github.io/ (source in [superintelligence-os.github.io](https://github.com/superintelligence-os/superintelligence-os.github.io)).
+
 SIOS is an Android 16 GSI (a generic system image, based on LineageOS 23.2) where **the AI you
 choose is the system's agent**: Claude, ChatGPT, Gemini, Kimi, Mistral, Grok, any OpenAI-compatible
 API, or a model that runs on the phone itself. The agent can read the screen, tap, type, open apps,
