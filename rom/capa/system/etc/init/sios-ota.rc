@@ -1,0 +1,14 @@
+# SIOS: actualizaciones del sistema sin cable (update_engine en la otra ranura) y vuelta atrás
+# automática si la versión nueva no arranca bien. Ver /system/etc/sios/sistema-ota.sh.
+# Corre como root en el dominio permisivo de la GSI (phhsu_daemon), como phh-ota.
+service sios_ota /system/bin/sh /system/etc/sios/sistema-ota.sh
+    user root
+    group root system cache
+    seclabel u:r:phhsu_daemon:s0
+    disabled
+
+# Con /data montado y las propiedades persistentes cargadas, y antes de que arranque Android: así
+# puede pedirle a vold que no dé el arranque por bueno antes de comprobar que SIOS está sano.
+# Solo en móviles A/B (con ranuras): en los demás no hay otra ranura donde instalar.
+on load_persist_props_action && property:ro.boot.slot_suffix=*
+    start sios_ota

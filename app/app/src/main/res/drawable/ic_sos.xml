@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SOS de SIOS: cruz de emergencia dentro de un círculo (aviso, recuadro de ajustes rápidos). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="M12,2.5a9.5,9.5 0,1 1,0 19a9.5,9.5 0,0 1,0 -19zM10.6,7.5h2.8v3.1h3.1v2.8h-3.1v3.1h-2.8v-3.1h-3.1v-2.8h3.1z" />
+</vector>

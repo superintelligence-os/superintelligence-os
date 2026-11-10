@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mac_encontrar">Encontrar o meu telemóvel</string>
+    <string name="mac_encontrar_nota">A partir do teu computador, mesmo longe. Vai cifrado pela Nostr, uma rede aberta.</string>
+    <string name="intruso_titulo">Foto a quem tentar desbloqueá-lo</string>
+    <string name="intruso_nota">Após duas tentativas falhadas, a câmara frontal tira uma foto pequena e envia-a ao teu computador. Vem desligado; não se guarda mais nada.</string>
+    <string name="intruso_explicacion_admin">Só para o SIOS saber quando alguém falha o desbloqueio e poder tirar uma foto com a câmara frontal. Não pode fazer mais nada.</string>
+</resources>

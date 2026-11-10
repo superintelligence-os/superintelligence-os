@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Logo de mistral (svgl.app), en un color: se tiñe con el acento de la marca. Trazado normalizado
+     (Android no entiende los arcos con las banderas pegadas, «a.18.18 0 00.157.091»). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="256" android:viewportHeight="233">
+    <path android:pathData="M 186.18182 0 h 46.54545 v 46.54545 h -46.54545 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 209.45454 0 h 46.54545 v 46.54545 h -46.54545 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 0 0 h 46.54545 v 46.54545 H 0 z M 0 46.54545 h 46.54545 V 93.0909 H 0 z M 0 93.09091 h 46.54545 v 46.54545 H 0 z M 0 139.63636 h 46.54545 v 46.54545 H 0 z M 0 186.18182 h 46.54545 v 46.54545 H 0 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 23.27273 0 h 46.54545 v 46.54545 H 23.27273 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 209.45454 46.54545 h 46.54545 V 93.0909 h -46.54545 z M 23.27273 46.54545 h 46.54545 V 93.0909 H 23.27273 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 139.63636 46.54545 h 46.54545 V 93.0909 h -46.54545 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 162.90909 46.54545 h 46.54545 V 93.0909 h -46.54545 z M 69.81818 46.54545 h 46.54545 V 93.0909 H 69.81818 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 116.36364 93.09091 h 46.54545 v 46.54545 h -46.54545 z M 162.90909 93.09091 h 46.54545 v 46.54545 h -46.54545 z M 69.81818 93.09091 h 46.54545 v 46.54545 H 69.81818 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 93.09091 139.63636 h 46.54545 v 46.54545 H 93.09091 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 116.36364 139.63636 h 46.54545 v 46.54545 h -46.54545 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 209.45454 93.09091 h 46.54545 v 46.54545 h -46.54545 z M 23.27273 93.09091 h 46.54545 v 46.54545 H 23.27273 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 186.18182 139.63636 h 46.54545 v 46.54545 h -46.54545 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 209.45454 139.63636 h 46.54545 v 46.54545 h -46.54545 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 186.18182 186.18182 h 46.54545 v 46.54545 h -46.54545 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 23.27273 139.63636 h 46.54545 v 46.54545 H 23.27273 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+    <path android:pathData="M 209.45454 186.18182 h 46.54545 v 46.54545 h -46.54545 z M 23.27273 186.18182 h 46.54545 v 46.54545 H 23.27273 z" android:fillColor="#FFFFFFFF" android:fillType="nonZero"/>
+</vector>

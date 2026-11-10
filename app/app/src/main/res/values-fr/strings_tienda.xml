@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Apps predeterminadas, tiendas y modo escritorio (Ajustes de SIOS). -->
+<resources>
+    <string name="tienda_titulo">Apps</string>
+    <string name="tienda_r_navegador">Navigateur : %1$s</string>
+    <string name="tienda_preguntar_corto">demander</string>
+    <string name="tienda_g_predeterminadas">Apps par défaut</string>
+    <string name="tienda_g_predeterminadas_nota">Quelle app s\'ouvre pour chaque chose. Se change dans les réglages d\'Android.</string>
+    <string name="tienda_navegador">Navigateur</string>
+    <string name="tienda_correo">E-mail</string>
+    <string name="tienda_mapas">Cartes</string>
+    <string name="tienda_mensajes">Messages</string>
+    <string name="tienda_ninguna">Aucune installée · chercher dans la boutique</string>
+    <string name="tienda_preguntar">Android demande à chaque fois</string>
+    <string name="tienda_todas">Toutes les apps par défaut</string>
+    <string name="tienda_todas_nota">Téléphone, accueil, assistant et les autres, dans Android</string>
+    <string name="tienda_g_tiendas">Boutiques</string>
+    <string name="tienda_g_tiendas_nota">D\'où installer des apps.</string>
+    <string name="tienda_neo_nota">Apps libres de F-Droid. Installe et met à jour sans demander.</string>
+    <string name="tienda_libre_nota">Apps libres de F-Droid.</string>
+    <string name="tienda_aurora_nota">Apps de Google Play sans compte Google.</string>
+    <string name="tienda_play_nota">Avec ton compte Google.</string>
+    <string name="tienda_actualizaciones_nota">Les apps fournies avec SIOS se mettent à jour depuis leur boutique, comme les autres.</string>
+    <string name="modoesc_titulo">Mode bureau</string>
+    <string name="modoesc_monitor">Écran</string>
+    <string name="modoesc_r_no_disponible">Non disponible dans cette version</string>
+    <string name="modoesc_r_conectado">%1$s connecté</string>
+    <string name="modoesc_r_activo">L\'écran comme un ordinateur</string>
+    <string name="modoesc_r_duplicar">L\'écran duplique le téléphone</string>
+    <string name="modoesc_sin_monitor">Aucun écran connecté</string>
+    <string name="modoesc_sin_monitor_nota">Branche-le en USB-C (DisplayPort) ou avec un adaptateur HDMI.</string>
+    <string name="modoesc_inalambrico_nota">Sans fil · %1$d × %2$d · duplique l\'écran</string>
+    <string name="modoesc_conectado_ordenador">%1$d × %2$d · bureau avec fenêtres</string>
+    <string name="modoesc_conectado_duplicando">%1$d × %2$d · écran dupliqué</string>
+    <string name="modoesc_no_disponible">Cette version de SIOS n\'inclut pas le bureau d\'Android pour les écrans. Un écran branché affichera l\'écran du téléphone.</string>
+    <string name="modoesc_nota">Avec un écran, le téléphone devient un ordinateur : fenêtres, barre des tâches, souris et clavier.</string>
+    <string name="modoesc_activar_nota">Désactivé, l\'écran affiche la même chose que le téléphone.</string>
+    <string name="modoesc_al_conectar">En branchant un écran</string>
+    <string name="modoesc_ordenador">Ordinateur</string>
+    <string name="modoesc_duplicar">Dupliquer</string>
+    <string name="modoesc_todas">Toutes les apps en fenêtres</string>
+    <string name="modoesc_todas_nota">Même celles qui ne savent s\'afficher qu\'en plein écran. Certaines peuvent sembler étranges.</string>
+    <string name="modoesc_fallo">Impossible de modifier le réglage du système.</string>
+    <string name="modoesc_g_uso">Comment l\'utiliser</string>
+    <string name="modoesc_uso_conectar">Les changements s\'appliquent la prochaine fois que tu branches l\'écran. Android peut te demander quoi faire au branchement.</string>
+    <string name="modoesc_uso_raton">Souris et clavier en Bluetooth ou USB (avec un hub USB-C, la charge aussi).</string>
+    <string name="modoesc_uso_ventanas">Ouvre les apps depuis la barre des tâches ; déplace les fenêtres par leur barre de titre et redimensionne-les par les bords.</string>
+    <string name="modoesc_uso_movil">Le téléphone reste le téléphone : SIOS, Claude et les appels restent sur son écran.</string>
+    <string name="modoesc_inalambrica">Sans câble, « Caster l\'écran » duplique le téléphone sur une TV ou un écran compatible (Miracast), sans bureau.</string>
+    <string name="modoesc_enviar_pantalla">Caster l\'écran</string>
+</resources>

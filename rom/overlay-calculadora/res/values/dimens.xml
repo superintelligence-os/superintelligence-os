@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Medidas de com.android.calculator2 ajustadas por SIOS (marca/temas_apps.py). -->
+<resources>
+    <dimen name="m3_comp_button_small_leading_space">4dp</dimen>
+    <dimen name="m3_comp_button_small_trailing_space">4dp</dimen>
+</resources>

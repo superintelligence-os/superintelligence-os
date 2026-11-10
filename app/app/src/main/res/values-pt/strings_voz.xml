@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dictado y traducción sin conexión: ajustes, traductor y dictado en el móvil. -->
+<resources>
+    <string name="voz_titulo">Ditado e tradução offline</string>
+    <string name="voz_nota">Funcionam sem internet e sem nenhuma IA.</string>
+    <string name="voz_privacidad">Tudo acontece no telemóvel: a tua voz e os teus textos nunca saem dele. Só se liga para descarregar os modelos que escolheres.</string>
+    <string name="voz_cuando">Quando usar</string>
+    <string name="voz_modo_auto">Automático</string>
+    <string name="voz_modo_siempre">Sempre</string>
+    <string name="voz_modo_auto_nota">Com internet, o ditado do sistema e a tua IA; sem internet ou sem IA, os do telemóvel.</string>
+    <string name="voz_modo_siempre_nota">Sempre no telemóvel, mesmo com internet. O mais privado.</string>
+    <string name="voz_dictado">Ditado</string>
+    <string name="voz_preciso">Preciso</string>
+    <string name="voz_preciso_nota">Todos os idiomas, com pontuação. Melhor em telemóveis rápidos.</string>
+    <string name="voz_ligero">Leve · %1$s</string>
+    <string name="voz_ligero_corto">Leve</string>
+    <string name="voz_ligero_nota">Pequeno e rápido: escreve enquanto falas, sem pontuação.</string>
+    <string name="voz_recomendado">Para este telemóvel</string>
+    <string name="voz_otros_idiomas">Outros idiomas</string>
+    <string name="voz_usar">Ditar com</string>
+    <string name="voz_otras_apps">As apps que usam o ditado do sistema também o usam.</string>
+    <string name="voz_traduccion">Tradução</string>
+    <string name="voz_traduccion_nota">Cada idioma vem com o inglês, nos dois sentidos. Entre outros dois idiomas, passa pelo inglês.</string>
+    <string name="voz_descargar">Descarregar</string>
+    <string name="voz_cancelar">Cancelar</string>
+    <string name="voz_reintentar">Repetir</string>
+    <string name="voz_borrar">Apagar</string>
+    <string name="voz_listo">Pronto · %1$s</string>
+    <string name="voz_en_cola">Em espera…</string>
+    <string name="voz_descargando">A descarregar… %1$s de %2$s</string>
+    <string name="voz_comprobando">A verificar…</string>
+    <string name="voz_fallo_red">Sem ligação. Tenta com Wi‑Fi.</string>
+    <string name="voz_fallo_espacio">Não há espaço no telemóvel.</string>
+    <string name="voz_fallo">Não foi possível descarregar. Tenta outra vez.</string>
+    <string name="voz_ocupan">Ocupam %1$s no total</string>
+    <string name="voz_licencias">Modelos abertos: Whisper (OpenAI, MIT), Vosk (Alpha Cephei, Apache 2.0) e OPUS‑MT (Universidade de Helsínquia, Apache 2.0 / CC BY 4.0).</string>
+    <string name="voz_borrar_titulo">Apagar «%1$s»?</string>
+    <string name="voz_borrar_texto">É removido do telemóvel. Podes voltar a descarregá‑lo quando quiseres.</string>
+    <string name="voz_borrar_oye">«Olá…» usa‑o para ouvir o seu nome, por isso vai descarregá‑lo outra vez.</string>
+    <string name="voz_datos_titulo">Descarregar com dados móveis?</string>
+    <string name="voz_datos_texto">São %1$s. Com Wi‑Fi não gastas dados.</string>
+    <string name="voz_escuchando_local">Estou a ouvir no telemóvel…</string>
+    <string name="voz_falta_dictado">Para ditar sem internet, descarrega o ditado nas Definições.</string>
+    <string name="voz_trad_falta">Para traduzir sem internet, descarrega estes idiomas nas Definições.</string>
+    <string name="voz_sello">Offline</string>
+    <string name="voz_sello_descargar">Offline</string>
+</resources>

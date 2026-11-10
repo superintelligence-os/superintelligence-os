@@ -1,0 +1,14 @@
+{
+  // OPCIONAL. De serie, SIOS usa Nostr (red abierta y gratuita) para hablar con el móvil fuera de
+  // casa y no hace falta nada de esto. Es para quien prefiera su propio servidor intermedio: solo
+  // pasa sobres cifrados de extremo a extremo con la clave del emparejamiento (no puede leerlos).
+  // Publicarlo en tu cuenta: cd relay && npx wrangler deploy
+  // y ponerlo en el móvil (ajuste «relay») y en el ordenador (SIOS_RELAY=https://…).
+  "name": "sios-relay",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-01",
+  "durable_objects": {
+    "bindings": [{ "name": "BUZON", "class_name": "Buzon" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Buzon"] }]
+}

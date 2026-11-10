@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta oficial de Claude, modo claro (el oscuro está en values-night). -->
+    <color name="fondo">#FAF9F5</color>
+    <!-- Fondo del icono de SIOS: grafito siempre (el anillo es hueso). -->
+    <color name="fondo_icono">#141413</color>
+    <color name="naranja">#C6613F</color>
+
+    <style name="Tema.Sios" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/fondo</item>
+        <item name="android:colorBackground">@color/fondo</item>
+        <item name="android:colorAccent">@color/naranja</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+    </style>
+
+    <style name="Tema.Sios.Inicio">
+        <item name="android:windowShowWallpaper">false</item>
+    </style>
+
+    <!-- Hoja del asistente: ventana transparente sobre la app actual. -->
+    <style name="Tema.Sios.Hoja">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+</resources>

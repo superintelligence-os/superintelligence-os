@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Originales: «%1$s %2$s» (fabricante y modelo) y «%1$s» (modelo). -->
+    <string name="def_device_name" translatable="false">SIOS</string>
+    <string name="def_device_name_simple" translatable="false">SIOS</string>
+    <!-- Animaciones de ventana y transiciones al 85 %: más ágiles sin volverse bruscas (de serie, 100 %). -->
+    <fraction name="def_window_animation_scale">85%</fraction>
+    <fraction name="def_window_transition_scale">85%</fraction>
+</resources>

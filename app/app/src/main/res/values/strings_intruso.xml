@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mac_encontrar">Find my phone</string>
+    <string name="mac_encontrar_nota">From your computer, even when it’s far away. It travels encrypted over Nostr, an open network.</string>
+    <string name="intruso_titulo">Photo of whoever tries to unlock it</string>
+    <string name="intruso_nota">After two failed attempts, the front camera takes a small photo and sends it to your computer. Off by default; nothing else is recorded.</string>
+    <string name="intruso_explicacion_admin">Only so SIOS knows when someone gets the unlock wrong and can take a photo with the front camera. It can’t do anything else.</string>
+</resources>

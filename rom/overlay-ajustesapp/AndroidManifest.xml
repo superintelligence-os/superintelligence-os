@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS: la app Ajustes con la estética de Claude (iconos de la portada en gris con el dibujo
+     claro, como el pack de iconos, en vez de un color distinto cada uno). -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sios.overlay.ajustesapp">
+    <overlay android:targetPackage="com.android.settings" android:isStatic="true" android:priority="900" />
+    <application android:hasCode="false" />
+</manifest>

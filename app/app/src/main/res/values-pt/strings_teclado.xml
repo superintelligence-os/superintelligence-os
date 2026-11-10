@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Teclado do SIOS e PIN baralhado no ecrã de bloqueio (à parte de strings.xml). -->
+<resources>
+    <string name="teclado_sios_nombre">Teclado do SIOS</string>
+    <string name="teclado_sios_usar">Usar o Teclado do SIOS</string>
+    <string name="teclado_privado">Campo privado: nada é guardado</string>
+    <string name="teclado_borrar">Apagar</string>
+    <string name="teclado_mayus">Maiúsculas</string>
+    <string name="teclado_aceptar">Concluir</string>
+    <string name="teclado_cambiar">Mudar de teclado</string>
+    <string name="teclado_espacio">Espaço</string>
+
+    <string name="seg_titulo">Ecrã de bloqueio</string>
+    <string name="pin_aleatorio_titulo">Números do PIN em ordem aleatória</string>
+    <string name="pin_aleatorio_nota">Os algarismos mudam de lugar sempre que desbloqueia: ninguém consegue adivinhar o seu PIN pelo sítio onde toca nem pelas marcas no ecrã. Só afeta o PIN.</string>
+    <string name="pin_aleatorio_sin_bloqueo">Só funciona com um PIN, e ainda não tem bloqueio de ecrã.</string>
+    <string name="pin_aleatorio_poner">Definir um PIN</string>
+</resources>

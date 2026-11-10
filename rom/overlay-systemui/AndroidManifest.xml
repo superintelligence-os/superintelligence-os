@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Valores por defecto de SIOS para SystemUI. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sios.overlay.systemui">
+    <!-- Prioridad por encima de la de Google (GmsOverlay, 1337): si no, el asistente de serie
+         sería el de Google en la edición con Google. -->
+    <overlay android:targetPackage="com.android.systemui" android:isStatic="true" android:priority="2000" />
+    <application android:hasCode="false" />
+</manifest>

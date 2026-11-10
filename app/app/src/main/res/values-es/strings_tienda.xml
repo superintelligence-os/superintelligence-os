@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Apps predeterminadas, tiendas y modo escritorio (Ajustes de SIOS). -->
+<resources>
+    <string name="tienda_titulo">Apps</string>
+    <string name="tienda_r_navegador">Navegador: %1$s</string>
+    <string name="tienda_preguntar_corto">preguntar</string>
+    <string name="tienda_g_predeterminadas">Apps predeterminadas</string>
+    <string name="tienda_g_predeterminadas_nota">Cuál se abre para cada cosa. Se cambia en los ajustes de Android.</string>
+    <string name="tienda_navegador">Navegador</string>
+    <string name="tienda_correo">Correo</string>
+    <string name="tienda_mapas">Mapas</string>
+    <string name="tienda_mensajes">Mensajes</string>
+    <string name="tienda_ninguna">Ninguna instalada · buscar en la tienda</string>
+    <string name="tienda_preguntar">Android te pregunta cada vez</string>
+    <string name="tienda_todas">Todas las apps predeterminadas</string>
+    <string name="tienda_todas_nota">Teléfono, inicio, asistente y las demás, en Android</string>
+    <string name="tienda_g_tiendas">Tiendas</string>
+    <string name="tienda_g_tiendas_nota">De dónde instalar apps.</string>
+    <string name="tienda_neo_nota">Apps libres de F-Droid. Instala y actualiza sin preguntar.</string>
+    <string name="tienda_libre_nota">Apps libres de F-Droid.</string>
+    <string name="tienda_aurora_nota">Apps de Google Play sin cuenta de Google.</string>
+    <string name="tienda_play_nota">Con tu cuenta de Google.</string>
+    <string name="tienda_actualizaciones_nota">Las apps que trae SIOS se actualizan desde su tienda, como las demás.</string>
+    <string name="modoesc_titulo">Modo escritorio</string>
+    <string name="modoesc_monitor">Monitor</string>
+    <string name="modoesc_r_no_disponible">No disponible en esta versión</string>
+    <string name="modoesc_r_conectado">%1$s conectado</string>
+    <string name="modoesc_r_activo">El monitor, como un ordenador</string>
+    <string name="modoesc_r_duplicar">El monitor duplica la pantalla</string>
+    <string name="modoesc_sin_monitor">Ningún monitor conectado</string>
+    <string name="modoesc_sin_monitor_nota">Conéctalo por USB-C (DisplayPort) o con un adaptador HDMI.</string>
+    <string name="modoesc_inalambrico_nota">Inalámbrico · %1$d × %2$d · duplica la pantalla</string>
+    <string name="modoesc_conectado_ordenador">%1$d × %2$d · escritorio con ventanas</string>
+    <string name="modoesc_conectado_duplicando">%1$d × %2$d · duplicando la pantalla</string>
+    <string name="modoesc_no_disponible">Esta versión de SIOS no trae el escritorio de Android para monitores. Al conectar uno, se verá la pantalla del móvil.</string>
+    <string name="modoesc_nota">Con un monitor, el móvil se usa como un ordenador: ventanas, barra de tareas, ratón y teclado.</string>
+    <string name="modoesc_activar_nota">Si lo apagas, el monitor muestra lo mismo que el móvil.</string>
+    <string name="modoesc_al_conectar">Al conectar un monitor</string>
+    <string name="modoesc_ordenador">Ordenador</string>
+    <string name="modoesc_duplicar">Duplicar</string>
+    <string name="modoesc_todas">Todas las apps en ventanas</string>
+    <string name="modoesc_todas_nota">También las que solo saben ir a pantalla completa. Alguna puede verse rara.</string>
+    <string name="modoesc_fallo">No se ha podido cambiar el ajuste del sistema.</string>
+    <string name="modoesc_g_uso">Cómo se usa</string>
+    <string name="modoesc_uso_conectar">Los cambios valen la próxima vez que conectes el monitor. Android puede preguntarte qué hacer al conectarlo.</string>
+    <string name="modoesc_uso_raton">Ratón y teclado por Bluetooth o USB (con un hub USB-C, también la carga).</string>
+    <string name="modoesc_uso_ventanas">Abre las apps desde la barra de tareas; mueve las ventanas por su barra de título y cambia su tamaño por los bordes.</string>
+    <string name="modoesc_uso_movil">El móvil sigue siendo el móvil: SIOS, Claude y las llamadas se quedan en su pantalla.</string>
+    <string name="modoesc_inalambrica">Sin cable, «Enviar pantalla» duplica el móvil en una tele o un monitor compatible (Miracast), sin escritorio.</string>
+    <string name="modoesc_enviar_pantalla">Enviar pantalla</string>
+</resources>

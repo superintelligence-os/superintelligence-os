@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- El gesto de emergencia (5 pulsaciones del botón de encendido) abre el SOS de SIOS, con su cuenta
+         atrás para cancelar. Sin esto, SystemUI elegía la de AOSP (com.android.emergency), que llama al
+         momento sin cuenta atrás. -->
+    <string name="config_preferredEmergencySosPackage" translatable="false">com.sios</string>
+</resources>

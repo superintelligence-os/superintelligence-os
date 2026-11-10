@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS: la tienda libre de serie (Neo Store, rom/tienda/descargar.sh) instala, actualiza y desinstala
+     sin pedir confirmación en cada app, como Play Store en la edición con Google. Con INSTALL_PACKAGES,
+     Android no pide al usuario que confirme sus sesiones de instalación (tampoco la primera vez).
+     Va sin volver a firmar: sus actualizaciones (firmadas por F-Droid) conservan estos permisos.
+     Si una versión nueva de la tienda pide otro permiso privilegiado, hay que añadirlo aquí. -->
+<permissions>
+    <privapp-permissions package="com.machiav3lli.fdroid">
+        <permission name="android.permission.INSTALL_PACKAGES" />
+        <permission name="android.permission.DELETE_PACKAGES" />
+    </privapp-permissions>
+</permissions>

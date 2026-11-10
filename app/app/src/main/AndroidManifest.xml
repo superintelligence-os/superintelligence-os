@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Avisos de los agentes de Claude (concedido de serie en SIOS). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Memoria del móvil: leer el texto de fotos y documentos (todo se queda en el móvil). -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+    <!-- Rutinas por lugar y por Wi-Fi (se piden solo si hay una rutina que lo necesita). -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- Panel: actividades en directo (Android 16) y pasos/sueño de Health Connect. -->
+    <uses-permission android:name="android.permission.POST_PROMOTED_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.health.READ_STEPS" />
+    <uses-permission android:name="android.permission.health.READ_SLEEP" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- Sin conexión: llamar a un contacto directamente. -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- Llamadas con Claude: saber si quien llama es un contacto. -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- «Oye Claude»: escuchar en segundo plano (con su notificación fija). -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <!-- Cortafuegos: si se enciende desde segundo plano (al arrancar), unos segundos en primer plano. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
+    <!-- Colores de Claude en todo el sistema (capa de colores propia, como SystemUI). -->
+    <uses-permission android:name="android.permission.CHANGE_OVERLAY_PACKAGES" tools:ignore="ProtectedPermissions" />
+    <!-- Teléfono de Claude (app de teléfono predeterminada en SIOS). -->
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <!-- «Que conteste Claude»: escuchar la llamada (permiso de sistema: Claude es app privilegiada en SIOS). -->
+    <uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT" tools:ignore="ProtectedPermissions" />
+    <!-- Cámara de Claude. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Dictado dentro de la hoja de Claude. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Bluetooth para la terminal del agente (bt). La búsqueda no se usa para ubicar al usuario. -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" android:usesPermissionFlags="neverForLocation" tools:targetApi="s" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" tools:ignore="ProtectedPermissions" />
+    <!-- Colocar widgets de otras apps en el inicio sin el diálogo de permiso (privilegiado en SIOS). -->
+    <uses-permission android:name="android.permission.BIND_APPWIDGET" tools:ignore="ProtectedPermissions" />
+    <!-- Pasarle a Termux la preparación del agente (concedido de serie en SIOS). -->
+    <uses-permission android:name="com.termux.permission.RUN_COMMAND" />
+    <!-- Solo se conceden cuando Claude viene integrado en la ROM (SIOS, priv-app). -->
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" tools:ignore="ProtectedPermissions" />
+    <!-- Ajustes de LineageOS (el teclado del PIN en orden aleatorio en la pantalla de bloqueo). -->
+    <uses-permission android:name="lineageos.permission.WRITE_SETTINGS" />
+    <!-- El proveedor de ajustes de LineageOS pide también el WRITE_SETTINGS de Android (las apps
+         preinstaladas lo tienen concedido al declararlo): sin él no se guarda el PIN aleatorio. -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- Encontrar mi móvil: borrar a distancia y saber si cambian la SIM (permisos privilegiados de SIOS). -->
+    <uses-permission android:name="android.permission.MASTER_CLEAR" tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.MODIFY_DAY_NIGHT_MODE" tools:ignore="ProtectedPermissions" />
+    <!-- Volver al frente al terminar el inicio de sesión en el navegador. -->
+    <!-- La hoja del asistente vuelve delante si Claude abre una app mientras responde. -->
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.START_ACTIVITIES_FROM_BACKGROUND" tools:ignore="ProtectedPermissions" />
+    <!-- Bienestar digital: cuánto se usa cada app (el servicio concede el permiso con appops). -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions" />
+    <!-- Memoria de pantalla: la búsqueda se abre con la huella o el PIN del móvil. -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <!-- Emergencias: SMS con la ubicación a tus contactos al pedir ayuda (y al compartir el viaje),
+         ubicación en primer plano mientras dura, el móvil despierto durante el SOS y el acelerómetro
+         para la detección de caídas (servicio de salud en primer plano). -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH" />
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
+
+    <application
+        android:name=".SiosApp"
+        android:label="SIOS"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:theme="@style/Tema.Sios"
+        android:networkSecurityConfig="@xml/red"
+        android:supportsRtl="false"
+        android:enableOnBackInvokedCallback="true">
+
+        <!-- Pantalla de inicio: sustituye al launcher, con la barra de Claude. -->
+        <activity
+            android:name=".inicio.InicioActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:clearTaskOnLaunch="true"
+            android:stateNotNeeded="true"
+            android:resumeWhilePausing="true"
+            android:excludeFromRecents="true"
+            android:screenOrientation="nosensor"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Tema.Sios.Inicio">
+            <!-- Prioridad alta: como app privilegiada de SIOS, Android la elige como inicio sin
+                 preguntar (Trebuchet se queda solo para la pantalla de recientes). -->
+            <intent-filter android:priority="100">
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Chat con Claude (icono de la app). -->
+        <activity
+            android:name=".chat.ChatActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
+        <!-- Ajustes de Claude: modelo, esfuerzo, permisos, uso e integración. -->
+        <activity
+            android:name=".ajustes.AjustesActivity"
+            android:exported="true"
+            android:label="@string/comun_ajustes_ia">
+            <intent-filter>
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
+            </intent-filter>
+        </activity>
+
+        <!-- Manos de Claude: leer y tocar la pantalla de cualquier app, con el halo naranja. -->
+        <service
+            android:name=".sistema.Manos"
+            android:exported="true"
+            android:label="@string/manos_nombre"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data android:name="android.accessibilityservice" android:resource="@xml/manos" />
+        </service>
+
+        <!-- Notificaciones con cerebro: resumen al desbloquear, pendientes, modo foco y responder. -->
+        <service
+            android:name=".sistema.Bandeja"
+            android:exported="true"
+            android:label="@string/bandeja_nombre"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+        <activity
+            android:name=".sistema.ResponderActivity"
+            android:exported="false"
+            android:theme="@style/Tema.Sios.Hoja"
+            android:excludeFromRecents="true"
+            android:taskAffinity=".responder"
+            android:windowSoftInputMode="adjustResize" />
+        <service
+            android:name=".sistema.FocoTile"
+            android:exported="true"
+            android:icon="@drawable/ic_sios"
+            android:label="@string/foco_titulo"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <!-- Cortafuegos: VPN local que solo lleva el DNS (bloquea rastreadores y corta internet por app).
+             Sin servidor de VPN: nada sale del móvil. Admite «VPN siempre activa». -->
+        <service
+            android:name=".cortafuegos.CortafuegosVpn"
+            android:exported="true"
+            android:foregroundServiceType="systemExempted"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+            <meta-data android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON" android:value="true" />
+        </service>
+        <service
+            android:name=".cortafuegos.CortafuegosTile"
+            android:exported="true"
+            android:icon="@drawable/ic_cortafuegos"
+            android:label="@string/cf_titulo"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <activity
+            android:name=".cortafuegos.CortafuegosActivity"
+            android:exported="false"
+            android:label="@string/cf_titulo"
+            android:theme="@style/Tema.Sios" />
+
+        <!-- Memoria del móvil: indexa fotos nuevas y documentos sin gastar batería. -->
+        <service
+            android:name=".sistema.IndexarJob"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- Llamadas con Claude: identificar desconocidos, bloquear y silenciar. -->
+        <service
+            android:name=".sistema.Llamadas"
+            android:exported="true"
+            android:permission="android.permission.BIND_SCREENING_SERVICE">
+            <intent-filter>
+                <action android:name="android.telecom.CallScreeningService" />
+            </intent-filter>
+        </service>
+        <receiver android:name=".sistema.Llamadas$Bloquear" android:exported="false" />
+
+        <!-- Comprobación de SIOS: todo lo que necesita Claude, con «Arreglar». -->
+        <activity android:name=".ajustes.ComprobacionActivity" android:exported="false" android:theme="@style/Tema.Sios" />
+        <!-- Actividad de Claude: lo que ha hecho, con deshacer. -->
+        <activity android:name=".ajustes.ActividadActivity" android:exported="false" android:theme="@style/Tema.Sios" />
+        <!-- Actualización del sistema sin cable: pantalla, descarga reanudable y avisos del ayudante del sistema (root). -->
+        <activity android:name=".ajustes.SistemaOtaActivity" android:exported="false" android:theme="@style/Tema.Sios" />
+        <service android:name=".sistema.DescargaSistemaJob" android:exported="false" android:permission="android.permission.BIND_JOB_SERVICE" />
+        <receiver android:name=".sistema.AvisoSistemaOta" android:exported="false" android:directBootAware="true" />
+
+        <!-- Qué puede hacer Claude (la presentación del primer arranque, desde Ajustes). -->
+        <activity
+            android:name=".sistema.PresentacionActivity"
+            android:exported="false"
+            android:theme="@style/Tema.Sios" />
+
+        <!-- Copia de seguridad semanal automática. -->
+        <service android:name=".sistema.CopiaJob" android:exported="false" android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- «Oye Claude»: reconocimiento sin conexión de la palabra de activación. -->
+        <service
+            android:name=".sistema.OyeAsistente"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+
+        <!-- Teléfono de Claude: marcador (también para «tel:»), pantalla de llamada y servicio de llamadas. -->
+        <activity
+            android:name=".telefono.TelefonoActivity"
+            android:exported="true"
+            android:label="@string/tel_titulo"
+            android:icon="@mipmap/ic_launcher"
+            android:theme="@style/Tema.Sios"
+            android:taskAffinity=".telefono"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.DIAL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.DIAL" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tel" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".telefono.LlamadaActivity"
+            android:exported="false"
+            android:theme="@style/Tema.Sios"
+            android:launchMode="singleTask"
+            android:excludeFromRecents="true"
+            android:taskAffinity=".llamada"
+            android:screenOrientation="portrait" />
+        <service
+            android:name=".telefono.ServicioLlamadas"
+            android:exported="true"
+            android:permission="android.permission.BIND_INCALL_SERVICE">
+            <meta-data android:name="android.telecom.IN_CALL_SERVICE_UI" android:value="true" />
+            <meta-data android:name="android.telecom.IN_CALL_SERVICE_RINGING" android:value="true" />
+            <intent-filter>
+                <action android:name="android.telecom.InCallService" />
+            </intent-filter>
+        </service>
+        <receiver android:name=".telefono.AccionLlamada" android:exported="false" />
+
+        <!-- Cámara de Claude: apuntar y preguntar, traducir, escanear documentos. -->
+        <activity
+            android:name=".sistema.CamaraActivity"
+            android:exported="true"
+            android:label="@string/camara_corto"
+            android:icon="@mipmap/ic_launcher"
+            android:theme="@style/Tema.Sios"
+            android:taskAffinity=".camara"
+            android:screenOrientation="portrait" />
+        <!-- Escáner de documentos de SIOS (sin Google): bordes, esquinas, enderezado y varias páginas. -->
+        <activity
+            android:name=".sistema.EscanerActivity"
+            android:exported="false"
+            android:theme="@style/Tema.Sios"
+            android:taskAffinity=".camara"
+            android:screenOrientation="portrait" />
+        <!-- Editor de fotos: «Editar» desde cualquier galería; guarda siempre una copia. -->
+        <activity
+            android:name=".fotos.EditorFotosActivity"
+            android:exported="true"
+            android:label="@string/fotos_nombre"
+            android:icon="@mipmap/ic_launcher"
+            android:theme="@style/Tema.Sios"
+            android:taskAffinity=".fotos"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.EDIT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+        <!-- Cámara profesional (la app de cámara del sistema): todos los controles que tenga el móvil. -->
+        <activity
+            android:name=".camara.CamaraProActivity"
+            android:exported="true"
+            android:label="@string/pro_nombre"
+            android:icon="@mipmap/ic_launcher"
+            android:theme="@style/Tema.Sios"
+            android:taskAffinity=".camarapro"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA" />
+                <action android:name="android.media.action.VIDEO_CAMERA" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.archivos"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/archivos" />
+        </provider>
+
+        <!-- Teclado de SIOS. directBootAware: también para la contraseña antes del primer desbloqueo
+             (entonces no toca el almacenamiento cifrado: ni diccionario ni IA). -->
+        <service
+            android:name=".teclado.TecladoSios"
+            android:exported="true"
+            android:directBootAware="true"
+            android:label="@string/teclado_sios_nombre"
+            android:permission="android.permission.BIND_INPUT_METHOD">
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+            <meta-data android:name="android.view.im" android:resource="@xml/metodo_entrada" />
+        </service>
+
+        <!-- Asistente: hoja inferior que se abre con el gesto del asistente. -->
+        <activity
+            android:name=".sistema.AsistenteActivity"
+            android:exported="true"
+            android:theme="@style/Tema.Sios.Hoja"
+            android:launchMode="singleTask"
+            android:excludeFromRecents="true"
+            android:taskAffinity=".asistente"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.ASSIST" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VOICE_COMMAND" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!-- Búsqueda en pantalla (mantener pulsada la barra de navegación): Claude, no Google. -->
+            <intent-filter>
+                <action android:name="android.app.contextualsearch.action.LAUNCH_CONTEXTUAL_SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!-- «Compartir» desde cualquier app: textos, enlaces, fotos y PDF. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/*" />
+                <data android:mimeType="image/*" />
+                <data android:mimeType="application/pdf" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+            <!-- Búsquedas web y por voz de cualquier app: las responde Claude (prioridad sobre Google). -->
+            <intent-filter android:priority="100">
+                <action android:name="android.intent.action.WEB_SEARCH" />
+                <action android:name="android.speech.action.WEB_SEARCH" />
+                <action android:name="android.intent.action.SEARCH_LONG_PRESS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Texto seleccionado en cualquier app: mejorar, traducir o preguntar (menú de selección). -->
+        <activity
+            android:name=".sistema.TextoActivity"
+            android:exported="false"
+            android:theme="@style/Tema.Sios.Hoja"
+            android:excludeFromRecents="true"
+            android:taskAffinity=".texto" />
+        <activity-alias
+            android:name=".sistema.TextoMejorar"
+            android:targetActivity=".sistema.TextoActivity"
+            android:label="@string/texto_menu_mejorar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".sistema.TextoTraducir"
+            android:targetActivity=".sistema.TextoActivity"
+            android:label="@string/texto_menu_traducir"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".sistema.TextoPreguntar"
+            android:targetActivity=".sistema.TextoActivity"
+            android:label="@string/texto_menu_preguntar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- SIOS: tema del sistema desde el primer encendido (antes del asistente de bienvenida). -->
+        <receiver
+            android:name=".sistema.Arranque"
+            android:exported="false"
+            android:directBootAware="true">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Avisos de la preparación del agente (desde Termux) y su resultado final. -->
+        <receiver
+            android:name=".sistema.Progreso"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.sios.PROGRESO" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Límite de uso de una app (bienestar digital): encima de la app, fuera de recientes. -->
+        <activity
+            android:name=".sistema.LimiteActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.sios.limite"
+            android:theme="@style/Tema.Sios" />
+
+        <!-- Modo coche: pantalla de conducción (se abre sola con el Bluetooth del coche). -->
+        <activity
+            android:name=".coche.CocheActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.sios.coche"
+            android:label="@string/coche_titulo"
+            android:screenOrientation="unspecified"
+            android:theme="@style/Tema.Sios" />
+
+        <!-- Abrir un widget, mini-app o rutina compartidos (enlace o QR sios://importar?d=…). -->
+        <activity
+            android:name=".creaciones.ImportarActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop"
+            android:taskAffinity="com.sios.importar"
+            android:theme="@style/Tema.Sios">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="sios" android:host="importar" />
+                <data android:scheme="sios" android:host="familia" />
+            </intent-filter>
+        </activity>
+
+        <!-- «Enviar al Mac» al compartir: activo solo con la continuidad encendida (Continuidad.ponerActiva). -->
+        <activity
+            android:name=".sistema.EnviarAlMacActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:taskAffinity="com.sios.mac"
+            android:theme="@style/Tema.Sios.Hoja" />
+        <activity-alias
+            android:name=".EnviarAlMac"
+            android:targetActivity=".sistema.EnviarAlMacActivity"
+            android:label="@string/mac_compartir"
+            android:icon="@mipmap/ic_launcher"
+            android:enabled="false"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- «Aquí estoy»: el móvil suena porque lo buscan desde el ordenador. -->
+        <activity
+            android:name=".sistema.SonarActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true"
+            android:taskAffinity="com.sios.sonar"
+            android:theme="@style/Tema.Sios" />
+
+        <!-- «Este móvil se ha perdido»: encima del bloqueo, con el mensaje del dueño (desde SIOS Desktop). -->
+        <activity
+            android:name=".sistema.PerdidoActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true"
+            android:directBootAware="true"
+            android:taskAffinity="com.sios.perdido"
+            android:theme="@style/Tema.Sios" />
+
+        <!-- Traductor de conversación cara a cara (pantalla partida). -->
+        <activity
+            android:name=".sistema.TraductorActivity"
+            android:exported="false"
+            android:label="@string/trad_titulo"
+            android:screenOrientation="portrait"
+            android:taskAffinity="com.sios.traductor"
+            android:theme="@style/Tema.Sios" />
+
+        <!-- «Leer pantalla» en los ajustes rápidos. -->
+        <service
+            android:name=".sistema.LeerTile"
+            android:exported="true"
+            android:icon="@drawable/ic_sios"
+            android:label="@string/leer_titulo"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <!-- Mini-apps que crea Claude (WebView del servicio local). Cada una, en su propia tarea. -->
+        <activity
+            android:name=".creaciones.MiniAppActivity"
+            android:exported="false"
+            android:documentLaunchMode="intoExisting"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Puente para el agente (adb shell): nombres de las apps y Bluetooth. Ver sistema/Puente.kt. -->
+        <provider
+            android:name=".sistema.Puente"
+            android:authorities="com.sios.puente"
+            android:exported="true" />
+
+        <!-- Uso de la suscripción en los ajustes rápidos. -->
+        <service
+            android:name=".sistema.UsoTile"
+            android:exported="true"
+            android:icon="@drawable/ic_sios"
+            android:label="SIOS"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.quicksettings.ACTIVE_TILE"
+                android:value="false" />
+        </service>
+
+        <!-- Claude como asistente digital del sistema. -->
+        <service
+            android:name=".sistema.AsistenteServicio"
+            android:exported="true"
+            android:label="SIOS"
+            android:permission="android.permission.BIND_VOICE_INTERACTION">
+            <meta-data
+                android:name="android.voice_interaction"
+                android:resource="@xml/asistente" />
+            <intent-filter>
+                <action android:name="android.service.voice.VoiceInteractionService" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".sistema.SesionAsistenteServicio"
+            android:exported="true"
+            android:permission="android.permission.BIND_VOICE_INTERACTION" />
+
+        <service
+            android:name=".sistema.Reconocimiento"
+            android:exported="true"
+            android:label="Claude">
+            <intent-filter>
+                <action android:name="android.speech.RecognitionService" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+            <!-- Health Connect lista la app (y explica para qué quiere los datos) con esta entrada. -->
+        <activity-alias
+            android:name=".UsoDeSalud"
+            android:exported="true"
+            android:targetActivity=".ajustes.AjustesActivity"
+            android:permission="android.permission.START_VIEW_PERMISSION_USAGE">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
+                <category android:name="android.intent.category.HEALTH_PERMISSIONS" />
+            </intent-filter>
+        </activity-alias>
+        <!-- Botones del aviso de posible estafa (bloquear, es de fiar). -->
+        <receiver android:name=".sistema.Seguridad$Receptor" android:exported="false" />
+        <!-- Botones del aviso de una captura (ir, llamar, abrir…). -->
+        <receiver android:name=".sistema.Capturas$Receptor" android:exported="false" />
+
+        <!-- Memoria de pantalla («¿dónde vi…?»): desactivada de serie. Su presentación (y activación),
+             la búsqueda (con huella o PIN; FLAG_SECURE), el recuadro y el botón de la notificación. -->
+        <activity
+            android:name=".ajustes.MemoriaPantallaPresentacionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Tema.Sios" />
+        <activity
+            android:name=".ajustes.MemoriaPantallaBuscarActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.sios.recuerdos"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Tema.Sios" />
+        <service
+            android:name=".sistema.MemoriaPantallaTile"
+            android:exported="true"
+            android:icon="@drawable/ic_memoria_pantalla"
+            android:label="@string/mp_titulo"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <receiver android:name=".sistema.MemoriaPantalla$Receptor" android:exported="false" />
+
+        <!-- Emergencias. La pantalla del SOS: la abre SystemUI al pulsar 5 veces el botón de encendido
+             (LAUNCH_EMERGENCY; solo quien tiene STATUS_BAR_SERVICE, es decir, SystemUI) y la propia
+             app (pantalla de emergencias, recuadro, caídas). Encima del bloqueo y antes de desbloquear. -->
+        <activity
+            android:name=".emergencias.SosActivity"
+            android:exported="true"
+            android:permission="android.permission.STATUS_BAR_SERVICE"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true"
+            android:directBootAware="true"
+            android:screenOrientation="portrait"
+            android:taskAffinity="com.sios.sos"
+            android:theme="@style/Tema.Sios">
+            <intent-filter>
+                <action android:name="com.android.systemui.action.LAUNCH_EMERGENCY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- Pantalla de emergencias: en SIOS es el teclado de emergencia del sistema (botón «Emergencia»
+             del bloqueo y del menú de apagado), con SOS, ficha médica y contactos, sin desbloquear. -->
+        <activity
+            android:name=".emergencias.EmergenciasActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:showWhenLocked="true"
+            android:directBootAware="true"
+            android:screenOrientation="portrait"
+            android:taskAffinity="com.sios.emergencias"
+            android:theme="@style/Tema.Sios">
+            <intent-filter>
+                <action android:name="android.intent.action.DIAL_EMERGENCY" />
+                <action android:name="com.android.phone.EmergencyDialer.DIAL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.DIAL_EMERGENCY" />
+                <action android:name="com.android.phone.EmergencyDialer.DIAL" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="tel" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.telephony.action.EMERGENCY_ASSISTANCE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <service
+            android:name=".emergencias.SosServicio"
+            android:exported="false"
+            android:directBootAware="true"
+            android:foregroundServiceType="location" />
+        <service
+            android:name=".emergencias.CaidasServicio"
+            android:exported="false"
+            android:directBootAware="true"
+            android:foregroundServiceType="health" />
+        <receiver
+            android:name=".emergencias.ArranqueEmergencias"
+            android:exported="false"
+            android:directBootAware="true">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name=".emergencias.SosTile"
+            android:exported="true"
+            android:icon="@drawable/ic_sos"
+            android:label="@string/em_tile"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data android:name="android.service.quicksettings.TOGGLEABLE_TILE" android:value="false" />
+        </service>
+
+        <!-- Bóveda: contraseñas, códigos 2FA y documentos, cifrados y solo en el móvil. -->
+        <activity
+            android:name=".boveda.BovedaActivity"
+            android:exported="true"
+            android:label="@string/bv_titulo"
+            android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|density|fontScale|locale|layoutDirection"
+            android:theme="@style/Tema.Sios" />
+        <activity
+            android:name=".boveda.BovedaAutofillActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:theme="@style/Tema.Sios.Hoja" />
+        <activity
+            android:name=".boveda.BovedaCredencialesActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:theme="@style/Tema.Sios.Hoja" />
+        <service
+            android:name=".boveda.BovedaAutofill"
+            android:exported="true"
+            android:label="@string/bv_nombre_proveedor"
+            android:permission="android.permission.BIND_AUTOFILL_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.autofill.AutofillService" />
+            </intent-filter>
+            <meta-data android:name="android.autofill" android:resource="@xml/boveda_autofill" />
+        </service>
+        <service
+            android:name=".boveda.BovedaCredenciales"
+            android:exported="true"
+            android:icon="@drawable/ic_boveda"
+            android:label="@string/bv_nombre_proveedor"
+            android:permission="android.permission.BIND_CREDENTIAL_PROVIDER_SERVICE"
+            tools:targetApi="34">
+            <intent-filter>
+                <action android:name="android.service.credentials.CredentialProviderService" />
+            </intent-filter>
+            <meta-data android:name="android.credentials.provider" android:resource="@xml/boveda_credenciales" />
+        </service>
+        <service
+            android:name=".boveda.BovedaTile"
+            android:exported="true"
+            android:icon="@drawable/ic_boveda"
+            android:label="@string/bv_titulo"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <!-- Foto a quien intente desbloquear el móvil (apagado de serie): Android avisa al administrador de los intentos fallidos. -->
+        <receiver
+            android:name=".sistema.IntrusoAdmin"
+            android:exported="true"
+            android:directBootAware="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data android:name="android.app.device_admin" android:resource="@xml/intruso_admin" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+        <activity
+            android:name=".sistema.FotoIntrusoActivity"
+            android:exported="false"
+            android:directBootAware="true"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:showWhenLocked="true"
+            android:taskAffinity=":intruso"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+</application>
+</manifest>

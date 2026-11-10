@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Símbolo de SIOS en un color (notificaciones del sistema). Generado por rom/marca/sios/android.py. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <group android:translateX="0.000" android:translateY="0.000" android:scaleX="0.2400" android:scaleY="0.2400">
+        <path android:pathData="M44.984 27.861A29.0 29.0 0 1 1 23.000 56.000L23.000 45.000" android:strokeColor="#FFFFFFFF" android:strokeWidth="12.5" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+        <path android:pathData="M15.400 25.150a7.600 7.600 0 1 0 15.200 0a7.600 7.600 0 1 0 -15.200 0Z" android:fillColor="#FFFFFFFF"/>
+    </group>
+</vector>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Teclado de SIOS y PIN aleatorio de la pantalla de bloqueo (aparte de strings.xml). -->
+<resources>
+    <string name="teclado_sios_nombre">Teclado de SIOS</string>
+    <string name="teclado_sios_usar">Usar el teclado de SIOS</string>
+    <string name="teclado_privado">Campo privado: no se guarda nada</string>
+    <string name="teclado_borrar">Borrar</string>
+    <string name="teclado_mayus">Mayúsculas</string>
+    <string name="teclado_aceptar">Aceptar</string>
+    <string name="teclado_cambiar">Cambiar de teclado</string>
+    <string name="teclado_espacio">Espacio</string>
+
+    <string name="seg_titulo">Pantalla de bloqueo</string>
+    <string name="pin_aleatorio_titulo">Números del PIN en otro orden</string>
+    <string name="pin_aleatorio_nota">Las cifras cambian de sitio cada vez que desbloqueas: nadie puede adivinar tu PIN por dónde pones el dedo ni por las marcas en la pantalla. Solo afecta al PIN.</string>
+    <string name="pin_aleatorio_sin_bloqueo">Solo funciona con un PIN, y aún no tienes bloqueo de pantalla.</string>
+    <string name="pin_aleatorio_poner">Poner un PIN</string>
+</resources>

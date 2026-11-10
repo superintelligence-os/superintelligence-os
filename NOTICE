@@ -1,0 +1,16 @@
+SIOS
+Copyright (C) The SIOS authors
+
+SIOS's own code is licensed under the GNU Affero General Public License, version 3 or (at your
+option) any later version. See LICENSE.
+
+This project includes or uses third-party components under their own licenses, including
+LineageOS/AOSP (Apache-2.0; Linux kernel GPL-2.0), Termux, Termux:API and Termux:Boot (GPL-3.0,
+patched by rom/termux/parchear.sh), Neo Store and Aurora Store (GPL-3.0), CoMaps and Thunderbird for
+Android (Apache-2.0), the Montserrat font (SIL OFL 1.1), Lucide icons (ISC), Simple Icons (CC0-1.0),
+the AdAway hosts list (CC BY 3.0), FrequencyWords dictionaries (CC BY-SA 4.0), and AI models
+downloaded on demand (MIT, Apache-2.0, CC-BY-4.0). The full list, with where each component lives
+and its license, is in THIRD_PARTY.md.
+
+Claude, ChatGPT, Gemini, Kimi, Mistral, Grok and the other names and logos mentioned are trademarks
+of their respective owners. SIOS is not affiliated with, endorsed by or sponsored by any of them.

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Cortafuegos y bloqueo de rastreadores de SIOS. -->
+<resources>
+    <string name="cf_titulo">Firewall</string>
+    <string name="cf_canal">Firewall</string>
+    <string name="cf_encendiendo">Turning on the firewall…</string>
+    <string name="cf_encendiendo_corto">Turning on…</string>
+    <string name="cf_apagado">Off</string>
+    <string name="cf_aviso_apagado">The firewall has turned off</string>
+    <string name="cf_aviso_apagado_nota">Another VPN connected, or it was disconnected in Settings. Android only allows one VPN at a time.</string>
+    <plurals name="cf_recuadro_bloqueados">
+        <item quantity="one">%1$s blocked today</item>
+        <item quantity="other">%1$s blocked today</item>
+    </plurals>
+
+    <!-- En Ajustes de SIOS -->
+    <string name="cf_g_red">Network</string>
+    <string name="cf_ajustes_apagado">Off · blocks trackers and decides which apps use the internet</string>
+    <plurals name="cf_ajustes_activo">
+        <item quantity="one">On · %1$s tracker blocked today</item>
+        <item quantity="other">On · %1$s trackers blocked today</item>
+    </plurals>
+    <plurals name="cf_r_privacidad">
+        <item quantity="one">Firewall: %1$s blocked today</item>
+        <item quantity="other">Firewall: %1$s blocked today</item>
+    </plurals>
+    <string name="cf_buscar_alias">Block ads and trackers</string>
+
+    <!-- Pantalla -->
+    <string name="cf_estado_activo">On</string>
+    <string name="cf_estado_activo_wifi">On · on Wi‑Fi</string>
+    <string name="cf_estado_activo_datos">On · on mobile data</string>
+    <string name="cf_estado_encendiendo">Turning on…</string>
+    <string name="cf_intro">Blocks ads and trackers in every app and lets you decide which apps use the internet, on Wi‑Fi and on mobile data. It all happens on the phone: there’s no server in between.</string>
+    <plurals name="cf_hoy_bloqueados">
+        <item quantity="one">tracker blocked today</item>
+        <item quantity="other">trackers blocked today</item>
+    </plurals>
+    <plurals name="cf_hoy_apps">
+        <item quantity="one">in %1$s app</item>
+        <item quantity="other">in %1$s apps</item>
+    </plurals>
+    <plurals name="cf_hoy_sin_red">
+        <item quantity="one">%1$s app without internet right now</item>
+        <item quantity="other">%1$s apps without internet right now</item>
+    </plurals>
+    <string name="cf_aviso_revocado">It turned off because another VPN connected, or it was disconnected in the system settings.</string>
+    <string name="cf_volver_encender">Turn it back on</string>
+    <string name="cf_aviso_error">It couldn’t turn on. If another app is set as “Always-on VPN”, remove it in the VPN settings.</string>
+    <string name="cf_ajustes_vpn">VPN settings</string>
+    <string name="cf_aviso_dns_privado">Private DNS (%1$s) bypasses the firewall: nothing is being filtered right now.</string>
+    <string name="cf_dns_automatico">Use automatic private DNS</string>
+    <string name="cf_aviso_bloqueo">“Block connections without VPN” is on: the essential apps, which the firewall leaves outside so they never lose their connection, won’t have internet.</string>
+    <string name="cf_aviso_siempre">“Always-on VPN” is set for the firewall, so Android will turn it back on. Remove it in the VPN settings to turn it off for good.</string>
+    <string name="cf_otra_vpn_titulo">Another VPN is already connected</string>
+    <string name="cf_otra_vpn_nota">Android only allows one VPN at a time: if you turn on the firewall, the other one will disconnect. When you connect it again, the firewall will turn off by itself.</string>
+    <string name="cf_encender_igualmente">Turn on anyway</string>
+    <string name="cf_cancelar">Cancel</string>
+
+    <string name="cf_g_apps">Apps</string>
+    <string name="cf_g_apps_nota">Tap an app to see who it talks to. The buttons cut its internet on Wi‑Fi and on mobile data.</string>
+    <string name="cf_orden_rastreadores">Trackers</string>
+    <string name="cf_orden_trafico">Traffic</string>
+    <string name="cf_orden_nombre">Name</string>
+    <string name="cf_buscar_app">Search apps</string>
+    <string name="cf_cargando">Loading…</string>
+    <string name="cf_sin_apps">No apps match “%1$s”</string>
+    <plurals name="cf_fila_bloqueados">
+        <item quantity="one">%1$s tracker blocked</item>
+        <item quantity="other">%1$s trackers blocked</item>
+    </plurals>
+    <plurals name="cf_fila_conexiones">
+        <item quantity="one">%1$s connection</item>
+        <item quantity="other">%1$s connections</item>
+    </plurals>
+    <plurals name="cf_fila_intentos">
+        <item quantity="one">%1$s attempt stopped</item>
+        <item quantity="other">%1$s attempts stopped</item>
+    </plurals>
+    <string name="cf_fila_trafico">%1$s today</string>
+    <string name="cf_fila_nada">No activity today</string>
+    <string name="cf_fila_sin_internet">No internet</string>
+    <string name="cf_fila_sin_wifi">No internet on Wi‑Fi</string>
+    <string name="cf_fila_sin_datos">No internet on mobile data</string>
+    <string name="cf_fila_esencial">Essential · outside the filter</string>
+    <string name="cf_fila_propia">Always online</string>
+    <string name="cf_cd_wifi_si">%1$s: internet on Wi‑Fi allowed</string>
+    <string name="cf_cd_wifi_no">%1$s: internet on Wi‑Fi blocked</string>
+    <string name="cf_cd_datos_si">%1$s: internet on mobile data allowed</string>
+    <string name="cf_cd_datos_no">%1$s: internet on mobile data blocked</string>
+
+    <string name="cf_g_lista">Block list</string>
+    <string name="cf_lista_compacta">Compact</string>
+    <string name="cf_lista_completa">Full</string>
+    <plurals name="cf_lista_dominios">
+        <item quantity="one">%1$s domain</item>
+        <item quantity="other">%1$s domains</item>
+    </plurals>
+    <string name="cf_lista_de_serie">built in</string>
+    <string name="cf_lista_actualizada">updated %1$s</string>
+    <string name="cf_lista_nota_compacta">AdAway’s list (CC BY 3.0): ads and analytics in apps, with very few false positives.</string>
+    <string name="cf_lista_nota_completa">StevenBlack/hosts “unified” (MIT): much broader, it may block something you do want. If an app breaks, allow its domain from the app’s page.</string>
+    <string name="cf_actualizar">Update now</string>
+    <string name="cf_actualizando">Downloading the list…</string>
+    <string name="cf_lista_error">The list couldn’t be downloaded. Check your connection and try again.</string>
+    <string name="cf_lista_descarga_nota">The only thing that leaves the phone is the list download.</string>
+
+    <string name="cf_g_registro">Log</string>
+    <string name="cf_registro_nota">What each app tried and what was blocked, for the last 7 days. It’s kept only on this phone.</string>
+    <string name="cf_borrar_registro">Clear the log</string>
+    <string name="cf_registro_borrado">Log cleared</string>
+
+    <!-- Ficha de una app -->
+    <string name="cf_periodo_hoy">Today</string>
+    <string name="cf_periodo_semana">7 days</string>
+    <string name="cf_g_explicacion">What it does online</string>
+    <plurals name="cf_exp_empresas">
+        <item quantity="one">It tried to connect to %1$s %2$s company (%3$s).</item>
+        <item quantity="other">It tried to connect to %1$s %2$s companies (%3$s).</item>
+    </plurals>
+    <string name="cf_frase_publicidad">advertising</string>
+    <string name="cf_frase_analisis">analytics</string>
+    <string name="cf_frase_rastreo">tracking</string>
+    <string name="cf_lista_dos">%1$s and %2$s</string>
+    <string name="cf_lista_tres">%1$s, %2$s and %3$s</string>
+    <string name="cf_exp_limpia_con">No ads or tracking seen: it only talked to services it needs to work (%1$s).</string>
+    <string name="cf_exp_limpia">No ads or tracking seen.</string>
+    <plurals name="cf_exp_sin_nombre">
+        <item quantity="one">The block list also stopped %1$s tracking domain from an unknown company.</item>
+        <item quantity="other">The block list also stopped %1$s tracking domains from unknown companies.</item>
+    </plurals>
+    <plurals name="cf_exp_bloqueadas">
+        <item quantity="one">The firewall blocked %1$s request.</item>
+        <item quantity="other">The firewall blocked %1$s requests.</item>
+    </plurals>
+    <plurals name="cf_exp_sin_red">
+        <item quantity="one">It has no internet: %1$s connection attempt was stopped.</item>
+        <item quantity="other">It has no internet: %1$s connection attempts were stopped.</item>
+    </plurals>
+    <string name="cf_exp_fuera">It goes outside the firewall so it never loses its connection, so what it does online isn’t logged.</string>
+    <string name="cf_exp_nada_hoy">It hasn’t used the internet today while the firewall was on.</string>
+    <string name="cf_exp_nada_semana">It hasn’t used the internet in the last 7 days while the firewall was on.</string>
+    <string name="cf_cat_publicidad">Advertising</string>
+    <string name="cf_cat_analisis">Analytics</string>
+    <string name="cf_cat_rastreo">Tracking</string>
+    <string name="cf_cat_funcional">Functional</string>
+    <string name="cf_cat_desconocida">Unknown</string>
+    <string name="cf_explicamelo">Explain it to me</string>
+    <string name="cf_explicando">Claude is looking at it…</string>
+    <string name="cf_explicar_error">Claude couldn’t answer right now. Try again in a moment.</string>
+    <string name="cf_explicar_nota">Only this app’s list of domains is sent to Claude.</string>
+
+    <string name="cf_g_acceso">Internet access</string>
+    <string name="cf_acceso_wifi">Wi‑Fi</string>
+    <string name="cf_acceso_datos">Mobile data</string>
+    <string name="cf_acceso_nota">Without internet, the app can’t find any server. A messaging app that connects to fixed addresses might still work.</string>
+    <string name="cf_esencial_propia">SIOS does the filtering: it can’t be left without internet.</string>
+    <string name="cf_esencial_agente">Termux is where the SIOS agent runs. It stays outside the filter so it never loses its connection.</string>
+    <string name="cf_esencial_google">Google Play and its services carry notifications, accounts and updates. They stay outside the filter so they never lose their connection.</string>
+    <string name="cf_esencial_telefonia">Telephony: SMS, MMS, Wi‑Fi calling and carrier data. It stays outside the filter so it never loses its connection.</string>
+    <string name="cf_esencial_sistema">Part of the system (time, connection checks, downloads). It stays outside the filter so it never loses its connection.</string>
+    <string name="cf_confirmar_titulo">Cut the internet for %1$s?</string>
+    <string name="cf_confirmar_agente">It’s where the SIOS agent runs: without internet, the AI will stop answering and doing things for you.</string>
+    <string name="cf_confirmar_google">Many apps depend on it: notifications would stop arriving, and Google accounts, location and updates would fail.</string>
+    <string name="cf_confirmar_telefonia">MMS, Wi‑Fi calling and carrier settings may stop working.</string>
+    <string name="cf_confirmar_sistema">Parts of the system will stop working: automatic time, connection checks and downloads.</string>
+    <string name="cf_confirmar_quitar">Cut the internet</string>
+
+    <string name="cf_g_dominios">Domains</string>
+    <string name="cf_dominios_vacio">Nothing logged yet. What it does online while the firewall is on will show up here.</string>
+    <plurals name="cf_veces">
+        <item quantity="one">%1$s time</item>
+        <item quantity="other">%1$s times</item>
+    </plurals>
+    <string name="cf_estado_bloqueado">Blocked</string>
+    <string name="cf_estado_sin_red">No internet</string>
+    <string name="cf_estado_permitido">Allowed by you</string>
+    <string name="cf_estado_bloqueado_ti">Blocked by you</string>
+    <string name="cf_ultima">Last time %1$s.</string>
+    <string name="cf_motivo_lista">It’s on the ads and trackers list.</string>
+    <string name="cf_motivo_sin_red">The app has no internet on this network.</string>
+    <string name="cf_motivo_pasa">It was let through.</string>
+    <string name="cf_motivo_permitido">You always allow it.</string>
+    <string name="cf_motivo_bloqueado_ti">You always block it.</string>
+    <string name="cf_permitir_siempre">Always allow</string>
+    <string name="cf_bloquear_siempre">Always block</string>
+    <string name="cf_quitar_excepcion">Remove the exception</string>
+    <string name="cf_quitar_bloqueo">Stop blocking it</string>
+    <string name="cf_ver_mas">See all (%1$s)</string>
+</resources>

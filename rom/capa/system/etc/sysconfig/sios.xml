@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS: el agente no se duerme con el ahorro de batería, y la app Claude puede usar las
+     API ocultas de Bluetooth (conectar perfiles, olvidar dispositivos), como las apps del sistema. -->
+<config>
+    <allow-in-power-save package="com.termux" />
+    <allow-in-power-save package="com.termux.api" />
+    <allow-in-power-save package="com.sios" />
+    <hidden-api-whitelisted-app package="com.sios" />
+</config>

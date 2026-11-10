@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tastiera di SIOS e PIN mescolato nella schermata di blocco (separati da strings.xml). -->
+<resources>
+    <string name="teclado_sios_nombre">Tastiera di SIOS</string>
+    <string name="teclado_sios_usar">Usa la tastiera di SIOS</string>
+    <string name="teclado_privado">Campo privato: non si salva nulla</string>
+    <string name="teclado_borrar">Cancella</string>
+    <string name="teclado_mayus">Maiuscole</string>
+    <string name="teclado_aceptar">Fine</string>
+    <string name="teclado_cambiar">Cambia tastiera</string>
+    <string name="teclado_espacio">Spazio</string>
+
+    <string name="seg_titulo">Schermata di blocco</string>
+    <string name="pin_aleatorio_titulo">Numeri del PIN in ordine casuale</string>
+    <string name="pin_aleatorio_nota">Le cifre cambiano posto ogni volta che sblocchi: nessuno può indovinare il tuo PIN da dove metti il dito o dalle tracce sullo schermo. Vale solo per il PIN.</string>
+    <string name="pin_aleatorio_sin_bloqueo">Funziona solo con un PIN, e non hai ancora un blocco schermo.</string>
+    <string name="pin_aleatorio_poner">Imposta un PIN</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Valores de com.android.documentsui para SIOS (marca/temas_apps.py). -->
+<resources>
+    <color name="primary">@android:color/system_primary_dark</color>
+    <color name="color_surface_header">@android:color/system_background_dark</color>
+</resources>

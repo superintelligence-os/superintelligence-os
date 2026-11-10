@@ -1,0 +1,6 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Lanza Claude Code (en el Debian de proot-distro) dentro de la carpeta del agente.
+# Siempre la misma carpeta: así --resume encuentra las conversaciones anteriores.
+exec proot-distro login debian --shared-tmp \
+  --bind /data/data/com.termux/files/home:/termux \
+  -- bash -c 'mkdir -p /root/agente && cd /root/agente && exec /root/.local/bin/claude "$@"' claude "$@"

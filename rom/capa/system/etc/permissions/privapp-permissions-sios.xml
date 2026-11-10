@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS: permisos privilegiados de la app Claude (tema del sistema, depuración local y volver al frente tras iniciar sesión). -->
+<permissions>
+    <privapp-permissions package="com.sios">
+        <permission name="android.permission.WRITE_SECURE_SETTINGS" />
+        <permission name="android.permission.MODIFY_DAY_NIGHT_MODE" />
+        <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND" />
+        <permission name="android.permission.BLUETOOTH_PRIVILEGED" />
+        <permission name="android.permission.BIND_APPWIDGET" />
+            <!-- «Que conteste Claude»: escuchar el audio de la llamada mientras Claude atiende. -->
+        <permission name="android.permission.CAPTURE_AUDIO_OUTPUT" />
+        <!-- Colores de Claude en todo el sistema (capa de colores propia encima de la de Android). -->
+        <permission name="android.permission.CHANGE_OVERLAY_PACKAGES" />
+    <permission name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME"/>
+        <!-- PIN de la pantalla de bloqueo en orden aleatorio (ajuste de LineageOS). En LineageOS 23.2 es de
+             nivel normal y no haría falta, pero así queda concedido aunque una versión lo suba a privilegiado. -->
+        <permission name="lineageos.permission.WRITE_SETTINGS" />
+        <!-- Encontrar mi móvil: borrar a distancia (lo pide el ordenador vinculado, escribiendo BORRAR)
+             y saber si cambian la SIM sin guardar sus números. -->
+        <permission name="android.permission.MASTER_CLEAR" />
+        <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+    </privapp-permissions>
+</permissions>

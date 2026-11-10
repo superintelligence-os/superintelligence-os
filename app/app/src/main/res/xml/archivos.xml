@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Lo que la app comparte con su propia hoja (fotos de la cámara de Claude). -->
+<paths>
+    <cache-path name="compartido" path="compartido/" />
+</paths>

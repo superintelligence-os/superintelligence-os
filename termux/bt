@@ -1,0 +1,56 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# bt — Bluetooth del móvil desde la terminal de SIOS.
+# Lo hace la app Claude (que tiene los permisos de Bluetooth) a través de su puente; aquí solo se
+# traduce la orden y se enseña el JSON que devuelve.
+set -uo pipefail
+
+ayuda() {
+  cat <<'TXT'
+bt estado                                  encendido, nombre y emparejados
+bt encender | bt apagar
+bt buscar [segundos]                       cercanos (clásicos y BLE), por señal; 8 s por defecto
+bt emparejar <MAC>                         el móvil pide confirmar el código
+bt olvidar <MAC>
+bt conectar <MAC> | bt desconectar <MAC>   audio, manos libres, teclado…
+bt servicios <MAC>                         BLE: servicios y características
+bt leer <MAC> <servicio> <característica>
+bt escribir <MAC> <servicio> <característica> <hex | texto:…>
+Los UUID cortos valen (180f = batería, 2a19 = nivel). Salida en JSON.
+TXT
+}
+
+# puente <método> [clave=valor…] → JSON
+puente() {
+  local metodo=$1; shift
+  local args=(content call --uri content://com.sios.puente --method "$metodo")
+  # Valores codificados como en una URL: `content call` no admite «:» (las MAC los llevan).
+  for kv in "$@"; do args+=(--extra "${kv%%=*}:s:$(node -p 'encodeURIComponent(process.argv[1])' "${kv#*=}")"); done
+  local salida
+  salida=$(android "${args[@]}" 2>&1)
+  if [[ $salida != *"json="* ]]; then
+    echo "{\"error\": \"El puente de Claude no respondió: ${salida//\"/\'}\"}"
+    return 1
+  fi
+  salida=${salida#*json=}
+  salida=${salida%\}]*}
+  node -e 'const r = JSON.parse(process.argv[1]); console.log(JSON.stringify(r, null, 1)); process.exit(r.error ? 1 : 0)' "$salida"
+}
+
+falta() { echo "Uso: bt $1"; exit 2; }
+
+orden=${1:-ayuda}; shift || true
+case "$orden" in
+  estado) puente bt_estado ;;
+  encender) puente bt_encender ;;
+  apagar) puente bt_apagar ;;
+  buscar) puente bt_buscar "segundos=${1:-8}" ;;
+  emparejar) [ $# -ge 1 ] || falta "emparejar <MAC>"; puente bt_emparejar "mac=$1" ;;
+  olvidar) [ $# -ge 1 ] || falta "olvidar <MAC>"; puente bt_olvidar "mac=$1" ;;
+  conectar) [ $# -ge 1 ] || falta "conectar <MAC>"; puente bt_conectar "mac=$1" ;;
+  desconectar) [ $# -ge 1 ] || falta "desconectar <MAC>"; puente bt_desconectar "mac=$1" ;;
+  servicios) [ $# -ge 1 ] || falta "servicios <MAC>"; puente ble_servicios "mac=$1" ;;
+  leer) [ $# -ge 3 ] || falta "leer <MAC> <servicio> <característica>"; puente ble_leer "mac=$1" "servicio=$2" "caracteristica=$3" ;;
+  escribir) [ $# -ge 4 ] || falta "escribir <MAC> <servicio> <característica> <hex | texto:…>"; puente ble_escribir "mac=$1" "servicio=$2" "caracteristica=$3" "valor=$4" ;;
+  ayuda|-h|--help) ayuda ;;
+  *) echo "Orden desconocida: $orden"; ayuda; exit 2 ;;
+esac

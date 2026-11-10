@@ -1,0 +1,5 @@
+#!/bin/bash
+# Navegador de Claude Code dentro de Debian (variable BROWSER): en vez de abrir nada, pasa el
+# enlace al servicio de SIOS, que se lo da a la app para abrirlo en el navegador del móvil.
+# Así el inicio de sesión vuelve solo a Claude Code (redirige a localhost) y no hay que copiar códigos.
+exec curl -fsS -m 5 -X POST -H 'Content-Type: text/plain' --data-binary "$1" http://127.0.0.1:8765/cuenta/enlace >/dev/null

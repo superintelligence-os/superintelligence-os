@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS Keyboard and shuffled lock-screen PIN (kept apart from strings.xml). -->
+<resources>
+    <string name="teclado_sios_nombre">SIOS Keyboard</string>
+    <string name="teclado_sios_usar">Use SIOS Keyboard</string>
+    <string name="teclado_privado">Private field: nothing is saved</string>
+    <string name="teclado_borrar">Delete</string>
+    <string name="teclado_mayus">Shift</string>
+    <string name="teclado_aceptar">Done</string>
+    <string name="teclado_cambiar">Switch keyboard</string>
+    <string name="teclado_espacio">Space</string>
+
+    <string name="seg_titulo">Lock screen</string>
+    <string name="pin_aleatorio_titulo">Shuffle the PIN numbers</string>
+    <string name="pin_aleatorio_nota">The digits change place every time you unlock, so nobody can guess your PIN from where you tap or from smudges on the screen. Only affects the PIN.</string>
+    <string name="pin_aleatorio_sin_bloqueo">It only works with a PIN, and you don\'t have a screen lock yet.</string>
+    <string name="pin_aleatorio_poner">Set a PIN</string>
+</resources>

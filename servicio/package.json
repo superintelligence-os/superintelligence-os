@@ -1,0 +1,15 @@
+{
+  "name": "sios-servicio",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Servicio de SIOS: MCP del móvil, puente con Claude Code y chat",
+  "main": "servicio.mjs",
+  "scripts": {
+    "start": "node servicio.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  }
+}

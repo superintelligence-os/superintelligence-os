@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dictado y traducción sin conexión: ajustes, traductor y dictado en el móvil. -->
+<resources>
+    <string name="voz_titulo">Offline dictation and translation</string>
+    <string name="voz_nota">They work without internet and without any AI.</string>
+    <string name="voz_privacidad">Everything happens on the phone: your voice and your texts never leave it. It only connects to download the models you choose.</string>
+    <string name="voz_cuando">When to use them</string>
+    <string name="voz_modo_auto">Automatic</string>
+    <string name="voz_modo_siempre">Always</string>
+    <string name="voz_modo_auto_nota">With internet, the system’s dictation and your AI; without internet or without an AI, the phone’s own.</string>
+    <string name="voz_modo_siempre_nota">Always on the phone, even with internet. The most private.</string>
+    <string name="voz_dictado">Dictation</string>
+    <string name="voz_preciso">Accurate</string>
+    <string name="voz_preciso_nota">Every language, with punctuation. Best on fast phones.</string>
+    <string name="voz_ligero">Light · %1$s</string>
+    <string name="voz_ligero_corto">Light</string>
+    <string name="voz_ligero_nota">Small and quick: it writes as you speak, without punctuation.</string>
+    <string name="voz_recomendado">For this phone</string>
+    <string name="voz_otros_idiomas">Other languages</string>
+    <string name="voz_usar">Dictate with</string>
+    <string name="voz_otras_apps">Apps that use the system’s dictation use it too.</string>
+    <string name="voz_traduccion">Translation</string>
+    <string name="voz_traduccion_nota">Each language comes with English, both ways. Between two other languages, it goes through English.</string>
+    <string name="voz_descargar">Download</string>
+    <string name="voz_cancelar">Cancel</string>
+    <string name="voz_reintentar">Retry</string>
+    <string name="voz_borrar">Delete</string>
+    <string name="voz_listo">Ready · %1$s</string>
+    <string name="voz_en_cola">Waiting…</string>
+    <string name="voz_descargando">Downloading… %1$s of %2$s</string>
+    <string name="voz_comprobando">Checking…</string>
+    <string name="voz_fallo_red">No connection. Try again on Wi‑Fi.</string>
+    <string name="voz_fallo_espacio">Not enough space on the phone.</string>
+    <string name="voz_fallo">Couldn’t download. Try again.</string>
+    <string name="voz_ocupan">Together they take up %1$s</string>
+    <string name="voz_licencias">Open models: Whisper (OpenAI, MIT), Vosk (Alpha Cephei, Apache 2.0) and OPUS‑MT (University of Helsinki, Apache 2.0 / CC BY 4.0).</string>
+    <string name="voz_borrar_titulo">Delete “%1$s”?</string>
+    <string name="voz_borrar_texto">It’s removed from the phone. You can download it again whenever you like.</string>
+    <string name="voz_borrar_oye">“Hey…” uses it to hear its name, so it will download it again.</string>
+    <string name="voz_datos_titulo">Download with mobile data?</string>
+    <string name="voz_datos_texto">It’s %1$s. On Wi‑Fi it won’t use your data.</string>
+    <string name="voz_escuchando_local">Listening on the phone…</string>
+    <string name="voz_falta_dictado">To dictate without internet, download the dictation in Settings.</string>
+    <string name="voz_trad_falta">To translate without internet, download these languages in Settings.</string>
+    <string name="voz_sello">Offline</string>
+    <string name="voz_sello_descargar">Offline</string>
+</resources>

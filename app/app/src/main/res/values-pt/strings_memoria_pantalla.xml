@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Memoria de pantalla («¿dónde vi…?»): ajustes, presentación, búsqueda, notificación y recuadro. -->
+<resources>
+    <string name="mp_titulo">Memória do ecrã</string>
+    <string name="mp_nota">Pesquisa no que passou pelo teu ecrã: «onde é que vi…?». Desativada de origem; tudo fica cifrado no telemóvel.</string>
+    <string name="mp_apagada_nota">Desativada: não se guarda nada do que vês.</string>
+    <string name="mp_conocer">Ver como funciona</string>
+    <string name="mp_sin_manos">Para ler o ecrã precisa do serviço de acessibilidade do SIOS, que agora está desligado.</string>
+    <string name="mp_sin_manos_arreglar">Ligá-lo</string>
+    <string name="mp_estado_pausada">Em pausa: não se guarda nada de novo.</string>
+    <string name="mp_cargando">A carregar…</string>
+    <plurals name="mp_momentos">
+        <item quantity="one">%d momento guardado</item>
+        <item quantity="other">%d momentos guardados</item>
+    </plurals>
+    <string name="mp_ocupa">ocupa %1$s</string>
+    <string name="mp_se_borra">apaga-se ao fim de %1$d dias</string>
+    <string name="mp_recordando">Lembrar o que vês</string>
+    <string name="mp_buscar">Pesquisar no que viste</string>
+    <string name="mp_dias_titulo">Quanto tempo se guarda</string>
+    <string name="mp_dias_nota">O mais antigo apaga-se sozinho.</string>
+    <string name="mp_dias_7">7 dias</string>
+    <string name="mp_dias_30">30 dias</string>
+    <string name="mp_miniaturas_titulo">Guardar miniaturas</string>
+    <string name="mp_miniaturas_nota">Uma imagem pequena e cifrada de cada momento, para o reconheceres num relance. Ocupa bastante mais.</string>
+    <string name="mp_imagenes_titulo">Pesquisar em imagens</string>
+    <string name="mp_imagenes_lista">Pronto · %1$s no telemóvel</string>
+    <string name="mp_imagenes_falta">Para encontrar imagens sem texto («o sofá azul»). Descarrega-se uma vez: %1$s.</string>
+    <string name="mp_descargar_corto">Descarregar</string>
+    <string name="mp_descargando">A descarregar… %1$s de %2$s</string>
+    <string name="mp_descarga_sigue">Podes sair: a descarga continua e, quando terminar, também se poderá pesquisar nas imagens.</string>
+    <string name="mp_comprobando">A verificar o modelo…</string>
+    <string name="mp_descarga_fallo">Não foi possível descarregar o modelo.</string>
+    <string name="mp_descarga_sin_red">Sem ligação à internet: não foi possível descarregar o modelo.</string>
+    <string name="mp_reintentar">Tentar de novo</string>
+    <string name="mp_cancelar">Cancelar</string>
+    <string name="mp_red_pago">Estás com dados móveis: a descarga pode gastar o teu tarifário. Se preferires, ativa-a só com texto e descarrega o modelo mais tarde com Wi-Fi nas Definições.</string>
+    <string name="mp_excluidas_titulo">Apps que não se guardam</string>
+    <string name="mp_excluidas_ninguna">Só as que nunca se guardam</string>
+    <plurals name="mp_excluidas_cuenta">
+        <item quantity="one">%d app escolhida, além das habituais</item>
+        <item quantity="other">%d apps escolhidas, além das habituais</item>
+    </plurals>
+    <string name="mp_siempre_fuera">Nunca se guardam bancos e pagamentos, palavras-passe e códigos, o modo anónimo, o ecrã de bloqueio nem o SIOS. Escolhe aqui outras apps.</string>
+    <string name="mp_siempre_fuera_app">Sempre de fora</string>
+    <string name="mp_borrar_todo">Apagar tudo</string>
+    <string name="mp_borrar_titulo">Apagar tudo o que foi guardado?</string>
+    <string name="mp_borrar_texto">Apaga-se tudo o que a memória do ecrã guardou, e as suas chaves. Não se pode desfazer. Continuará a lembrar a partir de agora.</string>
+    <string name="mp_borrado">Apagado</string>
+    <string name="mp_desactivar">Desativar</string>
+    <string name="mp_desactivar_titulo">Desativar a memória do ecrã?</string>
+    <string name="mp_desactivar_texto">Deixa de lembrar e apaga-se tudo: o que foi guardado, as suas chaves e o modelo de imagens.</string>
+
+    <!-- Presentación -->
+    <string name="mp_p1_titulo">Onde é que eu vi?</string>
+    <string name="mp_p1_texto">A memória do ecrã lembra o que passa pelo teu ecrã para o encontrares depois: aquele código, a morada que te mostraram, o sofá azul de uma loja. Vem desativada e és tu que decides se a queres.</string>
+    <string name="mp_p2_titulo">O que guarda</string>
+    <string name="mp_p2_texto">Só o necessário para encontrar as coisas, quando o ecrã muda mesmo.</string>
+    <string name="mp_p2_1">O texto que se vê no ecrã.</string>
+    <string name="mp_p2_2">Das imagens, o texto que tiverem e uma impressão: 512 números para as encontrar pelo que mostram. Nunca a imagem nem uma descrição.</string>
+    <string name="mp_p2_3">Se quiseres, uma miniatura pequena e cifrada de cada momento. Vem desligado.</string>
+    <string name="mp_p3_titulo">O que nunca guarda</string>
+    <string name="mp_p3_texto">Há coisas que nunca se lembram, nem sequer cifradas.</string>
+    <string name="mp_p3_1">Palavras-passe, nem o ecrã onde as escreves.</string>
+    <string name="mp_p3_2">Apps de bancos, pagamentos, palavras-passe e códigos.</string>
+    <string name="mp_p3_3">Separadores anónimos e navegadores privados.</string>
+    <string name="mp_p3_4">O ecrã de bloqueio, nem nada com o telemóvel bloqueado.</string>
+    <string name="mp_p3_5">As apps que escolheres.</string>
+    <string name="mp_p4_titulo">Só no teu telemóvel, cifrado</string>
+    <string name="mp_p4_texto">Nada disto sai do teu telemóvel.</string>
+    <string name="mp_p4_1">Uma base de dados cifrada (AES-256) com uma chave que só abre com o telemóvel desbloqueado.</string>
+    <string name="mp_p4_2">Para pesquisar, a tua impressão digital ou o teu PIN.</string>
+    <string name="mp_p4_3">Se perguntares à tua IA, só lhe chegam os fragmentos que coincidem, nunca o histórico.</string>
+    <string name="mp_p4_4">Ocupa cerca de 2 MB por dia de uso; com miniaturas, cerca de 3 MB a mais por dia.</string>
+    <string name="mp_p5_titulo">Dura o que tu disseres</string>
+    <string name="mp_p5_texto">O mais antigo apaga-se sozinho, passado o tempo que escolheres.</string>
+    <string name="mp_p5_1">Põe-na em pausa quando quiseres nas definições rápidas ou na sua notificação.</string>
+    <string name="mp_p5_2">«Apagar tudo» está nas Definições, sempre à mão. Ao desativá-la apaga-se tudo.</string>
+    <string name="mp_p6_titulo">Pesquisar também em imagens</string>
+    <string name="mp_p6_texto">Para encontrar imagens sem texto («o sofá azul que vi na terça») é preciso um modelo de visão que funciona no próprio telemóvel. Descarrega-se uma vez: %1$s.</string>
+    <string name="mp_licencias">Modelos abertos descarregados do Hugging Face: CLIP da OpenAI (licença MIT) e a sua versão multilingue da sentence-transformers (Apache 2.0).</string>
+    <string name="mp_ahora_no">Agora não</string>
+    <string name="mp_activar_con">Descarregar e ativar · %1$s</string>
+    <string name="mp_activar_sin">Ativar só com texto</string>
+    <string name="mp_activada">A memória do ecrã está ativa.</string>
+    <string name="mp_hecho">Feito</string>
+    <string name="mp_sin_bloqueo">Precisas de um bloqueio de ecrã (PIN, padrão ou palavra-passe): a pesquisa abre com ele.</string>
+    <string name="mp_poner_bloqueo">Definir bloqueio de ecrã</string>
+    <string name="mp_error_activar">Não foi possível ativar. Desbloqueia o telemóvel e tenta de novo.</string>
+
+    <!-- Notificación y recuadro -->
+    <string name="mp_canal">Memória do ecrã</string>
+    <string name="mp_canal_nota">Aviso fixo enquanto a memória do ecrã está ativa, com o botão de pausa.</string>
+    <string name="mp_aviso_activa">Memória do ecrã ativa</string>
+    <string name="mp_aviso_activa_nota">A lembrar o que vês, só neste telemóvel</string>
+    <string name="mp_aviso_pausada">Memória do ecrã em pausa</string>
+    <string name="mp_aviso_pausada_nota">Não se guarda nada de novo</string>
+    <string name="mp_pausar">Pausar</string>
+    <string name="mp_reanudar">Retomar</string>
+    <string name="mp_recuadro_activa">A lembrar</string>
+    <string name="mp_recuadro_pausada">Em pausa</string>
+    <string name="mp_recuadro_apagada">Desativada</string>
+
+    <!-- Búsqueda -->
+    <string name="mp_b_titulo">Onde é que eu vi?</string>
+    <string name="mp_b_bloqueada">A tua memória do ecrã está protegida</string>
+    <string name="mp_b_bloqueada_nota">Abre-a com a tua impressão digital ou o teu PIN.</string>
+    <string name="mp_b_desbloquear">Desbloquear</string>
+    <string name="mp_b_prompt_sub">Confirma que és tu</string>
+    <string name="mp_b_error_bloqueo">Precisas de um bloqueio de ecrã para a abrir.</string>
+    <string name="mp_b_desactivada">A memória do ecrã está desativada</string>
+    <string name="mp_b_ir_ajustes">Ir às Definições</string>
+    <string name="mp_b_buscar_pista">Pesquisa algo que viste…</string>
+    <string name="mp_b_preguntar_pista">Pergunta a %1$s…</string>
+    <string name="mp_b_modo_buscar">Pesquisar</string>
+    <string name="mp_b_modo_preguntar">Perguntar a %1$s</string>
+    <string name="mp_b_vacio_titulo">Escreve o que te lembras</string>
+    <string name="mp_b_vacio_nota">Uma palavra, uma app ou um dia: «wifi», «ontem no Chrome», «sofá azul na terça».</string>
+    <string name="mp_b_ejemplo_1">código ontem</string>
+    <string name="mp_b_ejemplo_2">sofá azul</string>
+    <string name="mp_b_ejemplo_3">morada</string>
+    <string name="mp_b_sin_modelo">Para pesquisar também em imagens, descarrega o modelo nas Definições.</string>
+    <string name="mp_b_nada">Nada coincide com «%1$s»</string>
+    <string name="mp_b_nada_nota">Experimenta outras palavras ou outro dia.</string>
+    <string name="mp_b_por_imagen">Pela imagem</string>
+    <string name="mp_b_hoy">Hoje</string>
+    <string name="mp_b_ayer">Ontem</string>
+    <string name="mp_b_cuando">%1$s · %2$s</string>
+    <string name="mp_b_no_abre">Não é possível abrir essa app.</string>
+    <string name="mp_b_ia_explica">Escreve a pergunta como a farias a alguém. A %1$s só chegam os fragmentos que coincidem, nunca o histórico.</string>
+    <string name="mp_b_preguntar">Perguntar</string>
+    <plurals name="mp_b_se_envian">
+        <item quantity="one">A %1$s só chegou %2$d fragmento, o que coincide.</item>
+        <item quantity="other">A %1$s só chegaram os %2$d fragmentos que coincidem.</item>
+    </plurals>
+    <string name="mp_b_sin_fragmentos">Não há nada guardado que coincida, por isso não se perguntou a %1$s.</string>
+    <string name="mp_b_fallo_ia">Não foi possível perguntar a %1$s. Em baixo tens o que há no teu telemóvel.</string>
+</resources>

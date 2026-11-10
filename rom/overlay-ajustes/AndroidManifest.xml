@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS: nombre del dispositivo de serie («SIOS» en vez del modelo, p. ej.
+     sdk_gphone64_arm64): lo usan el asistente de Google, Bluetooth y Quick Share.
+     Se fija al crear los ajustes en el primer arranque; el usuario lo puede cambiar. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sios.overlay.ajustes">
+    <overlay android:targetPackage="com.android.providers.settings" android:isStatic="true" android:priority="2000" />
+    <application android:hasCode="false" />
+</manifest>

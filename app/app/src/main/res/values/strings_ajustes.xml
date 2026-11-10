@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ajustes de SIOS por categorías: portada, buscador y subpáginas. -->
+<resources>
+    <string name="ajs_buscar">Search settings</string>
+    <string name="ajs_buscar_nada">Nothing found for “%1$s”</string>
+    <string name="ajs_borrar">Clear search</string>
+    <string name="ajs_asistente">Assistant and voice</string>
+    <string name="ajs_privacidad">Privacy and security</string>
+    <string name="ajs_ordenador">Computer</string>
+    <string name="ajs_teclado">Keyboard</string>
+    <string name="ajs_sistema">System</string>
+    <string name="ajs_ia_elegir">Choose your phone’s AI</string>
+    <string name="ajs_ia_elegir_nota">With your subscription, a key or on the phone</string>
+    <string name="ajs_g_conversaciones">Conversations</string>
+    <string name="ajs_g_asistente">Phone assistant</string>
+    <string name="ajs_g_puede">What it can do</string>
+    <string name="ajs_g_desconocidos">Unknown numbers</string>
+    <string name="ajs_g_ayuda">Help and check-up</string>
+    <string name="ajs_r_asistente">“Hey Claude”, voice and your apps</string>
+    <string name="ajs_r_creaciones_vacio">Widgets, apps and agents</string>
+    <string name="ajs_r_memoria">Remembers photos and documents</string>
+    <string name="ajs_r_uso">This week, %1$d %%</string>
+    <string name="ajs_r_uso_sin">Limits and automatic saving</string>
+    <string name="ajs_r_apariencia">Light or dark, colour and text</string>
+    <string name="ajs_r_notificaciones">Summary, unanswered and Good night</string>
+    <string name="ajs_r_llamadas">Silence or answer unknown numbers</string>
+    <string name="ajs_r_teclado_si">In use</string>
+    <string name="ajs_r_teclado_no">Not turned on</string>
+    <string name="ajs_r_coche">Your car, destinations and messages</string>
+    <string name="ajs_r_familia">Family group and location</string>
+    <string name="ajs_r_privacidad">Connections, activity and lock</string>
+    <string name="ajs_r_privacidad_sin_pin">Connections and activity</string>
+    <string name="ajs_r_ordenador">Mac or Windows: clipboard, alerts</string>
+    <string name="ajs_r_copia">Last one %1$s</string>
+    <string name="ajs_r_copia_nunca">No backups yet</string>
+    <plurals name="ajs_r_creaciones">
+        <item quantity="one">%1$d creation</item>
+        <item quantity="other">%1$d creations</item>
+    </plurals>
+</resources>

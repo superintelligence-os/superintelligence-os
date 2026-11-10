@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Clavier SIOS et code PIN mélangé sur l'écran de verrouillage (à part de strings.xml). -->
+<resources>
+    <string name="teclado_sios_nombre">Clavier SIOS</string>
+    <string name="teclado_sios_usar">Utiliser le Clavier SIOS</string>
+    <string name="teclado_privado">Champ privé : rien n\'est enregistré</string>
+    <string name="teclado_borrar">Effacer</string>
+    <string name="teclado_mayus">Majuscule</string>
+    <string name="teclado_aceptar">OK</string>
+    <string name="teclado_cambiar">Changer de clavier</string>
+    <string name="teclado_espacio">Espace</string>
+
+    <string name="seg_titulo">Écran de verrouillage</string>
+    <string name="pin_aleatorio_titulo">Mélanger les chiffres du code</string>
+    <string name="pin_aleatorio_nota">Les chiffres changent de place à chaque déverrouillage : personne ne peut deviner votre code à l\'endroit où vous appuyez ni aux traces sur l\'écran. Concerne uniquement le code PIN.</string>
+    <string name="pin_aleatorio_sin_bloqueo">Ne fonctionne qu\'avec un code PIN, et vous n\'avez pas encore de verrouillage d\'écran.</string>
+    <string name="pin_aleatorio_poner">Définir un code PIN</string>
+</resources>

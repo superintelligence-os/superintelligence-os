@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS: marca del asistente de bienvenida (nombre, logo y color) en lugar de LineageOS. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sios.overlay.setupwizard">
+    <overlay android:targetPackage="org.lineageos.setupwizard" android:isStatic="true" android:priority="900" />
+    <application android:hasCode="false" />
+</manifest>

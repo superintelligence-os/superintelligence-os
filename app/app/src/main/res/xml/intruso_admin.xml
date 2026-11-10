@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Solo saber cuándo falla el desbloqueo: SIOS no pide ningún otro poder de administrador. -->
+<device-admin>
+    <uses-policies>
+        <watch-login />
+    </uses-policies>
+</device-admin>

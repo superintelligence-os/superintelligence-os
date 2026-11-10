@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Escáner de documentos de SIOS (EscanerActivity). -->
+<resources>
+    <string name="esc_titulo">Scanner</string>
+    <string name="esc_encuadra">Cadrez le document</string>
+    <string name="esc_detectado">Document trouvé</string>
+    <string name="esc_disparar">Prendre la photo</string>
+    <string name="esc_importar">Importer depuis la galerie</string>
+    <string name="esc_guardar_n">Enregistrer · %1$d</string>
+    <string name="esc_sin_permiso">Le scanner a besoin de l’appareil photo. Vous pouvez l’autoriser dans les Réglages.</string>
+    <string name="esc_ajusta_titulo">Ajustez les bords</string>
+    <string name="esc_ajusta">Faites glisser les coins jusqu’aux bords du papier.</string>
+    <string name="esc_no_encontrado">Papier introuvable : faites glisser les coins jusqu’à ses bords.</string>
+    <string name="esc_forma_rara">Les coins se croisent : déplacez-les pour former le contour du papier.</string>
+    <string name="esc_repetir">Reprendre</string>
+    <string name="esc_toda">Toute la photo</string>
+    <string name="esc_detectar">Détecter</string>
+    <string name="esc_recortar">Recadrer</string>
+    <string name="esc_pagina_n">Page %1$d</string>
+    <string name="esc_girar">Pivoter</string>
+    <string name="esc_procesando">Redressement…</string>
+    <string name="esc_otra">Autre page</string>
+    <string name="esc_quitar">Retirer la page</string>
+    <string name="esc_filtro_documento">Document</string>
+    <string name="esc_filtro_color">Couleur</string>
+    <string name="esc_filtro_original">Original</string>
+    <string name="esc_descartar_titulo">Abandonner la numérisation ?</string>
+    <string name="esc_descartar_texto">Les pages numérisées (%1$d) seront perdues.</string>
+    <string name="esc_descartar">Abandonner</string>
+    <string name="esc_seguir">Continuer</string>
+</resources>

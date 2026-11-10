@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mac_encontrar">Localiser mon téléphone</string>
+    <string name="mac_encontrar_nota">Depuis ton ordinateur, même de loin. Chiffré via Nostr, un réseau ouvert.</string>
+    <string name="intruso_titulo">Photo de qui tente de le déverrouiller</string>
+    <string name="intruso_nota">Après deux échecs, la caméra frontale prend une petite photo et l\'envoie à ton ordinateur. Désactivé par défaut ; rien d\'autre n\'est enregistré.</string>
+    <string name="intruso_explicacion_admin">Uniquement pour que SIOS sache quand quelqu\'un se trompe au déverrouillage et prenne une photo avec la caméra frontale. Rien d\'autre.</string>
+</resources>

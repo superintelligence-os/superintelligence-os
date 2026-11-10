@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Escáner de documentos de SIOS (EscanerActivity). -->
+<resources>
+    <string name="esc_titulo">Scanner</string>
+    <string name="esc_encuadra">Inquadra il documento</string>
+    <string name="esc_detectado">Documento trovato</string>
+    <string name="esc_disparar">Scatta la foto</string>
+    <string name="esc_importar">Importa dalla galleria</string>
+    <string name="esc_guardar_n">Salva · %1$d</string>
+    <string name="esc_sin_permiso">Lo scanner ha bisogno della fotocamera. Puoi consentirlo nelle Impostazioni.</string>
+    <string name="esc_ajusta_titulo">Regola i bordi</string>
+    <string name="esc_ajusta">Trascina gli angoli fino ai bordi del foglio.</string>
+    <string name="esc_no_encontrado">Foglio non trovato: trascina gli angoli fino ai suoi bordi.</string>
+    <string name="esc_forma_rara">Gli angoli si incrociano: spostali per formare il contorno del foglio.</string>
+    <string name="esc_repetir">Rifai</string>
+    <string name="esc_toda">Tutta la foto</string>
+    <string name="esc_detectar">Rileva</string>
+    <string name="esc_recortar">Ritaglia</string>
+    <string name="esc_pagina_n">Pagina %1$d</string>
+    <string name="esc_girar">Ruota</string>
+    <string name="esc_procesando">Raddrizzamento…</string>
+    <string name="esc_otra">Altra pagina</string>
+    <string name="esc_quitar">Rimuovi pagina</string>
+    <string name="esc_filtro_documento">Documento</string>
+    <string name="esc_filtro_color">Colore</string>
+    <string name="esc_filtro_original">Originale</string>
+    <string name="esc_descartar_titulo">Scartare la scansione?</string>
+    <string name="esc_descartar_texto">Le pagine scansionate (%1$d) andranno perse.</string>
+    <string name="esc_descartar">Scarta</string>
+    <string name="esc_seguir">Continua</string>
+</resources>

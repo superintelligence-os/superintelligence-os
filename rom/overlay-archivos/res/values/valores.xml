@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Valores de com.android.documentsui para SIOS (marca/temas_apps.py). -->
+<resources>
+    <bool name="force_material3">true</bool>
+    <color name="primary">@android:color/system_primary_light</color>
+    <color name="color_surface_header">@android:color/system_background_light</color>
+    <string name="config_fontFamily">sios-sans</string>
+    <string name="config_fontFamilyMedium">sios-sans-medium</string>
+</resources>

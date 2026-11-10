@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Valores de com.android.contacts para SIOS (marca/temas_apps.py). -->
+<resources>
+    <color name="primary_color">@android:color/system_primary_dark</color>
+    <color name="primary_color_dark">@android:color/system_background_dark</color>
+</resources>

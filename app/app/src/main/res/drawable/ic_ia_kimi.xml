@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Logo de kimi (svgl.app), en un color: se tiñe con el acento de la marca. Trazado normalizado
+     (Android no entiende los arcos con las banderas pegadas, «a.18.18 0 00.157.091»). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="512" android:viewportHeight="512">
+    <path android:pathData="M 342.065 189.759 c 1.886 -2.42 3.541 -4.63 5.289 -6.77 .81 -1.007 .74 -1.771 -.046 -2.824 -7.58 -9.965 -8.298 -21.028 -3.935 -32.254 3.275 -8.448 10.52 -12.406 19.373 -13.25 5.52 -.521 10.936 .046 15.959 2.73 6.596 3.53 10.438 8.912 11.688 16.341 .995 5.926 .81 11.712 -.868 17.452 -2.974 10.161 -10.277 15.427 -20.287 16.758 -8.31 1.11 -16.734 1.25 -25.113 1.817 -.648 .046 -1.308 0 -2.06 0 z" android:fillColor="#FFFFFFFF" android:fillType="evenOdd"/>
+    <path android:pathData="M 321.512 144.254 h -50.064 l -39.637 90.384 h -56.036 v -89.99 H 131 v 232.868 h 44.787 v -98.103 h 78.973 c 13.598 0 26.015 -7.927 31.744 -20.252 v 118.355 h 44.787 v -98.103 c 0 -23.342 -18.239 -42.97 -41.523 -44.671 v -.116 h -24.593 a 45.577 45.577 0 0 0 26.884 -24.534 l 29.453 -65.838 z" android:fillColor="#FFFFFFFF" android:fillType="evenOdd"/>
+</vector>

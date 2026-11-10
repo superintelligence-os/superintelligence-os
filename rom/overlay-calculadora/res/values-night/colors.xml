@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Colores de com.android.calculator2 pasados a la paleta del sistema (la de SIOS o la de la IA elegida) (marca/temas_apps.py). -->
+<resources>
+    <color name="display_background_color">@android:color/system_background_dark</color>
+    <color name="history_background_color">@android:color/system_background_dark</color>
+</resources>

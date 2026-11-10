@@ -1,0 +1,5 @@
+# SIOS: el agente de Claude (en Termux) actúa sobre el propio móvil por ADB.
+# adbd escucha solo en 127.0.0.1:5555 (nunca en la red) cuando la depuración está activada.
+# Cada clave nueva necesita que el usuario acepte «Permitir depuración» una vez.
+on init
+    setprop service.adb.listen_addrs tcp:localhost:5555

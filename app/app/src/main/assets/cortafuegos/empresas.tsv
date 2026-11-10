@@ -1,0 +1,282 @@
+# Mapa del cortafuegos de SIOS: de quién es cada dominio y para qué sirve, para explicar en lenguaje
+# normal qué hace cada app con la red. Se busca el dominio y, si no está, sus dominios padre.
+# Columnas (separadas por tabuladores): dominio, empresa, categoría.
+# Categorías: publicidad, analisis, rastreo (atribución, píxeles, perfiles entre apps), funcional.
+# Las líneas «@app» dicen de qué empresa es una app por el principio de su paquete: lo que una app
+# hace con los servidores de su propia empresa cuenta como funcional (Instagram con Meta, Maps con Google).
+# Recopilado a mano para SIOS. Licencia: la misma que SIOS.
+
+# ——— Publicidad ———
+doubleclick.net	Google Ads	publicidad
+googleadservices.com	Google Ads	publicidad
+googletagservices.com	Google Ads	publicidad
+2mdn.net	Google Ads	publicidad
+adservice.google.com	Google Ads	publicidad
+googlesyndication.com	Google AdMob	publicidad
+admob.com	Google AdMob	publicidad
+an.facebook.com	Meta Audience Network	publicidad
+applovin.com	AppLovin	publicidad
+applvn.com	AppLovin	publicidad
+unityads.unity3d.com	Unity Ads	publicidad
+vungle.com	Liftoff	publicidad
+liftoff.io	Liftoff	publicidad
+chartboost.com	Chartboost	publicidad
+inmobi.com	InMobi	publicidad
+adcolony.com	Digital Turbine	publicidad
+fyber.com	Digital Turbine	publicidad
+inner-active.mobi	Digital Turbine	publicidad
+ironsrc.com	ironSource	publicidad
+ironsrc.mobi	ironSource	publicidad
+supersonicads.com	ironSource	publicidad
+mintegral.com	Mintegral	publicidad
+rayjump.com	Mintegral	publicidad
+mtgglobals.com	Mintegral	publicidad
+pangle.io	Pangle (ByteDance)	publicidad
+pangolin-sdk-toutiao.com	Pangle (ByteDance)	publicidad
+ads.tiktok.com	TikTok Ads	publicidad
+business-api.tiktok.com	TikTok Ads	publicidad
+tapjoy.com	Tapjoy	publicidad
+tapjoyads.com	Tapjoy	publicidad
+smaato.net	Smaato	publicidad
+startappservice.com	Start.io	publicidad
+startapp.com	Start.io	publicidad
+mopub.com	MoPub	publicidad
+amazon-adsystem.com	Amazon Ads	publicidad
+criteo.com	Criteo	publicidad
+criteo.net	Criteo	publicidad
+taboola.com	Taboola	publicidad
+outbrain.com	Outbrain	publicidad
+adnxs.com	Microsoft Xandr	publicidad
+bat.bing.com	Microsoft Ads	publicidad
+rubiconproject.com	Magnite	publicidad
+pubmatic.com	PubMatic	publicidad
+openx.net	OpenX	publicidad
+adsrvr.org	The Trade Desk	publicidad
+moatads.com	Oracle Moat	publicidad
+adsafeprotected.com	Integral Ad Science	publicidad
+doubleverify.com	DoubleVerify	publicidad
+ads-api.twitter.com	X Ads	publicidad
+ads.twitter.com	X Ads	publicidad
+ads.linkedin.com	LinkedIn Ads	publicidad
+an.yandex.ru	Yandex Ads	publicidad
+yandexadexchange.net	Yandex Ads	publicidad
+pubnative.net	Verve	publicidad
+bidmachine.io	BidMachine	publicidad
+adform.net	Adform	publicidad
+smartadserver.com	Equativ	publicidad
+teads.tv	Teads	publicidad
+media.net	Media.net	publicidad
+mgid.com	MGID	publicidad
+hyprmx.com	HyprMX	publicidad
+ogury.io	Ogury	publicidad
+presage.io	Ogury	publicidad
+appnext.com	Appnext	publicidad
+ad.xiaomi.com	Xiaomi Ads	publicidad
+samsungads.com	Samsung Ads	publicidad
+
+# ——— Análisis ———
+app-measurement.com	Google Analytics	analisis
+google-analytics.com	Google Analytics	analisis
+analytics.google.com	Google Analytics	analisis
+firebaselogging-pa.googleapis.com	Firebase	analisis
+crashlytics.com	Firebase Crashlytics	analisis
+crashlyticsreports-pa.googleapis.com	Firebase Crashlytics	analisis
+mixpanel.com	Mixpanel	analisis
+amplitude.com	Amplitude	analisis
+segment.io	Segment	analisis
+segment.com	Segment	analisis
+heapanalytics.com	Heap	analisis
+fullstory.com	FullStory	analisis
+smartlook.com	Smartlook	analisis
+hotjar.com	Hotjar	analisis
+hotjar.io	Hotjar	analisis
+clarity.ms	Microsoft Clarity	analisis
+appcenter.ms	Microsoft App Center	analisis
+events.data.microsoft.com	Microsoft	analisis
+newrelic.com	New Relic	analisis
+nr-data.net	New Relic	analisis
+bugsnag.com	Bugsnag	analisis
+sentry.io	Sentry	analisis
+instabug.com	Instabug	analisis
+datadoghq.com	Datadog	analisis
+datadoghq.eu	Datadog	analisis
+appmetrica.yandex.net	Yandex AppMetrica	analisis
+appmetrica.yandex.com	Yandex AppMetrica	analisis
+mc.yandex.ru	Yandex Metrica	analisis
+braze.com	Braze	analisis
+appboy.com	Braze	analisis
+clevertap-prod.com	CleverTap	analisis
+wzrkt.com	CleverTap	analisis
+leanplum.com	Leanplum	analisis
+mparticle.com	mParticle	analisis
+moengage.com	MoEngage	analisis
+flurry.com	Flurry	analisis
+chartbeat.com	Chartbeat	analisis
+chartbeat.net	Chartbeat	analisis
+optimizely.com	Optimizely	analisis
+statsig.com	Statsig	analisis
+featuregates.org	Statsig	analisis
+posthog.com	PostHog	analisis
+uxcam.com	UXCam	analisis
+appdynamics.com	AppDynamics	analisis
+embrace.io	Embrace	analisis
+umeng.com	Umeng (Alibaba)	analisis
+umengcloud.com	Umeng (Alibaba)	analisis
+tracking.miui.com	Xiaomi	analisis
+data.mistat.xiaomi.com	Xiaomi	analisis
+cdp.cloud.unity3d.com	Unity Analytics	analisis
+config.uca.cloud.unity3d.com	Unity Analytics	analisis
+omtrdc.net	Adobe Analytics	analisis
+cloudflareinsights.com	Cloudflare Web Analytics	analisis
+byteoversea.com	ByteDance	analisis
+
+# ——— Rastreo (atribución de instalaciones, píxeles y perfiles entre apps) ———
+appsflyer.com	AppsFlyer	rastreo
+appsflyersdk.com	AppsFlyer	rastreo
+adjust.com	Adjust	rastreo
+adjust.net.in	Adjust	rastreo
+adjust.world	Adjust	rastreo
+branch.io	Branch	rastreo
+app.link	Branch	rastreo
+kochava.com	Kochava	rastreo
+singular.net	Singular	rastreo
+tenjin.com	Tenjin	rastreo
+tenjin.io	Tenjin	rastreo
+graph.facebook.com	Meta	rastreo
+pixel.facebook.com	Meta	rastreo
+connect.facebook.net	Meta	rastreo
+analytics.tiktok.com	TikTok	rastreo
+tr.snapchat.com	Snap	rastreo
+sc-analytics.appspot.com	Snap	rastreo
+analytics.twitter.com	X	rastreo
+googletagmanager.com	Google Tag Manager	rastreo
+scorecardresearch.com	Comscore	rastreo
+quantserve.com	Quantcast	rastreo
+quantcount.com	Quantcast	rastreo
+demdex.net	Adobe Audience Manager	rastreo
+adobedtm.com	Adobe	rastreo
+
+# ——— Funcional (lo que la app necesita para funcionar) ———
+googleapis.com	Google	funcional
+gstatic.com	Google	funcional
+google.com	Google	funcional
+googleusercontent.com	Google	funcional
+gvt1.com	Google	funcional
+gvt2.com	Google	funcional
+android.com	Google	funcional
+recaptcha.net	Google	funcional
+youtube.com	YouTube	funcional
+ytimg.com	YouTube	funcional
+googlevideo.com	YouTube	funcional
+firebaseio.com	Firebase	funcional
+firebaseapp.com	Firebase	funcional
+facebook.com	Meta	funcional
+fbcdn.net	Meta	funcional
+instagram.com	Meta	funcional
+cdninstagram.com	Meta	funcional
+whatsapp.net	Meta	funcional
+whatsapp.com	Meta	funcional
+messenger.com	Meta	funcional
+tiktokv.com	TikTok	funcional
+tiktokcdn.com	TikTok	funcional
+tiktok.com	TikTok	funcional
+ibytedtos.com	TikTok	funcional
+apple.com	Apple	funcional
+icloud.com	Apple	funcional
+mzstatic.com	Apple	funcional
+microsoft.com	Microsoft	funcional
+live.com	Microsoft	funcional
+office.com	Microsoft	funcional
+msn.com	Microsoft	funcional
+windows.net	Microsoft Azure	funcional
+azureedge.net	Microsoft Azure	funcional
+amazonaws.com	Amazon Web Services	funcional
+cloudfront.net	Amazon CloudFront	funcional
+amazon.com	Amazon	funcional
+akamaized.net	Akamai	funcional
+akamai.net	Akamai	funcional
+akamaihd.net	Akamai	funcional
+edgekey.net	Akamai	funcional
+edgesuite.net	Akamai	funcional
+cloudflare.com	Cloudflare	funcional
+cloudflare-dns.com	Cloudflare	funcional
+fastly.net	Fastly	funcional
+fastly.com	Fastly	funcional
+jsdelivr.net	jsDelivr	funcional
+github.com	GitHub	funcional
+githubusercontent.com	GitHub	funcional
+spotify.com	Spotify	funcional
+scdn.co	Spotify	funcional
+spotifycdn.com	Spotify	funcional
+netflix.com	Netflix	funcional
+nflxvideo.net	Netflix	funcional
+nflximg.net	Netflix	funcional
+twitter.com	X	funcional
+x.com	X	funcional
+twimg.com	X	funcional
+snapchat.com	Snap	funcional
+sc-cdn.net	Snap	funcional
+telegram.org	Telegram	funcional
+t.me	Telegram	funcional
+signal.org	Signal	funcional
+discord.com	Discord	funcional
+discordapp.com	Discord	funcional
+discord.gg	Discord	funcional
+reddit.com	Reddit	funcional
+redditmedia.com	Reddit	funcional
+redd.it	Reddit	funcional
+dropbox.com	Dropbox	funcional
+onesignal.com	OneSignal	funcional
+urbanairship.com	Airship	funcional
+airship.com	Airship	funcional
+pushwoosh.com	Pushwoosh	funcional
+anthropic.com	Anthropic	funcional
+claude.ai	Anthropic	funcional
+openai.com	OpenAI	funcional
+chatgpt.com	OpenAI	funcional
+lineageos.org	LineageOS	funcional
+unity3d.com	Unity	funcional
+cloudinary.com	Cloudinary	funcional
+revenuecat.com	RevenueCat	funcional
+stripe.com	Stripe	funcional
+paypal.com	PayPal	funcional
+adobe.com	Adobe	funcional
+zendesk.com	Zendesk	funcional
+intercom.io	Intercom	funcional
+launchdarkly.com	LaunchDarkly	funcional
+yandex.ru	Yandex	funcional
+yandex.net	Yandex	funcional
+hicloud.com	Huawei	funcional
+xiaomi.com	Xiaomi	funcional
+miui.com	Xiaomi	funcional
+samsung.com	Samsung	funcional
+qq.com	Tencent	funcional
+wechat.com	Tencent	funcional
+aliyuncs.com	Alibaba Cloud	funcional
+baidu.com	Baidu	funcional
+
+# ——— De quién es cada app (principio del paquete → empresa) ———
+@app	com.google.	Google
+@app	com.android.vending	Google
+@app	com.facebook.	Meta
+@app	com.instagram.	Meta
+@app	com.whatsapp	Meta
+@app	com.zhiliaoapp.	TikTok
+@app	com.ss.android.	TikTok
+@app	com.twitter.	X
+@app	com.snapchat.	Snap
+@app	com.microsoft.	Microsoft
+@app	com.amazon.	Amazon
+@app	com.spotify.	Spotify
+@app	com.netflix.	Netflix
+@app	org.telegram.	Telegram
+@app	com.discord	Discord
+@app	com.reddit.	Reddit
+@app	com.yandex.	Yandex
+@app	ru.yandex.	Yandex
+@app	com.xiaomi.	Xiaomi
+@app	com.miui.	Xiaomi
+@app	com.samsung.	Samsung
+@app	com.tencent.	Tencent
+@app	com.anthropic.	Anthropic
+@app	com.openai.	OpenAI

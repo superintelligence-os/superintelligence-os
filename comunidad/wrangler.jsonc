@@ -1,0 +1,8 @@
+{
+  // Galería comunitaria de widgets de SIOS (pública): solo widgets con fuentes integradas,
+  // sin comandos, sin HTML propio y sin datos personales.
+  "name": "sios-comunidad",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-01",
+  "kv_namespaces": [{ "binding": "KV", "id": "PENDIENTE" }]
+}

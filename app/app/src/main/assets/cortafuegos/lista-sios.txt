@@ -1,0 +1,39 @@
+# Lista propia de SIOS: dominios de SDK de analítica, atribución y publicidad muy extendidos que no
+# están en la lista de AdAway. Se suma siempre a la lista elegida (compacta o completa). Bloquea
+# también sus subdominios. Solo telemetría y anuncios: nada de lo que dependen las apps para funcionar.
+# Licencia: la misma que SIOS.
+# Google Analytics para Firebase, informes de Firebase y Crashlytics.
+app-measurement.com
+firebaselogging-pa.googleapis.com
+crashlyticsreports-pa.googleapis.com
+e.crashlytics.com
+settings.crashlytics.com
+# Atribución y medición (AppsFlyer, Heap, FullStory, Smartlook, Microsoft, Yandex, Bugsnag, CleverTap).
+appsflyersdk.com
+heapanalytics.com
+rs.fullstory.com
+api.smartlook.com
+in.appcenter.ms
+mobile.events.data.microsoft.com
+clarity.ms
+appmetrica.yandex.net
+mc.yandex.ru
+sessions.bugsnag.com
+notify.bugsnag.com
+clevertap-prod.com
+quantserve.com
+# Redes de anuncios y subastas.
+ads.tiktok.com
+business-api.tiktok.com
+ironsrc.mobi
+chartboost.com
+inmobi.com
+mintegral.com
+mtgglobals.com
+rubiconproject.com
+pubmatic.com
+openx.net
+adnxs.com
+taboola.com
+outbrain.com
+googletagservices.com

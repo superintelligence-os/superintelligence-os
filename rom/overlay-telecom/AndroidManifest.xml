@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS: Telecom busca la pantalla de llamada del marcador del sistema en una clase fija
+     (com.android.incallui.InCallServiceImpl, la del Teléfono de AOSP). El marcador es Claude: su
+     InCallService es otro, y sin esto Telecom no la enlaza y las llamadas salen sin pantalla. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sios.overlay.telecom">
+    <overlay android:targetPackage="com.android.server.telecom" android:isStatic="true" android:priority="900" />
+    <application android:hasCode="false" />
+</manifest>

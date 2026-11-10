@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ajustes de SIOS por categorías: portada, buscador y subpáginas. -->
+<resources>
+    <string name="ajs_buscar">Cerca nelle impostazioni</string>
+    <string name="ajs_buscar_nada">Niente per «%1$s»</string>
+    <string name="ajs_borrar">Cancella la ricerca</string>
+    <string name="ajs_asistente">Assistente e voce</string>
+    <string name="ajs_privacidad">Privacy e sicurezza</string>
+    <string name="ajs_ordenador">Computer</string>
+    <string name="ajs_teclado">Tastiera</string>
+    <string name="ajs_sistema">Sistema</string>
+    <string name="ajs_ia_elegir">Scegli l’IA del tuo telefono</string>
+    <string name="ajs_ia_elegir_nota">Con il tuo abbonamento, una chiave o sul telefono</string>
+    <string name="ajs_g_conversaciones">Conversazioni</string>
+    <string name="ajs_g_asistente">Assistente del telefono</string>
+    <string name="ajs_g_puede">Cosa può fare</string>
+    <string name="ajs_g_desconocidos">Numeri sconosciuti</string>
+    <string name="ajs_g_ayuda">Aiuto e verifica</string>
+    <string name="ajs_r_asistente">«Ehi Claude», voce e le tue app</string>
+    <string name="ajs_r_creaciones_vacio">Widget, app e agenti</string>
+    <string name="ajs_r_memoria">Ricorda foto e documenti</string>
+    <string name="ajs_r_uso">Questa settimana, %1$d %%</string>
+    <string name="ajs_r_uso_sin">Limiti e risparmio automatico</string>
+    <string name="ajs_r_apariencia">Chiaro o scuro, colore e testo</string>
+    <string name="ajs_r_notificaciones">Riepilogo, in attesa e Buonanotte</string>
+    <string name="ajs_r_llamadas">Sconosciuti: silenzio o risposta</string>
+    <string name="ajs_r_teclado_si">In uso</string>
+    <string name="ajs_r_teclado_no">Non attivata</string>
+    <string name="ajs_r_coche">La tua auto, destinazioni e messaggi</string>
+    <string name="ajs_r_familia">Gruppo famiglia e posizione</string>
+    <string name="ajs_r_privacidad">Connessioni, attività e blocco</string>
+    <string name="ajs_r_privacidad_sin_pin">Connessioni e attività</string>
+    <string name="ajs_r_ordenador">Mac o Windows: appunti, notifiche</string>
+    <string name="ajs_r_copia">Ultimo %1$s</string>
+    <string name="ajs_r_copia_nunca">Ancora nessun backup</string>
+    <plurals name="ajs_r_creaciones">
+        <item quantity="one">%1$d creazione</item>
+        <item quantity="many">%1$d creazioni</item>
+        <item quantity="other">%1$d creazioni</item>
+    </plurals>
+</resources>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Memoria de pantalla («¿dónde vi…?»): ajustes, presentación, búsqueda, notificación y recuadro. -->
+<resources>
+    <string name="mp_titulo">Memoria dello schermo</string>
+    <string name="mp_nota">Cerca in ciò che è passato sul tuo schermo: «dove l\'ho visto…?». Disattivata di serie; tutto resta cifrato sul telefono.</string>
+    <string name="mp_apagada_nota">Disattivata: non viene salvato niente di ciò che vedi.</string>
+    <string name="mp_conocer">Scopri come funziona</string>
+    <string name="mp_sin_manos">Per leggere lo schermo serve il servizio di accessibilità di SIOS, che ora è spento.</string>
+    <string name="mp_sin_manos_arreglar">Accendilo</string>
+    <string name="mp_estado_pausada">In pausa: non viene salvato niente di nuovo.</string>
+    <string name="mp_cargando">Caricamento…</string>
+    <plurals name="mp_momentos">
+        <item quantity="one">%d momento salvato</item>
+        <item quantity="other">%d momenti salvati</item>
+    </plurals>
+    <string name="mp_ocupa">occupa %1$s</string>
+    <string name="mp_se_borra">si cancella dopo %1$d giorni</string>
+    <string name="mp_recordando">Ricorda ciò che vedi</string>
+    <string name="mp_buscar">Cerca in ciò che hai visto</string>
+    <string name="mp_dias_titulo">Per quanto tempo si conserva</string>
+    <string name="mp_dias_nota">Il più vecchio si cancella da solo.</string>
+    <string name="mp_dias_7">7 giorni</string>
+    <string name="mp_dias_30">30 giorni</string>
+    <string name="mp_miniaturas_titulo">Salva miniature</string>
+    <string name="mp_miniaturas_nota">Un\'immagine piccola e cifrata di ogni momento, per riconoscerlo a colpo d\'occhio. Occupa parecchio spazio in più.</string>
+    <string name="mp_imagenes_titulo">Cerca nelle immagini</string>
+    <string name="mp_imagenes_lista">Pronto · %1$s sul telefono</string>
+    <string name="mp_imagenes_falta">Per trovare immagini senza testo («il divano blu»). Si scarica una volta: %1$s.</string>
+    <string name="mp_descargar_corto">Scarica</string>
+    <string name="mp_descargando">Download… %1$s di %2$s</string>
+    <string name="mp_descarga_sigue">Puoi uscire: il download continua e, al termine, si potranno cercare anche le immagini.</string>
+    <string name="mp_comprobando">Verifica del modello…</string>
+    <string name="mp_descarga_fallo">Impossibile scaricare il modello.</string>
+    <string name="mp_descarga_sin_red">Nessuna connessione a Internet: impossibile scaricare il modello.</string>
+    <string name="mp_reintentar">Riprova</string>
+    <string name="mp_cancelar">Annulla</string>
+    <string name="mp_red_pago">Stai usando i dati mobili: il download può consumare la tua tariffa. Se preferisci, attivala solo con il testo e scarica il modello più tardi in Wi-Fi dalle Impostazioni.</string>
+    <string name="mp_excluidas_titulo">App che non si salvano</string>
+    <string name="mp_excluidas_ninguna">Solo quelle che non si salvano mai</string>
+    <plurals name="mp_excluidas_cuenta">
+        <item quantity="one">%d app scelta, oltre a quelle di sempre</item>
+        <item quantity="other">%d app scelte, oltre a quelle di sempre</item>
+    </plurals>
+    <string name="mp_siempre_fuera">Non si salvano mai banche e pagamenti, password e codici, l\'incognito, la schermata di blocco e SIOS. Scegli qui altre app.</string>
+    <string name="mp_siempre_fuera_app">Sempre esclusa</string>
+    <string name="mp_borrar_todo">Cancella tutto</string>
+    <string name="mp_borrar_titulo">Cancellare tutto ciò che è salvato?</string>
+    <string name="mp_borrar_texto">Si cancella tutto ciò che la memoria dello schermo ha salvato, insieme alle sue chiavi. Non si può annullare. Continuerà a ricordare da adesso.</string>
+    <string name="mp_borrado">Cancellato</string>
+    <string name="mp_desactivar">Disattiva</string>
+    <string name="mp_desactivar_titulo">Disattivare la memoria dello schermo?</string>
+    <string name="mp_desactivar_texto">Smette di ricordare e si cancella tutto: ciò che è salvato, le sue chiavi e il modello delle immagini.</string>
+
+    <!-- Presentación -->
+    <string name="mp_p1_titulo">Dove l\'ho visto?</string>
+    <string name="mp_p1_texto">La memoria dello schermo ricorda ciò che passa sul tuo schermo perché tu possa ritrovarlo dopo: quel codice, l\'indirizzo che ti hanno mostrato, il divano blu di un negozio. Arriva disattivata e decidi tu se la vuoi.</string>
+    <string name="mp_p2_titulo">Cosa salva</string>
+    <string name="mp_p2_texto">Solo il necessario per ritrovare le cose, quando lo schermo cambia davvero.</string>
+    <string name="mp_p2_1">Il testo che si vede sullo schermo.</string>
+    <string name="mp_p2_2">Delle immagini, il testo che contengono e un\'impronta: 512 numeri per ritrovarle da ciò che mostrano. Mai l\'immagine né una descrizione.</string>
+    <string name="mp_p2_3">Se vuoi, una piccola miniatura cifrata di ogni momento. Disattivata di serie.</string>
+    <string name="mp_p3_titulo">Cosa non salva mai</string>
+    <string name="mp_p3_texto">Alcune cose non si ricordano mai, nemmeno cifrate.</string>
+    <string name="mp_p3_1">Le password, né la schermata in cui le scrivi.</string>
+    <string name="mp_p3_2">App di banche, pagamenti, password e codici.</string>
+    <string name="mp_p3_3">Schede in incognito e browser privati.</string>
+    <string name="mp_p3_4">La schermata di blocco, né niente con il telefono bloccato.</string>
+    <string name="mp_p3_5">Le app che scegli tu.</string>
+    <string name="mp_p4_titulo">Solo sul tuo telefono, cifrato</string>
+    <string name="mp_p4_texto">Niente di tutto questo esce dal tuo telefono.</string>
+    <string name="mp_p4_1">Un database cifrato (AES-256) con una chiave che si apre solo con il telefono sbloccato.</string>
+    <string name="mp_p4_2">Per cercare, la tua impronta o il tuo PIN.</string>
+    <string name="mp_p4_3">Se chiedi alla tua IA, le arrivano solo i frammenti che corrispondono, mai la cronologia.</string>
+    <string name="mp_p4_4">Occupa circa 2 MB per giorno di uso; con le miniature, circa 3 MB in più al giorno.</string>
+    <string name="mp_p5_titulo">Dura quanto vuoi tu</string>
+    <string name="mp_p5_texto">Il più vecchio si cancella da solo, dopo il tempo che scegli.</string>
+    <string name="mp_p5_1">Mettila in pausa quando vuoi dalle impostazioni rapide o dalla sua notifica.</string>
+    <string name="mp_p5_2">«Cancella tutto» è nelle Impostazioni, sempre a portata di mano. Disattivandola si cancella tutto.</string>
+    <string name="mp_p6_titulo">Cerca anche nelle immagini</string>
+    <string name="mp_p6_texto">Per trovare immagini senza testo («il divano blu che ho visto martedì») serve un modello di visione che funziona sul telefono stesso. Si scarica una volta: %1$s.</string>
+    <string name="mp_licencias">Modelli aperti scaricati da Hugging Face: CLIP di OpenAI (licenza MIT) e la sua versione multilingue di sentence-transformers (Apache 2.0).</string>
+    <string name="mp_ahora_no">Non ora</string>
+    <string name="mp_activar_con">Scarica e attiva · %1$s</string>
+    <string name="mp_activar_sin">Attiva solo con il testo</string>
+    <string name="mp_activada">La memoria dello schermo è attiva.</string>
+    <string name="mp_hecho">Fatto</string>
+    <string name="mp_sin_bloqueo">Ti serve un blocco schermo (PIN, sequenza o password): la ricerca si apre con quello.</string>
+    <string name="mp_poner_bloqueo">Imposta il blocco schermo</string>
+    <string name="mp_error_activar">Impossibile attivarla. Sblocca il telefono e riprova.</string>
+
+    <!-- Notificación y recuadro -->
+    <string name="mp_canal">Memoria dello schermo</string>
+    <string name="mp_canal_nota">Avviso fisso mentre la memoria dello schermo è attiva, con il pulsante di pausa.</string>
+    <string name="mp_aviso_activa">Memoria dello schermo attiva</string>
+    <string name="mp_aviso_activa_nota">Ricorda ciò che vedi, solo su questo telefono</string>
+    <string name="mp_aviso_pausada">Memoria dello schermo in pausa</string>
+    <string name="mp_aviso_pausada_nota">Non viene salvato niente di nuovo</string>
+    <string name="mp_pausar">Pausa</string>
+    <string name="mp_reanudar">Riprendi</string>
+    <string name="mp_recuadro_activa">Attiva</string>
+    <string name="mp_recuadro_pausada">In pausa</string>
+    <string name="mp_recuadro_apagada">Disattivata</string>
+
+    <!-- Búsqueda -->
+    <string name="mp_b_titulo">Dove l\'ho visto?</string>
+    <string name="mp_b_bloqueada">La tua memoria dello schermo è protetta</string>
+    <string name="mp_b_bloqueada_nota">Aprila con la tua impronta o il tuo PIN.</string>
+    <string name="mp_b_desbloquear">Sblocca</string>
+    <string name="mp_b_prompt_sub">Conferma che sei tu</string>
+    <string name="mp_b_error_bloqueo">Ti serve un blocco schermo per aprirla.</string>
+    <string name="mp_b_desactivada">La memoria dello schermo è disattivata</string>
+    <string name="mp_b_ir_ajustes">Vai alle Impostazioni</string>
+    <string name="mp_b_buscar_pista">Cerca qualcosa che hai visto…</string>
+    <string name="mp_b_preguntar_pista">Chiedi a %1$s…</string>
+    <string name="mp_b_modo_buscar">Cerca</string>
+    <string name="mp_b_modo_preguntar">Chiedi a %1$s</string>
+    <string name="mp_b_vacio_titulo">Scrivi ciò che ricordi</string>
+    <string name="mp_b_vacio_nota">Una parola, un\'app o un giorno: «wifi», «ieri su Chrome», «divano blu martedì».</string>
+    <string name="mp_b_ejemplo_1">codice ieri</string>
+    <string name="mp_b_ejemplo_2">divano blu</string>
+    <string name="mp_b_ejemplo_3">indirizzo</string>
+    <string name="mp_b_sin_modelo">Per cercare anche nelle immagini, scarica il modello nelle Impostazioni.</string>
+    <string name="mp_b_nada">Niente corrisponde a «%1$s»</string>
+    <string name="mp_b_nada_nota">Prova con altre parole o con un altro giorno.</string>
+    <string name="mp_b_por_imagen">Dall\'immagine</string>
+    <string name="mp_b_hoy">Oggi</string>
+    <string name="mp_b_ayer">Ieri</string>
+    <string name="mp_b_cuando">%1$s · %2$s</string>
+    <string name="mp_b_no_abre">Impossibile aprire quell\'app.</string>
+    <string name="mp_b_ia_explica">Scrivi la domanda come la faresti a qualcuno. A %1$s arrivano solo i frammenti che corrispondono, mai la cronologia.</string>
+    <string name="mp_b_preguntar">Chiedi</string>
+    <plurals name="mp_b_se_envian">
+        <item quantity="one">A %1$s è arrivato solo %2$d frammento, quello che corrisponde.</item>
+        <item quantity="other">A %1$s sono arrivati solo i %2$d frammenti che corrispondono.</item>
+    </plurals>
+    <string name="mp_b_sin_fragmentos">Non c\'è niente di salvato che corrisponda, quindi non è stato chiesto a %1$s.</string>
+    <string name="mp_b_fallo_ia">Impossibile chiedere a %1$s. Qui sotto trovi ciò che c\'è sul tuo telefono.</string>
+</resources>

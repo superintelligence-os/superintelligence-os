@@ -1,0 +1,1316 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>SIOS Desktop</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@font-face { font-family: "Montserrat"; src: url(/montserrat.ttf); font-weight: 100 900; }
+:root {
+  color-scheme: dark;
+  --fondo: #121211; --lateral: #171716; --superficie: #1c1c1b; --superficie-2: #252524; --superficie-3: #2f2f2d;
+  --borde: #2a2a28; --borde-2: #3a3a37; --texto: #F4F1EA; --texto-2: #BAB7AE; --texto-3: #7E7C75;
+  --acento: #7B6CF6; --acento-2: color-mix(in srgb, var(--acento) 16%, transparent);
+  --verde: #5DBB7E; --rojo: #E5776A; --radio: 18px;
+  --muelle: cubic-bezier(.34, 1.56, .64, 1); --suave: cubic-bezier(.2, .8, .2, 1);
+}
+@media (prefers-color-scheme: light) {
+  :root { color-scheme: light; --fondo: #F7F6F2; --lateral: #EFEDE6; --superficie: #FFFFFF; --superficie-2: #F2F0EA; --superficie-3: #E8E5DC;
+    --borde: #E5E2D9; --borde-2: #D3CFC4; --texto: #141413; --texto-2: #45443F; --texto-3: #7A786F; --verde: #3F8B5C; --rojo: #C64545; }
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { font: 400 14px/1.45 "Montserrat", system-ui, sans-serif; background: var(--fondo); color: var(--texto); -webkit-font-smoothing: antialiased; overflow: hidden; }
+button { font: inherit; color: inherit; }
+::selection { background: var(--acento-2); }
+.oculto { display: none !important; }
+svg.ic { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* ---------- Estructura ---------- */
+.app { display: grid; grid-template-columns: 252px 1fr; height: 100vh; }
+.lateral { background: var(--lateral); border-right: 1px solid var(--borde); display: flex; flex-direction: column; padding: 22px 14px 16px; gap: 20px; min-height: 0; }
+.marca { display: flex; align-items: center; gap: 10px; padding: 0 8px; }
+.marca svg { width: 28px; height: 28px; }
+.marca b { font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
+.marca span { color: var(--texto-3); font-weight: 500; }
+.sios .anillo { stroke: var(--texto); }
+.sios .punto { fill: var(--acento); transition: fill .8s var(--suave); }
+
+.movil-mini { background: var(--superficie); border: 1px solid var(--borde); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.movil-mini .fila { display: flex; align-items: center; gap: 10px; }
+.movil-mini .icono-movil { width: 34px; height: 34px; border-radius: 10px; background: var(--acento-2); color: var(--acento); display: grid; place-items: center; flex: none; }
+.movil-mini b { display: block; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.estado-linea { display: flex; align-items: center; gap: 6px; color: var(--texto-3); font-size: 12px; }
+.estado-linea i { width: 7px; height: 7px; border-radius: 50%; background: var(--texto-3); transition: background .4s; }
+.estado-linea.si i { background: var(--verde); box-shadow: 0 0 0 3px color-mix(in srgb, var(--verde) 20%, transparent); }
+.bateria { height: 4px; border-radius: 2px; background: var(--superficie-3); overflow: hidden; }
+.bateria i { display: block; height: 100%; width: 100%; background: var(--verde); border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform .8s var(--suave); }
+
+nav { display: flex; flex-direction: column; gap: 2px; }
+nav button { all: unset; display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 11px; cursor: pointer; color: var(--texto-2); font-weight: 500; position: relative; transition: background .25s var(--suave), color .25s; }
+nav button:hover { background: var(--superficie-2); color: var(--texto); }
+nav button.activo { background: var(--superficie-2); color: var(--texto); }
+nav button.activo::before { content: ""; position: absolute; left: -14px; top: 10px; bottom: 10px; width: 3px; border-radius: 0 3px 3px 0; background: var(--acento); }
+nav button.activo svg { color: var(--acento); }
+nav .insignia { margin-left: auto; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--acento); color: #fff; font-size: 11px; font-weight: 700; display: grid; place-items: center; }
+.lateral .pie { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
+.ia-en-uso { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: var(--acento-2); cursor: pointer; transition: transform .3s var(--muelle); }
+.ia-en-uso:hover { transform: translateY(-1px); }
+.ia-en-uso .logo { width: 26px; height: 26px; display: grid; place-items: center; }
+.ia-en-uso .logo svg { width: 18px; height: 18px; fill: var(--acento); }
+.ia-en-uso small { display: block; color: var(--texto-3); font-size: 11px; }
+.ia-en-uso b { font-weight: 600; font-size: 13px; }
+.equipo { color: var(--texto-3); font-size: 11px; padding: 0 12px; }
+
+main { overflow: auto; min-height: 0; scroll-behavior: smooth; }
+.vista { max-width: 1080px; margin: 0 auto; padding: 38px 44px 60px; animation: vista .5s var(--suave) both; }
+@keyframes vista { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.titulo-vista { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 26px; }
+.titulo-vista h1 { margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -.02em; }
+.titulo-vista p { margin: 6px 0 0; color: var(--texto-3); }
+
+/* ---------- Piezas ---------- */
+.tarjeta { background: var(--superficie); border: 1px solid var(--borde); border-radius: var(--radio); padding: 22px; }
+.tarjeta h2 { margin: 0; font-size: 16px; font-weight: 600; }
+.tarjeta .cab-t { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.tarjeta .cab-t a, .enlace-txt { color: var(--acento); font-weight: 600; font-size: 13px; cursor: pointer; text-decoration: none; }
+.rejilla-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.suave { color: var(--texto-3); font-size: 13px; }
+.etiqueta-g { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--texto-3); }
+.boton { appearance: none; border: 0; height: 42px; padding: 0 18px; border-radius: 12px; font-weight: 600; font-size: 14px; background: var(--acento); color: #fff; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: transform .25s var(--muelle), filter .2s, opacity .2s; white-space: nowrap; }
+.boton:hover { filter: brightness(1.08); }
+.boton:active { transform: scale(.97); }
+.boton:disabled { opacity: .5; cursor: default; }
+.boton.sec { background: var(--superficie-2); color: var(--texto); }
+.boton.sec:hover { background: var(--superficie-3); filter: none; }
+.boton.peligro { background: transparent; color: var(--rojo); border: 1px solid color-mix(in srgb, var(--rojo) 40%, transparent); }
+.boton.ancho { width: 100%; }
+.campo { width: 100%; height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--borde-2); background: var(--fondo); color: var(--texto); font: inherit; outline: none; transition: border-color .2s, box-shadow .2s; }
+.campo:focus { border-color: var(--acento); box-shadow: 0 0 0 4px var(--acento-2); }
+textarea.campo { height: 92px; padding: 12px 14px; resize: none; }
+.fila-campo { display: flex; gap: 10px; }
+.fila-campo .campo { flex: 1; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 99px; background: var(--superficie-2); color: var(--texto-2); font-size: 12px; font-weight: 600; }
+.chip.ok { background: color-mix(in srgb, var(--verde) 16%, transparent); color: var(--verde); }
+.chip.acento { background: var(--acento-2); color: var(--acento); }
+.chip.mal { background: color-mix(in srgb, var(--rojo) 14%, transparent); color: var(--rojo); }
+.chip svg { width: 14px; height: 14px; fill: currentColor; }
+
+/* Inicio */
+.hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px; margin-bottom: 16px; }
+.hero .movil { display: flex; flex-direction: column; gap: 18px; position: relative; overflow: hidden; }
+.hero .movil::after { content: ""; position: absolute; right: -80px; top: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, var(--acento-2), transparent 70%); pointer-events: none; }
+.hero h2 { font-size: 26px; letter-spacing: -.02em; }
+.hero .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.acciones-rapidas { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; }
+.soltar { border: 1.5px dashed var(--borde-2); border-radius: var(--radio); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; padding: 26px; cursor: pointer; color: var(--texto-3); transition: border-color .25s, background .25s, transform .35s var(--muelle); min-height: 210px; }
+.soltar:hover, .soltar.encima { border-color: var(--acento); background: var(--acento-2); color: var(--texto-2); }
+.soltar.encima { transform: scale(1.015); }
+.soltar .circulo { width: 52px; height: 52px; border-radius: 50%; background: var(--superficie-2); display: grid; place-items: center; color: var(--acento); }
+.soltar b { color: var(--texto); font-size: 15px; }
+
+/* Mensajes */
+.mensajes { display: flex; flex-direction: column; gap: 10px; }
+.mensaje { padding: 14px 16px; border-radius: 14px; background: var(--superficie-2); display: flex; flex-direction: column; gap: 6px; animation: vista .4s var(--suave) both; }
+.mensaje .cab2 { display: flex; align-items: baseline; gap: 8px; }
+.mensaje .de { font-weight: 600; }
+.mensaje .app { color: var(--texto-3); font-size: 12px; }
+.mensaje .hora { margin-left: auto; color: var(--texto-3); font-size: 12px; }
+.mensaje .txt { color: var(--texto-2); white-space: pre-wrap; overflow-wrap: anywhere; }
+.mensaje form { display: flex; gap: 8px; margin-top: 4px; }
+.mensaje form .campo { height: 38px; background: var(--superficie); }
+.mensaje form .boton { height: 38px; }
+.mensaje .hecho { color: var(--verde); font-size: 12px; font-weight: 600; }
+.vacio-bonito { padding: 34px 20px; text-align: center; color: var(--texto-3); display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.vacio-bonito .circulo { width: 46px; height: 46px; border-radius: 50%; background: var(--superficie-2); display: grid; place-items: center; }
+.contacto { position: relative; }
+.sugerencias { position: absolute; left: 0; right: 0; top: calc(100% + 6px); background: var(--superficie); border: 1px solid var(--borde-2); border-radius: 12px; padding: 6px; z-index: 5; box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+.sugerencia { all: unset; display: flex; justify-content: space-between; width: 100%; box-sizing: border-box; padding: 9px 10px; border-radius: 8px; cursor: pointer; }
+.sugerencia:hover, .sugerencia.activa { background: var(--superficie-2); }
+.sugerencia span:last-child { color: var(--texto-3); font-variant-numeric: tabular-nums; }
+.componer { display: flex; flex-direction: column; gap: 10px; }
+.componer .acciones { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* Panel (tarjetas del móvil) */
+.rejilla { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 168px; grid-auto-flow: dense; gap: 12px; }
+.w { background: var(--superficie); border: 1px solid var(--borde); border-radius: var(--radio); padding: 16px; overflow: hidden; display: flex; flex-direction: column; gap: 8px; animation: entrar .45s var(--muelle) both; min-width: 0; }
+.w.mediano { grid-column: span 2; }
+.w.grande { grid-column: span 2; grid-row: span 2; }
+.w .cab { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--texto-3); white-space: nowrap; overflow: hidden; }
+.w .cab i { width: 6px; height: 6px; border-radius: 50%; background: var(--a, var(--acento)); flex: none; }
+.w .cab b { overflow: hidden; text-overflow: ellipsis; font-weight: 600; }
+.w .cifra { font-size: 40px; font-weight: 300; letter-spacing: -1.5px; line-height: 1.05; margin-top: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.w .cifra small { font-size: 16px; letter-spacing: 0; color: var(--texto-2); margin-left: 4px; font-weight: 400; }
+.w .sub { color: var(--texto-3); font-size: 13px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.w .texto { color: var(--texto-2); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; }
+.w .filas { display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+.w .fila2 { display: flex; gap: 10px; align-items: baseline; min-width: 0; }
+.w .fila2 .h { color: var(--a, var(--acento)); font-size: 13px; flex: none; min-width: 44px; }
+.w .fila2 .t { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.w .fila2 .v { color: var(--texto-2); flex: none; font-variant-numeric: tabular-nums; }
+.w .barra { height: 6px; background: var(--superficie-2); border-radius: 3px; overflow: hidden; margin-top: 6px; }
+.w .barra i { display: block; height: 100%; background: var(--a, var(--acento)); border-radius: 3px; }
+.w .marcador { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; margin-top: auto; margin-bottom: auto; text-align: center; }
+.w .marcador .goles { font-size: 32px; font-weight: 300; }
+.w .marcador .eq { font-size: 13px; color: var(--texto-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.w .anillos { display: flex; gap: 12px; justify-content: center; align-items: center; margin: auto 0; }
+.w svg.anillo { width: 72px; height: 72px; }
+.w .grafico { margin-top: auto; width: 100%; height: 56px; }
+.w .noticias { display: flex; flex-direction: column; overflow: hidden; }
+.w .noticia { display: block; padding: 9px 0; border-top: 1px solid var(--borde); color: inherit; text-decoration: none; }
+.w .noticia:first-child { border-top: 0; padding-top: 2px; }
+.w .noticia .titular { font-weight: 500; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.w .noticia .fuente { color: var(--texto-3); font-size: 12px; margin-top: 2px; }
+.w .noticia:hover .titular { color: var(--a, var(--acento)); }
+.w .casilla { width: 16px; height: 16px; border-radius: 5px; border: 1.5px solid var(--borde); flex: none; align-self: center; }
+.w .hecho .casilla { background: var(--a, var(--acento)); border-color: var(--a, var(--acento)); }
+.w .hecho .t { color: var(--texto-3); text-decoration: line-through; }
+.vacio { color: var(--texto-3); text-align: center; padding: 26px 0; font-size: 14px; }
+
+.rejilla { grid-template-columns: repeat(4, 1fr); }
+.rejilla.mini { grid-template-columns: 1fr 1fr; grid-auto-rows: 158px; }
+.rejilla.mini .w { padding: 14px; }
+.rejilla.mini .anillo { width: 64px; height: 64px; }
+.rejilla.mini .w.grande { grid-row: span 1; }
+
+/* Inteligencia */
+.ia-hero { display: flex; align-items: center; gap: 22px; padding: 26px; border-radius: 22px; background: linear-gradient(135deg, var(--acento-2), transparent 70%), var(--superficie); border: 1px solid color-mix(in srgb, var(--acento) 30%, var(--borde)); margin-bottom: 28px; position: relative; overflow: hidden; }
+.ia-hero .logo { width: 72px; height: 72px; border-radius: 22px; background: color-mix(in srgb, var(--acento) 18%, var(--superficie)); display: grid; place-items: center; flex: none; }
+.ia-hero .logo svg { width: 38px; height: 38px; fill: var(--acento); }
+.ia-hero h2 { font-size: 24px; margin: 4px 0 2px; letter-spacing: -.01em; }
+.ia-hero .modelos { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.pastilla-modelo { all: unset; cursor: pointer; padding: 6px 12px; border-radius: 99px; background: var(--superficie-2); color: var(--texto-2); font-size: 12px; font-weight: 600; transition: background .25s, color .25s; }
+.pastilla-modelo:hover { background: var(--superficie-3); }
+.pastilla-modelo.si { background: var(--acento); color: #fff; }
+.pestanas { display: inline-flex; padding: 4px; border-radius: 12px; background: var(--superficie-2); gap: 2px; margin-bottom: 18px; position: relative; }
+.pestanas button { all: unset; cursor: pointer; padding: 8px 16px; border-radius: 9px; font-weight: 600; font-size: 13px; color: var(--texto-3); position: relative; z-index: 1; transition: color .25s; }
+.pestanas button.si { color: var(--texto); }
+.pestanas .marcador { position: absolute; top: 4px; bottom: 4px; border-radius: 9px; background: var(--superficie); box-shadow: 0 1px 3px rgba(0,0,0,.25); left: 0; transition: transform .45s var(--muelle), width .45s var(--muelle); }
+.mosaico { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+.tesela { all: unset; cursor: pointer; box-sizing: border-box; background: var(--superficie); border: 1px solid var(--borde); border-radius: var(--radio); padding: 18px; display: flex; flex-direction: column; gap: 14px; min-height: 150px; transition: transform .35s var(--muelle), border-color .25s, box-shadow .3s; animation: vista .45s var(--suave) both; }
+.tesela:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--c) 45%, var(--borde)); box-shadow: 0 14px 34px -18px color-mix(in srgb, var(--c) 60%, transparent); }
+.tesela .arriba { display: flex; align-items: center; justify-content: space-between; }
+.tesela .logo { width: 44px; height: 44px; border-radius: 14px; background: color-mix(in srgb, var(--c) 16%, transparent); display: grid; place-items: center; }
+.tesela .logo svg { width: 24px; height: 24px; fill: var(--c); }
+.tesela b { font-size: 15px; font-weight: 600; }
+.tesela p { margin: 4px 0 0; color: var(--texto-3); font-size: 12.5px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.tesela.en-uso { border-color: color-mix(in srgb, var(--c) 60%, var(--borde)); }
+
+/* Cajón lateral */
+.velo { position: fixed; inset: 0; background: rgba(0,0,0,.4); opacity: 0; pointer-events: none; transition: opacity .35s var(--suave); z-index: 20; }
+.velo.abierto { opacity: 1; pointer-events: auto; }
+.cajon { position: fixed; top: 0; right: 0; bottom: 0; width: 440px; max-width: 92vw; background: var(--superficie); border-left: 1px solid var(--borde); z-index: 21; transform: translateX(105%); transition: transform .55s var(--muelle); display: flex; flex-direction: column; box-shadow: -30px 0 60px -30px rgba(0,0,0,.5); }
+.cajon.abierto { transform: none; }
+.cajon .cab-c { display: flex; align-items: center; gap: 14px; padding: 26px 26px 18px; border-bottom: 1px solid var(--borde); }
+.cajon .cab-c .logo { width: 52px; height: 52px; border-radius: 16px; background: color-mix(in srgb, var(--c) 16%, transparent); display: grid; place-items: center; flex: none; }
+.cajon .cab-c .logo svg { width: 28px; height: 28px; fill: var(--c); }
+.cajon .cab-c h2 { margin: 0; font-size: 20px; }
+.cajon .cerrar { all: unset; margin-left: auto; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: var(--texto-3); }
+.cajon .cerrar:hover { background: var(--superficie-2); color: var(--texto); }
+.cajon .cuerpo { padding: 22px 26px 30px; overflow: auto; display: flex; flex-direction: column; gap: 14px; }
+.cajon .boton:not(.sec):not(.peligro) { background: var(--c); }
+.codigo-grande { text-align: center; font-size: 34px; font-weight: 300; letter-spacing: .2em; padding: 18px; border-radius: 14px; border: 1px solid var(--c); background: color-mix(in srgb, var(--c) 6%, transparent); }
+.modelo-local { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--superficie-2); }
+.modelo-local .txt { flex: 1; min-width: 0; }
+.modelo-local .txt b { display: block; font-weight: 600; }
+.modelo-local .txt span { color: var(--texto-3); font-size: 12.5px; }
+.modelo-local .boton { height: 34px; padding: 0 14px; font-size: 13px; }
+.barra-p { height: 4px; border-radius: 2px; background: var(--superficie-3); overflow: hidden; margin-top: 8px; }
+.barra-p i { display: block; height: 100%; width: 100%; background: var(--c); transform-origin: left; transition: transform .8s var(--suave); }
+.aviso-ram { display: flex; gap: 12px; align-items: center; padding: 14px; border-radius: 14px; background: color-mix(in srgb, var(--c) 10%, transparent); }
+.aviso-ram b { font-size: 22px; font-weight: 600; color: var(--c); white-space: nowrap; }
+
+/* Por cable */
+.pasos-guia { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
+.paso-g { padding: 18px; border-radius: var(--radio); background: var(--superficie); border: 1px solid var(--borde); display: flex; gap: 12px; }
+.paso-g .n { width: 28px; height: 28px; border-radius: 50%; background: var(--acento-2); color: var(--acento); font-weight: 700; display: grid; place-items: center; flex: none; font-size: 13px; }
+.paso-g b { display: block; margin-bottom: 2px; }
+.disp { display: flex; flex-direction: column; gap: 14px; }
+.disp .cab-d { display: flex; align-items: center; gap: 14px; }
+.disp .cab-d .icono-movil { width: 44px; height: 44px; border-radius: 13px; background: var(--superficie-2); display: grid; place-items: center; color: var(--texto-2); }
+.disp .cab-d b { font-size: 16px; }
+.comprobaciones { display: flex; flex-wrap: wrap; gap: 8px; }
+.opciones-instalar { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+.opcion { padding: 18px; border-radius: 16px; background: var(--superficie-2); display: flex; flex-direction: column; gap: 10px; }
+.opcion b { font-size: 15px; }
+.opcion .boton.sec { background: var(--superficie-3); }
+.opcion .boton { align-self: flex-start; }
+.opcion .chip { align-self: flex-start; }
+.registro { display: flex; flex-direction: column; gap: 8px; padding: 16px; border-radius: 14px; background: var(--superficie-2); font-size: 13px; }
+.registro div { display: flex; gap: 10px; color: var(--texto-2); animation: vista .35s var(--suave) both; }
+.registro div::before { content: "✓"; color: var(--verde); font-weight: 700; }
+.registro div.ultimo::before { content: ""; width: 9px; height: 9px; margin: 4px 2px 0; border-radius: 50%; background: var(--acento); animation: latido 1s ease-in-out infinite alternate; }
+.registro div.error::before { content: "!"; color: var(--rojo); }
+.registro.numerados div::before { content: var(--n); width: 22px; height: 22px; border-radius: 50%; background: var(--acento-2); color: var(--acento); font-size: 12px; display: grid; place-items: center; flex: none; }
+.registro.numerados div { align-items: center; color: var(--texto); }
+.camino .boton { margin-top: auto; }
+@keyframes latido { from { opacity: .35; transform: scale(.8); } to { opacity: 1; transform: scale(1.1); } }
+.casillas { display: flex; flex-wrap: wrap; gap: 8px; }
+.tarjeta > .boton:last-child { align-self: flex-start; }
+.casilla-p { all: unset; cursor: pointer; padding: 9px 14px; border-radius: 12px; background: var(--superficie-2); font-weight: 500; font-size: 13px; display: flex; gap: 8px; align-items: center; transition: background .2s, color .2s; }
+.casilla-p i { width: 16px; height: 16px; border-radius: 5px; border: 1.5px solid var(--borde-2); display: grid; place-items: center; transition: background .2s, border-color .2s; }
+.casilla-p.si i { background: var(--acento); border-color: var(--acento); }
+.casilla-p.si i::after { content: ""; width: 8px; height: 4px; border: 2px solid #fff; border-top: 0; border-right: 0; transform: rotate(-45deg) translate(1px, -1px); }
+.apps-lista { display: flex; flex-wrap: wrap; gap: 6px; }
+.apps-lista button { all: unset; cursor: pointer; padding: 6px 11px; border-radius: 99px; background: var(--superficie-2); font-size: 12px; color: var(--texto-2); }
+.apps-lista button:hover { background: var(--superficie-3); color: var(--texto); }
+
+/* Ajustes */
+.ajustes { display: flex; flex-direction: column; }
+.ajuste { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--borde); }
+.ajuste:last-child { border-bottom: 0; }
+.ajuste b { display: block; font-weight: 600; margin-bottom: 2px; }
+.interruptor { appearance: none; width: 44px; height: 26px; border-radius: 13px; background: var(--superficie-3); position: relative; cursor: pointer; transition: background .3s; flex: none; margin: 0; }
+.interruptor::after { content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: transform .45s var(--muelle); box-shadow: 0 1px 3px rgba(0,0,0,.3); }
+.interruptor:checked { background: var(--acento); }
+.interruptor:checked::after { transform: translateX(18px); }
+
+/* Bienvenida (sin vincular) */
+.bienvenida { max-width: 940px; margin: 0 auto; padding: 70px 44px; text-align: center; animation: vista .6s var(--suave) both; }
+.bienvenida > svg { width: 84px; height: 84px; }
+.bienvenida h1 { font-size: 34px; letter-spacing: -.02em; margin: 22px 0 8px; font-weight: 600; }
+.bienvenida > p { color: var(--texto-3); font-size: 15px; margin: 0 auto 38px; max-width: 560px; }
+.caminos { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; text-align: left; }
+.camino { display: flex; flex-direction: column; gap: 14px; }
+.camino h2 { font-size: 18px !important; }
+.moviles-wifi { display: flex; flex-direction: column; gap: 8px; }
+.movil-wifi { all: unset; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; background: var(--superficie-2); border: 1px solid transparent; transition: border-color .2s; }
+.movil-wifi.si { border-color: var(--acento); }
+.movil-wifi span:last-child { margin-left: auto; color: var(--texto-3); font-size: 12px; }
+.buscando { display: flex; align-items: center; gap: 10px; color: var(--texto-3); font-size: 13px; }
+.buscando::before { content: ""; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--superficie-3); border-top-color: var(--acento); animation: girar .8s linear infinite; }
+@keyframes girar { to { transform: rotate(360deg); } }
+.cajas-codigo { display: flex; gap: 8px; justify-content: space-between; }
+.cajas-codigo input { width: 100%; height: 56px; text-align: center; font: 500 24px "Montserrat"; border-radius: 12px; border: 1px solid var(--borde-2); background: var(--fondo); color: var(--texto); outline: none; transition: border-color .2s, box-shadow .2s; }
+.cajas-codigo input:focus { border-color: var(--acento); box-shadow: 0 0 0 4px var(--acento-2); }
+.cajas-codigo .sep { width: 10px; flex: none; }
+.error { color: var(--rojo); font-size: 13px; min-height: 18px; }
+
+/* Aviso flotante */
+body.quieto .tesela, body.quieto .mensaje, body.quieto .w, body.quieto .registro div { animation: none; }
+.aviso { position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 30px); opacity: 0; background: var(--texto); color: var(--fondo); padding: 11px 18px; border-radius: 12px; font-weight: 600; font-size: 13px; transition: transform .45s var(--muelle), opacity .3s; z-index: 30; pointer-events: none; }
+.aviso.visible { transform: translate(-50%, 0); opacity: 1; }
+
+@media (max-width: 980px) {
+  .app { grid-template-columns: 76px 1fr; }
+  .lateral { padding: 22px 10px; align-items: center; }
+  .marca b, .movil-mini, nav button span, nav .insignia, .ia-en-uso div, .equipo { display: none; }
+  nav button { padding: 11px; }
+  .hero, .rejilla-2, .caminos, .opciones-instalar, .pasos-guia { grid-template-columns: 1fr; }
+  .vista { padding: 30px 26px; }
+}
+/* ---------- Encontrar mi móvil ---------- */
+.tarjeta.encontrar { padding: 0; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) 280px; }
+.zona-mapa { min-height: 380px; position: relative; border-right: 1px solid var(--borde); }
+.mapa { position: absolute; inset: 0; overflow: hidden; background: var(--superficie-2); animation: aparecer .5s var(--suave); }
+.mapa .teselas { position: absolute; left: 50%; top: 50%; width: 1280px; height: 768px; }
+.mapa .teselas img { position: absolute; width: 256px; height: 256px; opacity: 0; transition: opacity .5s var(--suave); user-select: none; }
+.mapa .teselas img.cargada { opacity: 1; }
+@media (prefers-color-scheme: dark) { .mapa .teselas img { filter: invert(1) hue-rotate(180deg) brightness(.92) contrast(.88) saturate(.6); } }
+.mapa .precision { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); border-radius: 50%; background: color-mix(in srgb, var(--acento) 14%, transparent); border: 1px solid color-mix(in srgb, var(--acento) 45%, transparent); }
+.mapa .marcador { position: absolute; left: 50%; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: var(--acento); border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.35); }
+.mapa .marcador::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid var(--acento); animation: latido-mapa 2s var(--suave) infinite; }
+@keyframes latido-mapa { from { transform: scale(1); opacity: .9; } to { transform: scale(3.2); opacity: 0; } }
+@keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+.mapa .creditos { position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #333; background: rgba(255,255,255,.75); padding: 1px 6px; border-radius: 6px; }
+.mapa .zooms { position: absolute; right: 12px; top: 12px; display: flex; flex-direction: column; border-radius: 12px; overflow: hidden; background: var(--superficie); border: 1px solid var(--borde); box-shadow: 0 4px 14px rgba(0,0,0,.2); }
+.mapa .zooms button { appearance: none; border: 0; width: 36px; height: 36px; display: grid; place-items: center; background: none; color: var(--texto); cursor: pointer; transition: background .2s; }
+.mapa .zooms button + button { border-top: 1px solid var(--borde); }
+.mapa .zooms button:hover { background: var(--superficie-2); }
+.mapa .zooms svg { width: 16px; height: 16px; }
+.mapa.vacio { display: grid; place-items: center; }
+.buscando-movil { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; max-width: 280px; padding: 20px; }
+.buscando-movil .anillo { width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--superficie-3); border-top-color: var(--acento); animation: girar 1s linear infinite; margin-bottom: 6px; }
+@keyframes girar { to { transform: rotate(360deg); } }
+.datos-encontrar { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+.fila-dato { display: flex; flex-direction: column; gap: 3px; }
+.fila-dato b { font-weight: 600; font-size: 15px; }
+.fila-dato b.ok { color: var(--verde); }
+.datos-encontrar > .boton { margin-top: auto; align-self: flex-start; }
+.banda-perdido { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 12px; background: color-mix(in srgb, var(--rojo) 14%, transparent); color: var(--rojo); font-size: 13px; font-weight: 600; }
+.banda-perdido .texto-perdido { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.banda-perdido .texto-perdido span { font-weight: 500; opacity: .85; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.banda-perdido .boton { height: 30px; padding: 0 12px; font-size: 12px; }
+.intrusos { display: flex; gap: 12px; align-items: center; padding: 10px; border-radius: 14px; background: var(--superficie-2); animation: aparecer .4s var(--suave); }
+.intrusos img { width: 64px; height: 64px; border-radius: 10px; object-fit: cover; flex: none; }
+.texto-intrusos { display: flex; flex-direction: column; gap: 3px; min-width: 0; font-size: 13px; }
+.acciones-encontrar { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; padding: 16px 20px; border-top: 1px solid var(--borde); }
+.acciones-encontrar .boton.peligro { margin-left: auto; }
+.form-perdido { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 10px; padding: 0 20px 20px; animation: aparecer .35s var(--suave); }
+.form-perdido > .boton { align-self: flex-start; }
+.boton svg { width: 16px; height: 16px; }
+@media (max-width: 860px) { .tarjeta.encontrar { grid-template-columns: 1fr; } .zona-mapa { border-right: 0; border-bottom: 1px solid var(--borde); } }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="lateral">
+    <div class="marca"><svg class="sios" width="28" height="28" viewBox="14 14 76 82"><path class="anillo" d="M44.984 27.861A29.0 29.0 0 1 1 23.000 56.000L23.000 45.000" fill="none" stroke-width="12.5" stroke-linecap="round" stroke-linejoin="round"/><circle class="punto" cx="23.0" cy="25.15" r="7.6"/></svg><b>SIOS <span>Desktop</span></b></div>
+    <div class="movil-mini" id="movil-mini">
+      <div class="fila">
+        <div class="icono-movil" data-ic="movil"></div>
+        <div style="min-width:0;flex:1"><b id="mini-nombre">Sin vincular</b><div class="estado-linea" id="mini-estado"><i></i><span id="mini-texto">Vincula tu móvil</span></div></div>
+      </div>
+      <div class="bateria"><i id="mini-bateria"></i></div>
+    </div>
+    <nav id="nav">
+      <button data-v="inicio"><span data-ic="inicio"></span><span>Inicio</span></button>
+      <button data-v="mensajes"><span data-ic="mensajes"></span><span>Mensajes</span><span class="insignia oculto" id="n-mensajes"></span></button>
+      <button data-v="panel"><span data-ic="panel"></span><span>Panel</span></button>
+      <button data-v="encontrar"><span data-ic="ubicacion"></span><span>Encontrar</span></button>
+      <button data-v="ia"><span data-ic="ia"></span><span>Inteligencia</span></button>
+      <button data-v="cable"><span data-ic="cable"></span><span>Por cable</span></button>
+      <button data-v="ajustes"><span data-ic="ajustes"></span><span>Ajustes</span></button>
+    </nav>
+    <div class="pie">
+      <div class="ia-en-uso oculto" id="ia-en-uso"><span class="logo" id="ia-en-uso-logo"></span><div><small>IA en uso</small><b id="ia-en-uso-nombre"></b></div></div>
+      <div class="equipo" id="equipo"></div>
+    </div>
+  </aside>
+  <main id="main"></main>
+</div>
+<div class="velo" id="velo"></div>
+<aside class="cajon" id="cajon"></aside>
+<input type="file" id="archivo" class="oculto">
+<div class="aviso" id="aviso" role="status"></div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const el = (etiqueta, clase, texto) => { const x = document.createElement(etiqueta); if (clase) x.className = clase; if (texto != null) x.textContent = texto; return x; };
+const post = async (ruta, cuerpo, tipo = "application/json") => {
+  const r = await fetch(ruta, { method: "POST", headers: { "content-type": tipo }, body: tipo === "application/json" ? JSON.stringify(cuerpo || {}) : cuerpo });
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(d.error || "Algo ha fallado");
+  return d;
+};
+let avisoT;
+function aviso(t) { const a = $("aviso"); a.textContent = t; a.classList.add("visible"); clearTimeout(avisoT); avisoT = setTimeout(() => a.classList.remove("visible"), 2600); }
+
+// Iconos de línea (24×24).
+const IC = {
+  inicio: "M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z",
+  mensajes: "M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 20.5l1.6-5A8.5 8.5 0 1 1 21 11.5z",
+  panel: "M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z",
+  ia: "M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z",
+  cable: "M9 2v4M15 2v4M7 6h10v5a5 5 0 0 1-10 0zM12 16v6",
+  ajustes: "M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0M16 4v4M10 10v4M18 16v4",
+  movil: "M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM11 18h2",
+  campana: "M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0",
+  subir: "M12 16V4M7 9l5-5 5 5M4 20h16",
+  enlace: "M10 14a5 5 0 0 0 7.1 0l3-3a5 5 0 0 0-7.1-7.1l-1.2 1.2M14 10a5 5 0 0 0-7.1 0l-3 3a5 5 0 0 0 7.1 7.1l1.2-1.2",
+  telefono: "M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z",
+  enviar: "M22 2 11 13M22 2l-7 20-4-9-9-4z",
+  cerrar: "M18 6 6 18M6 6l12 12",
+  flecha: "M5 12h14M13 6l6 6-6 6",
+  carpeta: "M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",
+  ubicacion: "M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12zM12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z",
+  candado: "M6 11h12v10H6zM8 11V7a4 4 0 0 1 8 0v4",
+  sonido: "M11 5 6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13",
+  papelera: "M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13",
+  mas: "M12 5v14M5 12h14",
+  menos: "M5 12h14",
+  recargar: "M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7",
+};
+const ic = (n) => `<svg class="ic" viewBox="0 0 24 24"><path d="${IC[n]}"/></svg>`;
+document.querySelectorAll("[data-ic]").forEach((e) => (e.innerHTML = ic(e.dataset.ic)));
+
+const LOGOS = {"claude": "<svg viewBox=\"0 0 248 248\"><path d=\"M52.4285 162.873L98.7844 136.879L99.5485 134.602L98.7844 133.334H96.4921L88.7237 132.862L62.2346 132.153L39.3113 131.207L17.0249 130.026L11.4214 128.844L6.2 121.873L6.7094 118.447L11.4214 115.257L18.171 115.847L33.0711 116.911L55.485 118.447L71.6586 119.392L95.728 121.873H99.5485L100.058 120.337L98.7844 119.392L97.7656 118.447L74.5877 102.732L49.4995 86.1905L36.3823 76.62L29.3779 71.7757L25.8121 67.2858L24.2839 57.3608L30.6515 50.2716L39.3113 50.8623L41.4763 51.4531L50.2636 58.1879L68.9842 72.7209L93.4357 90.6804L97.0015 93.6343L98.4374 92.6652L98.6571 91.9801L97.0015 89.2625L83.757 65.2772L69.621 40.8192L63.2534 30.6579L61.5978 24.632C60.9565 22.1032 60.579 20.0111 60.579 17.4246L67.8381 7.49965L71.9133 6.19995L81.7193 7.49965L85.7946 11.0443L91.9074 24.9865L101.714 46.8451L116.996 76.62L121.453 85.4816L123.873 93.6343L124.764 96.1155H126.292V94.6976L127.566 77.9197L129.858 57.3608L132.15 30.8942L132.915 23.4505L136.608 14.4708L143.994 9.62643L149.725 12.344L154.437 19.0788L153.8 23.4505L150.998 41.6463L145.522 70.1215L141.957 89.2625H143.994L146.414 86.7813L156.093 74.0206L172.266 53.698L179.398 45.6635L187.803 36.802L193.152 32.5484H203.34L210.726 43.6549L207.415 55.1159L196.972 68.3492L188.312 79.5739L175.896 96.2095L168.191 109.585L168.882 110.689L170.738 110.53L198.755 104.504L213.91 101.787L231.994 98.7149L240.144 102.496L241.036 106.395L237.852 114.311L218.495 119.037L195.826 123.645L162.07 131.592L161.696 131.893L162.137 132.547L177.36 133.925L183.855 134.279H199.774L229.447 136.524L237.215 141.605L241.8 147.867L241.036 152.711L229.065 158.737L213.019 154.956L175.45 145.977L162.587 142.787H160.805V143.85L171.502 154.366L191.242 172.089L215.82 195.011L217.094 200.682L213.91 205.172L210.599 204.699L188.949 188.394L180.544 181.069L161.696 165.118H160.422V166.772L164.752 173.152L187.803 207.771L188.949 218.405L187.294 221.832L181.308 223.959L174.813 222.777L161.187 203.754L147.305 182.486L136.098 163.345L134.745 164.2L128.075 235.42L125.019 239.082L117.887 241.8L111.902 237.31L108.718 229.984L111.902 215.452L115.722 196.547L118.779 181.541L121.58 162.873L123.291 156.636L123.14 156.219L121.773 156.449L107.699 175.752L86.304 204.699L69.3663 222.777L65.291 224.431L58.2867 220.768L58.9235 214.27L62.8713 208.48L86.304 178.705L100.44 160.155L109.551 149.507L109.462 147.967L108.959 147.924L46.6977 188.512L35.6182 189.93L30.7788 185.44L31.4156 178.115L33.7079 175.752L52.4285 162.873Z\"/></svg>", "anthropic": "<svg viewBox=\"0 0 248 248\"><path d=\"M52.4285 162.873L98.7844 136.879L99.5485 134.602L98.7844 133.334H96.4921L88.7237 132.862L62.2346 132.153L39.3113 131.207L17.0249 130.026L11.4214 128.844L6.2 121.873L6.7094 118.447L11.4214 115.257L18.171 115.847L33.0711 116.911L55.485 118.447L71.6586 119.392L95.728 121.873H99.5485L100.058 120.337L98.7844 119.392L97.7656 118.447L74.5877 102.732L49.4995 86.1905L36.3823 76.62L29.3779 71.7757L25.8121 67.2858L24.2839 57.3608L30.6515 50.2716L39.3113 50.8623L41.4763 51.4531L50.2636 58.1879L68.9842 72.7209L93.4357 90.6804L97.0015 93.6343L98.4374 92.6652L98.6571 91.9801L97.0015 89.2625L83.757 65.2772L69.621 40.8192L63.2534 30.6579L61.5978 24.632C60.9565 22.1032 60.579 20.0111 60.579 17.4246L67.8381 7.49965L71.9133 6.19995L81.7193 7.49965L85.7946 11.0443L91.9074 24.9865L101.714 46.8451L116.996 76.62L121.453 85.4816L123.873 93.6343L124.764 96.1155H126.292V94.6976L127.566 77.9197L129.858 57.3608L132.15 30.8942L132.915 23.4505L136.608 14.4708L143.994 9.62643L149.725 12.344L154.437 19.0788L153.8 23.4505L150.998 41.6463L145.522 70.1215L141.957 89.2625H143.994L146.414 86.7813L156.093 74.0206L172.266 53.698L179.398 45.6635L187.803 36.802L193.152 32.5484H203.34L210.726 43.6549L207.415 55.1159L196.972 68.3492L188.312 79.5739L175.896 96.2095L168.191 109.585L168.882 110.689L170.738 110.53L198.755 104.504L213.91 101.787L231.994 98.7149L240.144 102.496L241.036 106.395L237.852 114.311L218.495 119.037L195.826 123.645L162.07 131.592L161.696 131.893L162.137 132.547L177.36 133.925L183.855 134.279H199.774L229.447 136.524L237.215 141.605L241.8 147.867L241.036 152.711L229.065 158.737L213.019 154.956L175.45 145.977L162.587 142.787H160.805V143.85L171.502 154.366L191.242 172.089L215.82 195.011L217.094 200.682L213.91 205.172L210.599 204.699L188.949 188.394L180.544 181.069L161.696 165.118H160.422V166.772L164.752 173.152L187.803 207.771L188.949 218.405L187.294 221.832L181.308 223.959L174.813 222.777L161.187 203.754L147.305 182.486L136.098 163.345L134.745 164.2L128.075 235.42L125.019 239.082L117.887 241.8L111.902 237.31L108.718 229.984L111.902 215.452L115.722 196.547L118.779 181.541L121.58 162.873L123.291 156.636L123.14 156.219L121.773 156.449L107.699 175.752L86.304 204.699L69.3663 222.777L65.291 224.431L58.2867 220.768L58.9235 214.27L62.8713 208.48L86.304 178.705L100.44 160.155L109.551 149.507L109.462 147.967L108.959 147.924L46.6977 188.512L35.6182 189.93L30.7788 185.44L31.4156 178.115L33.7079 175.752L52.4285 162.873Z\"/></svg>", "chatgpt": "<svg viewBox=\"0 0 24 24\" fill-rule=\"evenodd\"><path d=\"M9.205 8.658v-2.26c0-.19.072-.333.238-.428l4.543-2.616c.619-.357 1.356-.523 2.117-.523 2.854 0 4.662 2.212 4.662 4.566 0 .167 0 .357-.024.547l-4.71-2.759a.797.797 0 00-.856 0l-5.97 3.473zm10.609 8.8V12.06c0-.333-.143-.57-.429-.737l-5.97-3.473 1.95-1.118a.433.433 0 01.476 0l4.543 2.617c1.309.76 2.189 2.378 2.189 3.948 0 1.808-1.07 3.473-2.76 4.163zM7.802 12.703l-1.95-1.142c-.167-.095-.239-.238-.239-.428V5.899c0-2.545 1.95-4.472 4.591-4.472 1 0 1.927.333 2.712.928L8.23 5.067c-.285.166-.428.404-.428.737v6.898zM12 15.128l-2.795-1.57v-3.33L12 8.658l2.795 1.57v3.33L12 15.128zm1.796 7.23c-1 0-1.927-.332-2.712-.927l4.686-2.712c.285-.166.428-.404.428-.737v-6.898l1.974 1.142c.167.095.238.238.238.428v5.233c0 2.545-1.974 4.472-4.614 4.472zm-5.637-5.303l-4.544-2.617c-1.308-.761-2.188-2.378-2.188-3.948A4.482 4.482 0 014.21 6.327v5.423c0 .333.143.571.428.738l5.947 3.449-1.95 1.118a.432.432 0 01-.476 0zm-.262 3.9c-2.688 0-4.662-2.021-4.662-4.519 0-.19.024-.38.047-.57l4.686 2.71c.286.167.571.167.856 0l5.97-3.448v2.26c0 .19-.07.333-.237.428l-4.543 2.616c-.619.357-1.356.523-2.117.523zm5.899 2.83a5.947 5.947 0 005.827-4.756C22.287 18.339 24 15.84 24 13.296c0-1.665-.713-3.282-1.998-4.448.119-.5.19-.999.19-1.498 0-3.401-2.759-5.947-5.946-5.947-.642 0-1.26.095-1.88.31A5.962 5.962 0 0010.205 0a5.947 5.947 0 00-5.827 4.757C1.713 5.447 0 7.945 0 10.49c0 1.666.713 3.283 1.998 4.448-.119.5-.19 1-.19 1.499 0 3.401 2.759 5.946 5.946 5.946.642 0 1.26-.095 1.88-.309a5.96 5.96 0 004.162 1.713z\"></path></svg>", "openai": "<svg viewBox=\"0 0 24 24\" fill-rule=\"evenodd\"><path d=\"M9.205 8.658v-2.26c0-.19.072-.333.238-.428l4.543-2.616c.619-.357 1.356-.523 2.117-.523 2.854 0 4.662 2.212 4.662 4.566 0 .167 0 .357-.024.547l-4.71-2.759a.797.797 0 00-.856 0l-5.97 3.473zm10.609 8.8V12.06c0-.333-.143-.57-.429-.737l-5.97-3.473 1.95-1.118a.433.433 0 01.476 0l4.543 2.617c1.309.76 2.189 2.378 2.189 3.948 0 1.808-1.07 3.473-2.76 4.163zM7.802 12.703l-1.95-1.142c-.167-.095-.239-.238-.239-.428V5.899c0-2.545 1.95-4.472 4.591-4.472 1 0 1.927.333 2.712.928L8.23 5.067c-.285.166-.428.404-.428.737v6.898zM12 15.128l-2.795-1.57v-3.33L12 8.658l2.795 1.57v3.33L12 15.128zm1.796 7.23c-1 0-1.927-.332-2.712-.927l4.686-2.712c.285-.166.428-.404.428-.737v-6.898l1.974 1.142c.167.095.238.238.238.428v5.233c0 2.545-1.974 4.472-4.614 4.472zm-5.637-5.303l-4.544-2.617c-1.308-.761-2.188-2.378-2.188-3.948A4.482 4.482 0 014.21 6.327v5.423c0 .333.143.571.428.738l5.947 3.449-1.95 1.118a.432.432 0 01-.476 0zm-.262 3.9c-2.688 0-4.662-2.021-4.662-4.519 0-.19.024-.38.047-.57l4.686 2.71c.286.167.571.167.856 0l5.97-3.448v2.26c0 .19-.07.333-.237.428l-4.543 2.616c-.619.357-1.356.523-2.117.523zm5.899 2.83a5.947 5.947 0 005.827-4.756C22.287 18.339 24 15.84 24 13.296c0-1.665-.713-3.282-1.998-4.448.119-.5.19-.999.19-1.498 0-3.401-2.759-5.947-5.946-5.947-.642 0-1.26.095-1.88.31A5.962 5.962 0 0010.205 0a5.947 5.947 0 00-5.827 4.757C1.713 5.447 0 7.945 0 10.49c0 1.666.713 3.283 1.998 4.448-.119.5-.19 1-.19 1.499 0 3.401 2.759 5.946 5.946 5.946.642 0 1.26-.095 1.88-.309a5.96 5.96 0 004.162 1.713z\"></path></svg>", "gemini": "<svg viewBox=\"0 0 24 24\" fill-rule=\"evenodd\"><path d=\"M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z\"></path></svg>", "gemini_api": "<svg viewBox=\"0 0 24 24\" fill-rule=\"evenodd\"><path d=\"M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z\"></path></svg>", "kimi": "<svg viewBox=\"0 0 24 24\" fill-rule=\"evenodd\"><path d=\"M21.846 0a1.923 1.923 0 110 3.846H20.15a.226.226 0 01-.227-.226V1.923C19.923.861 20.784 0 21.846 0z\"></path><path d=\"M11.065 11.199l7.257-7.2c.137-.136.06-.41-.116-.41H14.3a.164.164 0 00-.117.051l-7.82 7.756c-.122.12-.302.013-.302-.179V3.82c0-.127-.083-.23-.185-.23H3.186c-.103 0-.186.103-.186.23V19.77c0 .128.083.23.186.23h2.69c.103 0 .186-.102.186-.23v-3.25c0-.069.025-.135.069-.178l2.424-2.406a.158.158 0 01.205-.023l6.484 4.772a7.677 7.677 0 003.453 1.283c.108.012.2-.095.2-.23v-3.06c0-.117-.07-.212-.164-.227a5.028 5.028 0 01-2.027-.807l-5.613-4.064c-.117-.078-.132-.279-.028-.381z\"></path></svg>", "kimi_code": "<svg viewBox=\"0 0 24 24\" fill-rule=\"evenodd\"><path d=\"M21.846 0a1.923 1.923 0 110 3.846H20.15a.226.226 0 01-.227-.226V1.923C19.923.861 20.784 0 21.846 0z\"></path><path d=\"M11.065 11.199l7.257-7.2c.137-.136.06-.41-.116-.41H14.3a.164.164 0 00-.117.051l-7.82 7.756c-.122.12-.302.013-.302-.179V3.82c0-.127-.083-.23-.185-.23H3.186c-.103 0-.186.103-.186.23V19.77c0 .128.083.23.186.23h2.69c.103 0 .186-.102.186-.23v-3.25c0-.069.025-.135.069-.178l2.424-2.406a.158.158 0 01.205-.023l6.484 4.772a7.677 7.677 0 003.453 1.283c.108.012.2-.095.2-.23v-3.06c0-.117-.07-.212-.164-.227a5.028 5.028 0 01-2.027-.807l-5.613-4.064c-.117-.078-.132-.279-.028-.381z\"></path></svg>", "deepseek": "<svg viewBox=\"0 0 24 24\" fill-rule=\"evenodd\"><path d=\"M23.748 4.482c-.254-.124-.364.113-.512.234-.051.039-.094.09-.137.136-.372.397-.806.657-1.373.626-.829-.046-1.537.214-2.163.848-.133-.782-.575-1.248-1.247-1.548-.352-.156-.708-.311-.955-.65-.172-.241-.219-.51-.305-.774-.055-.16-.11-.323-.293-.35-.2-.031-.278.136-.356.276-.313.572-.434 1.202-.422 1.84.027 1.436.633 2.58 1.838 3.393.137.093.172.187.129.323-.082.28-.18.552-.266.833-.055.179-.137.217-.329.14a5.526 5.526 0 01-1.736-1.18c-.857-.828-1.631-1.742-2.597-2.458a11.365 11.365 0 00-.689-.471c-.985-.957.13-1.743.388-1.836.27-.098.093-.432-.779-.428-.872.004-1.67.295-2.687.684a3.055 3.055 0 01-.465.137 9.597 9.597 0 00-2.883-.102c-1.885.21-3.39 1.102-4.497 2.623C.082 8.606-.231 10.684.152 12.85c.403 2.284 1.569 4.175 3.36 5.653 1.858 1.533 3.997 2.284 6.438 2.14 1.482-.085 3.133-.284 4.994-1.86.47.234.962.327 1.78.397.63.059 1.236-.03 1.705-.128.735-.156.684-.837.419-.961-2.155-1.004-1.682-.595-2.113-.926 1.096-1.296 2.746-2.642 3.392-7.003.05-.347.007-.565 0-.845-.004-.17.035-.237.23-.256a4.173 4.173 0 001.545-.475c1.396-.763 1.96-2.015 2.093-3.517.02-.23-.004-.467-.247-.588zM11.581 18c-2.089-1.642-3.102-2.183-3.52-2.16-.392.024-.321.471-.235.763.09.288.207.486.371.739.114.167.192.416-.113.603-.673.416-1.842-.14-1.897-.167-1.361-.802-2.5-1.86-3.301-3.307-.774-1.393-1.224-2.887-1.298-4.482-.02-.386.093-.522.477-.592a4.696 4.696 0 011.529-.039c2.132.312 3.946 1.265 5.468 2.774.868.86 1.525 1.887 2.202 2.891.72 1.066 1.494 2.082 2.48 2.914.348.292.625.514.891.677-.802.09-2.14.11-3.054-.614zm1-6.44a.306.306 0 01.415-.287.302.302 0 01.2.288.306.306 0 01-.31.307.303.303 0 01-.304-.308zm3.11 1.596c-.2.081-.399.151-.59.16a1.245 1.245 0 01-.798-.254c-.274-.23-.47-.358-.552-.758a1.73 1.73 0 01.016-.588c.07-.327-.008-.537-.239-.727-.187-.156-.426-.199-.688-.199a.559.559 0 01-.254-.078c-.11-.054-.2-.19-.114-.358.028-.054.16-.186.192-.21.356-.202.767-.136 1.146.016.352.144.618.408 1.001.782.391.451.462.576.685.914.176.265.336.537.445.848.067.195-.019.354-.25.452z\"></path></svg>", "mistral": "<svg viewBox=\"0 0 24 24\" fill-rule=\"evenodd\"><path clip-rule=\"evenodd\" d=\"M3.428 3.4h3.429v3.428h3.429v3.429h-.002 3.431V6.828h3.427V3.4h3.43v13.714H24v3.429H13.714v-3.428h-3.428v-3.429h-3.43v3.428h3.43v3.429H0v-3.429h3.428V3.4zm10.286 13.715h3.428v-3.429h-3.427v3.429z\"></path></svg>", "grok": "<svg viewBox=\"0 0 24 24\" fill-rule=\"evenodd\"><path d=\"M9.27 15.29l7.978-5.897c.391-.29.95-.177 1.137.272.98 2.369.542 5.215-1.41 7.169-1.951 1.954-4.667 2.382-7.149 1.406l-2.711 1.257c3.889 2.661 8.611 2.003 11.562-.953 2.341-2.344 3.066-5.539 2.388-8.42l.006.007c-.983-4.232.242-5.924 2.75-9.383.06-.082.12-.164.179-.248l-3.301 3.305v-.01L9.267 15.292M7.623 16.723c-2.792-2.67-2.31-6.801.071-9.184 1.761-1.763 4.647-2.483 7.166-1.425l2.705-1.25a7.808 7.808 0 00-1.829-1A8.975 8.975 0 005.984 5.83c-2.533 2.536-3.33 6.436-1.962 9.764 1.022 2.487-.653 4.246-2.34 6.022-.599.63-1.199 1.259-1.682 1.925l7.62-6.815\"></path></svg>", "openrouter": "<svg viewBox=\"0 0 24 24\" fill-rule=\"evenodd\"><path d=\"M18.654 3.87a5.087 5.087 0 110 10.174L23.7 19.09c.64.641.187 1.737-.72 1.737H8.48a8.479 8.479 0 010-16.958h10.175zM8.479 7.26a5.087 5.087 0 100 10.176 5.087 5.087 0 000-10.175z\"></path></svg>", "local": "<svg viewBox=\"0 0 24 24\" fill-rule=\"evenodd\"><path d=\"M12.604 1.34c.393.69.784 1.382 1.174 2.075a.18.18 0 00.157.091h5.552c.174 0 .322.11.446.327l1.454 2.57c.19.337.24.478.024.837-.26.43-.513.864-.76 1.3l-.367.658c-.106.196-.223.28-.04.512l2.652 4.637c.172.301.111.494-.043.77-.437.785-.882 1.564-1.335 2.34-.159.272-.352.375-.68.37-.777-.016-1.552-.01-2.327.016a.099.099 0 00-.081.05 575.097 575.097 0 01-2.705 4.74c-.169.293-.38.363-.725.364-.997.003-2.002.004-3.017.002a.537.537 0 01-.465-.271l-1.335-2.323a.09.09 0 00-.083-.049H4.982c-.285.03-.553-.001-.805-.092l-1.603-2.77a.543.543 0 01-.002-.54l1.207-2.12a.198.198 0 000-.197 550.951 550.951 0 01-1.875-3.272l-.79-1.395c-.16-.31-.173-.496.095-.965.465-.813.927-1.625 1.387-2.436.132-.234.304-.334.584-.335a338.3 338.3 0 012.589-.001.124.124 0 00.107-.063l2.806-4.895a.488.488 0 01.422-.246c.524-.001 1.053 0 1.583-.006L11.704 1c.341-.003.724.032.9.34zm-3.432.403a.06.06 0 00-.052.03L6.254 6.788a.157.157 0 01-.135.078H3.253c-.056 0-.07.025-.041.074l5.81 10.156c.025.042.013.062-.034.063l-2.795.015a.218.218 0 00-.2.116l-1.32 2.31c-.044.078-.021.118.068.118l5.716.008c.046 0 .08.02.104.061l1.403 2.454c.046.081.092.082.139 0l5.006-8.76.783-1.382a.055.055 0 01.096 0l1.424 2.53a.122.122 0 00.107.062l2.763-.02a.04.04 0 00.035-.02.041.041 0 000-.04l-2.9-5.086a.108.108 0 010-.113l.293-.507 1.12-1.977c.024-.041.012-.062-.035-.062H9.2c-.059 0-.073-.026-.043-.077l1.434-2.505a.107.107 0 000-.114L9.225 1.774a.06.06 0 00-.053-.031zm6.29 8.02c.046 0 .058.02.034.06l-.832 1.465-2.613 4.585a.056.056 0 01-.05.029.058.058 0 01-.05-.029L8.498 9.841c-.02-.034-.01-.052.028-.054l.216-.012 6.722-.012z\"></path></svg>"};
+const logoDe = (id) => LOGOS[id] || LOGOS.local;
+function colorDe(p) { const claro = matchMedia("(prefers-color-scheme: light)").matches; return (p?.acento || [])[claro ? 1 : 0] || "#7B6CF6"; }
+// Cambia un texto solo si es distinto (sin tocar la pantalla si no hace falta).
+// Huella de unos datos para saber si han cambiado (sin la marca de hora «t» del canal cifrado).
+const firmaDe = (o) => JSON.stringify(o, (k, v) => (k === "t" ? undefined : v));
+const ponerTexto = (n, t) => { if (n && n.textContent !== t) n.textContent = t; };
+const horaCorta = (ms) => ms ? new Date(ms).toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" }) : "";
+
+// ---------- Estado ----------
+let estado = null, ajustes = {}, vinculado = null, vista = "", ia = null, mensajes = [], panel = null, cable = null, copia = null;
+
+async function refrescar() {
+  const d = await fetch("/api/estado").then((r) => r.json()).catch(() => null);
+  if (!d) return;
+  estado = d.estado; ajustes = d.ajustes || {};
+  $("equipo").textContent = d.equipo || "";
+  if (estado.vinculado !== vinculado) {
+    vinculado = estado.vinculado;
+    document.body.classList.toggle("sin-movil", !vinculado);
+    // #v=ia o #v=ia&cajon=local abre esa sección (para revisar el diseño).
+    const pide = new URLSearchParams(location.hash.slice(1));
+    ir(pide.get("v") || (vinculado ? (vista && vista !== "bienvenida" ? vista : "inicio") : (vista === "cable" ? "cable" : "bienvenida")));
+    if (pide.get("cajon")) setTimeout(() => ia && abrirCajon(pide.get("cajon")), 900);
+    if (vinculado) { refrescarIa(); refrescarPanel(); refrescarMensajes(); }
+  }
+  pintarLateral();
+  if (vista === "inicio") pintarEstadoInicio();
+}
+
+function pintarLateral() {
+  const e = estado || {};
+  $("mini-nombre").textContent = vinculado ? (e.nombre_movil || "Tu móvil") : "Sin vincular";
+  $("mini-estado").classList.toggle("si", !!(vinculado && e.conectado));
+  $("mini-texto").textContent = !vinculado ? "Vincula tu móvil" : e.conectado ? `Conectado · ${e.bateria ?? "—"} %${e.cargando ? " · cargando" : ""}` : (e.error || "Conectando…");
+  $("mini-bateria").style.transform = `scaleX(${vinculado && e.bateria ? e.bateria / 100 : 0})`;
+  document.querySelectorAll("#nav button").forEach((b) => {
+    const solo = ["cable"].includes(b.dataset.v);
+    b.classList.toggle("oculto", !vinculado && !solo && b.dataset.v !== "inicio");
+  });
+  const activo = ia?.proveedores?.find((p) => p.id === ia.activo);
+  $("ia-en-uso").classList.toggle("oculto", !vinculado || !activo);
+  if (activo) {
+    $("ia-en-uso-logo").innerHTML = logoDe(activo.id);
+    $("ia-en-uso-nombre").textContent = activo.nombre;
+    document.documentElement.style.setProperty("--acento", colorDe(activo));
+  }
+  const n = mensajes.filter((m) => m.responder).length;
+  $("n-mensajes").textContent = n; $("n-mensajes").classList.toggle("oculto", !vinculado || !n);
+}
+
+// ---------- Navegación ----------
+function ir(v) {
+  if (!vinculado && v !== "cable") v = "bienvenida";
+  vista = v;
+  document.querySelectorAll("#nav button").forEach((b) => b.classList.toggle("activo", b.dataset.v === v || (v === "bienvenida" && b.dataset.v === "inicio")));
+  const m = $("main");
+  m.replaceChildren(VISTAS[v]());
+  // Las animaciones de entrada, solo al llegar a la sección; las actualizaciones no se animan.
+  document.body.classList.remove("quieto");
+  clearTimeout(ir.t); ir.t = setTimeout(() => document.body.classList.add("quieto"), 900);
+  m.scrollTop = 0;
+}
+$("nav").onclick = (e) => { const b = e.target.closest("button"); if (b) ir(b.dataset.v); };
+$("ia-en-uso").onclick = () => ir("ia");
+
+function cabecera(titulo, sub, extra) {
+  const c = el("div", "titulo-vista"), t = el("div");
+  t.append(el("h1", null, titulo)); if (sub) t.append(el("p", null, sub));
+  c.append(t); if (extra) c.append(extra);
+  return c;
+}
+function boton(txt, fn, clase = "") {
+  const b = el("button", "boton " + clase); b.innerHTML = txt;
+  b.onclick = async () => { b.disabled = true; try { await fn(b); } catch (e) { aviso(e.message); } b.disabled = false; };
+  return b;
+}
+
+// ---------- Encontrar mi móvil: mapa ----------
+// Teselas de OpenStreetMap compuestas a mano (sin librerías): 5×3 alrededor del punto, centradas.
+function mapa(lat, lon, precision, z) {
+  const caja = el("div", "mapa");
+  const n = 2 ** z, rad = (lat * Math.PI) / 180;
+  const x = ((lon + 180) / 360) * n, y = ((1 - Math.log(Math.tan(rad) + 1 / Math.cos(rad)) / Math.PI) / 2) * n;
+  const tx = Math.floor(x), ty = Math.floor(y), px = (x - tx) * 256, py = (y - ty) * 256;
+  const capa = el("div", "teselas");
+  capa.style.marginLeft = `${-(512 + px)}px`; capa.style.marginTop = `${-(256 + py)}px`;
+  for (let dy = -1; dy <= 1; dy++) for (let dx = -2; dx <= 2; dx++) {
+    const t = document.createElement("img");
+    t.src = `https://tile.openstreetmap.org/${z}/${(((tx + dx) % n) + n) % n}/${ty + dy}.png`;
+    t.alt = ""; t.draggable = false;
+    t.style.left = `${(dx + 2) * 256}px`; t.style.top = `${(dy + 1) * 256}px`;
+    t.onload = () => t.classList.add("cargada");
+    capa.append(t);
+  }
+  // Círculo de precisión (metros → píxeles a esta latitud y zoom) y el punto que late.
+  const mpp = (156543.03392 * Math.cos(rad)) / n;
+  const r = Math.max(14, Math.min(400, (precision || 0) / mpp));
+  const circulo = el("div", "precision"); circulo.style.width = circulo.style.height = `${r * 2}px`;
+  caja.append(capa, circulo, el("div", "marcador"), el("div", "creditos", "© OpenStreetMap"));
+  return caja;
+}
+
+// Botón con icono (el() pone texto plano).
+function conIcono(clase, html) { const b = el("button", clase); b.innerHTML = html; return b; }
+
+function hace(ms) {
+  const s = Math.max(0, Math.round((Date.now() - ms) / 1000));
+  if (s < 60) return "ahora mismo";
+  if (s < 3600) return `hace ${Math.round(s / 60)} min`;
+  if (s < 86400) return `hace ${Math.round(s / 3600)} h`;
+  return `hace ${Math.round(s / 86400)} d`;
+}
+
+// ---------- Vistas ----------
+const VISTAS = {
+  encontrar() {
+    const v = el("div", "vista");
+    const actualizar = conIcono("boton sec", `${ic("recargar")} Actualizar`);
+    v.append(cabecera("Encontrar mi móvil", "Dónde está, aunque no esté en tu Wi‑Fi. Todo va cifrado de punta a punta.", actualizar));
+    const t = el("div", "tarjeta encontrar");
+    const zona = el("div", "zona-mapa");
+    zona.innerHTML = `<div class="mapa vacio"><div class="buscando-movil"><span class="anillo"></span><b>Buscando tu móvil…</b><span class="suave">Puede tardar unos segundos si está lejos.</span></div></div>`;
+    const datos = el("div", "datos-encontrar");
+    t.append(zona, datos);
+    // Acciones: sonar, modo perdido, bloquear y borrar.
+    const acciones = el("div", "acciones-encontrar");
+    const formPerdido = el("div", "form-perdido oculto");
+    const msg = el("input", "campo"); msg.placeholder = "Mensaje en la pantalla (p. ej. «Si lo encuentras, llámame»)";
+    const tel = el("input", "campo"); tel.placeholder = "Teléfono al que pueden llamar"; tel.inputMode = "tel";
+    const formBorrar = el("div", "form-perdido oculto");
+    const conf = el("input", "campo"); conf.placeholder = "Escribe BORRAR";
+    let zoom = 16, ultimo = null;
+    const hacer = async (accion, extra = {}) => {
+      const r = await post("/api/encontrar/accion", { accion, ...extra });
+      aviso(r.pendiente ? "El móvil no está conectado: se hará en cuanto se conecte" : "Hecho");
+      setTimeout(cargar, 1500);
+    };
+    acciones.append(
+      boton(`${ic("sonido")} Hacer sonar`, () => hacer("sonar"), "sec"),
+      boton(`${ic("ubicacion")} Modo perdido`, () => { formPerdido.classList.toggle("oculto"); formBorrar.classList.add("oculto"); }, "sec"),
+      boton(`${ic("candado")} Bloquear`, () => hacer("bloquear"), "sec"),
+      boton(`${ic("papelera")} Borrar el móvil`, () => { formBorrar.classList.toggle("oculto"); formPerdido.classList.add("oculto"); }, "peligro"),
+    );
+    formPerdido.append(
+      el("div", "suave", "Enseña tu mensaje y tu teléfono en la pantalla de bloqueo, con un botón para llamarte, y manda su ubicación cada 2 minutos."),
+      msg, tel, boton("Activar el modo perdido", () => hacer("perdido", { mensaje: msg.value.trim(), telefono: tel.value.trim() })),
+    );
+    formBorrar.append(
+      el("div", "suave", "Borra todo lo del móvil y lo deja como de fábrica. No tiene vuelta atrás: después ya no podrás encontrarlo desde aquí."),
+      conf, boton("Borrar todo", () => hacer("borrar", { confirmacion: conf.value.trim() }), "peligro"),
+    );
+    t.append(acciones, formPerdido, formBorrar);
+    v.append(t);
+
+    function pintar(r) {
+      ultimo = r;
+      const e = r.estado || {}, u = e.ubicacion;
+      zona.replaceChildren();
+      if (u && u.lat != null) {
+        const m = mapa(u.lat, u.lon, u.precision, zoom);
+        const zooms = el("div", "zooms");
+        zooms.append(
+          Object.assign(conIcono("", ic("mas")), { onclick: () => { zoom = Math.min(19, zoom + 1); pintar(ultimo); } }),
+          Object.assign(conIcono("", ic("menos")), { onclick: () => { zoom = Math.max(3, zoom - 1); pintar(ultimo); } }),
+        );
+        m.append(zooms);
+        zona.append(m);
+      } else {
+        zona.innerHTML = `<div class="mapa vacio"><div class="buscando-movil"><b>Sin ubicación todavía</b><span class="suave">${r.vivo || r.conectado ? "El móvil no puede saber dónde está ahora (¿ubicación apagada?)." : "Cuando el móvil se conecte a internet, aparecerá aquí."}</span></div></div>`;
+      }
+      datos.replaceChildren();
+      const estado = r.vivo ? "Conectado ahora" : r.conectado ? "Conectado" : r.visto ? `Visto ${hace(r.visto)}` : "Aún no se ha conectado";
+      const filas = [
+        ["Estado", estado, r.vivo || r.conectado ? "ok" : ""],
+        ["Ubicación", u ? `${u.hace_s != null ? hace((r.cuando || Date.now()) - u.hace_s * 1000) : hace(r.cuando || Date.now())} · ±${Math.round(u.precision || 0)} m` : "—"],
+        ["Batería", e.bateria != null ? `${e.bateria} %${e.cargando ? " · cargando" : ""}` : "—"],
+        ["SIM", e.sim?.sims?.length ? e.sim.sims.map((x) => x.operador || "SIM").join(", ") : "—"],
+      ];
+      for (const [k, val, cls] of filas) {
+        const f = el("div", "fila-dato");
+        f.append(el("span", "etiqueta-g", k), el("b", cls || null, val));
+        datos.append(f);
+      }
+      if (u) {
+        const enlace = conIcono("boton sec", `Abrir en el mapa ${ic("flecha")}`);
+        enlace.onclick = () => window.open(`https://www.openstreetmap.org/?mlat=${u.lat}&mlon=${u.lon}#map=17/${u.lat}/${u.lon}`, "_blank");
+        datos.append(enlace);
+      }
+      // Alguien ha fallado al desbloquear: la foto de la cámara frontal (si está activado en el móvil).
+      if (e.intrusos?.length) {
+        const caja = el("div", "intrusos");
+        const ult = e.intrusos[0];
+        if (ult.foto) {
+          const img = document.createElement("img");
+          img.src = `data:image/jpeg;base64,${ult.foto}`; img.alt = "";
+          caja.append(img);
+        }
+        const txt = el("div", "texto-intrusos");
+        txt.append(
+          el("b", null, e.intrusos.length === 1 ? "Intento de desbloqueo" : `${e.intrusos.length} intentos de desbloqueo`),
+          el("span", "suave", e.intrusos.map((x) => hace(x.cuando)).join(" · ")),
+        );
+        caja.append(txt);
+        datos.prepend(caja);
+      }
+      if (e.perdido) {
+        const b = el("div", "banda-perdido");
+        const txt = el("div", "texto-perdido");
+        txt.append(el("b", null, "Modo perdido activado"));
+        if (e.mensaje) txt.append(el("span", null, `«${e.mensaje}»`));
+        b.append(txt, boton("Quitar", () => hacer("perdido_fin"), "sec"));
+        datos.prepend(b);
+      }
+    }
+    async function cargar() {
+      actualizar.disabled = true;
+      try { pintar(await fetch("/api/encontrar").then(async (x) => { const j = await x.json(); if (!x.ok) throw new Error(j.error || "Error"); return j; })); }
+      catch (e) { if (!ultimo) zona.innerHTML = `<div class="mapa vacio"><div class="buscando-movil"><b>No se ha podido buscar</b><span class="suave">${e.message}</span></div></div>`; }
+      actualizar.disabled = false;
+    }
+    actualizar.onclick = cargar;
+    cargar();
+    // Mientras se mira esta vista, se refresca sola cada minuto.
+    clearInterval(VISTAS.relojEncontrar);
+    VISTAS.relojEncontrar = setInterval(() => { if (vista === "encontrar") cargar(); else clearInterval(VISTAS.relojEncontrar); }, 60_000);
+    return v;
+  },
+
+  bienvenida() {
+    const v = el("div", "bienvenida");
+    v.innerHTML = `<svg class="sios" width="84" height="84" viewBox="14 14 76 82"><path class="anillo" d="M44.984 27.861A29.0 29.0 0 1 1 23.000 56.000L23.000 45.000" fill="none" stroke-width="12.5" stroke-linecap="round" stroke-linejoin="round"/><circle class="punto" cx="23.0" cy="25.15" r="7.6"/></svg><h1>Conecta tu móvil</h1><p>SIOS Desktop une tu móvil y tu ordenador: mensajes, archivos, tu panel y la IA de tu móvil, desde aquí.</p>`;
+    const caminos = el("div", "caminos");
+    // Ya tengo SIOS: vincular por Wi-Fi.
+    const a = el("div", "tarjeta camino");
+    a.innerHTML = `<div><span class="etiqueta-g">Ya tengo SIOS</span><h2 style="margin-top:6px">Vincular por Wi-Fi</h2></div>
+      <div class="suave">En el móvil abre <b>Ajustes de SIOS › Continuidad con el ordenador</b> y toca <b>Vincular un ordenador</b>.</div>`;
+    const lista = el("div", "moviles-wifi"); lista.id = "moviles";
+    const buscando = el("div", "buscando", "Buscando móviles en tu Wi-Fi…"); buscando.id = "buscando";
+    const host = el("input", "campo"); host.id = "host"; host.placeholder = "O escribe su dirección (la enseña el móvil)";
+    const cajas = el("div", "cajas-codigo");
+    for (let i = 0; i < 6; i++) { if (i === 3) cajas.append(el("span", "sep")); const c = el("input"); c.maxLength = 1; c.inputMode = "numeric"; cajas.append(c); }
+    const err = el("div", "error"); err.id = "error-vincular";
+    const vincular = boton("Vincular", async (b) => {
+      const codigo = [...cajas.querySelectorAll("input")].map((x) => x.value).join("");
+      err.textContent = "";
+      if (!host.value.trim()) { err.textContent = "Elige tu móvil o escribe su dirección."; return; }
+      if (codigo.length !== 6) { err.textContent = "Escribe los 6 números que enseña el móvil."; return; }
+      b.textContent = "Vinculando…";
+      try { await post("/api/vincular", { host: host.value.trim(), codigo }); aviso("Vinculado"); await refrescar(); }
+      catch (e) { err.textContent = e.message; b.textContent = "Vincular"; }
+    }, "ancho");
+    // Cajas del código: saltan solas, pegar reparte los números y el sexto vincula.
+    const ins = [...cajas.querySelectorAll("input")];
+    ins.forEach((c, i) => {
+      c.oninput = () => { c.value = c.value.replace(/\D/g, "").slice(-1); if (c.value && ins[i + 1]) ins[i + 1].focus(); if (ins.every((x) => x.value)) vincular.click(); };
+      c.onkeydown = (e) => { if (e.key === "Backspace" && !c.value && ins[i - 1]) ins[i - 1].focus(); };
+      c.onpaste = (e) => { const t = (e.clipboardData.getData("text") || "").replace(/\D/g, "").slice(0, 6); if (!t) return; e.preventDefault(); t.split("").forEach((n, j) => ins[j] && (ins[j].value = n)); if (t.length === 6) vincular.click(); else ins[t.length]?.focus(); };
+    });
+    a.append(lista, buscando, el("div", "etiqueta-g", "Dirección"), host, el("div", "etiqueta-g", "Código"), cajas, err, vincular);
+    // Aún no: instalar por cable.
+    const b = el("div", "tarjeta camino");
+    b.innerHTML = `<div><span class="etiqueta-g">Aún no tengo SIOS</span><h2 style="margin-top:6px">Instalarlo por cable</h2></div>
+      <div class="suave">Conecta tu Android por USB. Primero puedes <b>probarlo sin borrar nada</b>: al reiniciar vuelves a tu sistema de siempre. Y si ya tienes SIOS en otro móvil, desde aquí pasas tus fotos, contactos y apps.</div>`;
+    const pasos = el("div", "registro"); pasos.style.background = "var(--superficie-2)";
+    ["Conecta tu Android por USB", "Pruébalo sin borrar nada", "Quédate con SIOS y pasa tus datos"].forEach((t, i) => { const p = el("div", null, t); p.style.setProperty("--n", `"${i + 1}"`); pasos.append(p); });
+    pasos.classList.add("numerados");
+    b.append(pasos, boton(`Empezar ${ic("flecha")}`, () => ir("cable"), "sec"));
+    caminos.append(a, b);
+    v.append(caminos);
+    setTimeout(buscar, 0);
+    return v;
+  },
+
+  inicio() {
+    const v = el("div", "vista");
+    const hero = el("div", "hero");
+    const m = el("div", "tarjeta movil"); m.id = "inicio-movil";
+    const soltar = el("label", "soltar"); soltar.htmlFor = "archivo";
+    soltar.innerHTML = `<div class="circulo">${ic("subir")}</div><b>Manda un archivo al móvil</b><span>Suéltalo aquí o haz clic · hasta 25 MB</span>`;
+    soltar.ondragover = (e) => { e.preventDefault(); soltar.classList.add("encima"); };
+    soltar.ondragleave = () => soltar.classList.remove("encima");
+    soltar.ondrop = (e) => { e.preventDefault(); e.stopPropagation(); soltar.classList.remove("encima"); mandar(e.dataTransfer.files[0]); };
+    hero.append(m, soltar);
+    v.append(cabecera(saludo(), "Todo lo de tu móvil, a mano."), hero);
+    const dos = el("div", "rejilla-2");
+    const mens = el("div", "tarjeta"); mens.id = "inicio-mensajes";
+    const pan = el("div", "tarjeta"); pan.id = "inicio-panel";
+    dos.append(mens, pan);
+    v.append(dos);
+    setTimeout(() => { pintarEstadoInicio(); pintarMensajes(); pintarPanel(); }, 0);
+    return v;
+  },
+
+  mensajes() {
+    const v = el("div", "vista");
+    v.append(cabecera("Mensajes", "Contesta desde aquí, escribe un SMS o llama desde el móvil."));
+    const dos = el("div", "rejilla-2");
+    const lista = el("div", "tarjeta"); lista.id = "lista-mensajes";
+    dos.append(lista, componer());
+    v.append(dos);
+    setTimeout(pintarMensajes, 0);
+    return v;
+  },
+
+  panel() {
+    const v = el("div", "vista");
+    const ref = boton("Actualizar", () => refrescarPanel(true), "sec");
+    v.append(cabecera("Tu panel", "Los widgets de tu móvil, al día.", ref));
+    const r = el("div", "rejilla"); r.id = "rejilla-panel";
+    v.append(r);
+    setTimeout(pintarPanel, 0);
+    return v;
+  },
+
+  ia() {
+    const v = el("div", "vista");
+    v.append(cabecera("Inteligencia", "La IA que maneja tu móvil. Las sesiones se abren en el navegador de este ordenador y las claves viajan cifradas."));
+    const hero = el("div", "ia-hero"); hero.id = "ia-hero";
+    const tabs = el("div", "pestanas"); tabs.id = "ia-tabs";
+    const mos = el("div", "mosaico"); mos.id = "ia-mosaico";
+    v.append(hero, tabs, mos);
+    setTimeout(pintarIa, 0);
+    return v;
+  },
+
+  cable() {
+    const v = el("div", "vista");
+    v.append(cabecera("Por cable", "Instala SIOS en un Android y pasa los datos de tu móvil anterior."));
+    const guia = el("div", "pasos-guia");
+    [["Conecta por USB", "Con la depuración USB activada (Ajustes › Opciones de desarrollador)."],
+     ["Pruébalo sin borrar nada", "SIOS arranca como sistema temporal. Reinicia y vuelves a tu Android."],
+     ["Quédate con SIOS", "Si te convence, instálalo del todo. Y pasa tus fotos, contactos y apps."]]
+      .forEach(([t, d], i) => { const p = el("div", "paso-g"); p.innerHTML = `<span class="n">${i + 1}</span><div><b>${t}</b><span class="suave">${d}</span></div>`; guia.append(p); });
+    const caja = el("div"); caja.id = "cable-cuerpo"; caja.style.cssText = "display:flex;flex-direction:column;gap:16px";
+    v.append(guia, caja);
+    setTimeout(refrescarCable, 0);
+    return v;
+  },
+
+  ajustes() {
+    const v = el("div", "vista");
+    v.append(cabecera("Ajustes"));
+    const t = el("div", "tarjeta ajustes");
+    const fila = (titulo, nota, clave, valor, fn) => {
+      const f = el("div", "ajuste"), txt = el("div"); txt.append(el("b", null, titulo)); const n = el("span", "suave", nota); txt.append(n);
+      const i = el("input", "interruptor"); i.type = "checkbox"; i.checked = !!valor; i.onchange = () => fn(i.checked, n);
+      f.append(txt, i); t.append(f); return n;
+    };
+    fila("Portapapeles compartido", "Copia en uno y pega en el otro.", "portapapeles", ajustes.portapapeles, (s) => post("/api/ajustes", { portapapeles: s }));
+    fila("Avisos del móvil", "Los mensajes y avisos, también aquí.", "avisos", ajustes.avisos, (s) => post("/api/ajustes", { avisos: s }));
+    const nota = fila("Copiar fotos y documentos aquí", "Lo nuevo de la cámara y de Documentos, cuando el móvil está en tu Wi-Fi.", "copia", copia?.activa, (s) => refrescarCopia({ activa: s }));
+    nota.id = "copia-nota";
+    const acc = el("div", "fila-campo"); acc.id = "copia-acciones"; acc.style.padding = "0 0 18px";
+    acc.append(boton(`${ic("carpeta")} Abrir la carpeta`, () => refrescarCopia({ abrir: true }), "sec"), boton("Copiar ahora", () => { refrescarCopia({ ahora: true }); aviso("Copiando lo nuevo…"); }, "sec"));
+    t.append(acc);
+    fila("Abrir al iniciar sesión", "Siempre listo en la barra de arriba.", "al_iniciar", ajustes.al_iniciar, (s) => post("/api/ajustes", { al_iniciar: s }));
+    const d = el("div"); d.style.marginTop = "18px";
+    d.append(boton("Desvincular este ordenador", async () => { if (!confirm("¿Desvincular este ordenador del móvil?")) return; await post("/api/desvincular"); vinculado = null; refrescar(); }, "peligro"));
+    v.append(t, d);
+    setTimeout(() => refrescarCopia(), 0);
+    return v;
+  },
+};
+
+function saludo() {
+  const h = new Date().getHours();
+  return h < 6 ? "Buenas noches" : h < 13 ? "Buenos días" : h < 21 ? "Buenas tardes" : "Buenas noches";
+}
+
+// ---------- Inicio ----------
+function pintarEstadoInicio() {
+  const m = $("inicio-movil"); if (!m || !estado) return;
+  const e = estado, activo = ia?.proveedores?.find((p) => p.id === ia.activo);
+  // La tarjeta se monta una vez; luego solo cambian el nombre y las etiquetas (si se rehiciera
+  // entera cada pocos segundos, el campo del enlace perdería lo que estás escribiendo).
+  if (!m.dataset.montada) {
+    m.dataset.montada = "1";
+    const cab = el("div"); const h = el("h2"); h.id = "inicio-nombre"; cab.append(el("span", "etiqueta-g", "Tu móvil"), h);
+    const chips = el("div", "chips"); chips.id = "inicio-chips";
+    const acciones = el("div", "acciones-rapidas");
+    const sonar = boton(`${ic("campana")} Hacer sonar`, async () => { await post("/api/sonar"); aviso("El móvil está sonando"); }, "sec");
+    const enlace = el("div", "fila-campo"); enlace.style.cssText = "flex:1;min-width:260px";
+    const campo = el("input", "campo"); campo.placeholder = "Abrir un enlace en el móvil"; campo.type = "url"; campo.spellcheck = false;
+    const abrir = boton(ic("enlace"), async () => { const u = campo.value.trim(); if (!u) return campo.focus(); await post("/api/enlace", { url: /^https?:\/\//i.test(u) ? u : "https://" + u }); campo.value = ""; aviso("Abierto en el móvil"); }, "sec");
+    abrir.title = "Abrir en el móvil";
+    campo.onkeydown = (ev) => { if (ev.key === "Enter") abrir.click(); };
+    enlace.append(campo, abrir);
+    acciones.append(sonar, enlace);
+    m.append(cab, chips, acciones);
+  }
+  ponerTexto($("inicio-nombre"), e.nombre_movil || "Tu móvil");
+  const chips = [el("span", "chip " + (e.conectado ? "ok" : "mal"), e.conectado ? "Conectado" : (e.error || "Conectando…"))];
+  if (e.bateria != null) chips.push(el("span", "chip", `${e.bateria} %${e.cargando ? " · cargando" : ""}`));
+  if (activo) { const c = el("span", "chip acento"); c.innerHTML = logoDe(activo.id); c.append(activo.nombre); chips.push(c); }
+  const firma = chips.map((c) => c.textContent).join("|");
+  const caja = $("inicio-chips");
+  if (caja.dataset.firma !== firma) { caja.dataset.firma = firma; caja.replaceChildren(...chips); }
+}
+
+// ---------- Archivos ----------
+async function mandar(f) {
+  if (!f) return;
+  if (/^sios.*\.img(\.gz)?$/i.test(f.name)) return guardarImagen(f);
+  if (f.size > 25 * 1024 * 1024) { aviso("Pasa de 25 MB: es demasiado grande"); return; }
+  aviso("Enviando " + f.name + "…");
+  try { await post("/api/archivo?nombre=" + encodeURIComponent(f.name), f, "application/octet-stream"); aviso(f.name + " ya está en el móvil"); }
+  catch (e) { aviso(e.message); }
+}
+$("archivo").onchange = (e) => { mandar(e.target.files[0]); e.target.value = ""; };
+document.addEventListener("dragover", (e) => { if ([...e.dataTransfer.items].some((i) => i.kind === "file")) e.preventDefault(); });
+document.addEventListener("drop", (e) => { const f = e.dataTransfer.files[0]; if (!f) return; e.preventDefault(); if (/^sios.*\.img(\.gz)?$/i.test(f.name)) guardarImagen(f); else if (vinculado) mandar(f); });
+async function guardarImagen(f) {
+  aviso("Guardando " + f.name + "…");
+  try { await fetch("/api/cable/imagen", { method: "POST", headers: { "x-nombre": f.name }, body: f }); aviso("Imagen de SIOS lista"); } catch { aviso("No se pudo guardar"); }
+  refrescarCable();
+}
+
+// ---------- Mensajes ----------
+const contestados = new Set();
+let mensajesFirma = "";
+async function refrescarMensajes() {
+  if (!vinculado) return;
+  const d = await fetch("/api/mensajes").then((r) => r.json()).catch(() => null);
+  mensajes = d?.mensajes || [];
+  pintarLateral();
+  const firma = JSON.stringify(mensajes.map((m) => [m.clave, m.texto, m.responder]));
+  if (firma === mensajesFirma || document.activeElement?.closest?.(".mensaje")) return;
+  mensajesFirma = firma;
+  pintarMensajes();
+}
+setInterval(refrescarMensajes, 3000);
+function pintarMensajes() {
+  const enInicio = $("inicio-mensajes"), lista = $("lista-mensajes");
+  for (const [caja, cuantos] of [[enInicio, 3], [lista, 30]]) {
+    if (!caja) continue;
+    const cab = el("div", "cab-t"); cab.append(el("h2", null, "Mensajes"));
+    if (caja === enInicio && mensajes.length) { const a = el("a", null, "Ver todos"); a.onclick = () => ir("mensajes"); cab.append(a); }
+    const cuerpo = el("div", "mensajes");
+    if (!mensajes.length) { const v = el("div", "vacio-bonito"); v.innerHTML = `<div class="circulo">${ic("mensajes")}</div>Sin mensajes nuevos.`; cuerpo.append(v); }
+    for (const m of mensajes.slice(0, cuantos)) {
+      const f = el("div", "mensaje"), c = el("div", "cab2");
+      c.append(el("span", "de", m.de), el("span", "app", m.app), el("span", "hora", horaCorta(m.cuando)));
+      f.append(c, el("div", "txt", m.texto));
+      if (contestados.has(m.clave)) f.append(el("div", "hecho", "Contestado"));
+      else if (m.responder) {
+        const r = el("form"), campo = el("input", "campo"), b = el("button", "boton"); b.innerHTML = ic("enviar");
+        campo.placeholder = "Contestar a " + m.de; campo.autocomplete = "off";
+        r.append(campo, b);
+        r.onsubmit = async (ev) => { ev.preventDefault(); const t = campo.value.trim(); if (!t) return; b.disabled = true;
+          try { await post("/api/responder", { clave: m.clave, texto: t }); contestados.add(m.clave); mensajesFirma = ""; aviso("Enviado a " + m.de); refrescarMensajes(); }
+          catch (e) { aviso(e.message); b.disabled = false; } };
+        f.append(r);
+      }
+      cuerpo.append(f);
+    }
+    caja.replaceChildren(cab, cuerpo);
+  }
+}
+
+// SMS o llamada.
+function componer() {
+  const t = el("div", "tarjeta componer");
+  t.append(el("h2", null, "Escribir o llamar"));
+  const caja = el("div", "contacto"), campo = el("input", "campo"), sug = el("div", "sugerencias oculto");
+  campo.placeholder = "Nombre o número"; campo.autocomplete = "off";
+  caja.append(campo, sug);
+  const sms = el("textarea", "campo"); sms.placeholder = "Escribe el SMS…";
+  let destino = null, sugT, activa = -1;
+  campo.oninput = () => {
+    destino = null; clearTimeout(sugT);
+    const q = campo.value.trim(); if (q.length < 2) { sug.classList.add("oculto"); return; }
+    sugT = setTimeout(async () => {
+      const d = await post("/api/contactos", { texto: q }).catch(() => ({ contactos: [] }));
+      const lista = d.contactos || []; activa = -1;
+      sug.replaceChildren(...lista.map((c) => { const b = el("button", "sugerencia"); b.type = "button"; b.append(el("span", null, c.nombre), el("span", null, c.numero));
+        b.onmousedown = (ev) => { ev.preventDefault(); destino = c; campo.value = c.nombre + " · " + c.numero; sug.classList.add("oculto"); sms.focus(); }; return b; }));
+      sug.classList.toggle("oculto", !lista.length);
+    }, 180);
+  };
+  campo.onkeydown = (e) => { const it = [...sug.children]; if (sug.classList.contains("oculto") || !it.length) return;
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); activa = (activa + (e.key === "ArrowDown" ? 1 : -1) + it.length) % it.length; it.forEach((x, i) => x.classList.toggle("activa", i === activa)); }
+    if (e.key === "Enter" && activa >= 0) { e.preventDefault(); it[activa].dispatchEvent(new MouseEvent("mousedown")); } };
+  campo.onblur = () => setTimeout(() => sug.classList.add("oculto"), 120);
+  const numero = () => destino || ((n) => (n.length >= 3 ? { nombre: "", numero: n } : null))(campo.value.replace(/[^\d+]/g, ""));
+  const acc = el("div", "acciones");
+  acc.append(boton(`${ic("telefono")} Llamar`, async () => { const d = numero(); if (!d) return aviso("Elige un contacto o escribe un número");
+    await post("/api/llamar", { numero: d.numero, nombre: d.nombre }); aviso("Llamando desde el móvil…"); }, "sec"),
+    boton(`${ic("enviar")} Enviar SMS`, async () => { const d = numero(), tx = sms.value.trim(); if (!d) return aviso("Elige un contacto o escribe un número"); if (!tx) return aviso("Escribe el mensaje");
+      await post("/api/sms", { numero: d.numero, nombre: d.nombre, texto: tx }); sms.value = ""; aviso("SMS enviado" + (d.nombre ? " a " + d.nombre : "")); }));
+  t.append(caja, sms, acc);
+  return t;
+}
+
+// ---------- Panel ----------
+const COLORES = { naranja: "var(--acento)", verde: "#7CBF8E", azul: "#7AA7E0", amarillo: "#E8C46A", rojo: "#E0816F", gris: "#C2C0B6", lila: "#A88FDB" };
+function anillo(valor, color) {
+  const v = Math.max(0, Math.min(100, Number(valor) || 0)), r = 30, l = 2 * Math.PI * r;
+  const ns = "http://www.w3.org/2000/svg", svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", "0 0 72 72"); svg.setAttribute("class", "anillo");
+  const c = (stroke, dash) => { const x = document.createElementNS(ns, "circle"); x.setAttribute("cx", 36); x.setAttribute("cy", 36); x.setAttribute("r", r); x.setAttribute("fill", "none");
+    x.setAttribute("stroke-width", 6); x.setAttribute("stroke", stroke); x.setAttribute("stroke-linecap", "round"); if (dash) { x.setAttribute("stroke-dasharray", l); x.setAttribute("stroke-dashoffset", l * (1 - v / 100)); x.setAttribute("transform", "rotate(-90 36 36)"); } return x; };
+  svg.append(c("var(--superficie-2)"), c(color, true));
+  const t = document.createElementNS(ns, "text"); t.setAttribute("x", 36); t.setAttribute("y", 41); t.setAttribute("text-anchor", "middle"); t.setAttribute("fill", "currentColor");
+  t.setAttribute("font-size", 16); t.setAttribute("font-family", "Montserrat"); t.textContent = Math.round(v); svg.append(t);
+  return svg;
+}
+function grafico(serie, color, tipo) {
+  const ys = serie.map((p) => Number(p.y) || 0), n = ys.length;
+  const ns = "http://www.w3.org/2000/svg", svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", "0 0 100 40"); svg.setAttribute("preserveAspectRatio", "none"); svg.setAttribute("class", "grafico");
+  if (tipo === "barras") {
+    const max = Math.max(...ys, 1);
+    ys.forEach((y, i) => { const r = document.createElementNS(ns, "rect"), w = 100 / n, h = Math.max(1.5, (y / max) * 38);
+      r.setAttribute("x", i * w + w * 0.2); r.setAttribute("width", w * 0.6); r.setAttribute("y", 40 - h); r.setAttribute("height", h); r.setAttribute("rx", 1.2);
+      r.setAttribute("fill", color); r.setAttribute("opacity", i === n - 1 ? 1 : 0.45); svg.append(r); });
+    return svg;
+  }
+  // Línea entre el mínimo y el máximo (como en el móvil), con un velo debajo.
+  const min = Math.min(...ys), max = Math.max(...ys), rango = max - min || 1;
+  const pts = ys.map((y, i) => [n === 1 ? 50 : (i / (n - 1)) * 100, 36 - ((y - min) / rango) * 32]);
+  const d = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(2) + " " + p[1].toFixed(2)).join(" ");
+  const area = document.createElementNS(ns, "path"); area.setAttribute("d", d + " L100 40 L0 40 Z"); area.setAttribute("fill", color); area.setAttribute("opacity", 0.12);
+  const linea = document.createElementNS(ns, "path"); linea.setAttribute("d", d); linea.setAttribute("fill", "none"); linea.setAttribute("stroke", color);
+  linea.setAttribute("stroke-width", 2); linea.setAttribute("vector-effect", "non-scaling-stroke"); linea.setAttribute("stroke-linejoin", "round"); linea.setAttribute("stroke-linecap", "round");
+  svg.append(area, linea);
+  return svg;
+}
+function tarjeta(w) {
+  const d = w.datos || {}, color = COLORES[w.acento] || "var(--acento)";
+  const t = el("div", "w " + (w.tamano || "mediano")); t.style.setProperty("--a", color);
+  const cab = el("div", "cab"); cab.append(el("i"), el("b", "", d.titulo || w.nombre)); t.append(cab);
+  const elems = Array.isArray(d.elementos) ? d.elementos : [];
+  const filas = (n) => { const f = el("div", "filas"); elems.slice(0, n).forEach((e) => { const r = el("div", "fila2");
+    if (e.hora) r.append(el("span", "h", e.hora)); r.append(el("span", "t", e.texto || e.titulo || "")); if (e.valor != null && e.valor !== "") r.append(el("span", "v", e.valor)); f.append(r); }); return f; };
+  const caben = w.tamano === "grande" ? 9 : w.tamano === "pequeno" ? 3 : 4;
+  switch (w.plantilla) {
+    case "cifra": case "progreso": {
+      const c = el("div", "cifra", d.valor ?? "—"); if (d.unidad) c.append(el("small", "", d.unidad)); t.append(c);
+      if (d.subtitulo) t.append(el("div", "sub", d.subtitulo));
+      if (d.progreso != null) { const b = el("div", "barra"), i = el("i"); i.style.width = Math.round(Math.min(1, d.progreso) * 100) + "%"; b.append(i); t.append(b); }
+      break; }
+    case "grafico": {
+      const c = el("div", "cifra", d.valor ?? ""); if (d.unidad) c.append(el("small", "", d.unidad)); c.style.fontSize = "30px"; t.append(c);
+      if (d.subtitulo) t.append(el("div", "sub", d.subtitulo));
+      if (Array.isArray(d.serie) && d.serie.length) t.append(grafico(d.serie, color, d.tipo));
+      break; }
+    case "anillos": { const a = el("div", "anillos"); elems.slice(0, w.tamano === "pequeno" ? 1 : 4).forEach((e) => a.append(anillo(e.valor, color))); t.append(a);
+      if (elems[0]) t.append(el("div", "sub", elems.slice(0, w.tamano === "pequeno" ? 1 : 4).map((e) => e.texto).join(" · "))); break; }
+    case "marcador": { const m = el("div", "marcador");
+      m.append(el("div", "eq", d.local || ""), el("div", "goles", (d.goles_local ?? "–") + " – " + (d.goles_visitante ?? "–")), el("div", "eq", d.visitante || "")); t.append(m);
+      if (d.estado) t.append(el("div", "sub", d.estado)); break; }
+    case "texto": t.append(el("div", "texto", d.texto || "")); break;
+    case "noticias": { const f = el("div", "noticias");
+      elems.slice(0, w.tamano === "grande" ? 4 : 2).forEach((e) => { const n = el(e.enlace ? "a" : "div", "noticia");
+        if (e.enlace) { n.href = "#"; n.onclick = (ev) => { ev.preventDefault(); post("/api/enlace", { url: e.enlace }).then(() => aviso("Abierto en el móvil")).catch((x) => aviso(x.message)); }; }
+        n.append(el("div", "titular", e.texto || ""), el("div", "fuente", [e.fuente, e.hora].filter(Boolean).join(" · "))); f.append(n); });
+      t.append(f); break; }
+    case "lista": { const f = el("div", "filas"); elems.slice(0, caben).forEach((e) => { const r = el("div", "fila2" + (e.hecho ? " hecho" : ""));
+      r.append(el("span", "casilla"), el("span", "t", e.texto || "")); f.append(r); }); t.append(f); break; }
+    default: t.append(elems.length ? filas(caben) : el("div", "texto", d.texto || ""));
+  }
+  return t;
+}
+
+let panelT;
+async function refrescarPanel(forzar) {
+  clearTimeout(panelT);
+  if (!vinculado) return;
+  let cambia = false;
+  try { const nuevo = await post("/api/panel"); cambia = firmaDe(nuevo) !== firmaDe(panel); panel = nuevo; if (forzar) aviso("Panel al día"); } catch {}
+  if (cambia) pintarPanel();
+  panelT = setTimeout(refrescarPanel, 60000);
+}
+function pintarPanel() {
+  const tarjetas = panel?.tarjetas || [];
+  const r = $("rejilla-panel");
+  if (r) r.replaceChildren(...(tarjetas.length ? tarjetas.map(tarjeta) : [Object.assign(el("div", "vacio-bonito"), { innerHTML: `<div class="circulo">${ic("panel")}</div>Tu panel está vacío. Pídele a tu IA que te ponga algo.` })]));
+  const i = $("inicio-panel");
+  if (i) {
+    const cab = el("div", "cab-t"); cab.append(el("h2", null, "Tu panel"));
+    if (tarjetas.length) { const a = el("a", null, "Ver todo"); a.onclick = () => ir("panel"); cab.append(a); }
+    const mini = el("div", "rejilla mini");
+    tarjetas.slice(0, 4).forEach((t) => { const w = tarjeta({ ...t, tamano: "pequeno" }); mini.append(w); });
+    if (!tarjetas.length) mini.append(Object.assign(el("div", "vacio-bonito"), { innerHTML: `<div class="circulo">${ic("panel")}</div>Sin widgets todavía.` }));
+    i.replaceChildren(cab, mini);
+  }
+}
+document.addEventListener("visibilitychange", () => { if (!document.hidden) refrescarPanel(); });
+
+// ---------- Inteligencia ----------
+const GRUPOS = [["suscripcion", "Suscripción"], ["clave", "Pago por uso"], ["local", "En el móvil"]];
+let pestana = "suscripcion", cajonId = null, abiertos = {};
+const iaPedir = (ruta, datos) => post("/api/ia", { ruta, datos: datos || {} });
+async function refrescarIa() {
+  if (!vinculado) return;
+  try { ia = await iaPedir("/ia"); } catch { return; }
+  pintarLateral();
+  // Solo se repinta si algo ha cambiado: si no, las tarjetas volverían a animarse cada vez.
+  const firma = firmaDe(ia);
+  const cambia = firma !== refrescarIa.firma; refrescarIa.firma = firma;
+  if (vista === "ia" && cambia) pintarIa();
+  if (vista === "inicio") pintarEstadoInicio();
+  if (cajonId && cambia) pintarCajon();
+  const ocupado = (ia.proveedores || []).some((p) => p.tarea) || (ia.local?.modelos || []).some((m) => m.tarea);
+  clearTimeout(refrescarIa.t); refrescarIa.t = setTimeout(refrescarIa, ocupado ? 1500 : 12000);
+}
+function estadoTexto(p) {
+  const t = p.tarea || {};
+  if (t.instalando) return t.paso || "Instalando…";
+  if (t.entrando) return "Iniciando sesión…";
+  if (t.error) return t.error;
+  if (p.listo) return p.cuenta || (p.clave ? "Clave " + p.clave : "Lista");
+  return p.descripcion;
+}
+function pintarIa() {
+  const hero = $("ia-hero"); if (!hero || !ia) return;
+  refrescarIa.firma = firmaDe(ia);
+  const a = ia.proveedores.find((p) => p.id === ia.activo);
+  hero.innerHTML = "";
+  if (a) {
+    const logo = el("div", "logo"); logo.innerHTML = logoDe(a.id);
+    const txt = el("div"); txt.style.flex = "1";
+    txt.append(el("span", "etiqueta-g", "En uso"), el("h2", null, a.nombre), el("div", "suave", a.listo ? (a.cuenta || a.descripcion) : "Sin sesión: entra para usarla."));
+    const mod = el("div", "modelos"); txt.append(mod); pastillasModelos(a, mod);
+    hero.append(logo, txt);
+  }
+  // Pestañas con marcador que se desliza.
+  const tabs = $("ia-tabs"); tabs.innerHTML = "";
+  const marcador = el("span", "marcador"); tabs.append(marcador);
+  for (const [g, nombre] of GRUPOS) {
+    const b = el("button", g === pestana ? "si" : "", nombre);
+    b.onclick = () => { pestana = g; pintarIa(); };
+    tabs.append(b);
+  }
+  requestAnimationFrame(() => { const s = tabs.querySelector("button.si"); if (s) { marcador.style.transform = `translateX(${s.offsetLeft}px)`; marcador.style.width = s.offsetWidth + "px"; } });
+  const mos = $("ia-mosaico");
+  mos.replaceChildren(...ia.proveedores.filter((p) => (p.grupo || p.tipo) === pestana).map((p, i) => {
+    const t = el("button", "tesela" + (p.id === ia.activo ? " en-uso" : ""));
+    t.style.setProperty("--c", colorDe(p)); t.style.animationDelay = i * 35 + "ms";
+    const arriba = el("div", "arriba"), logo = el("div", "logo"); logo.innerHTML = logoDe(p.id);
+    const etiqueta = p.id === ia.activo ? el("span", "chip acento", "En uso") : p.tarea?.instalando || p.tarea?.entrando ? el("span", "chip", "…") : p.listo ? el("span", "chip ok", "Lista") : null;
+    arriba.append(logo); if (etiqueta) arriba.append(etiqueta);
+    const txt = el("div"); txt.append(el("b", null, p.nombre + (p.tipo === "clave" && ["gemini_api", "openai", "anthropic", "kimi"].includes(p.id) ? " · API" : "")), el("p", null, estadoTexto(p)));
+    t.append(arriba, txt);
+    t.onclick = () => abrirCajon(p.id);
+    return t;
+  }));
+}
+async function pastillasModelos(p, caja) {
+  if (p.id === "claude" || !p.listo) return;
+  const r = await iaPedir("/ia/modelos", { id: p.id }).catch(() => null);
+  for (const m of (r?.modelos || []).slice(0, 12)) {
+    const b = el("button", "pastilla-modelo" + (m.id === p.modelo ? " si" : ""), m.nombre);
+    b.onclick = async () => { await iaPedir("/ia/modelo", { id: p.id, modelo: m.id }).catch((e) => aviso(e.message)); refrescarIa(); };
+    caja.append(b);
+  }
+}
+function abrirCajon(id) { cajonId = id; pintarCajon(); $("cajon").classList.add("abierto"); $("velo").classList.add("abierto"); }
+function cerrarCajon() { cajonId = null; $("cajon").classList.remove("abierto"); $("velo").classList.remove("abierto"); }
+$("velo").onclick = cerrarCajon;
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") cerrarCajon(); });
+function pintarCajon() {
+  const p = ia?.proveedores?.find((x) => x.id === cajonId); if (!p) return;
+  const c = $("cajon"); c.style.setProperty("--c", colorDe(p));
+  if (document.activeElement && c.contains(document.activeElement) && document.activeElement.tagName === "INPUT") return; // no borrar lo que escribes
+  const cab = el("div", "cab-c"), logo = el("div", "logo"); logo.innerHTML = logoDe(p.id);
+  const t = el("div"); t.append(el("h2", null, p.nombre), el("div", "suave", p.empresa || ""));
+  const x = el("button", "cerrar"); x.innerHTML = ic("cerrar"); x.onclick = cerrarCajon;
+  cab.append(logo, t, x);
+  const d = el("div", "cuerpo");
+  d.append(el("div", "suave", p.descripcion));
+  const tarea = p.tarea || {};
+  const usar = () => p.listo && p.id !== ia.activo && d.append(boton(`Usar ${p.nombre}`, async () => { await iaPedir("/ia/elegir", { id: p.id }); aviso(`Ahora tu móvil usa ${p.nombre}`); refrescarIa(); }, "ancho"));
+  if (tarea.error) d.append(el("div", "error", tarea.error));
+  if (p.tipo === "suscripcion" && !p.listo) {
+    if (tarea.codigo) {
+      d.append(el("div", "suave", "Escribe este código en la página que se ha abierto en tu navegador:"), el("div", "codigo-grande", tarea.codigo));
+      if (tarea.enlace) d.append(boton("Abrir otra vez la página", () => post("/api/abrir", { url: tarea.enlace }), "sec ancho"));
+    } else if (tarea.enlace) {
+      if (!abiertos[tarea.enlace]) { abiertos[tarea.enlace] = 1; post("/api/abrir", { url: tarea.enlace }).catch(() => {}); }
+      d.append(el("div", "suave", "Termina de entrar en la página que se ha abierto en tu navegador."));
+      if (tarea.pideCodigo) { const campo = el("input", "campo"); campo.placeholder = "Pega aquí el código que te da Google"; d.append(campo, boton("Continuar", () => iaPedir("/ia/codigo", { id: p.id, codigo: campo.value.trim() }), "ancho")); }
+      d.append(boton("Abrir otra vez la página", () => post("/api/abrir", { url: tarea.enlace }), "sec ancho"));
+    } else if (tarea.instalando || tarea.entrando) {
+      d.append(el("div", "buscando", tarea.paso || "Un momento…"));
+    } else {
+      d.append(boton(`Entrar con ${p.nombre}`, async () => { await iaPedir("/ia/entrar", { id: p.id }); refrescarIa(); }, "ancho"), el("div", "suave", "La primera vez se instala lo necesario en el móvil (unos minutos)."));
+    }
+  } else if (p.tipo === "suscripcion" || (p.tipo === "clave" && p.listo)) {
+    usar();
+    if (p.cuenta || p.clave) d.append(el("div", "chip ok", p.cuenta || "Clave " + p.clave));
+    const mod = el("div", "modelos"); mod.style.cssText = "display:flex;flex-wrap:wrap;gap:6px"; d.append(mod); pastillasModelos(p, mod);
+  }
+  if (p.tipo === "clave") {
+    const campo = el("input", "campo"); campo.type = "password"; campo.placeholder = p.listo ? "Clave nueva (para cambiarla)" : "Pega tu clave de la API";
+    d.append(el("span", "etiqueta-g", "Clave"), campo, boton("Comprobar y guardar", async () => { await iaPedir("/ia/clave", { id: p.id, clave: campo.value.trim() }); campo.value = ""; aviso("Clave comprobada y guardada en el móvil"); refrescarIa(); }, "ancho"));
+    if (p.claveDe) { const a = el("a", "enlace-txt", "Conseguir una clave ›"); a.onclick = () => post("/api/abrir", { url: p.claveDe }).catch((e) => aviso(e.message)); d.append(a); }
+    d.append(el("div", "suave", "Se comprueba antes de guardarla, viaja cifrada y se queda solo en el móvil."));
+  }
+  if (p.tipo === "local") {
+    const l = ia.local || {}, rec = (l.modelos || []).find((m) => m.id === l.recomendado);
+    const ram = el("div", "aviso-ram"); ram.innerHTML = `<b>${l.ram} GB</b><span class="suave">de RAM en tu móvil.${rec ? ` Te recomendamos <b style="font-size:13px;color:var(--texto)">${rec.nombre}</b>.` : " No basta para un modelo local."}</span>`;
+    d.append(ram); usar();
+    const nombre = el("input", "campo"); nombre.value = p.nombre; nombre.placeholder = "Qwen";
+    const fila = el("div", "fila-campo"); fila.append(nombre, boton("Guardar", async () => { await iaPedir("/ia/nombre", { nombre: nombre.value.trim() }); aviso("Nombre guardado"); refrescarIa(); }, "sec"));
+    d.append(el("span", "etiqueta-g", `Su nombre · «Oye ${p.nombre}»`), fila, el("span", "etiqueta-g", "Modelos"));
+    for (const m of l.modelos || []) {
+      const f = el("div", "modelo-local"), tx = el("div", "txt"), mt = m.tarea || {};
+      tx.append(el("b", null, m.nombre + (m.id === l.recomendado ? " · recomendado" : "")),
+        el("span", null, mt.descargando ? `Descargando… ${Math.round((mt.progreso || 0) * 100)} %` : mt.error || (!m.cabe ? `Necesita ${m.ram} GB de RAM` : `${String(m.tamano).replace(".", ",")} GB · ${m.nota}`)));
+      if (mt.descargando) { const b = el("div", "barra-p"), i = el("i"); i.style.transform = `scaleX(${mt.progreso || 0})`; b.append(i); tx.append(b); }
+      f.append(tx);
+      if (m.elegido && m.descargado) f.append(el("span", "chip acento", "Elegido"));
+      else if (m.descargado && m.cabe) f.append(boton("Elegir", () => iaPedir("/ia/modelo", { id: "local", modelo: m.id }).then(refrescarIa), "sec"));
+      else if (m.cabe && !mt.descargando) f.append(boton("Descargar", () => iaPedir("/ia/local/descargar", { modelo: m.id }).then(refrescarIa), "sec"));
+      if (!m.cabe) f.style.opacity = ".55";
+      d.append(f);
+    }
+    d.append(el("div", "suave", "Funciona sin internet ni cuenta, y nada sale del móvil. Es más lento y menos capaz que los de internet."));
+  }
+  if (p.listo && p.tipo !== "local") d.append(boton(p.tipo === "clave" ? "Quitar la clave" : "Cerrar sesión", async () => { await iaPedir("/ia/salir", { id: p.id }); refrescarIa(); }, "peligro ancho"));
+  c.replaceChildren(cab, d);
+}
+
+// ---------- Por cable ----------
+const migrarElegidos = { fotos: true, documentos: true, musica: true, contactos: true, apps: true };
+async function refrescarCable() {
+  cable = await fetch("/api/cable").then((r) => r.json()).catch(() => null);
+  const firma = firmaDe(cable);
+  if (cable && vista === "cable" && firma !== refrescarCable.firma) pintarCable();
+  clearTimeout(refrescarCable.t);
+  if (vista === "cable") refrescarCable.t = setTimeout(refrescarCable, cable?.tarea && !cable.tarea.hecho ? 1500 : 5000);
+}
+function pintarCable() {
+  const caja = $("cable-cuerpo"); if (!caja) return;
+  refrescarCable.firma = firmaDe(cable);
+  if (document.activeElement && caja.contains(document.activeElement) && document.activeElement.tagName === "INPUT") return;
+  const c = cable, n = [];
+  if (!c.herramientas) {
+    const t = el("div", "tarjeta"); t.innerHTML = `<h2>Hacen falta las herramientas de Android</h2><p class="suave">adb y fastboot, oficiales de Google (unos 15 MB).</p>`;
+    t.append(boton("Descargarlas de Google", () => post("/api/cable/herramientas").then(refrescarCable)));
+    caja.replaceChildren(t); return;
+  }
+  const img = el("div", "tarjeta"); img.style.cssText = "display:flex;align-items:center;gap:14px;padding:16px 20px";
+  img.innerHTML = `<span class="chip ${c.imagen ? "ok" : ""}">${c.imagen ? "Imagen lista" : "Falta la imagen"}</span><span class="suave">${c.imagen ? c.imagen : "Arrastra aquí la imagen de SIOS (sios-….img.gz) o déjala en Descargas."}</span>`;
+  n.push(img);
+  if (c.tarea) {
+    const t = el("div", "tarjeta"); t.append(el("h2", null, c.tarea.nombre));
+    const r = el("div", "registro"); r.style.marginTop = "12px";
+    c.tarea.pasos.forEach((p, i) => r.append(el("div", i === c.tarea.pasos.length - 1 && !c.tarea.hecho ? "ultimo" : "", p)));
+    if (c.tarea.error) r.append(el("div", "error", c.tarea.error));
+    t.append(r); n.push(t);
+  }
+  const conectados = c.dispositivos;
+  if (!conectados.length) { const v = el("div", "tarjeta vacio-bonito"); v.innerHTML = `<div class="circulo">${ic("cable")}</div><b style="color:var(--texto)">Conecta un móvil por USB</b><span>Con la depuración USB activada. Aparecerá aquí.</span>`; n.push(v); }
+  for (const d of conectados) {
+    const t = el("div", "tarjeta disp"), cab = el("div", "cab-d"), ico = el("div", "icono-movil"); ico.innerHTML = ic("movil");
+    const nom = el("div"); nom.append(el("b", null, d.estado === "device" ? `${d.marca} ${d.modelo}` : d.estado === "unauthorized" ? "Acepta la depuración USB en el móvil" : `En modo ${d.estado}`), el("div", "suave", d.estado === "device" ? `Android ${d.android} · ${d.serie}` : d.serie));
+    cab.append(ico, nom);
+    if (d.es_sios) cab.append(Object.assign(el("span", "chip acento", "Tiene SIOS"), { style: "margin-left:auto" }));
+    t.append(cab);
+    if (d.estado === "device" && !d.es_sios) {
+      const comp = el("div", "comprobaciones");
+      const ch = (ok, si, no) => comp.append(el("span", "chip " + (ok ? "ok" : "mal"), ok ? si : no));
+      ch(d.arm64, "ARM de 64 bits", "No es ARM de 64 bits"); ch(d.treble, "Admite sistemas genéricos", "No admite sistemas genéricos");
+      ch(!(d.vendor > 0 && d.vendor < 33), "Base reciente", "Base demasiado antigua");
+      if (d.emulador) comp.append(el("span", "chip", "Emulador")); else ch(d.dsu, "Prueba sin borrar", "Sin prueba temporal");
+      comp.append(el("span", "chip " + (d.desbloqueado ? "ok" : ""), d.desbloqueado ? "Cargador desbloqueado" : "Cargador bloqueado"));
+      t.append(comp);
+      if (d.compatible) {
+        const op = el("div", "opciones-instalar");
+        const a = el("div", "opcion"); a.innerHTML = `<b>Probar sin borrar nada</b><span class="suave">SIOS arranca como sistema temporal. Reinicia y vuelves a tu Android, con todo como estaba.</span>`;
+        const probar = boton("Probar SIOS", () => post("/api/cable/probar", { serie: d.serie }).then(refrescarCable), d.emulador ? "sec" : "");
+        if (!c.imagen) { probar.disabled = true; probar.title = "Falta la imagen de SIOS"; }
+        a.append(probar);
+        if (d.emulador) a.append(el("span", "suave", "En un emulador esta prueba no llega a arrancar: le falta el almacenamiento que Android usa para ello. En un móvil de verdad sí funciona."));
+        const b = el("div", "opcion");
+        if (d.emulador) {
+          b.innerHTML = `<b>Instalar SIOS en el emulador</b><span class="suave">Un emulador no tiene modo fastboot: SIOS Desktop le cambia el sistema por SIOS y empieza de cero, como al instalarlo en un móvil. Escribe INSTALAR para confirmar.</span>`;
+          const conf = el("input", "campo"); conf.placeholder = "INSTALAR";
+          b.append(conf, boton("Instalar SIOS", () => post("/api/cable/emulador", { serie: d.serie, confirmacion: conf.value.trim() }).then(refrescarCable), "peligro"));
+        } else if (d.desbloqueado) {
+          b.innerHTML = `<b>Quedarme con SIOS</b><span class="suave">Se instala del todo y empieza de cero. Escribe INSTALAR para confirmar.</span>`;
+          const conf = el("input", "campo"); conf.placeholder = "INSTALAR";
+          b.append(conf, boton("Instalar SIOS", () => post("/api/cable/instalar", { serie: d.serie, borrar: true, confirmacion: conf.value.trim() }).then(refrescarCable), "peligro"));
+        } else {
+          b.append(guiaDesbloqueo(d));
+        }
+        // En un emulador, lo que funciona (instalar) va primero.
+        if (d.emulador) op.append(b, a); else op.append(a, b);
+        t.append(op);
+      } else if (d.motivo) t.append(el("div", "error", d.motivo));
+    }
+    n.push(t);
+  }
+  const viejos = conectados.filter((d) => d.estado === "device" && !d.es_sios), nuevos = conectados.filter((d) => d.es_sios);
+  if (viejos.length && nuevos.length) {
+    const t = el("div", "tarjeta"); t.style.cssText = "display:flex;flex-direction:column;gap:14px";
+    const nombre = (d) => `${d.marca} ${d.modelo}`.replace(/sdk_gphone\w*/i, "Android") + ` (${d.serie})`;
+    t.append(el("h2", null, "Pasar tus datos a SIOS"), el("div", "suave", `De ${nombre(viejos[0])} a ${nombre(nuevos[0])}. Se copian por el cable, sin pasar por internet.`));
+    const cas = el("div", "casillas"), elegidos = migrarElegidos;
+    for (const [k, txt] of [["fotos", "Fotos y vídeos"], ["documentos", "Documentos"], ["musica", "Música"], ["contactos", "Contactos"], ["apps", "Lista de apps"]]) {
+      const b = el("button", "casilla-p" + (elegidos[k] ? " si" : "")); b.innerHTML = `<i></i>${txt}`;
+      b.onclick = () => { elegidos[k] = !elegidos[k]; b.classList.toggle("si", elegidos[k]); };
+      cas.append(b);
+    }
+    t.append(cas, boton(`Pasar mis datos ${ic("flecha")}`, () => post("/api/cable/migrar", { origen: viejos[0].serie, destino: nuevos[0].serie, que: Object.keys(elegidos).filter((k) => elegidos[k]) }).then(refrescarCable)));
+    n.push(t);
+  }
+  if (c.apps?.length && nuevos.length) {
+    const t = el("div", "tarjeta"); t.style.cssText = "display:flex;flex-direction:column;gap:12px";
+    t.append(el("h2", null, "Las apps de tu móvil anterior"), el("div", "suave", "Toca una para abrirla en la tienda del móvil nuevo."));
+    const l = el("div", "apps-lista");
+    for (const a of c.apps) { const b = el("button", null, a); b.onclick = () => post("/api/cable/app", { serie: nuevos[0].serie, paquete: a }).then(() => aviso("Abierta en la tienda del móvil")).catch((e) => aviso(e.message)); l.append(b); }
+    t.append(l); n.push(t);
+  }
+  caja.replaceChildren(...n);
+}
+
+// ---------- Desbloquear el cargador de arranque, por marca ----------
+// Directo: se hace desde aquí con fastboot. Si no, los pasos de la marca y su página oficial.
+const GUIAS = [
+  { marcas: /google|pixel/i, directo: true, enlace: "https://source.android.com/docs/core/architecture/bootloader/locking_unlocking" },
+  { marcas: /oneplus/i, directo: true, enlace: "https://community.oneplus.com/" },
+  { marcas: /nothing/i, directo: true, enlace: "https://nothing.tech/pages/support" },
+  { marcas: /motorola|lenovo/i, codigo: true, pasos: ["Activa «Desbloqueo OEM» en Opciones de desarrollador.", "Motorola te da un código: entra en su web con tu cuenta y pega los datos del móvil (los saca SIOS Desktop con «fastboot oem get_unlock_data»).", "Con el código, el desbloqueo se hace desde aquí."], enlace: "https://en-us.support.motorola.com/app/standalone/bootloader/unlock-your-device-a" },
+  { marcas: /xiaomi|redmi|poco/i, pasos: ["Vincula tu cuenta Mi en Ajustes › Opciones de desarrollador › Estado de desbloqueo.", "Xiaomi obliga a esperar unos días (de 7 a 30) y a usar su programa Mi Unlock en un PC con Windows.", "Cuando termine la espera, desbloquéalo con Mi Unlock y vuelve aquí."], enlace: "https://en.miui.com/unlock/" },
+  { marcas: /sony/i, codigo: true, pasos: ["Activa «Desbloqueo OEM» en Opciones de desarrollador.", "Pide el código de desbloqueo en la web de Sony con el IMEI del móvil.", "Con el código, el desbloqueo se hace desde aquí."], enlace: "https://developer.sony.com/open-source/aosp-on-xperia-open-devices/get-started/unlock-bootloader" },
+  { marcas: /fairphone/i, codigo: true, pasos: ["Activa «Desbloqueo OEM» con el código que da Fairphone para tu IMEI y número de serie.", "Después, el desbloqueo se hace desde aquí."], enlace: "https://www.fairphone.com/en/bootloader-unlocking-code-for-fairphone-3/" },
+  { marcas: /samsung/i, no: "En Samsung el desbloqueo va por su modo descarga, no por fastboot, y en los modelos de EE. UU. y Canadá no se puede. Además rompe Knox (Samsung Pay, Carpeta segura) para siempre. SIOS Desktop todavía no instala en Samsung.", enlace: "https://www.samsung.com/es/support/" },
+  { marcas: /huawei|honor/i, no: "Huawei y Honor no permiten desbloquear el cargador de arranque desde 2018: SIOS no se puede instalar en este móvil." },
+];
+function guiaDesbloqueo(d) {
+  const caja = el("div"); caja.style.cssText = "display:flex;flex-direction:column;gap:10px";
+  const marca = `${d.marca || ""} ${d.modelo || ""}`.trim();
+  const g = GUIAS.find((x) => x.marcas.test(d.marca || "") || x.marcas.test(d.modelo || ""));
+  caja.append(el("b", null, "Desbloquear el cargador de arranque"));
+  if (g?.no) { caja.append(el("span", "suave", g.no)); if (g.enlace) { const a = el("a", "enlace-txt", "Página de la marca ›"); a.onclick = () => post("/api/abrir", { url: g.enlace }).catch(() => window.open(g.enlace)); caja.append(a); } return caja; }
+  const pasos = el("div", "registro numerados");
+  const lista = g?.pasos || [
+    "En el móvil: Ajustes › Información del teléfono › toca 7 veces «Número de compilación».",
+    "Ajustes › Sistema › Opciones de desarrollador › activa «Desbloqueo OEM».",
+    g?.directo ? "Pulsa «Desbloquear» aquí y confírmalo en el móvil con los botones de volumen y el de encendido." : "Sigue la guía de tu marca para el último paso.",
+  ];
+  lista.forEach((t, i) => { const p = el("div", null, t); p.style.setProperty("--n", `"${i + 1}"`); pasos.append(p); });
+  caja.append(el("span", "suave", `Para instalar SIOS del todo en tu ${marca} hay que desbloquearlo. Al hacerlo, el móvil se borra entero: pasa antes tus datos con SIOS Desktop o haz una copia.`), pasos);
+  if (g?.directo) {
+    caja.append(el("span", "chip " + (d.oem_permitido ? "ok" : "mal"), d.oem_permitido ? "«Desbloqueo OEM» activado" : "Falta activar «Desbloqueo OEM»"));
+    const conf = el("input", "campo"); conf.placeholder = "Escribe DESBLOQUEAR";
+    const b = boton("Desbloquear", () => post("/api/cable/desbloquear", { serie: d.serie, confirmacion: conf.value.trim() }).then(refrescarCable), "peligro");
+    if (!d.oem_permitido) b.disabled = true;
+    caja.append(conf, b);
+  } else {
+    // Sin guía conocida: la búsqueda con su marca y modelo.
+    const url = g?.enlace || `https://www.google.com/search?q=${encodeURIComponent(`desbloquear bootloader ${marca}`)}`;
+    const a = el("a", "enlace-txt", g ? "Abrir la guía oficial ›" : `Buscar cómo desbloquear un ${marca} ›`);
+    a.onclick = () => post("/api/abrir", { url }).catch(() => aviso("Ábrelo en tu navegador: " + url));
+    caja.append(a);
+  }
+  return caja;
+}
+
+// ---------- Copias ----------
+async function refrescarCopia(cambio) {
+  if (!vinculado) return;
+  const d = await (cambio ? post("/api/copia", cambio) : fetch("/api/copia").then((r) => r.json())).catch(() => null);
+  if (!d) return;
+  copia = d;
+  const nota = $("copia-nota"), acc = $("copia-acciones"); if (!nota) return;
+  acc.classList.toggle("oculto", !d.activa);
+  const e = d.estado || {};
+  ponerTexto(nota, !d.activa ? "Lo nuevo de la cámara y de Documentos, cuando el móvil está en tu Wi-Fi."
+    : e.copiando ? `Copiando… ${e.hechos} de ${e.total}` : e.error ? `No se pudo copiar: ${e.error}`
+    : e.ultima ? `En ${d.carpeta} · última copia a las ${horaCorta(e.ultima)}${e.nuevos ? ` (${e.nuevos} nuevos)` : ""}` : `En ${d.carpeta}`);
+}
+setInterval(() => { if (vista === "ajustes") refrescarCopia(); }, 4000);
+
+// ---------- Buscar móviles (sin vincular) ----------
+let elegido = "";
+async function buscar() {
+  if (vinculado || vista !== "bienvenida") return;
+  const lista = await fetch("/api/buscar").then((r) => r.json()).catch(() => []);
+  const caja = $("moviles"); if (!caja) return;
+  caja.replaceChildren(...lista.map((m) => {
+    const b = el("button", "movil-wifi" + (m.host === elegido ? " si" : "")); b.innerHTML = ic("movil");
+    b.append(el("b", null, m.nombre), el("span", null, m.host));
+    b.onclick = () => { elegido = m.host; $("host").value = m.host; buscar(); document.querySelector(".cajas-codigo input")?.focus(); };
+    return b;
+  }));
+  $("buscando").classList.toggle("oculto", lista.length > 0);
+  if (lista.length === 1 && !$("host").value) { elegido = lista[0].host; $("host").value = elegido; }
+  setTimeout(buscar, 4000);
+}
+
+refrescar();
+setInterval(refrescar, 2000);
+</script>
+</body>
+</html>

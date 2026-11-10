@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS: modo escritorio en monitores (Android 16 QPR2, LineageOS 23.2). El móvil admite el escritorio
+     de Android en pantallas conectadas por cable (USB-C con DisplayPort, HDMI), pero no en su propia
+     pantalla: el móvil sigue siendo el móvil. Lo enciende, además, la propiedad
+     persist.wm.debug.desktop_experience_devopts de build.prop (rom/construir.sh); las ventanas libres y si el
+     monitor duplica o hace de ordenador los pone la app (Ajustes de SIOS › Modo escritorio).
+     Comprobado en el código de la base: WMShell (DesktopStateImpl) solo deja entrar en escritorio con
+     config_isDesktopModeSupported, y en la pantalla interna solo con config_canInternalDisplayHostDesktops. -->
+<resources>
+    <bool name="config_isDesktopModeSupported">true</bool>
+    <bool name="config_canInternalDisplayHostDesktops">false</bool>
+    <!-- «Funciones de escritorio» visible en Opciones para desarrolladores (es la misma propiedad). -->
+    <bool name="config_isDesktopModeDevOptionSupported">true</bool>
+    <!-- Un monitor en ventanas libres empieza ya en el escritorio, sin pasar por pantalla completa. -->
+    <bool name="config_enterDesktopByDefaultOnFreeformDisplay">true</bool>
+</resources>

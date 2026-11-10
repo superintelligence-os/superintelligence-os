@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS: la pantalla final del asistente de bienvenida de LineageOS con «Ya está todo listo ·
+     Bienvenido a SuperIntelligenceOS» animado (marca/bienvenida_final.py). Solo en la edición con
+     Google: en la sin Google el mismo logo sale también en la primera pantalla de LineageOS. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sios.overlay.bienvenidafinal">
+    <overlay android:targetPackage="org.lineageos.setupwizard" android:isStatic="true" android:priority="910" />
+    <application android:hasCode="false" />
+</manifest>

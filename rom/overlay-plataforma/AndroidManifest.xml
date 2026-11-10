@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS: nombre del sistema en «Información del teléfono» (recursos de la plataforma Lineage). -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sios.overlay.plataforma">
+    <overlay android:targetPackage="lineageos.platform" android:isStatic="true" android:priority="900" />
+    <application android:hasCode="false" />
+</manifest>

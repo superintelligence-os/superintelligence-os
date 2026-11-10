@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Animación de la pantalla final (WebP por idioma en drawable-*-nodpi): arranca sola, se reproduce
+     una vez y se queda en el último fotograma. -->
+<animated-image xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/bienvenida_final"
+    android:autoStart="true"
+    android:repeatCount="0" />

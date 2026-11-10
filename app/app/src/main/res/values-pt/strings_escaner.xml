@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Escáner de documentos de SIOS (EscanerActivity). -->
+<resources>
+    <string name="esc_titulo">Digitalizador</string>
+    <string name="esc_encuadra">Enquadre o documento</string>
+    <string name="esc_detectado">Documento encontrado</string>
+    <string name="esc_disparar">Tirar foto</string>
+    <string name="esc_importar">Importar da galeria</string>
+    <string name="esc_guardar_n">Guardar · %1$d</string>
+    <string name="esc_sin_permiso">O digitalizador precisa da câmara. Pode permiti-lo nas Definições.</string>
+    <string name="esc_ajusta_titulo">Ajuste as margens</string>
+    <string name="esc_ajusta">Arraste os cantos até às margens do papel.</string>
+    <string name="esc_no_encontrado">Papel não encontrado: arraste os cantos até às margens.</string>
+    <string name="esc_forma_rara">Os cantos cruzam-se: mova-os para formarem o contorno do papel.</string>
+    <string name="esc_repetir">Repetir</string>
+    <string name="esc_toda">Foto inteira</string>
+    <string name="esc_detectar">Detetar</string>
+    <string name="esc_recortar">Recortar</string>
+    <string name="esc_pagina_n">Página %1$d</string>
+    <string name="esc_girar">Rodar</string>
+    <string name="esc_procesando">A endireitar…</string>
+    <string name="esc_otra">Outra página</string>
+    <string name="esc_quitar">Remover página</string>
+    <string name="esc_filtro_documento">Documento</string>
+    <string name="esc_filtro_color">Cor</string>
+    <string name="esc_filtro_original">Original</string>
+    <string name="esc_descartar_titulo">Descartar a digitalização?</string>
+    <string name="esc_descartar_texto">As páginas digitalizadas (%1$d) vão perder-se.</string>
+    <string name="esc_descartar">Descartar</string>
+    <string name="esc_seguir">Continuar</string>
+</resources>

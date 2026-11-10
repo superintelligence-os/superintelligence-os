@@ -1,0 +1,9 @@
+Listas del cortafuegos de SIOS (cortafuegos/):
+- lista-compacta.txt (la de serie): lista de AdAway, https://adaway.org/hosts.txt
+  (https://github.com/AdAway/adaway.github.io), de Kicelo, Dominik Schuermann y colaboradores.
+  Licencia: Creative Commons Reconocimiento 3.0 (CC BY 3.0, https://creativecommons.org/licenses/by/3.0/).
+  Pasada de formato hosts a un dominio por línea; sin otros cambios.
+- La lista completa (solo si el usuario la elige y la descarga): StevenBlack/hosts «unified»,
+  https://github.com/StevenBlack/hosts. Licencia del repositorio: MIT; cada fuente que recopila
+  conserva la suya (detalle en su README). No se incluye en la app: se descarga al pedirla.
+- lista-sios.txt y empresas.tsv: recopiladas a mano para SIOS, con la licencia de SIOS.

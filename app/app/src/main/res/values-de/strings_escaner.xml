@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Escáner de documentos de SIOS (EscanerActivity). -->
+<resources>
+    <string name="esc_titulo">Scanner</string>
+    <string name="esc_encuadra">Dokument ins Bild nehmen</string>
+    <string name="esc_detectado">Dokument erkannt</string>
+    <string name="esc_disparar">Foto aufnehmen</string>
+    <string name="esc_importar">Aus der Galerie importieren</string>
+    <string name="esc_guardar_n">Speichern · %1$d</string>
+    <string name="esc_sin_permiso">Der Scanner braucht die Kamera. Du kannst sie in den Einstellungen erlauben.</string>
+    <string name="esc_ajusta_titulo">Ränder anpassen</string>
+    <string name="esc_ajusta">Ziehe die Ecken an die Ränder des Papiers.</string>
+    <string name="esc_no_encontrado">Kein Papier gefunden: Ziehe die Ecken an seine Ränder.</string>
+    <string name="esc_forma_rara">Die Ecken überkreuzen sich: Verschiebe sie, bis sie den Umriss des Papiers bilden.</string>
+    <string name="esc_repetir">Neu aufnehmen</string>
+    <string name="esc_toda">Ganzes Foto</string>
+    <string name="esc_detectar">Erkennen</string>
+    <string name="esc_recortar">Zuschneiden</string>
+    <string name="esc_pagina_n">Seite %1$d</string>
+    <string name="esc_girar">Drehen</string>
+    <string name="esc_procesando">Wird begradigt…</string>
+    <string name="esc_otra">Weitere Seite</string>
+    <string name="esc_quitar">Seite entfernen</string>
+    <string name="esc_filtro_documento">Dokument</string>
+    <string name="esc_filtro_color">Farbe</string>
+    <string name="esc_filtro_original">Original</string>
+    <string name="esc_descartar_titulo">Scan verwerfen?</string>
+    <string name="esc_descartar_texto">Die gescannten Seiten (%1$d) gehen verloren.</string>
+    <string name="esc_descartar">Verwerfen</string>
+    <string name="esc_seguir">Weiter scannen</string>
+</resources>

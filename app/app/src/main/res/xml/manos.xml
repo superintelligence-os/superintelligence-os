@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Manos de Claude: solo escucha cuándo cambian las ventanas (para el portapapeles inteligente:
+     la vista previa de lo copiado de SystemUI); lee la ventana activa, toca con gestos y dibuja el
+     halo cuando el agente lo pide. Con la memoria de pantalla activa pide además, en marcha, los
+     cambios de contenido (MemoriaPantalla.configurar) y captura la ventana de la app cuando es sobre
+     todo imagen (canTakeScreenshot). -->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/manos_descripcion"
+    android:summary="@string/manos_resumen"
+    android:accessibilityEventTypes="typeWindowStateChanged|typeWindowsChanged"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:accessibilityFlags="flagDefault|flagRetrieveInteractiveWindows|flagReportViewIds"
+    android:canRetrieveWindowContent="true"
+    android:canPerformGestures="true"
+    android:canTakeScreenshot="true"
+    android:isAccessibilityTool="true"
+    android:notificationTimeout="200" />

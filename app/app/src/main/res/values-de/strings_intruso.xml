@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mac_encontrar">Mein Handy finden</string>
+    <string name="mac_encontrar_nota">Von deinem Computer aus, auch aus der Ferne. Verschlüsselt über Nostr, ein offenes Netz.</string>
+    <string name="intruso_titulo">Foto von Entsperrversuchen</string>
+    <string name="intruso_nota">Nach zwei Fehlversuchen macht die Frontkamera ein kleines Foto und schickt es an deinen Computer. Standardmäßig aus; sonst wird nichts gespeichert.</string>
+    <string name="intruso_explicacion_admin">Nur damit SIOS merkt, wenn jemand beim Entsperren scheitert, und mit der Frontkamera ein Foto machen kann. Sonst kann es nichts.</string>
+</resources>

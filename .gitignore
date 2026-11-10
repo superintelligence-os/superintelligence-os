@@ -1,0 +1,70 @@
+# SIOS: lo que no se sube. Todo se puede volver a generar o descargar con los scripts.
+
+# Sistema y editores
+.DS_Store
+.idea/
+.vscode/
+*.swp
+.playwright-mcp/
+
+# App de Android (Gradle / Kotlin)
+build/
+.gradle/
+.kotlin/
+local.properties
+*.apk
+*.aab
+*.idsig
+
+# Node (servicio, mcp, relay, comunidad)
+node_modules/
+.wrangler/
+.dev.vars
+
+# SIOS Desktop (Go)
+escritorio/dist/
+escritorio/*.syso
+
+# ROM: imágenes base de LineageOS, salidas y carpetas de trabajo
+rom/base/
+rom/salida/
+rom/staging/
+rom/termux/build/
+rom/tienda/build/
+rom/marca/analisis/
+rom/marca/salida/
+# El fondo de pantalla lo copia rom/construir.sh en cada compilación
+rom/overlay-framework/res/drawable-*/
+# Emulador: solo se suben sus scripts
+rom/emulador/*
+!rom/emulador/*.sh
+!rom/emulador/*.py
+
+# APK de terceros descargados (Termux, Termux:API, Termux:Boot) y sus sumas
+descargas/*.apk
+descargas/checksums-*.txt
+
+# Modelos de IA (se descargan en el móvil bajo demanda)
+*.onnx
+*.gguf
+*.tflite
+*.bin
+modelos/
+
+# Imágenes y paquetes pesados
+*.img
+*.img.gz
+*.7z
+*.zip
+*.tar.gz
+*.cpio
+*.dmp
+
+# Claves privadas y almacenes de claves (las PÚBLICAS sí se suben, ver abajo)
+*.key
+*.pem
+*.p12
+*.jks
+*.keystore
+!servicio/clave-actualizaciones.pem
+!rom/ota/clave-sistema.x509.pem

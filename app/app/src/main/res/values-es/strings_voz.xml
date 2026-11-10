@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dictado y traducción sin conexión: ajustes, traductor y dictado en el móvil. -->
+<resources>
+    <string name="voz_titulo">Dictado y traducción sin conexión</string>
+    <string name="voz_nota">Funcionan sin internet y sin ninguna IA.</string>
+    <string name="voz_privacidad">Todo pasa en el móvil: tu voz y tus textos no salen de él. Solo se conecta para descargar los modelos que elijas.</string>
+    <string name="voz_cuando">Cuándo usarlos</string>
+    <string name="voz_modo_auto">Automático</string>
+    <string name="voz_modo_siempre">Siempre</string>
+    <string name="voz_modo_auto_nota">Con internet, el dictado del sistema y tu IA; sin internet o sin IA, los del móvil.</string>
+    <string name="voz_modo_siempre_nota">Siempre en el móvil, aunque haya internet. Lo más privado.</string>
+    <string name="voz_dictado">Dictado</string>
+    <string name="voz_preciso">Preciso</string>
+    <string name="voz_preciso_nota">Todos los idiomas, con puntuación. Mejor en móviles rápidos.</string>
+    <string name="voz_ligero">Ligero · %1$s</string>
+    <string name="voz_ligero_corto">Ligero</string>
+    <string name="voz_ligero_nota">Pequeño y rápido: escribe mientras hablas, sin puntuación.</string>
+    <string name="voz_recomendado">Para este móvil</string>
+    <string name="voz_otros_idiomas">Otros idiomas</string>
+    <string name="voz_usar">Dictar con</string>
+    <string name="voz_otras_apps">Las apps que dictan con el sistema también lo usan.</string>
+    <string name="voz_traduccion">Traducción</string>
+    <string name="voz_traduccion_nota">Cada idioma viene con el inglés, en las dos direcciones. Entre otros dos idiomas, pasa por el inglés.</string>
+    <string name="voz_descargar">Descargar</string>
+    <string name="voz_cancelar">Cancelar</string>
+    <string name="voz_reintentar">Reintentar</string>
+    <string name="voz_borrar">Borrar</string>
+    <string name="voz_listo">Listo · %1$s</string>
+    <string name="voz_en_cola">En espera…</string>
+    <string name="voz_descargando">Descargando… %1$s de %2$s</string>
+    <string name="voz_comprobando">Comprobando…</string>
+    <string name="voz_fallo_red">Sin conexión. Inténtalo con wifi.</string>
+    <string name="voz_fallo_espacio">No hay sitio en el móvil.</string>
+    <string name="voz_fallo">No se ha podido descargar. Inténtalo otra vez.</string>
+    <string name="voz_ocupan">Ocupan %1$s en total</string>
+    <string name="voz_licencias">Modelos abiertos: Whisper (OpenAI, MIT), Vosk (Alpha Cephei, Apache 2.0) y OPUS‑MT (Universidad de Helsinki, Apache 2.0 / CC BY 4.0).</string>
+    <string name="voz_borrar_titulo">¿Borrar «%1$s»?</string>
+    <string name="voz_borrar_texto">Se quita del móvil. Puedes volver a descargarlo cuando quieras.</string>
+    <string name="voz_borrar_oye">«Oye…» lo usa para oír su nombre, así que lo volverá a descargar.</string>
+    <string name="voz_datos_titulo">¿Descargar con datos móviles?</string>
+    <string name="voz_datos_texto">Son %1$s. Con wifi no gastarás datos.</string>
+    <string name="voz_escuchando_local">Te escucho en el móvil…</string>
+    <string name="voz_falta_dictado">Para dictar sin internet, descarga el dictado en Ajustes.</string>
+    <string name="voz_trad_falta">Para traducir sin internet, descarga estos idiomas en Ajustes.</string>
+    <string name="voz_sello">Sin conexión</string>
+    <string name="voz_sello_descargar">Sin conexión</string>
+</resources>

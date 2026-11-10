@@ -1,0 +1,4 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Termux:Boot lo ejecuta al encender el móvil.
+sleep 10
+~/sios/iniciar.sh >> ~/sios/servicio.log 2>&1

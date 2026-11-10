@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Memoria de pantalla («¿dónde vi…?»): ajustes, presentación, búsqueda, notificación y recuadro. -->
+<resources>
+    <string name="mp_titulo">Screen memory</string>
+    <string name="mp_nota">Search what has been on your screen: “where did I see…?”. Off by default; everything stays encrypted on the phone.</string>
+    <string name="mp_apagada_nota">Off: nothing you see is saved.</string>
+    <string name="mp_conocer">See how it works</string>
+    <string name="mp_sin_manos">To read the screen it needs the SIOS accessibility service, which is off right now.</string>
+    <string name="mp_sin_manos_arreglar">Turn it on</string>
+    <string name="mp_estado_pausada">Paused: nothing new is saved.</string>
+    <string name="mp_cargando">Loading…</string>
+    <plurals name="mp_momentos">
+        <item quantity="one">%d moment saved</item>
+        <item quantity="other">%d moments saved</item>
+    </plurals>
+    <string name="mp_ocupa">uses %1$s</string>
+    <string name="mp_se_borra">deleted after %1$d days</string>
+    <string name="mp_recordando">Remember what you see</string>
+    <string name="mp_buscar">Search what you\'ve seen</string>
+    <string name="mp_dias_titulo">How long it\'s kept</string>
+    <string name="mp_dias_nota">The oldest is deleted automatically.</string>
+    <string name="mp_dias_7">7 days</string>
+    <string name="mp_dias_30">30 days</string>
+    <string name="mp_miniaturas_titulo">Save thumbnails</string>
+    <string name="mp_miniaturas_nota">A small, encrypted image of each moment, to recognise it at a glance. Takes up quite a bit more space.</string>
+    <string name="mp_imagenes_titulo">Search in images</string>
+    <string name="mp_imagenes_lista">Ready · %1$s on the phone</string>
+    <string name="mp_imagenes_falta">To find images without text (“the blue sofa”). Downloaded once: %1$s.</string>
+    <string name="mp_descargar_corto">Download</string>
+    <string name="mp_descargando">Downloading… %1$s of %2$s</string>
+    <string name="mp_descarga_sigue">You can leave: the download carries on and, once it finishes, images can be searched too.</string>
+    <string name="mp_comprobando">Checking the model…</string>
+    <string name="mp_descarga_fallo">The model couldn\'t be downloaded.</string>
+    <string name="mp_descarga_sin_red">No internet connection: the model couldn\'t be downloaded.</string>
+    <string name="mp_reintentar">Try again</string>
+    <string name="mp_cancelar">Cancel</string>
+    <string name="mp_red_pago">You\'re on mobile data: the download may use up your plan. If you prefer, turn it on with text only and download the model later on Wi-Fi from Settings.</string>
+    <string name="mp_excluidas_titulo">Apps that aren\'t saved</string>
+    <string name="mp_excluidas_ninguna">Only the ones that are never saved</string>
+    <plurals name="mp_excluidas_cuenta">
+        <item quantity="one">%d app chosen, plus the usual ones</item>
+        <item quantity="other">%d apps chosen, plus the usual ones</item>
+    </plurals>
+    <string name="mp_siempre_fuera">Banking and payments, passwords and codes, incognito, the lock screen and SIOS are never saved. Choose other apps here.</string>
+    <string name="mp_siempre_fuera_app">Always left out</string>
+    <string name="mp_borrar_todo">Delete everything</string>
+    <string name="mp_borrar_titulo">Delete everything saved?</string>
+    <string name="mp_borrar_texto">Everything screen memory has saved is deleted, along with its keys. This can\'t be undone. It will keep remembering from now on.</string>
+    <string name="mp_borrado">Deleted</string>
+    <string name="mp_desactivar">Turn off</string>
+    <string name="mp_desactivar_titulo">Turn off screen memory?</string>
+    <string name="mp_desactivar_texto">It stops remembering and everything is deleted: what was saved, its keys and the image model.</string>
+
+    <!-- Presentación -->
+    <string name="mp_p1_titulo">Where did I see it?</string>
+    <string name="mp_p1_texto">Screen memory remembers what passes across your screen so you can find it later: that code, the address someone showed you, the blue sofa in a shop. It comes turned off and you decide whether you want it.</string>
+    <string name="mp_p2_titulo">What it saves</string>
+    <string name="mp_p2_texto">Only what\'s needed to find things, when the screen really changes.</string>
+    <string name="mp_p2_1">The text you see on screen.</string>
+    <string name="mp_p2_2">For images, any text in them and a fingerprint: 512 numbers to find them by what they show. Never the image or a description.</string>
+    <string name="mp_p2_3">If you want, a small encrypted thumbnail of each moment. Off by default.</string>
+    <string name="mp_p3_titulo">What it never saves</string>
+    <string name="mp_p3_texto">Some things are never remembered, not even encrypted.</string>
+    <string name="mp_p3_1">Passwords, or the screen where you type them.</string>
+    <string name="mp_p3_2">Banking, payment, password and authenticator apps.</string>
+    <string name="mp_p3_3">Incognito tabs and private browsers.</string>
+    <string name="mp_p3_4">The lock screen, or anything while the phone is locked.</string>
+    <string name="mp_p3_5">The apps you choose.</string>
+    <string name="mp_p4_titulo">Only on your phone, encrypted</string>
+    <string name="mp_p4_texto">None of this leaves your phone.</string>
+    <string name="mp_p4_1">An encrypted database (AES-256) with a key that only opens while the phone is unlocked.</string>
+    <string name="mp_p4_2">To search, your fingerprint or PIN.</string>
+    <string name="mp_p4_3">If you ask your AI, it only receives the matching snippets, never the history.</string>
+    <string name="mp_p4_4">It takes about 2 MB per day of use; with thumbnails, about 3 MB more per day.</string>
+    <string name="mp_p5_titulo">It lasts as long as you say</string>
+    <string name="mp_p5_texto">The oldest is deleted automatically, after the time you choose.</string>
+    <string name="mp_p5_1">Pause it whenever you like from Quick Settings or from its notification.</string>
+    <string name="mp_p5_2">“Delete everything” is in Settings, always at hand. Turning it off deletes everything.</string>
+    <string name="mp_p6_titulo">Search in images too</string>
+    <string name="mp_p6_texto">To find images without text (“the blue sofa I saw on Tuesday”) it needs a vision model that runs on the phone itself. It\'s downloaded once: %1$s.</string>
+    <string name="mp_licencias">Open models downloaded from Hugging Face: OpenAI\'s CLIP (MIT licence) and its multilingual version by sentence-transformers (Apache 2.0).</string>
+    <string name="mp_ahora_no">Not now</string>
+    <string name="mp_activar_con">Download and turn on · %1$s</string>
+    <string name="mp_activar_sin">Turn on with text only</string>
+    <string name="mp_activada">Screen memory is on.</string>
+    <string name="mp_hecho">Done</string>
+    <string name="mp_sin_bloqueo">You need a screen lock (PIN, pattern or password): search opens with it.</string>
+    <string name="mp_poner_bloqueo">Set a screen lock</string>
+    <string name="mp_error_activar">It couldn\'t be turned on. Unlock the phone and try again.</string>
+
+    <!-- Notificación y recuadro -->
+    <string name="mp_canal">Screen memory</string>
+    <string name="mp_canal_nota">Ongoing notice while screen memory is on, with the pause button.</string>
+    <string name="mp_aviso_activa">Screen memory is on</string>
+    <string name="mp_aviso_activa_nota">Remembering what you see, only on this phone</string>
+    <string name="mp_aviso_pausada">Screen memory is paused</string>
+    <string name="mp_aviso_pausada_nota">Nothing new is saved</string>
+    <string name="mp_pausar">Pause</string>
+    <string name="mp_reanudar">Resume</string>
+    <string name="mp_recuadro_activa">Remembering</string>
+    <string name="mp_recuadro_pausada">Paused</string>
+    <string name="mp_recuadro_apagada">Off</string>
+
+    <!-- Búsqueda -->
+    <string name="mp_b_titulo">Where did I see it?</string>
+    <string name="mp_b_bloqueada">Your screen memory is protected</string>
+    <string name="mp_b_bloqueada_nota">Open it with your fingerprint or PIN.</string>
+    <string name="mp_b_desbloquear">Unlock</string>
+    <string name="mp_b_prompt_sub">Confirm it\'s you</string>
+    <string name="mp_b_error_bloqueo">You need a screen lock to open it.</string>
+    <string name="mp_b_desactivada">Screen memory is off</string>
+    <string name="mp_b_ir_ajustes">Go to Settings</string>
+    <string name="mp_b_buscar_pista">Search something you saw…</string>
+    <string name="mp_b_preguntar_pista">Ask %1$s…</string>
+    <string name="mp_b_modo_buscar">Search</string>
+    <string name="mp_b_modo_preguntar">Ask %1$s</string>
+    <string name="mp_b_vacio_titulo">Type what you remember</string>
+    <string name="mp_b_vacio_nota">A word, an app or a day: “wifi”, “yesterday in Chrome”, “blue sofa on Tuesday”.</string>
+    <string name="mp_b_ejemplo_1">code yesterday</string>
+    <string name="mp_b_ejemplo_2">blue sofa</string>
+    <string name="mp_b_ejemplo_3">address</string>
+    <string name="mp_b_sin_modelo">To search in images too, download the model in Settings.</string>
+    <string name="mp_b_nada">Nothing matches “%1$s”</string>
+    <string name="mp_b_nada_nota">Try other words or another day.</string>
+    <string name="mp_b_por_imagen">By image</string>
+    <string name="mp_b_hoy">Today</string>
+    <string name="mp_b_ayer">Yesterday</string>
+    <string name="mp_b_cuando">%1$s · %2$s</string>
+    <string name="mp_b_no_abre">That app can\'t be opened.</string>
+    <string name="mp_b_ia_explica">Write your question as you\'d ask someone. %1$s only receives the matching snippets, never the history.</string>
+    <string name="mp_b_preguntar">Ask</string>
+    <plurals name="mp_b_se_envian">
+        <item quantity="one">%1$s only received %2$d snippet, the one that matches.</item>
+        <item quantity="other">%1$s only received the %2$d snippets that match.</item>
+    </plurals>
+    <string name="mp_b_sin_fragmentos">Nothing saved matches, so %1$s wasn\'t asked.</string>
+    <string name="mp_b_fallo_ia">Couldn\'t ask %1$s. Below is what\'s on your phone.</string>
+</resources>

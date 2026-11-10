@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS: permisos concedidos de serie a Termux:API, que es lo que usa el agente para
+     consultar el móvil. El usuario puede retirarlos en Ajustes como cualquier otro permiso.
+     A Termux (comparte usuario con Termux:API) no se le dan notificaciones: así su aviso fijo
+     «sesiones / wake lock» no aparece; los avisos del agente los publica la app Claude. -->
+<exceptions>
+    <exception package="com.termux.api">
+        <permission name="android.permission.READ_SMS" fixed="false" />
+        <permission name="android.permission.SEND_SMS" fixed="false" />
+        <permission name="android.permission.RECEIVE_SMS" fixed="false" />
+        <permission name="android.permission.READ_CONTACTS" fixed="false" />
+        <permission name="android.permission.READ_CALL_LOG" fixed="false" />
+        <permission name="android.permission.CALL_PHONE" fixed="false" />
+        <permission name="android.permission.READ_PHONE_STATE" fixed="false" />
+        <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false" />
+        <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false" />
+        <permission name="android.permission.CAMERA" fixed="false" />
+        <permission name="android.permission.RECORD_AUDIO" fixed="false" />
+    </exception>
+    <!-- La app Claude prepara el agente pasándole órdenes a Termux (RUN_COMMAND). -->
+    <exception package="com.sios">
+        <permission name="com.termux.permission.RUN_COMMAND" fixed="false" />
+        <!-- Bluetooth para la terminal del agente (bt). -->
+        <permission name="android.permission.BLUETOOTH_SCAN" fixed="false" />
+        <permission name="android.permission.BLUETOOTH_CONNECT" fixed="false" />
+        <!-- Avisos de los agentes que crea Claude. -->
+        <permission name="android.permission.POST_NOTIFICATIONS" fixed="false" />
+        <!-- Teléfono de Claude. -->
+        <permission name="android.permission.READ_CALL_LOG" fixed="false" />
+        <permission name="android.permission.WRITE_CALL_LOG" fixed="false" />
+        <permission name="android.permission.READ_PHONE_STATE" fixed="false" />
+        <permission name="android.permission.ANSWER_PHONE_CALLS" fixed="false" />
+        <!-- Cámara de Claude. -->
+        <permission name="android.permission.CAMERA" fixed="false" />
+        <!-- Sin conexión: llamar a un contacto. -->
+        <permission name="android.permission.CALL_PHONE" fixed="false" />
+        <!-- Llamadas: saber si quien llama es un contacto. -->
+        <permission name="android.permission.READ_CONTACTS" fixed="false" />
+        <!-- Panel y rutinas por lugar: dónde está el móvil (gasolina cerca, el tiempo…). -->
+        <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false" />
+        <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false" />
+        <!-- Panel: pasos y sueño de Health Connect (solo lectura). -->
+        <permission name="android.permission.health.READ_STEPS" fixed="false" />
+        <permission name="android.permission.health.READ_SLEEP" fixed="false" />
+        <!-- Memoria del móvil: el texto de las fotos. -->
+        <permission name="android.permission.READ_MEDIA_IMAGES" fixed="false" />
+        <!-- Dictado en la hoja de Claude (el usuario puede quitarlo en Ajustes). -->
+        <permission name="android.permission.RECORD_AUDIO" fixed="false" />
+        <!-- Emergencias: el SMS con tu ubicación a tus contactos al pedir ayuda (solo si has elegido alguno). -->
+        <permission name="android.permission.SEND_SMS" fixed="false" />
+    </exception>
+</exceptions>

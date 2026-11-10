@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Apps predeterminadas, tiendas y modo escritorio (Ajustes de SIOS). -->
+<resources>
+    <string name="tienda_titulo">Apps</string>
+    <string name="tienda_r_navegador">Navegador: %1$s</string>
+    <string name="tienda_preguntar_corto">perguntar</string>
+    <string name="tienda_g_predeterminadas">Apps predefinidas</string>
+    <string name="tienda_g_predeterminadas_nota">Que app abre para cada coisa. Muda-se nas definições do Android.</string>
+    <string name="tienda_navegador">Navegador</string>
+    <string name="tienda_correo">Email</string>
+    <string name="tienda_mapas">Mapas</string>
+    <string name="tienda_mensajes">Mensagens</string>
+    <string name="tienda_ninguna">Nenhuma instalada · procurar na loja</string>
+    <string name="tienda_preguntar">O Android pergunta sempre</string>
+    <string name="tienda_todas">Todas as apps predefinidas</string>
+    <string name="tienda_todas_nota">Telefone, ecrã inicial, assistente e as restantes, no Android</string>
+    <string name="tienda_g_tiendas">Lojas</string>
+    <string name="tienda_g_tiendas_nota">De onde instalar apps.</string>
+    <string name="tienda_neo_nota">Apps livres do F-Droid. Instala e atualiza sem perguntar.</string>
+    <string name="tienda_libre_nota">Apps livres do F-Droid.</string>
+    <string name="tienda_aurora_nota">Apps do Google Play sem conta Google.</string>
+    <string name="tienda_play_nota">Com a tua conta Google.</string>
+    <string name="tienda_actualizaciones_nota">As apps que vêm com o SIOS atualizam-se pela sua loja, como as outras.</string>
+    <string name="modoesc_titulo">Modo ambiente de trabalho</string>
+    <string name="modoesc_monitor">Monitor</string>
+    <string name="modoesc_r_no_disponible">Não disponível nesta versão</string>
+    <string name="modoesc_r_conectado">%1$s ligado</string>
+    <string name="modoesc_r_activo">O monitor como um computador</string>
+    <string name="modoesc_r_duplicar">O monitor duplica o ecrã</string>
+    <string name="modoesc_sin_monitor">Nenhum monitor ligado</string>
+    <string name="modoesc_sin_monitor_nota">Liga-o por USB-C (DisplayPort) ou com um adaptador HDMI.</string>
+    <string name="modoesc_inalambrico_nota">Sem fios · %1$d × %2$d · duplica o ecrã</string>
+    <string name="modoesc_conectado_ordenador">%1$d × %2$d · ambiente de trabalho com janelas</string>
+    <string name="modoesc_conectado_duplicando">%1$d × %2$d · a duplicar o ecrã</string>
+    <string name="modoesc_no_disponible">Esta versão do SIOS não traz o ambiente de trabalho do Android para monitores. Ao ligar um, verás o ecrã do telemóvel.</string>
+    <string name="modoesc_nota">Com um monitor, o telemóvel usa-se como um computador: janelas, barra de tarefas, rato e teclado.</string>
+    <string name="modoesc_activar_nota">Se o desligares, o monitor mostra o mesmo que o telemóvel.</string>
+    <string name="modoesc_al_conectar">Ao ligar um monitor</string>
+    <string name="modoesc_ordenador">Computador</string>
+    <string name="modoesc_duplicar">Duplicar</string>
+    <string name="modoesc_todas">Todas as apps em janelas</string>
+    <string name="modoesc_todas_nota">Também as que só funcionam em ecrã inteiro. Alguma pode ficar estranha.</string>
+    <string name="modoesc_fallo">Não foi possível mudar a definição do sistema.</string>
+    <string name="modoesc_g_uso">Como se usa</string>
+    <string name="modoesc_uso_conectar">As alterações valem da próxima vez que ligares o monitor. O Android pode perguntar-te o que fazer ao ligá-lo.</string>
+    <string name="modoesc_uso_raton">Rato e teclado por Bluetooth ou USB (com um hub USB-C, também o carregamento).</string>
+    <string name="modoesc_uso_ventanas">Abre as apps a partir da barra de tarefas; move as janelas pela barra de título e muda o tamanho pelas margens.</string>
+    <string name="modoesc_uso_movil">O telemóvel continua a ser o telemóvel: o SIOS, o Claude e as chamadas ficam no seu ecrã.</string>
+    <string name="modoesc_inalambrica">Sem cabo, «Transmitir ecrã» duplica o telemóvel numa TV ou num monitor compatível (Miracast), sem ambiente de trabalho.</string>
+    <string name="modoesc_enviar_pantalla">Transmitir ecrã</string>
+</resources>

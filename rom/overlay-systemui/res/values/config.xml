@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Recuadros de serie: el de Claude (uso de la suscripción) el primero. -->
+    <string name="quick_settings_tiles_new_default" translatable="false">custom(com.sios/.sistema.UsoTile),custom(com.sios/.sistema.FocoTile),internet,bt,dnd,cast,flashlight,airplane,rotation,wallet,alarm,controls,screenrecord,battery</string>
+</resources>

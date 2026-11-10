@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Cortafuegos y bloqueo de rastreadores de SIOS. -->
+<resources>
+    <string name="cf_titulo">Cortafuegos</string>
+    <string name="cf_canal">Cortafuegos</string>
+    <string name="cf_encendiendo">Encendiendo el cortafuegos…</string>
+    <string name="cf_encendiendo_corto">Encendiendo…</string>
+    <string name="cf_apagado">Apagado</string>
+    <string name="cf_aviso_apagado">El cortafuegos se ha apagado</string>
+    <string name="cf_aviso_apagado_nota">Otra VPN se ha conectado o se ha desconectado desde los ajustes. Android solo permite una VPN a la vez.</string>
+    <plurals name="cf_recuadro_bloqueados">
+        <item quantity="one">%1$s bloqueado hoy</item>
+        <item quantity="many">%1$s bloqueados hoy</item>
+        <item quantity="other">%1$s bloqueados hoy</item>
+    </plurals>
+
+    <!-- En Ajustes de SIOS -->
+    <string name="cf_g_red">Red</string>
+    <string name="cf_ajustes_apagado">Apagado · bloquea rastreadores y decide qué apps usan internet</string>
+    <plurals name="cf_ajustes_activo">
+        <item quantity="one">Activo · %1$s rastreador bloqueado hoy</item>
+        <item quantity="many">Activo · %1$s rastreadores bloqueados hoy</item>
+        <item quantity="other">Activo · %1$s rastreadores bloqueados hoy</item>
+    </plurals>
+    <plurals name="cf_r_privacidad">
+        <item quantity="one">Cortafuegos: %1$s bloqueado hoy</item>
+        <item quantity="many">Cortafuegos: %1$s bloqueados hoy</item>
+        <item quantity="other">Cortafuegos: %1$s bloqueados hoy</item>
+    </plurals>
+    <string name="cf_buscar_alias">Bloquear anuncios y rastreadores</string>
+
+    <!-- Pantalla -->
+    <string name="cf_estado_activo">Activo</string>
+    <string name="cf_estado_activo_wifi">Activo · en wifi</string>
+    <string name="cf_estado_activo_datos">Activo · con datos móviles</string>
+    <string name="cf_estado_encendiendo">Encendiendo…</string>
+    <string name="cf_intro">Bloquea la publicidad y los rastreadores en todas las apps y te deja decidir qué apps usan internet, en wifi y con datos. Todo pasa en el móvil: no hay ningún servidor de por medio.</string>
+    <plurals name="cf_hoy_bloqueados">
+        <item quantity="one">rastreador bloqueado hoy</item>
+        <item quantity="many">rastreadores bloqueados hoy</item>
+        <item quantity="other">rastreadores bloqueados hoy</item>
+    </plurals>
+    <plurals name="cf_hoy_apps">
+        <item quantity="one">en %1$s app</item>
+        <item quantity="many">en %1$s apps</item>
+        <item quantity="other">en %1$s apps</item>
+    </plurals>
+    <plurals name="cf_hoy_sin_red">
+        <item quantity="one">%1$s app sin internet ahora</item>
+        <item quantity="many">%1$s apps sin internet ahora</item>
+        <item quantity="other">%1$s apps sin internet ahora</item>
+    </plurals>
+    <string name="cf_aviso_revocado">Se apagó porque otra VPN se conectó o porque se desconectó desde los ajustes del sistema.</string>
+    <string name="cf_volver_encender">Volver a encender</string>
+    <string name="cf_aviso_error">No se ha podido encender. Si otra app está puesta como «VPN siempre activa», quítala en los ajustes de VPN.</string>
+    <string name="cf_ajustes_vpn">Ajustes de VPN</string>
+    <string name="cf_aviso_dns_privado">El DNS privado (%1$s) se salta el cortafuegos: ahora mismo no se filtra nada.</string>
+    <string name="cf_dns_automatico">Usar DNS privado automático</string>
+    <string name="cf_aviso_bloqueo">«Bloquear conexiones sin VPN» está activado: las apps esenciales, que el cortafuegos deja fuera para que nunca se queden sin red, no tendrán internet.</string>
+    <string name="cf_aviso_siempre">«VPN siempre activa» está puesta para el cortafuegos, así que Android lo volverá a encender. Quítala en los ajustes de VPN para apagarlo del todo.</string>
+    <string name="cf_otra_vpn_titulo">Ya hay otra VPN conectada</string>
+    <string name="cf_otra_vpn_nota">Android solo permite una VPN a la vez: si enciendes el cortafuegos, la otra se desconectará. Cuando la vuelvas a conectar, el cortafuegos se apagará solo.</string>
+    <string name="cf_encender_igualmente">Encender igualmente</string>
+    <string name="cf_cancelar">Cancelar</string>
+
+    <string name="cf_g_apps">Apps</string>
+    <string name="cf_g_apps_nota">Toca una app para ver con quién habla. Los botones le cortan internet en wifi y con datos.</string>
+    <string name="cf_orden_rastreadores">Rastreadores</string>
+    <string name="cf_orden_trafico">Tráfico</string>
+    <string name="cf_orden_nombre">Nombre</string>
+    <string name="cf_buscar_app">Buscar una app</string>
+    <string name="cf_cargando">Cargando…</string>
+    <string name="cf_sin_apps">Ninguna app con «%1$s»</string>
+    <plurals name="cf_fila_bloqueados">
+        <item quantity="one">%1$s rastreador bloqueado</item>
+        <item quantity="many">%1$s rastreadores bloqueados</item>
+        <item quantity="other">%1$s rastreadores bloqueados</item>
+    </plurals>
+    <plurals name="cf_fila_conexiones">
+        <item quantity="one">%1$s conexión</item>
+        <item quantity="many">%1$s conexiones</item>
+        <item quantity="other">%1$s conexiones</item>
+    </plurals>
+    <plurals name="cf_fila_intentos">
+        <item quantity="one">%1$s intento parado</item>
+        <item quantity="many">%1$s intentos parados</item>
+        <item quantity="other">%1$s intentos parados</item>
+    </plurals>
+    <string name="cf_fila_trafico">%1$s hoy</string>
+    <string name="cf_fila_nada">Sin actividad hoy</string>
+    <string name="cf_fila_sin_internet">Sin internet</string>
+    <string name="cf_fila_sin_wifi">Sin internet en wifi</string>
+    <string name="cf_fila_sin_datos">Sin internet con datos</string>
+    <string name="cf_fila_esencial">Esencial · fuera del filtro</string>
+    <string name="cf_fila_propia">Siempre con internet</string>
+    <string name="cf_cd_wifi_si">%1$s: internet en wifi permitido</string>
+    <string name="cf_cd_wifi_no">%1$s: internet en wifi bloqueado</string>
+    <string name="cf_cd_datos_si">%1$s: internet con datos permitido</string>
+    <string name="cf_cd_datos_no">%1$s: internet con datos bloqueado</string>
+
+    <string name="cf_g_lista">Lista de bloqueo</string>
+    <string name="cf_lista_compacta">Compacta</string>
+    <string name="cf_lista_completa">Completa</string>
+    <plurals name="cf_lista_dominios">
+        <item quantity="one">%1$s dominio</item>
+        <item quantity="many">%1$s dominios</item>
+        <item quantity="other">%1$s dominios</item>
+    </plurals>
+    <string name="cf_lista_de_serie">la de serie</string>
+    <string name="cf_lista_actualizada">actualizada %1$s</string>
+    <string name="cf_lista_nota_compacta">Lista de AdAway (CC BY 3.0): publicidad y analítica de las apps, con muy pocos falsos positivos.</string>
+    <string name="cf_lista_nota_completa">StevenBlack/hosts «unified» (MIT): mucho más amplia; puede bloquear algo que sí quieres. Si una app falla, permite su dominio desde la ficha de la app.</string>
+    <string name="cf_actualizar">Actualizar ahora</string>
+    <string name="cf_actualizando">Descargando la lista…</string>
+    <string name="cf_lista_error">No se ha podido descargar la lista. Comprueba la conexión y vuelve a probar.</string>
+    <string name="cf_lista_descarga_nota">Lo único que sale del móvil es la descarga de la lista.</string>
+
+    <string name="cf_g_registro">Registro</string>
+    <string name="cf_registro_nota">Qué intentó cada app y qué se bloqueó, de los últimos 7 días. Se guarda solo en este móvil.</string>
+    <string name="cf_borrar_registro">Borrar el registro</string>
+    <string name="cf_registro_borrado">Registro borrado</string>
+
+    <!-- Ficha de una app -->
+    <string name="cf_periodo_hoy">Hoy</string>
+    <string name="cf_periodo_semana">7 días</string>
+    <string name="cf_g_explicacion">Lo que hace con internet</string>
+    <plurals name="cf_exp_empresas">
+        <item quantity="one">Intentó conectar con %1$s empresa de %2$s (%3$s).</item>
+        <item quantity="many">Intentó conectar con %1$s empresas de %2$s (%3$s).</item>
+        <item quantity="other">Intentó conectar con %1$s empresas de %2$s (%3$s).</item>
+    </plurals>
+    <string name="cf_frase_publicidad">publicidad</string>
+    <string name="cf_frase_analisis">análisis</string>
+    <string name="cf_frase_rastreo">rastreo</string>
+    <string name="cf_lista_dos">%1$s y %2$s</string>
+    <string name="cf_lista_tres">%1$s, %2$s y %3$s</string>
+    <string name="cf_exp_limpia_con">No se ha visto publicidad ni rastreo: solo habló con servicios que necesita para funcionar (%1$s).</string>
+    <string name="cf_exp_limpia">No se ha visto publicidad ni rastreo.</string>
+    <plurals name="cf_exp_sin_nombre">
+        <item quantity="one">La lista de bloqueo paró además %1$s dominio de rastreo de una empresa desconocida.</item>
+        <item quantity="many">La lista de bloqueo paró además %1$s dominios de rastreo de empresas desconocidas.</item>
+        <item quantity="other">La lista de bloqueo paró además %1$s dominios de rastreo de empresas desconocidas.</item>
+    </plurals>
+    <plurals name="cf_exp_bloqueadas">
+        <item quantity="one">El cortafuegos bloqueó %1$s petición.</item>
+        <item quantity="many">El cortafuegos bloqueó %1$s peticiones.</item>
+        <item quantity="other">El cortafuegos bloqueó %1$s peticiones.</item>
+    </plurals>
+    <plurals name="cf_exp_sin_red">
+        <item quantity="one">No tiene internet: se paró %1$s intento de conexión.</item>
+        <item quantity="many">No tiene internet: se pararon %1$s intentos de conexión.</item>
+        <item quantity="other">No tiene internet: se pararon %1$s intentos de conexión.</item>
+    </plurals>
+    <string name="cf_exp_fuera">Va fuera del cortafuegos para que nunca se quede sin red, así que no se apunta lo que hace con internet.</string>
+    <string name="cf_exp_nada_hoy">Hoy no ha usado internet mientras el cortafuegos estaba encendido.</string>
+    <string name="cf_exp_nada_semana">No ha usado internet en los últimos 7 días mientras el cortafuegos estaba encendido.</string>
+    <string name="cf_cat_publicidad">Publicidad</string>
+    <string name="cf_cat_analisis">Análisis</string>
+    <string name="cf_cat_rastreo">Rastreo</string>
+    <string name="cf_cat_funcional">Funcional</string>
+    <string name="cf_cat_desconocida">Desconocido</string>
+    <string name="cf_explicamelo">Explícamelo</string>
+    <string name="cf_explicando">Claude lo está mirando…</string>
+    <string name="cf_explicar_error">Claude no ha podido contestar ahora. Vuelve a probar en un momento.</string>
+    <string name="cf_explicar_nota">A Claude solo se le envía la lista de dominios de esta app.</string>
+
+    <string name="cf_g_acceso">Acceso a internet</string>
+    <string name="cf_acceso_wifi">Wifi</string>
+    <string name="cf_acceso_datos">Datos móviles</string>
+    <string name="cf_acceso_nota">Sin internet, la app no encuentra ningún servidor. Alguna app de mensajería que conecta a direcciones fijas podría seguir funcionando.</string>
+    <string name="cf_esencial_propia">SIOS hace de filtro: no se puede dejar sin internet.</string>
+    <string name="cf_esencial_agente">Termux es donde funciona el agente de SIOS. Va fuera del filtro para que nunca se quede sin red.</string>
+    <string name="cf_esencial_google">Google Play y sus servicios llevan las notificaciones, las cuentas y las actualizaciones. Van fuera del filtro para que nunca se queden sin red.</string>
+    <string name="cf_esencial_telefonia">Telefonía: SMS, MMS, llamadas por wifi y datos del operador. Va fuera del filtro para que nunca se quede sin red.</string>
+    <string name="cf_esencial_sistema">Parte del sistema (la hora, la comprobación de la conexión, las descargas). Va fuera del filtro para que nunca se quede sin red.</string>
+    <string name="cf_confirmar_titulo">¿Quitar internet a %1$s?</string>
+    <string name="cf_confirmar_agente">Es donde funciona el agente de SIOS: sin internet, la IA dejará de contestar y de hacer cosas por ti.</string>
+    <string name="cf_confirmar_google">Muchas apps dependen de él: dejarían de llegar notificaciones y fallarían las cuentas de Google, la ubicación y las actualizaciones.</string>
+    <string name="cf_confirmar_telefonia">Pueden dejar de funcionar los MMS, las llamadas por wifi y los ajustes del operador.</string>
+    <string name="cf_confirmar_sistema">Dejarán de funcionar partes del sistema: la hora automática, la comprobación de la conexión y las descargas.</string>
+    <string name="cf_confirmar_quitar">Quitar internet</string>
+
+    <string name="cf_g_dominios">Dominios</string>
+    <string name="cf_dominios_vacio">Todavía no hay nada apuntado. Lo que haga con internet mientras el cortafuegos está encendido aparecerá aquí.</string>
+    <plurals name="cf_veces">
+        <item quantity="one">%1$s vez</item>
+        <item quantity="many">%1$s veces</item>
+        <item quantity="other">%1$s veces</item>
+    </plurals>
+    <string name="cf_estado_bloqueado">Bloqueado</string>
+    <string name="cf_estado_sin_red">Sin internet</string>
+    <string name="cf_estado_permitido">Permitido por ti</string>
+    <string name="cf_estado_bloqueado_ti">Bloqueado por ti</string>
+    <string name="cf_ultima">Última vez %1$s.</string>
+    <string name="cf_motivo_lista">Está en la lista de publicidad y rastreadores.</string>
+    <string name="cf_motivo_sin_red">La app no tiene internet en esta red.</string>
+    <string name="cf_motivo_pasa">Se dejó pasar.</string>
+    <string name="cf_motivo_permitido">Lo permites siempre.</string>
+    <string name="cf_motivo_bloqueado_ti">Lo bloqueas siempre.</string>
+    <string name="cf_permitir_siempre">Permitir siempre</string>
+    <string name="cf_bloquear_siempre">Bloquear siempre</string>
+    <string name="cf_quitar_excepcion">Quitar la excepción</string>
+    <string name="cf_quitar_bloqueo">Dejar de bloquearlo</string>
+    <string name="cf_ver_mas">Ver todos (%1$s)</string>
+</resources>

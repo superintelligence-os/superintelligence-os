@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mac_encontrar">Encontrar mi móvil</string>
+    <string name="mac_encontrar_nota">Desde tu ordenador, aunque esté lejos. Va cifrado por Nostr, una red abierta.</string>
+    <string name="intruso_titulo">Foto a quien intente desbloquearlo</string>
+    <string name="intruso_nota">Tras dos intentos fallidos, la cámara frontal hace una foto pequeña y la manda a tu ordenador. Viene apagado y no se guarda nada más.</string>
+    <string name="intruso_explicacion_admin">Solo para que SIOS sepa cuándo alguien falla al desbloquear y pueda hacer una foto con la cámara frontal. No puede hacer nada más.</string>
+</resources>

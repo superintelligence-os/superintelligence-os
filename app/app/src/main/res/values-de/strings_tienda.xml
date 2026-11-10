@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Apps predeterminadas, tiendas y modo escritorio (Ajustes de SIOS). -->
+<resources>
+    <string name="tienda_titulo">Apps</string>
+    <string name="tienda_r_navegador">Browser: %1$s</string>
+    <string name="tienda_preguntar_corto">fragen</string>
+    <string name="tienda_g_predeterminadas">Standard-Apps</string>
+    <string name="tienda_g_predeterminadas_nota">Welche App sich wofür öffnet. Geändert wird das in den Android-Einstellungen.</string>
+    <string name="tienda_navegador">Browser</string>
+    <string name="tienda_correo">E-Mail</string>
+    <string name="tienda_mapas">Karten</string>
+    <string name="tienda_mensajes">Nachrichten</string>
+    <string name="tienda_ninguna">Keine installiert · im Store suchen</string>
+    <string name="tienda_preguntar">Android fragt jedes Mal</string>
+    <string name="tienda_todas">Alle Standard-Apps</string>
+    <string name="tienda_todas_nota">Telefon, Startbildschirm, Assistent und der Rest, in Android</string>
+    <string name="tienda_g_tiendas">Stores</string>
+    <string name="tienda_g_tiendas_nota">Woher du Apps installierst.</string>
+    <string name="tienda_neo_nota">Freie Apps von F-Droid. Installiert und aktualisiert, ohne zu fragen.</string>
+    <string name="tienda_libre_nota">Freie Apps von F-Droid.</string>
+    <string name="tienda_aurora_nota">Google-Play-Apps ohne Google-Konto.</string>
+    <string name="tienda_play_nota">Mit deinem Google-Konto.</string>
+    <string name="tienda_actualizaciones_nota">Die Apps, die SIOS mitbringt, werden wie alle anderen über ihren Store aktualisiert.</string>
+    <string name="modoesc_titulo">Desktop-Modus</string>
+    <string name="modoesc_monitor">Monitor</string>
+    <string name="modoesc_r_no_disponible">In dieser Version nicht verfügbar</string>
+    <string name="modoesc_r_conectado">%1$s verbunden</string>
+    <string name="modoesc_r_activo">Der Monitor wie ein Computer</string>
+    <string name="modoesc_r_duplicar">Der Monitor spiegelt den Bildschirm</string>
+    <string name="modoesc_sin_monitor">Kein Monitor verbunden</string>
+    <string name="modoesc_sin_monitor_nota">Per USB-C (DisplayPort) oder mit einem HDMI-Adapter anschließen.</string>
+    <string name="modoesc_inalambrico_nota">Kabellos · %1$d × %2$d · spiegelt den Bildschirm</string>
+    <string name="modoesc_conectado_ordenador">%1$d × %2$d · Desktop mit Fenstern</string>
+    <string name="modoesc_conectado_duplicando">%1$d × %2$d · Bildschirm wird gespiegelt</string>
+    <string name="modoesc_no_disponible">Diese SIOS-Version enthält den Android-Desktop für Monitore nicht. Ein angeschlossener Monitor zeigt den Handybildschirm.</string>
+    <string name="modoesc_nota">Mit einem Monitor wird das Handy zum Computer: Fenster, Taskleiste, Maus und Tastatur.</string>
+    <string name="modoesc_activar_nota">Ausgeschaltet zeigt der Monitor dasselbe wie das Handy.</string>
+    <string name="modoesc_al_conectar">Beim Anschließen eines Monitors</string>
+    <string name="modoesc_ordenador">Computer</string>
+    <string name="modoesc_duplicar">Spiegeln</string>
+    <string name="modoesc_todas">Alle Apps in Fenstern</string>
+    <string name="modoesc_todas_nota">Auch Apps, die nur im Vollbild laufen. Manche sehen vielleicht seltsam aus.</string>
+    <string name="modoesc_fallo">Die Systemeinstellung konnte nicht geändert werden.</string>
+    <string name="modoesc_g_uso">So geht\'s</string>
+    <string name="modoesc_uso_conectar">Änderungen gelten beim nächsten Anschließen des Monitors. Android fragt beim Anschließen eventuell, was passieren soll.</string>
+    <string name="modoesc_uso_raton">Maus und Tastatur per Bluetooth oder USB (mit einem USB-C-Hub auch Laden).</string>
+    <string name="modoesc_uso_ventanas">Öffne Apps über die Taskleiste; verschiebe Fenster an ihrer Titelleiste und ändere die Größe an den Rändern.</string>
+    <string name="modoesc_uso_movil">Das Handy bleibt das Handy: SIOS, Claude und Anrufe bleiben auf seinem Bildschirm.</string>
+    <string name="modoesc_inalambrica">Ohne Kabel spiegelt „Bildschirm übertragen“ das Handy auf einen kompatiblen Fernseher oder Monitor (Miracast), ohne Desktop.</string>
+    <string name="modoesc_enviar_pantalla">Bildschirm übertragen</string>
+</resources>

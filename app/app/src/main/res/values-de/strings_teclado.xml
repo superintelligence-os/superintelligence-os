@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS-Tastatur und gemischte PIN auf dem Sperrbildschirm (getrennt von strings.xml). -->
+<resources>
+    <string name="teclado_sios_nombre">SIOS-Tastatur</string>
+    <string name="teclado_sios_usar">SIOS-Tastatur verwenden</string>
+    <string name="teclado_privado">Privates Feld: Es wird nichts gespeichert</string>
+    <string name="teclado_borrar">Löschen</string>
+    <string name="teclado_mayus">Umschalttaste</string>
+    <string name="teclado_aceptar">Fertig</string>
+    <string name="teclado_cambiar">Tastatur wechseln</string>
+    <string name="teclado_espacio">Leertaste</string>
+
+    <string name="seg_titulo">Sperrbildschirm</string>
+    <string name="pin_aleatorio_titulo">PIN-Ziffern mischen</string>
+    <string name="pin_aleatorio_nota">Die Ziffern wechseln bei jedem Entsperren ihren Platz. So kann niemand deine PIN daran erraten, wo du tippst, oder an Spuren auf dem Display. Gilt nur für die PIN.</string>
+    <string name="pin_aleatorio_sin_bloqueo">Funktioniert nur mit einer PIN, und du hast noch keine Displaysperre.</string>
+    <string name="pin_aleatorio_poner">PIN festlegen</string>
+</resources>

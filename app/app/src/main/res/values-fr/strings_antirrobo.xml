@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Encontrar mi móvil: la pantalla de móvil perdido (sistema/Antirrobo.kt). -->
+<resources>
+    <string name="perdido_titulo">Ce téléphone a été perdu</string>
+    <string name="perdido_texto_defecto">Si vous l’avez trouvé, merci d’appeler son propriétaire.</string>
+    <string name="perdido_llamar">Appeler le propriétaire</string>
+    <string name="perdido_soy_dueno">Je suis le propriétaire</string>
+    <string name="perdido_quitar">Je l’ai retrouvé : désactiver le mode perdu</string>
+</resources>

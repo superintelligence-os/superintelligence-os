@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Apps predeterminadas, tiendas y modo escritorio (Ajustes de SIOS). -->
+<resources>
+    <string name="tienda_titulo">App</string>
+    <string name="tienda_r_navegador">Browser: %1$s</string>
+    <string name="tienda_preguntar_corto">chiedi</string>
+    <string name="tienda_g_predeterminadas">App predefinite</string>
+    <string name="tienda_g_predeterminadas_nota">Quale app si apre per ogni cosa. Si cambia nelle impostazioni di Android.</string>
+    <string name="tienda_navegador">Browser</string>
+    <string name="tienda_correo">Email</string>
+    <string name="tienda_mapas">Mappe</string>
+    <string name="tienda_mensajes">Messaggi</string>
+    <string name="tienda_ninguna">Nessuna installata · cerca nello store</string>
+    <string name="tienda_preguntar">Android chiede ogni volta</string>
+    <string name="tienda_todas">Tutte le app predefinite</string>
+    <string name="tienda_todas_nota">Telefono, home, assistente e le altre, in Android</string>
+    <string name="tienda_g_tiendas">Store</string>
+    <string name="tienda_g_tiendas_nota">Da dove installare app.</string>
+    <string name="tienda_neo_nota">App libere di F-Droid. Installa e aggiorna senza chiedere.</string>
+    <string name="tienda_libre_nota">App libere di F-Droid.</string>
+    <string name="tienda_aurora_nota">App di Google Play senza account Google.</string>
+    <string name="tienda_play_nota">Con il tuo account Google.</string>
+    <string name="tienda_actualizaciones_nota">Le app incluse in SIOS si aggiornano dal loro store, come tutte le altre.</string>
+    <string name="modoesc_titulo">Modalità desktop</string>
+    <string name="modoesc_monitor">Monitor</string>
+    <string name="modoesc_r_no_disponible">Non disponibile in questa versione</string>
+    <string name="modoesc_r_conectado">%1$s collegato</string>
+    <string name="modoesc_r_activo">Il monitor come un computer</string>
+    <string name="modoesc_r_duplicar">Il monitor duplica lo schermo</string>
+    <string name="modoesc_sin_monitor">Nessun monitor collegato</string>
+    <string name="modoesc_sin_monitor_nota">Collegalo via USB-C (DisplayPort) o con un adattatore HDMI.</string>
+    <string name="modoesc_inalambrico_nota">Wireless · %1$d × %2$d · duplica lo schermo</string>
+    <string name="modoesc_conectado_ordenador">%1$d × %2$d · desktop con finestre</string>
+    <string name="modoesc_conectado_duplicando">%1$d × %2$d · schermo duplicato</string>
+    <string name="modoesc_no_disponible">Questa versione di SIOS non include il desktop di Android per i monitor. Collegandone uno, vedrai lo schermo del telefono.</string>
+    <string name="modoesc_nota">Con un monitor, il telefono si usa come un computer: finestre, barra delle applicazioni, mouse e tastiera.</string>
+    <string name="modoesc_activar_nota">Se la disattivi, il monitor mostra lo stesso del telefono.</string>
+    <string name="modoesc_al_conectar">Quando colleghi un monitor</string>
+    <string name="modoesc_ordenador">Computer</string>
+    <string name="modoesc_duplicar">Duplica</string>
+    <string name="modoesc_todas">Tutte le app in finestre</string>
+    <string name="modoesc_todas_nota">Anche quelle che vanno solo a schermo intero. Qualcuna potrebbe sembrare strana.</string>
+    <string name="modoesc_fallo">Impossibile cambiare l\'impostazione di sistema.</string>
+    <string name="modoesc_g_uso">Come si usa</string>
+    <string name="modoesc_uso_conectar">Le modifiche valgono la prossima volta che colleghi il monitor. Android potrebbe chiederti cosa fare quando lo colleghi.</string>
+    <string name="modoesc_uso_raton">Mouse e tastiera via Bluetooth o USB (con un hub USB-C, anche la ricarica).</string>
+    <string name="modoesc_uso_ventanas">Apri le app dalla barra delle applicazioni; sposta le finestre dalla barra del titolo e ridimensionale dai bordi.</string>
+    <string name="modoesc_uso_movil">Il telefono resta il telefono: SIOS, Claude e le chiamate restano sul suo schermo.</string>
+    <string name="modoesc_inalambrica">Senza cavo, «Trasmetti schermo» duplica il telefono su una TV o un monitor compatibile (Miracast), senza desktop.</string>
+    <string name="modoesc_enviar_pantalla">Trasmetti schermo</string>
+</resources>

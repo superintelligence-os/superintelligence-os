@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Claude es el asistente digital de serie. -->
+    <string name="config_defaultAssistant" translatable="false">com.sios</string>
+    <!-- Búsqueda en pantalla (mantener pulsada la barra de navegación): Claude, con la captura de
+         lo que se ve, en lugar de «Rodea para buscar» de Google. -->
+    <string name="config_defaultContextualSearchPackageName" translatable="false">com.sios</string>
+    <!-- Tema del sistema desde el primer encendido (también en el asistente de bienvenida), para
+         cualquier color de carcasa (*): SIOS en blanco y negro (MONOCHROMATIC con el hueso de la
+         marca). Al elegir una IA, la app cambia a su color. -->
+    <string-array name="theming_defaults" translatable="false">
+        <item>*|MONOCHROMATIC|#F4F1EA</item>
+    </string-array>
+    <!-- Google Play Services es el «configurador» del dispositivo, como en los Pixel: así tiene
+         WRITE_DEVICE_CONFIG y no se cierra al sincronizar sus ajustes («Permission denial to mutate
+         flag»). En la base de LineageOS el rol era de SimpleDeviceConfig, que no lo necesita: va
+         firmada con la clave del sistema y conserva el permiso por firma. En la edición sin Google
+         el paquete no existe y el rol se queda sin dueño, sin efecto. -->
+    <string name="config_deviceConfiguratorPackageName" translatable="false">com.google.android.gms</string>
+    <!-- Mantener pulsado el botón de encendido abre Claude (5 = asistente). -->
+    <integer name="config_longPressOnPowerBehavior">5</integer>
+    <!-- Claude lee las notificaciones (resumen, pendientes, foco, responder) desde el primer arranque. -->
+    <string name="config_defaultListenerAccessPackages" translatable="false">com.sios</string>
+    <!-- Claude filtra las llamadas: identifica desconocidos, bloquea y silencia. -->
+    <string name="config_defaultCallScreening" translatable="false">com.sios</string>
+    <!-- Claude es el teléfono: marcador, pantalla de llamada y «Que conteste Claude». -->
+    <string name="config_defaultDialer" translatable="false">com.sios</string>
+    <!-- Emergencias de SIOS. Pulsar 5 veces el botón de encendido: lo vigila el propio sistema
+         (GestureLauncherService, también con la pantalla apagada) y SystemUI abre el SOS de SIOS
+         (com.sios, ACTION_LAUNCH_EMERGENCY). Activado de serie, como en los Pixel; se quita en
+         Ajustes de SIOS › Emergencias. -->
+    <bool name="config_emergencyGestureEnabled">true</bool>
+    <bool name="config_defaultEmergencyGestureEnabled">true</bool>
+    <!-- El botón «Emergencia» de la pantalla de bloqueo y el del menú de apagado abren la pantalla de
+         emergencias de SIOS (SOS, llamar al 112, ficha médica y contactos) en lugar del teclado de
+         emergencia de Android, que sigue ahí (se abre desde esa misma pantalla). -->
+    <string name="config_emergency_dialer_package" translatable="false">com.sios</string>
+    <!-- Letra de SIOS (Montserrat, la de la app Claude) en todo el sistema. -->
+    <string name="config_headlineFontFamily" translatable="false">sios-sans</string>
+    <string name="config_headlineFontFamilyMedium" translatable="false">sios-sans-medium</string>
+    <string name="config_bodyFontFamily" translatable="false">sios-sans</string>
+    <string name="config_bodyFontFamilyMedium" translatable="false">sios-sans-medium</string>
+</resources>

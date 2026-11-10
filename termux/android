@@ -1,0 +1,21 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Ejecuta un comando de Android con permisos de shell (ADB contra el propio móvil).
+#   android getprop ro.build.version.release
+#   android am start -e name "Begoña Martínez" …     (cada argumento conserva sus comillas)
+#   android "dumpsys battery | grep level"            (un solo argumento = línea de shell tal cual)
+DISPOSITIVO="${SIOS_ADB:-127.0.0.1:5555}"
+if ! adb -s "$DISPOSITIVO" get-state >/dev/null 2>&1; then
+  adb connect "$DISPOSITIVO" >/dev/null 2>&1
+fi
+
+if [ $# -eq 1 ]; then
+  exec adb -s "$DISPOSITIVO" shell "$1"
+fi
+
+# adb shell junta los argumentos con espacios y el shell de Android los vuelve a partir:
+# se envuelve cada uno en comillas simples para que lleguen enteros.
+linea=""
+for a in "$@"; do
+  linea+=" '${a//\'/\'\\\'\'}'"
+done
+exec adb -s "$DISPOSITIVO" shell "$linea"

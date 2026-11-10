@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Teclado de SIOS: un subtipo por idioma de la app (la distribución y el diccionario siguen al idioma del móvil).
+     isDefault: el sistema lo da por activado de serie (es una app del sistema en SIOS); que sea el
+     predeterminado lo pone la app al arrancar, una sola vez (Teclados.deSerie). -->
+<input-method xmlns:android="http://schemas.android.com/apk/res/android"
+    android:settingsActivity="com.sios.ajustes.AjustesActivity"
+    android:isDefault="true"
+    android:supportsSwitchingToNextInputMethod="true">
+    <subtype android:label="@string/teclado_es" android:imeSubtypeLocale="es_ES" android:imeSubtypeMode="keyboard" android:languageTag="es-ES" />
+    <subtype android:label="@string/teclado_en" android:imeSubtypeLocale="en_US" android:imeSubtypeMode="keyboard" android:languageTag="en-US" />
+    <subtype android:label="@string/teclado_fr" android:imeSubtypeLocale="fr_FR" android:imeSubtypeMode="keyboard" android:languageTag="fr-FR" />
+    <subtype android:label="@string/teclado_de" android:imeSubtypeLocale="de_DE" android:imeSubtypeMode="keyboard" android:languageTag="de-DE" />
+    <subtype android:label="@string/teclado_it" android:imeSubtypeLocale="it_IT" android:imeSubtypeMode="keyboard" android:languageTag="it-IT" />
+    <subtype android:label="@string/teclado_pt" android:imeSubtypeLocale="pt_PT" android:imeSubtypeMode="keyboard" android:languageTag="pt-PT" />
+</input-method>

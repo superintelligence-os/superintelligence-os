@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- La Bóveda en el Credential Manager de Android: solo contraseñas (sin llaves de acceso). -->
+<credential-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:settingsActivity="com.sios.boveda.BovedaActivity"
+    android:settingsSubtitle="@string/bv_cm_subtitulo">
+    <capabilities>
+        <capability name="android.credentials.TYPE_PASSWORD_CREDENTIAL" />
+    </capabilities>
+</credential-provider>

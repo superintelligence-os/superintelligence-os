@@ -1,0 +1,4 @@
+Diccionarios del teclado de Claude (diccionario-es.txt, diccionario-en.txt):
+palabras y frecuencias de FrequencyWords (Hermit Dave), https://github.com/hermitdave/FrequencyWords,
+derivadas de OpenSubtitles. Licencia del contenido: CC BY-SA 4.0
+(https://creativecommons.org/licenses/by-sa/4.0/). Recortadas a las 40 000 (es) y 30 000 (en, fr, de, it, pt) más frecuentes. Archivos: diccionario-{es,en,fr,de,it,pt}.txt.

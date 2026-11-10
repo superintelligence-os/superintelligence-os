@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="es" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#262624" media="(prefers-color-scheme: dark)">
+<title>Claude</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icono.svg" type="image/svg+xml">
+<style>
+  :root {
+    --fondo: #faf9f5;
+    --superficie: #f0eee6;
+    --borde: #e3e0d6;
+    --texto: #1f1e1d;
+    --texto-2: #6b6a68;
+    --acento: #c96442;
+    --acento-suave: rgba(201, 100, 66, 0.1);
+    --bien: #3d7a4f;
+    --mal: #b3402e;
+    --radio: 18px;
+    /* Muelle suave: arranca rápido y se asienta sin rebote brusco. */
+    --muelle: linear(0, 0.009, 0.035 2.1%, 0.141 4.4%, 0.281 6.7%, 0.723 15.9%, 0.842 19.8%, 0.938 24.6%, 0.983 28.4%, 1.011 32.8%, 1.024 38%, 1.022 44.7%, 1.007 57.2%, 1.001 72.5%, 1);
+    --suave: cubic-bezier(0.2, 0.8, 0.2, 1);
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fondo: #262624;
+      --superficie: #30302e;
+      --borde: #3d3d3a;
+      --texto: #ecebe6;
+      --texto-2: #a3a29d;
+      --acento: #d97757;
+      --acento-suave: rgba(217, 119, 87, 0.14);
+      --bien: #7cbf8e;
+      --mal: #e0816f;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--fondo);
+    color: var(--texto);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+  button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
+  button:active { transform: scale(0.96); }
+  button { transition: transform 0.25s var(--muelle), background-color 0.2s var(--suave), opacity 0.2s var(--suave); }
+
+  /* ---------- Cabecera ---------- */
+  header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: calc(env(safe-area-inset-top) + 10px) 16px 10px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s var(--suave);
+  }
+  header.con-sombra { border-bottom-color: var(--borde); }
+  .marca { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+  .marca svg { width: 26px; height: 26px; color: var(--acento); flex: none; }
+  .marca-textos { display: flex; flex-direction: column; line-height: 1.2; }
+  .marca-nombre { font-weight: 600; font-size: 17px; }
+  .marca-estado { font-size: 13px; color: var(--texto-2); transition: color 0.3s var(--suave); }
+  .marca-estado.trabajando { color: var(--acento); }
+  .icono-boton {
+    width: 40px; height: 40px; border-radius: 12px;
+    display: grid; place-items: center;
+  }
+  .icono-boton:hover { background: var(--superficie); }
+  .icono-boton svg { width: 22px; height: 22px; }
+
+  /* ---------- Conversación ---------- */
+  main {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 8px 16px 24px;
+    scroll-behavior: smooth;
+  }
+  .hilo { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+
+  .entra { animation: entrar 0.55s var(--muelle) both; }
+  @keyframes entrar {
+    from { opacity: 0; transform: translateY(10px) scale(0.985); }
+    to { opacity: 1; transform: none; }
+  }
+
+  .usuario {
+    align-self: flex-end;
+    max-width: 85%;
+    background: var(--superficie);
+    padding: 10px 14px;
+    border-radius: var(--radio) var(--radio) 6px var(--radio);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .respuesta { overflow-wrap: anywhere; }
+  .respuesta > :first-child { margin-top: 0; }
+  .respuesta > :last-child { margin-bottom: 0; }
+  .respuesta p { margin: 0 0 10px; }
+  .respuesta ul, .respuesta ol { margin: 0 0 10px; padding-left: 22px; }
+  .respuesta li { margin: 2px 0; }
+  .respuesta code {
+    font: 14px/1.4 ui-monospace, "SF Mono", Menlo, monospace;
+    background: var(--superficie);
+    padding: 1px 5px;
+    border-radius: 6px;
+  }
+  .respuesta pre {
+    background: var(--superficie);
+    padding: 10px 12px;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 0 0 10px;
+  }
+  .respuesta pre code { background: none; padding: 0; }
+  .respuesta a { color: var(--acento); }
+  .escribiendo::after {
+    content: "";
+    display: inline-block;
+    width: 8px; height: 8px;
+    margin-left: 4px;
+    border-radius: 50%;
+    background: var(--acento);
+    vertical-align: middle;
+    animation: latir 1s var(--suave) infinite alternate;
+  }
+  @keyframes latir { from { opacity: 0.25; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+
+  /* Pasos del agente */
+  .pasos { display: grid; grid-template-rows: auto 1fr; }
+  .pasos-resumen {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--texto-2);
+    padding: 2px 0;
+    justify-self: start;
+  }
+  .pasos.plegable .pasos-resumen { display: inline-flex; }
+  .pasos-resumen svg { width: 14px; height: 14px; transition: transform 0.4s var(--muelle); }
+  .pasos.abierto .pasos-resumen svg { transform: rotate(90deg); }
+  .pasos-cuerpo { display: grid; grid-template-rows: 1fr; transition: grid-template-rows 0.45s var(--muelle); }
+  .pasos.plegable:not(.abierto) .pasos-cuerpo { grid-template-rows: 0fr; }
+  .pasos-lista { overflow: hidden; display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+  .pasos.plegable .pasos-lista { padding-top: 4px; }
+  .paso {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 14px; color: var(--texto-2);
+    min-height: 22px;
+  }
+  .paso-texto { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .paso-icono { width: 16px; height: 16px; flex: none; display: grid; place-items: center; }
+  .paso-icono svg { width: 16px; height: 16px; }
+  .giro {
+    width: 13px; height: 13px; border-radius: 50%;
+    border: 2px solid var(--borde);
+    border-top-color: var(--acento);
+    animation: girar 0.8s linear infinite;
+  }
+  @keyframes girar { to { transform: rotate(360deg); } }
+  .paso.hecho .paso-icono { color: var(--bien); }
+  .paso.error .paso-icono { color: var(--mal); }
+  .paso-icono svg { animation: aparecer 0.4s var(--muelle) both; }
+  @keyframes aparecer { from { transform: scale(0.4); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  /* Tarjeta de confirmación */
+  .permiso {
+    border: 1.5px solid var(--acento);
+    background: var(--acento-suave);
+    border-radius: var(--radio);
+    padding: 14px;
+    display: flex; flex-direction: column; gap: 10px;
+    transition: border-color 0.3s var(--suave), background-color 0.3s var(--suave);
+  }
+  .permiso.resuelto { border-color: var(--borde); background: transparent; }
+  .permiso-etiqueta { font-size: 13px; color: var(--acento); font-weight: 600; }
+  .permiso.resuelto .permiso-etiqueta { color: var(--texto-2); }
+  .permiso-titulo { font-weight: 600; }
+  .permiso-detalle { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .permiso-detalle.codigo {
+    font: 13px/1.45 ui-monospace, "SF Mono", Menlo, monospace;
+    background: var(--fondo);
+    border-radius: 10px;
+    padding: 8px 10px;
+    max-height: 180px;
+    overflow: auto;
+  }
+  .permiso.resuelto .permiso-detalle.codigo { background: var(--superficie); }
+  .permiso-botones { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .permiso-botones button {
+    height: 44px; border-radius: 12px; font-weight: 600;
+  }
+  .boton-primario { background: var(--acento); color: #fff; }
+  .boton-secundario { background: var(--superficie); }
+  .permiso.resuelto .permiso-botones { display: none; }
+  .permiso-resultado { display: none; font-size: 14px; font-weight: 600; }
+  .permiso.resuelto .permiso-resultado { display: block; animation: entrar 0.45s var(--muelle) both; }
+  .permiso-resultado.permitido { color: var(--bien); }
+  .permiso-resultado.denegado { color: var(--mal); }
+
+  .error-msg { font-size: 14px; color: var(--mal); }
+
+  /* Portada vacía */
+  .portada {
+    margin: 12vh auto 0;
+    max-width: 520px;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 18px;
+  }
+  .portada svg { width: 44px; height: 44px; color: var(--acento); }
+  .portada h1 { font-size: 26px; font-weight: 500; margin: 0; letter-spacing: -0.01em; }
+  .sugerencias { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .sugerencia {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+  .sugerencia:hover { border-color: var(--acento); }
+
+  /* ---------- Escritura ---------- */
+  footer {
+    padding: 8px 12px calc(env(safe-area-inset-bottom) + 10px);
+  }
+  .caja {
+    max-width: 720px; margin: 0 auto;
+    display: flex; align-items: flex-end; gap: 8px;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 24px;
+    padding: 6px 6px 6px 16px;
+    transition: border-color 0.25s var(--suave), box-shadow 0.25s var(--suave);
+  }
+  .caja:focus-within { border-color: var(--acento); box-shadow: 0 0 0 3px var(--acento-suave); }
+  textarea {
+    flex: 1;
+    border: 0; outline: 0; resize: none;
+    background: transparent; color: inherit;
+    font: inherit;
+    padding: 8px 0;
+    max-height: 160px;
+    height: 40px;
+  }
+  textarea::placeholder { color: var(--texto-2); }
+  .boton-enviar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--acento); color: #fff;
+    display: grid; place-items: center; flex: none;
+  }
+  .boton-enviar svg { width: 20px; height: 20px; }
+  .boton-enviar:disabled { opacity: 0.35; cursor: default; }
+  .boton-enviar:disabled:active { transform: none; }
+  .boton-enviar .i-parar { display: none; }
+  .boton-enviar.parar { background: var(--texto); color: var(--fondo); }
+  .boton-enviar.parar .i-enviar { display: none; }
+  .boton-enviar.parar .i-parar { display: block; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+<header id="cabecera">
+  <div class="marca">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5c.5 0 .9.4.9.9v5.3l3.8-3.8a.9.9 0 1 1 1.3 1.3l-3.8 3.8h5.4a.9.9 0 0 1 0 1.8h-5.4l3.8 3.8a.9.9 0 1 1-1.3 1.3l-3.8-3.8v5.4a.9.9 0 0 1-1.8 0v-5.4l-3.8 3.8a.9.9 0 1 1-1.3-1.3l3.8-3.8H4.4a.9.9 0 0 1 0-1.8h5.4L6 6.2a.9.9 0 1 1 1.3-1.3l3.8 3.8V3.4c0-.5.4-.9.9-.9Z"/></svg>
+    <div class="marca-textos">
+      <span class="marca-nombre">Claude</span>
+      <span class="marca-estado" id="estado">Conectando…</span>
+    </div>
+  </div>
+  <button class="icono-boton" id="nueva" aria-label="Nueva conversación" title="Nueva conversación">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+  </button>
+</header>
+
+<main id="desplazable">
+  <div class="hilo" id="hilo"></div>
+</main>
+
+<footer>
+  <form class="caja" id="formulario">
+    <textarea id="entrada" rows="1" placeholder="Pídele algo a tu móvil…" aria-label="Mensaje" enterkeyhint="send"></textarea>
+    <button class="boton-enviar" id="enviar" type="submit" aria-label="Enviar" disabled>
+      <svg class="i-enviar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+      <svg class="i-parar" viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="7" width="10" height="10" rx="2"/></svg>
+    </button>
+  </form>
+</footer>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const hilo = $("#hilo");
+const desplazable = $("#desplazable");
+const entrada = $("#entrada");
+const botonEnviar = $("#enviar");
+const estadoTexto = $("#estado");
+
+const ICONOS = {
+  hecho: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>',
+  error: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m4.5 4.5 7 7M11.5 4.5l-7 7"/></svg>',
+  flecha: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg>',
+};
+
+const SUGERENCIAS = [
+  "¿Cuánta batería me queda?",
+  "¿Tengo SMS sin leer?",
+  "Pon una alarma a las 7:30",
+  "¿Qué tengo esta semana en el calendario?",
+];
+
+let ocupado = false;
+let textoActual = null; // { el, crudo } de la respuesta que se está escribiendo
+let pasosActuales = null; // grupo de pasos abierto
+const pasosPorId = new Map();
+const permisosPorId = new Map();
+
+// ---------- Markdown mínimo y seguro ----------
+function escapar(s) {
+  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+}
+function enLinea(s) {
+  return escapar(s)
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/(^|[^*])\*([^*\n]+)\*/g, "$1<em>$2</em>")
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+}
+function markdown(src) {
+  const partes = src.split(/```[^\n]*\n?/);
+  let html = "";
+  partes.forEach((parte, i) => {
+    if (i % 2 === 1) { html += `<pre><code>${escapar(parte.replace(/\n$/, ""))}</code></pre>`; return; }
+    for (const bloque of parte.split(/\n{2,}/)) {
+      const lineas = bloque.split("\n").filter((l) => l.trim());
+      if (!lineas.length) continue;
+      if (lineas.every((l) => /^\s*[-*•] /.test(l))) {
+        html += "<ul>" + lineas.map((l) => `<li>${enLinea(l.replace(/^\s*[-*•] /, ""))}</li>`).join("") + "</ul>";
+      } else if (lineas.every((l) => /^\s*\d+[.)] /.test(l))) {
+        html += "<ol>" + lineas.map((l) => `<li>${enLinea(l.replace(/^\s*\d+[.)] /, ""))}</li>`).join("") + "</ol>";
+      } else {
+        html += `<p>${lineas.map((l) => enLinea(l.replace(/^#{1,6} /, ""))).join("<br>")}</p>`;
+      }
+    }
+  });
+  return html;
+}
+
+// ---------- Desplazamiento ----------
+function cercaDelFinal() {
+  return desplazable.scrollHeight - desplazable.scrollTop - desplazable.clientHeight < 120;
+}
+function bajar(forzar = false) {
+  if (forzar || cercaDelFinal()) requestAnimationFrame(() => (desplazable.scrollTop = desplazable.scrollHeight));
+}
+desplazable.addEventListener("scroll", () => $("#cabecera").classList.toggle("con-sombra", desplazable.scrollTop > 4));
+
+// ---------- Pintado ----------
+function añadir(el, animar = true) {
+  $(".portada")?.remove();
+  if (animar) el.classList.add("entra");
+  hilo.appendChild(el);
+  return el;
+}
+
+function portada() {
+  if (hilo.children.length) return;
+  const p = document.createElement("div");
+  p.className = "portada entra";
+  p.innerHTML = `${$(".marca svg").outerHTML}<h1>¿Qué hacemos con tu móvil?</h1><div class="sugerencias"></div>`;
+  for (const s of SUGERENCIAS) {
+    const b = document.createElement("button");
+    b.className = "sugerencia";
+    b.textContent = s;
+    b.onclick = () => enviar(s);
+    p.querySelector(".sugerencias").appendChild(b);
+  }
+  hilo.appendChild(p);
+}
+
+function cerrarBloques() {
+  textoActual = null;
+  pasosActuales = null;
+}
+
+function pintarUsuario(texto, animar) {
+  cerrarBloques();
+  const d = document.createElement("div");
+  d.className = "usuario";
+  d.textContent = texto;
+  añadir(d, animar);
+}
+
+function nuevoTexto(animar = true) {
+  pasosActuales = null;
+  const d = document.createElement("div");
+  d.className = "respuesta";
+  añadir(d, animar);
+  textoActual = { el: d, crudo: "" };
+  return textoActual;
+}
+
+let pintadoPendiente = false;
+function repintarTexto() {
+  if (pintadoPendiente) return;
+  pintadoPendiente = true;
+  requestAnimationFrame(() => {
+    pintadoPendiente = false;
+    if (!textoActual) return;
+    textoActual.el.innerHTML = markdown(textoActual.crudo);
+    textoActual.el.classList.add("escribiendo");
+    bajar();
+  });
+}
+
+function finalizarTexto(texto, animar) {
+  const t = textoActual || nuevoTexto(animar);
+  t.crudo = texto;
+  t.el.innerHTML = markdown(texto);
+  t.el.classList.remove("escribiendo");
+  textoActual = null;
+}
+
+function grupoPasos(animar) {
+  if (pasosActuales) return pasosActuales;
+  textoActual?.el.classList.remove("escribiendo");
+  textoActual = null;
+  const g = document.createElement("div");
+  g.className = "pasos";
+  g.innerHTML = `<button class="pasos-resumen" type="button">${ICONOS.flecha}<span></span></button>
+    <div class="pasos-cuerpo"><div class="pasos-lista"></div></div>`;
+  g.querySelector(".pasos-resumen").onclick = () => g.classList.toggle("abierto");
+  añadir(g, animar);
+  pasosActuales = g;
+  return g;
+}
+
+function iconoPaso(estado) {
+  return estado === "en_curso" ? '<span class="giro"></span>' : ICONOS[estado] || ICONOS.hecho;
+}
+
+function pintarPaso({ id, resumen, estado }, animar) {
+  const g = grupoPasos(animar);
+  const p = document.createElement("div");
+  p.className = `paso ${estado}`;
+  p.innerHTML = `<span class="paso-icono">${iconoPaso(estado)}</span><span class="paso-texto"></span>`;
+  p.querySelector(".paso-texto").textContent = resumen;
+  if (animar) p.classList.add("entra");
+  g.querySelector(".pasos-lista").appendChild(p);
+  pasosPorId.set(id, p);
+}
+
+function terminarPaso(id, estado) {
+  const p = pasosPorId.get(id);
+  if (!p) return;
+  p.className = `paso ${estado}`;
+  p.querySelector(".paso-icono").innerHTML = iconoPaso(estado);
+}
+
+// Al acabar un turno, los grupos de 3 o más pasos se pliegan en "N pasos".
+function plegarPasos() {
+  for (const g of hilo.querySelectorAll(".pasos:not(.plegable)")) {
+    const n = g.querySelectorAll(".paso").length;
+    if (n < 3) continue;
+    g.querySelector(".pasos-resumen span").textContent = `${n} pasos`;
+    g.classList.add("plegable");
+  }
+}
+
+function pintarPermiso(ev, animar) {
+  cerrarBloques();
+  const c = document.createElement("div");
+  c.className = "permiso";
+  c.innerHTML = `<div class="permiso-etiqueta">Necesita tu permiso</div>
+    <div class="permiso-titulo"></div>
+    ${ev.detalle ? `<div class="permiso-detalle${ev.codigo ? " codigo" : ""}"></div>` : ""}
+    <div class="permiso-botones">
+      <button class="boton-secundario" type="button" data-permitir="0">No permitir</button>
+      <button class="boton-primario" type="button" data-permitir="1">Permitir</button>
+    </div>
+    <div class="permiso-resultado"></div>`;
+  c.querySelector(".permiso-titulo").textContent = ev.titulo;
+  if (ev.detalle) c.querySelector(".permiso-detalle").textContent = ev.detalle;
+  for (const b of c.querySelectorAll("[data-permitir]")) {
+    b.onclick = () => {
+      c.querySelectorAll("button").forEach((x) => (x.disabled = true));
+      fetch("/permiso", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id: ev.id, permitir: b.dataset.permitir === "1" }),
+      });
+    };
+  }
+  añadir(c, animar);
+  permisosPorId.set(ev.id, c);
+  if (ev.estado && ev.estado !== "pendiente") resolverPermiso(ev.id, ev.estado);
+  bajar(true);
+}
+
+function resolverPermiso(id, estado) {
+  const c = permisosPorId.get(id);
+  if (!c) return;
+  const r = c.querySelector(".permiso-resultado");
+  r.className = `permiso-resultado ${estado}`;
+  r.textContent = estado === "permitido" ? "Permitido" : "No permitido";
+  c.querySelector(".permiso-etiqueta").textContent = "Confirmación";
+  c.classList.add("resuelto");
+}
+
+function pintarError(texto, animar) {
+  cerrarBloques();
+  const d = document.createElement("div");
+  d.className = "error-msg";
+  d.textContent = texto;
+  añadir(d, animar);
+}
+
+function ponerOcupado(v) {
+  ocupado = v;
+  estadoTexto.textContent = v ? "Trabajando…" : "Listo";
+  estadoTexto.classList.toggle("trabajando", v);
+  botonEnviar.classList.toggle("parar", v);
+  botonEnviar.setAttribute("aria-label", v ? "Detener" : "Enviar");
+  actualizarBoton();
+  if (!v) {
+    textoActual?.el.classList.remove("escribiendo");
+    cerrarBloques();
+    plegarPasos();
+  }
+}
+
+function aplicar(ev, animar = true) {
+  switch (ev.tipo) {
+    case "usuario": pintarUsuario(ev.texto, animar); break;
+    case "texto_inicio": if (!textoActual) nuevoTexto(animar); break;
+    case "texto_delta": (textoActual || nuevoTexto(animar)).crudo += ev.texto; repintarTexto(); break;
+    case "texto": finalizarTexto(ev.texto, animar); break;
+    case "herramienta": pintarPaso(ev, animar); break;
+    case "herramienta_fin": terminarPaso(ev.id, ev.estado); break;
+    case "permiso": pintarPermiso(ev, animar); break;
+    case "permiso_resuelto": resolverPermiso(ev.id, ev.estado); break;
+    case "error": pintarError(ev.texto, animar); break;
+    case "ocupado": ponerOcupado(ev.valor); break;
+    case "nueva": reiniciar(); break;
+    case "estado":
+      reiniciar(false);
+      ev.historial.forEach((h) => aplicar(h, false));
+      ponerOcupado(ev.ocupado);
+      if (!ev.historial.length) portada();
+      bajar(true);
+      return;
+  }
+  bajar();
+}
+
+function reiniciar(conPortada = true) {
+  hilo.innerHTML = "";
+  pasosPorId.clear();
+  permisosPorId.clear();
+  cerrarBloques();
+  if (conPortada) portada();
+}
+
+// ---------- Conexión ----------
+function conectar() {
+  const es = new EventSource("/eventos");
+  es.onmessage = (m) => aplicar(JSON.parse(m.data));
+  es.onerror = () => {
+    estadoTexto.textContent = "Reconectando…";
+    estadoTexto.classList.remove("trabajando");
+  };
+}
+
+// ---------- Escritura ----------
+function actualizarBoton() {
+  botonEnviar.disabled = !ocupado && !entrada.value.trim();
+}
+
+function ajustarAltura() {
+  entrada.style.height = "40px";
+  entrada.style.height = Math.min(entrada.scrollHeight, 160) + "px";
+}
+
+async function enviar(texto) {
+  texto = (texto ?? entrada.value).trim();
+  if (!texto || ocupado) return;
+  entrada.value = "";
+  ajustarAltura();
+  actualizarBoton();
+  const r = await fetch("/mensaje", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ texto }),
+  });
+  if (!r.ok) pintarError((await r.json()).error || "No se pudo enviar", true);
+  bajar(true);
+}
+
+$("#formulario").addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (ocupado) fetch("/detener", { method: "POST" });
+  else enviar();
+});
+entrada.addEventListener("input", () => { ajustarAltura(); actualizarBoton(); });
+entrada.addEventListener("keydown", (e) => {
+  // En teclado físico, Intro envía y Mayús+Intro hace salto de línea. En pantalla táctil, Intro es salto.
+  if (e.key === "Enter" && !e.shiftKey && !matchMedia("(pointer: coarse)").matches) {
+    e.preventDefault();
+    enviar();
+  }
+});
+$("#nueva").addEventListener("click", () => fetch("/nueva", { method: "POST" }));
+
+conectar();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+Lector de texto (OCR) de SIOS: modelos PP-OCRv5 de PaddleOCR (PaddlePaddle Authors), en ONNX.
+Licencia: Apache License 2.0 (https://www.apache.org/licenses/LICENSE-2.0).
+- assets/ocr/deteccion.onnx: PP-OCRv5_mobile_det,
+  https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det_onnx (revisión e6f4fa85f00e168c862bc462aebca69eef9b3d3d,
+  SHA-256 a431985659dc921974177a95adcfbb90fd9e51989a5e04d70d0b75f597b6e61d).
+- assets/ocr/reconocimiento.onnx: latin_PP-OCRv5_mobile_rec,
+  https://huggingface.co/PaddlePaddle/latin_PP-OCRv5_mobile_rec_onnx (revisión 89d3a50e2c27e2e7cceeab0e944c25c807d5db4f,
+  SHA-256 7888113072263cb471b93f66dd5e2ad70548dc526fa1ace760d0d973dd121498).
+- assets/ocr/latin.txt: el diccionario de caracteres de ese modelo (character_dict de su inference.yml), un carácter por línea.
+Proyecto original: https://github.com/PaddlePaddle/PaddleOCR. Se usan sin modificar.

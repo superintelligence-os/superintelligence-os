@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Memoria de pantalla («¿dónde vi…?»): ajustes, presentación, búsqueda, notificación y recuadro. -->
+<resources>
+    <string name="mp_titulo">Bildschirmgedächtnis</string>
+    <string name="mp_nota">Durchsuche, was auf deinem Bildschirm war: „Wo habe ich … gesehen?“. Standardmäßig aus; alles bleibt verschlüsselt auf dem Handy.</string>
+    <string name="mp_apagada_nota">Aus: Nichts von dem, was du siehst, wird gespeichert.</string>
+    <string name="mp_conocer">So funktioniert es</string>
+    <string name="mp_sin_manos">Zum Lesen des Bildschirms braucht es den Bedienungshilfen-Dienst von SIOS, und der ist gerade aus.</string>
+    <string name="mp_sin_manos_arreglar">Einschalten</string>
+    <string name="mp_estado_pausada">Pausiert: Es wird nichts Neues gespeichert.</string>
+    <string name="mp_cargando">Wird geladen …</string>
+    <plurals name="mp_momentos">
+        <item quantity="one">%d Moment gespeichert</item>
+        <item quantity="other">%d Momente gespeichert</item>
+    </plurals>
+    <string name="mp_ocupa">belegt %1$s</string>
+    <string name="mp_se_borra">wird nach %1$d Tagen gelöscht</string>
+    <string name="mp_recordando">Merken, was du siehst</string>
+    <string name="mp_buscar">Durchsuchen, was du gesehen hast</string>
+    <string name="mp_dias_titulo">Wie lange es gespeichert wird</string>
+    <string name="mp_dias_nota">Das Älteste wird automatisch gelöscht.</string>
+    <string name="mp_dias_7">7 Tage</string>
+    <string name="mp_dias_30">30 Tage</string>
+    <string name="mp_miniaturas_titulo">Miniaturen speichern</string>
+    <string name="mp_miniaturas_nota">Ein kleines, verschlüsseltes Bild von jedem Moment, um ihn auf einen Blick wiederzuerkennen. Braucht deutlich mehr Platz.</string>
+    <string name="mp_imagenes_titulo">In Bildern suchen</string>
+    <string name="mp_imagenes_lista">Bereit · %1$s auf dem Handy</string>
+    <string name="mp_imagenes_falta">Um Bilder ohne Text zu finden („das blaue Sofa“). Wird einmal geladen: %1$s.</string>
+    <string name="mp_descargar_corto">Laden</string>
+    <string name="mp_descargando">Wird geladen … %1$s von %2$s</string>
+    <string name="mp_descarga_sigue">Du kannst die Seite verlassen: Der Download läuft weiter, danach lassen sich auch Bilder durchsuchen.</string>
+    <string name="mp_comprobando">Modell wird geprüft …</string>
+    <string name="mp_descarga_fallo">Das Modell konnte nicht geladen werden.</string>
+    <string name="mp_descarga_sin_red">Keine Internetverbindung: Das Modell konnte nicht geladen werden.</string>
+    <string name="mp_reintentar">Erneut versuchen</string>
+    <string name="mp_cancelar">Abbrechen</string>
+    <string name="mp_red_pago">Du nutzt mobile Daten: Der Download kann dein Datenvolumen verbrauchen. Wenn du magst, schalte es nur mit Text ein und lade das Modell später im WLAN in den Einstellungen.</string>
+    <string name="mp_excluidas_titulo">Apps, die nicht gespeichert werden</string>
+    <string name="mp_excluidas_ninguna">Nur die, die nie gespeichert werden</string>
+    <plurals name="mp_excluidas_cuenta">
+        <item quantity="one">%d App ausgewählt, zusätzlich zu den üblichen</item>
+        <item quantity="other">%d Apps ausgewählt, zusätzlich zu den üblichen</item>
+    </plurals>
+    <string name="mp_siempre_fuera">Banken und Zahlungen, Passwörter und Codes, Inkognito, der Sperrbildschirm und SIOS werden nie gespeichert. Wähle hier weitere Apps.</string>
+    <string name="mp_siempre_fuera_app">Immer ausgenommen</string>
+    <string name="mp_borrar_todo">Alles löschen</string>
+    <string name="mp_borrar_titulo">Alles Gespeicherte löschen?</string>
+    <string name="mp_borrar_texto">Alles, was das Bildschirmgedächtnis gespeichert hat, wird samt Schlüsseln gelöscht. Das lässt sich nicht rückgängig machen. Ab jetzt merkt es sich weiter.</string>
+    <string name="mp_borrado">Gelöscht</string>
+    <string name="mp_desactivar">Ausschalten</string>
+    <string name="mp_desactivar_titulo">Bildschirmgedächtnis ausschalten?</string>
+    <string name="mp_desactivar_texto">Es merkt sich nichts mehr und alles wird gelöscht: das Gespeicherte, seine Schlüssel und das Bildmodell.</string>
+
+    <!-- Presentación -->
+    <string name="mp_p1_titulo">Wo habe ich das gesehen?</string>
+    <string name="mp_p1_texto">Das Bildschirmgedächtnis merkt sich, was über deinen Bildschirm läuft, damit du es später wiederfindest: den Code, die Adresse, die dir jemand gezeigt hat, das blaue Sofa im Shop. Es ist ausgeschaltet, und du entscheidest, ob du es willst.</string>
+    <string name="mp_p2_titulo">Was es speichert</string>
+    <string name="mp_p2_texto">Nur das Nötigste, um Dinge zu finden – und nur, wenn sich der Bildschirm wirklich ändert.</string>
+    <string name="mp_p2_1">Den Text, der auf dem Bildschirm zu sehen ist.</string>
+    <string name="mp_p2_2">Bei Bildern ihren Text und einen Fingerabdruck: 512 Zahlen, um sie nach ihrem Inhalt zu finden. Nie das Bild oder eine Beschreibung.</string>
+    <string name="mp_p2_3">Wenn du willst, eine kleine verschlüsselte Miniatur von jedem Moment. Standardmäßig aus.</string>
+    <string name="mp_p3_titulo">Was es nie speichert</string>
+    <string name="mp_p3_texto">Manches wird nie gemerkt, nicht einmal verschlüsselt.</string>
+    <string name="mp_p3_1">Passwörter und auch nicht den Bildschirm, auf dem du sie eingibst.</string>
+    <string name="mp_p3_2">Apps für Banking, Zahlungen, Passwörter und Codes.</string>
+    <string name="mp_p3_3">Inkognito-Tabs und private Browser.</string>
+    <string name="mp_p3_4">Den Sperrbildschirm und nichts, solange das Handy gesperrt ist.</string>
+    <string name="mp_p3_5">Die Apps, die du auswählst.</string>
+    <string name="mp_p4_titulo">Nur auf deinem Handy, verschlüsselt</string>
+    <string name="mp_p4_texto">Nichts davon verlässt dein Handy.</string>
+    <string name="mp_p4_1">Eine verschlüsselte Datenbank (AES-256) mit einem Schlüssel, der sich nur bei entsperrtem Handy öffnet.</string>
+    <string name="mp_p4_2">Zum Suchen dein Fingerabdruck oder deine PIN.</string>
+    <string name="mp_p4_3">Fragst du deine KI, bekommt sie nur die passenden Ausschnitte, nie den Verlauf.</string>
+    <string name="mp_p4_4">Es braucht etwa 2 MB pro Nutzungstag; mit Miniaturen etwa 3 MB mehr pro Tag.</string>
+    <string name="mp_p5_titulo">Es bleibt, so lange du willst</string>
+    <string name="mp_p5_texto">Das Älteste wird nach der gewählten Zeit automatisch gelöscht.</string>
+    <string name="mp_p5_1">Pausiere es jederzeit über die Schnelleinstellungen oder seine Benachrichtigung.</string>
+    <string name="mp_p5_2">„Alles löschen“ ist immer griffbereit in den Einstellungen. Beim Ausschalten wird alles gelöscht.</string>
+    <string name="mp_p6_titulo">Auch in Bildern suchen</string>
+    <string name="mp_p6_texto">Um Bilder ohne Text zu finden („das blaue Sofa, das ich am Dienstag gesehen habe“), braucht es ein Bildmodell, das direkt auf dem Handy läuft. Es wird einmal geladen: %1$s.</string>
+    <string name="mp_licencias">Offene Modelle von Hugging Face: CLIP von OpenAI (MIT-Lizenz) und seine mehrsprachige Version von sentence-transformers (Apache 2.0).</string>
+    <string name="mp_ahora_no">Jetzt nicht</string>
+    <string name="mp_activar_con">Laden und einschalten · %1$s</string>
+    <string name="mp_activar_sin">Nur mit Text einschalten</string>
+    <string name="mp_activada">Das Bildschirmgedächtnis ist eingeschaltet.</string>
+    <string name="mp_hecho">Fertig</string>
+    <string name="mp_sin_bloqueo">Du brauchst eine Displaysperre (PIN, Muster oder Passwort): Die Suche öffnet sich damit.</string>
+    <string name="mp_poner_bloqueo">Displaysperre einrichten</string>
+    <string name="mp_error_activar">Konnte nicht eingeschaltet werden. Entsperre das Handy und versuche es noch einmal.</string>
+
+    <!-- Notificación y recuadro -->
+    <string name="mp_canal">Bildschirmgedächtnis</string>
+    <string name="mp_canal_nota">Dauerhafter Hinweis, solange das Bildschirmgedächtnis an ist, mit Pause-Taste.</string>
+    <string name="mp_aviso_activa">Bildschirmgedächtnis ist an</string>
+    <string name="mp_aviso_activa_nota">Merkt sich, was du siehst – nur auf diesem Handy</string>
+    <string name="mp_aviso_pausada">Bildschirmgedächtnis pausiert</string>
+    <string name="mp_aviso_pausada_nota">Es wird nichts Neues gespeichert</string>
+    <string name="mp_pausar">Pausieren</string>
+    <string name="mp_reanudar">Fortsetzen</string>
+    <string name="mp_recuadro_activa">Merkt sich</string>
+    <string name="mp_recuadro_pausada">Pausiert</string>
+    <string name="mp_recuadro_apagada">Aus</string>
+
+    <!-- Búsqueda -->
+    <string name="mp_b_titulo">Wo habe ich das gesehen?</string>
+    <string name="mp_b_bloqueada">Dein Bildschirmgedächtnis ist geschützt</string>
+    <string name="mp_b_bloqueada_nota">Öffne es mit deinem Fingerabdruck oder deiner PIN.</string>
+    <string name="mp_b_desbloquear">Entsperren</string>
+    <string name="mp_b_prompt_sub">Bestätige, dass du es bist</string>
+    <string name="mp_b_error_bloqueo">Zum Öffnen brauchst du eine Displaysperre.</string>
+    <string name="mp_b_desactivada">Das Bildschirmgedächtnis ist aus</string>
+    <string name="mp_b_ir_ajustes">Zu den Einstellungen</string>
+    <string name="mp_b_buscar_pista">Suche etwas, das du gesehen hast …</string>
+    <string name="mp_b_preguntar_pista">Frag %1$s …</string>
+    <string name="mp_b_modo_buscar">Suchen</string>
+    <string name="mp_b_modo_preguntar">%1$s fragen</string>
+    <string name="mp_b_vacio_titulo">Schreib, woran du dich erinnerst</string>
+    <string name="mp_b_vacio_nota">Ein Wort, eine App oder ein Tag: „WLAN“, „gestern in Chrome“, „blaues Sofa am Dienstag“.</string>
+    <string name="mp_b_ejemplo_1">Code gestern</string>
+    <string name="mp_b_ejemplo_2">blaues Sofa</string>
+    <string name="mp_b_ejemplo_3">Adresse</string>
+    <string name="mp_b_sin_modelo">Um auch in Bildern zu suchen, lade das Modell in den Einstellungen.</string>
+    <string name="mp_b_nada">Nichts passt zu „%1$s“</string>
+    <string name="mp_b_nada_nota">Versuch es mit anderen Wörtern oder einem anderen Tag.</string>
+    <string name="mp_b_por_imagen">Nach Bild</string>
+    <string name="mp_b_hoy">Heute</string>
+    <string name="mp_b_ayer">Gestern</string>
+    <string name="mp_b_cuando">%1$s · %2$s</string>
+    <string name="mp_b_no_abre">Diese App lässt sich nicht öffnen.</string>
+    <string name="mp_b_ia_explica">Stell deine Frage, wie du sie jemandem stellen würdest. %1$s bekommt nur die passenden Ausschnitte, nie den Verlauf.</string>
+    <string name="mp_b_preguntar">Fragen</string>
+    <plurals name="mp_b_se_envian">
+        <item quantity="one">%1$s hat nur %2$d Ausschnitt bekommen, den passenden.</item>
+        <item quantity="other">%1$s hat nur die %2$d passenden Ausschnitte bekommen.</item>
+    </plurals>
+    <string name="mp_b_sin_fragmentos">Nichts Gespeichertes passt, deshalb wurde %1$s nicht gefragt.</string>
+    <string name="mp_b_fallo_ia">%1$s konnte nicht gefragt werden. Unten siehst du, was auf deinem Handy ist.</string>
+</resources>

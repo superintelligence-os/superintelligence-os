@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="os_name" translatable="false">SIOS</string>
+    <string name="setup_services">SIOS features</string>
+    <color name="lineage_accent">#FFF4F1EA</color>
+</resources>

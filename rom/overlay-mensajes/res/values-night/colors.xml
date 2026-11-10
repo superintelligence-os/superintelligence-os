@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Colores de com.android.messaging pasados a la paleta del sistema (la de SIOS o la de la IA elegida) (marca/temas_apps.py). -->
+<resources>
+    <color name="action_bar_background_color">@android:color/system_background_dark</color>
+    <color name="action_bar_background_color_dark">@android:color/system_background_dark</color>
+    <color name="action_bar_title_text_color">@android:color/system_background_dark</color>
+    <color name="archived_conversation_action_bar_background_color">@android:color/system_background_dark</color>
+    <color name="archived_conversation_action_bar_background_color_dark">@android:color/system_background_dark</color>
+    <color name="attachment_bg_color">@android:color/system_background_dark</color>
+    <color name="compose_send_text_background_color">@android:color/system_background_dark</color>
+    <color name="contextual_action_bar_background_color">@android:color/system_background_dark</color>
+    <color name="window_background">@android:color/system_background_dark</color>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Encontrar mi móvil: la pantalla de móvil perdido (sistema/Antirrobo.kt). -->
+<resources>
+    <string name="perdido_titulo">Questo telefono è stato smarrito</string>
+    <string name="perdido_texto_defecto">Se lo hai trovato, chiama il proprietario. Grazie.</string>
+    <string name="perdido_llamar">Chiama il proprietario</string>
+    <string name="perdido_soy_dueno">Sono il proprietario</string>
+    <string name="perdido_quitar">Ce l’ho: disattiva la modalità smarrito</string>
+</resources>

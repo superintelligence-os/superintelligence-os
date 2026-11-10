@@ -1,0 +1,6 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Lanza Claude Code (instalado en el Debian de proot-distro) desde Termux.
+# La carpeta de Termux queda accesible dentro de Debian en /termux.
+exec proot-distro login debian --shared-tmp \
+  --bind /data/data/com.termux/files/home:/termux \
+  -- /root/.local/bin/claude "$@"
