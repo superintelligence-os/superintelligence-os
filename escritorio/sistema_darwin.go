@@ -18,19 +18,11 @@ func nombreBonito() string {
 
 func abrir(url string) { exec.Command("open", url).Start() }
 
-// La ventana como app (sin pestañas ni barra de direcciones) si hay un navegador que lo permita.
+// La ventana, nativa (ventana_darwin.go); si no se pudiera, en el navegador.
 func abrirComoApp(url string) {
-	for _, app := range []string{"Google Chrome", "Microsoft Edge", "Brave Browser", "Chromium"} {
-		if _, err := os.Stat("/Applications/" + app + ".app"); err == nil {
-			w, h, x, y := medidaVentana()
-			// Perfil propio: no se mezcla con tu navegador y abre a su medida (luego recuerda la tuya).
-			exec.Command("open", "-na", app, "--args", "--app="+url, "--user-data-dir="+filepath.Join(carpetaApp(), "ventana"),
-				"--no-first-run", "--no-default-browser-check",
-				fmt.Sprintf("--window-size=%d,%d", w, h), fmt.Sprintf("--window-position=%d,%d", x, y)).Start()
-			return
-		}
+	if !abrirVentanaNativa(url) {
+		abrir(url)
 	}
-	abrir(url)
 }
 
 // pantalla: el tamaño útil del escritorio (en puntos), lo que dice el Finder.
@@ -51,6 +43,12 @@ func rutaIcono() string { return "" }
 
 const agente = "com.sios.escritorio"
 
+func alIniciarPuesto() bool {
+	casa, _ := os.UserHomeDir()
+	_, err := os.Stat(filepath.Join(casa, "Library", "LaunchAgents", agente+".plist"))
+	return err == nil
+}
+
 // Abrir al iniciar sesión: un LaunchAgent que abre la app.
 func ponerAlIniciar(si bool) {
 	casa, _ := os.UserHomeDir()
@@ -64,13 +62,18 @@ func ponerAlIniciar(si bool) {
 	if i := strings.Index(ejecutable, ".app/"); i > 0 {
 		app = ejecutable[:i+4]
 	}
+	_ = app
 	os.MkdirAll(filepath.Dir(plist), 0o755)
+	// El propio programa de la app (no «open»: macOS enseñaría «open» en Ítems de inicio) y su
+	// identificador, para que en Ítems de inicio y en el aviso salga «SIOS Desktop» con su icono.
 	os.WriteFile(plist, []byte(fmt.Sprintf(`<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict>
 <key>Label</key><string>%s</string>
-<key>ProgramArguments</key><array><string>/usr/bin/open</string><string>-g</string><string>%s</string></array>
+<key>ProgramArguments</key><array><string>%s</string></array>
+<key>AssociatedBundleIdentifiers</key><array><string>%s</string></array>
 <key>RunAtLoad</key><true/>
+<key>ProcessType</key><string>Interactive</string>
 </dict></plist>
-`, agente, app)), 0o644)
+`, agente, ejecutable, agente)), 0o644)
 }

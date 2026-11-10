@@ -22,6 +22,11 @@ var iconoBandeja []byte
 var iconoAvisos []byte
 
 func main() {
+	// El proceso de la ventana (ver ventana.go): solo la ventana, nada más.
+	if len(os.Args) == 3 && os.Args[1] == "--ventana" {
+		ventanaNativa(os.Args[2])
+		return
+	}
 	c := NuevoCliente()
 	w := NuevaVentana(c)
 	go func() { log.Fatal(w.Servir()) }()
@@ -32,6 +37,10 @@ func main() {
 			}
 			log.Println("ventana:", w.URL())
 		}()
+	}
+	// Si ya estaba puesto para abrirse al iniciar sesión, se rehace (las versiones de antes lo hacían con «open»).
+	if alIniciarPuesto() {
+		ponerAlIniciar(true)
 	}
 	go c.VigilarPortapapeles()
 	go c.VigilarCopias()

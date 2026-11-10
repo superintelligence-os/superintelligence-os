@@ -7,7 +7,7 @@
     <string name="voz_cuando">Wann verwenden</string>
     <string name="voz_modo_auto">Automatisch</string>
     <string name="voz_modo_siempre">Immer</string>
-    <string name="voz_modo_auto_nota">Mit Internet das Diktat des Systems und deine KI; ohne Internet oder ohne KI die des Handys.</string>
+    <string name="voz_modo_auto_nota">Mit Internet das Diktat des Systems und die KI deines Agenten; ohne Internet oder ohne KI die des Handys.</string>
     <string name="voz_modo_siempre_nota">Immer auf dem Handy, auch mit Internet. Am privatesten.</string>
     <string name="voz_dictado">Diktat</string>
     <string name="voz_preciso">Genau</string>

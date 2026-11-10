@@ -26,7 +26,7 @@
     <string name="bv_nueva_p2_titulo">Compila per te</string>
     <string name="bv_nueva_p2">Propone i tuoi account in app e siti, e salva i nuovi quando accedi.</string>
     <string name="bv_nueva_p3_titulo">Solo su questo telefono</string>
-    <string name="bv_nueva_p3">Niente cloud né account. Nulla arriva mai alla tua IA.</string>
+    <string name="bv_nueva_p3">Niente cloud né account. Nulla arriva mai al tuo agente né alla sua IA.</string>
     <string name="bv_crear">Crea la Cassaforte</string>
     <string name="bv_abrir">Apri</string>
     <string name="bv_poner_bloqueo">Imposta un blocco schermo</string>
@@ -214,7 +214,7 @@
     <string name="bv_aj_borrar">Elimina la Cassaforte</string>
     <string name="bv_aj_borrar_titulo">Eliminare tutta la Cassaforte?</string>
     <string name="bv_aj_borrar_nota">Vengono eliminati tutte le password, i codici e i documenti, e la chiave. Non si può annullare. Senza un’esportazione, si perdono.</string>
-    <string name="bv_aj_ia">Nulla della Cassaforte viene inviato alla tua IA né a nessun server. Mentre è sullo schermo, la tua IA non può leggerla.</string>
+    <string name="bv_aj_ia">Nulla della Cassaforte viene inviato all’IA né a nessun server. Mentre è sullo schermo, il tuo agente non può leggerla.</string>
     <string name="bv_af_abrir">Apri la Cassaforte</string>
     <string name="bv_af_abrir_nota">Per compilare con il tuo account</string>
     <string name="bv_af_buscar">Cerca nella Cassaforte…</string>

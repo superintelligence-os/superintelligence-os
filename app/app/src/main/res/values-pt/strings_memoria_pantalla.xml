@@ -70,7 +70,7 @@
     <string name="mp_p4_texto">Nada disto sai do teu telemóvel.</string>
     <string name="mp_p4_1">Uma base de dados cifrada (AES-256) com uma chave que só abre com o telemóvel desbloqueado.</string>
     <string name="mp_p4_2">Para pesquisar, a tua impressão digital ou o teu PIN.</string>
-    <string name="mp_p4_3">Se perguntares à tua IA, só lhe chegam os fragmentos que coincidem, nunca o histórico.</string>
+    <string name="mp_p4_3">Se perguntares ao teu agente, só lhe chegam os fragmentos que coincidem, nunca o histórico.</string>
     <string name="mp_p4_4">Ocupa cerca de 2 MB por dia de uso; com miniaturas, cerca de 3 MB a mais por dia.</string>
     <string name="mp_p5_titulo">Dura o que tu disseres</string>
     <string name="mp_p5_texto">O mais antigo apaga-se sozinho, passado o tempo que escolheres.</string>

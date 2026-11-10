@@ -29,6 +29,8 @@
     <string name="modoesc_r_duplicar">The monitor mirrors the screen</string>
     <string name="modoesc_sin_monitor">No monitor connected</string>
     <string name="modoesc_sin_monitor_nota">Connect it over USB-C (DisplayPort) or with an HDMI adapter.</string>
+    <string name="modoesc_requisito_titulo">Only on phones with video output over USB‑C</string>
+    <string name="modoesc_requisito">Many phones don’t have it, and on those the monitor shows nothing. Check your model’s specs for “DisplayPort” or “video output”. If it doesn’t have it, “Cast screen” below works without a cable.</string>
     <string name="modoesc_inalambrico_nota">Wireless · %1$d × %2$d · mirrors the screen</string>
     <string name="modoesc_conectado_ordenador">%1$d × %2$d · desktop with windows</string>
     <string name="modoesc_conectado_duplicando">%1$d × %2$d · mirroring the screen</string>

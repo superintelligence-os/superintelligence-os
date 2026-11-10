@@ -26,7 +26,7 @@
     <string name="bv_nueva_p2_titulo">Fills in for you</string>
     <string name="bv_nueva_p2">Suggests your accounts in apps and websites, and saves new ones when you sign in.</string>
     <string name="bv_nueva_p3_titulo">Only on this phone</string>
-    <string name="bv_nueva_p3">No cloud, no account. Nothing ever reaches your AI.</string>
+    <string name="bv_nueva_p3">No cloud, no account. Nothing ever reaches your agent or its AI.</string>
     <string name="bv_crear">Create the Vault</string>
     <string name="bv_abrir">Open</string>
     <string name="bv_poner_bloqueo">Set a screen lock</string>
@@ -214,7 +214,7 @@
     <string name="bv_aj_borrar">Delete the Vault</string>
     <string name="bv_aj_borrar_titulo">Delete the whole Vault?</string>
     <string name="bv_aj_borrar_nota">All passwords, codes and documents are deleted, along with the key. This can’t be undone. Without an export, they’re lost.</string>
-    <string name="bv_aj_ia">Nothing in the Vault is sent to your AI or to any server. While it’s on screen, your AI can’t read it.</string>
+    <string name="bv_aj_ia">Nothing in the Vault is sent to the AI or to any server. While it’s on screen, your agent can’t read it.</string>
     <string name="bv_af_abrir">Open the Vault</string>
     <string name="bv_af_abrir_nota">To fill in your account</string>
     <string name="bv_af_buscar">Search the Vault…</string>

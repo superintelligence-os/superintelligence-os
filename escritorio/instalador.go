@@ -17,6 +17,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"net"
 	"net/http"
 	"os"
 	"os/exec"
@@ -274,6 +275,17 @@ func (t *Tarea) paso(s string) {
 	t.mu.Unlock()
 }
 
+// cambiarUltimo: para el progreso, que se actualiza en la misma línea.
+func (t *Tarea) cambiarUltimo(s string) {
+	t.mu.Lock()
+	if n := len(t.Pasos); n > 0 {
+		t.Pasos[n-1] = s
+	} else {
+		t.Pasos = append(t.Pasos, s)
+	}
+	t.mu.Unlock()
+}
+
 func empezarTarea(nombre string, fn func(t *Tarea) error) error {
 	tareaMu.Lock()
 	defer tareaMu.Unlock()
@@ -310,12 +322,12 @@ func estadoTarea() *Tarea {
 
 // probarSIOS: DSU. La imagen va al móvil y Android la instala como sistema temporal; al terminar,
 // una notificación del propio móvil pide reiniciar en SIOS. Reiniciar otra vez vuelve al de siempre.
-func probarSIOS(serie string) error {
-	img := imagenSIOS()
-	if img == "" {
-		return errors.New("no encuentro la imagen de SIOS: déjala en Descargas o arrástrala a la ventana")
-	}
+func probarSIOS(serie, edicion string) error {
 	return empezarTarea("Probar SIOS sin borrar nada", func(t *Tarea) error {
+		img, err := imagenLista(t, edicion, false)
+		if err != nil {
+			return err
+		}
 		remoto := "/sdcard/Download/" + filepath.Base(img)
 		info, _ := os.Stat(img)
 		if tam, _ := adb(serie, "shell", "stat", "-c", "%s", remoto); info != nil && strings.TrimSpace(tam) == strconv.FormatInt(info.Size(), 10) {
@@ -386,20 +398,17 @@ func seguirDSU(serie string, t *Tarea) error {
 }
 
 // instalarSIOS: para siempre, con fastboot (fastbootd para las particiones dinámicas).
-func instalarSIOS(serie string, borrar bool) error {
-	img := imagenSIOS()
-	if img == "" || strings.HasSuffix(img, ".gz") {
-		alt := strings.TrimSuffix(img, ".gz")
-		if _, err := os.Stat(alt); img == "" || err != nil {
-			return errors.New("para instalar del todo hace falta la imagen sin comprimir (.img)")
-		}
-		img = alt
-	}
+func instalarSIOS(serie string, borrar bool, edicion string) error {
 	fb := herramienta("fastboot")
 	if fb == "" {
 		return errors.New("faltan las herramientas de Android")
 	}
 	return empezarTarea("Instalar SIOS", func(t *Tarea) error {
+		// fastboot graba la imagen sin comprimir.
+		img, err := imagenLista(t, edicion, true)
+		if err != nil {
+			return err
+		}
 		run := func(desc string, args ...string) error {
 			t.paso(desc)
 			out, err := exec.Command(fb, append([]string{"-s", serie}, args...)...).CombinedOutput()
@@ -684,4 +693,23 @@ func instalarEnEmulador(serie string) error {
 		}
 		return errors.New("SIOS tarda en arrancar: mira la ventana del emulador")
 	})
+}
+
+// puenteEmulador: el emulador de Android vive en su propia red (10.0.2.x) y el ordenador no la ve.
+// Si el móvil dice estar ahí y hay un emulador conectado por adb, se le abre el puerto en este
+// ordenador y se vincula por 127.0.0.1. Con un móvil de verdad en la Wi‑Fi no hace nada.
+func puenteEmulador(host string) string {
+	ip, puerto, err := net.SplitHostPort(host)
+	if err != nil || !strings.HasPrefix(ip, "10.0.2.") {
+		return host
+	}
+	lista, _ := dispositivos()
+	for _, d := range lista {
+		if d.Emulador && d.Estado == "device" {
+			if _, err := adb(d.Serie, "forward", "tcp:"+puerto, "tcp:"+puerto); err == nil {
+				return net.JoinHostPort("127.0.0.1", puerto)
+			}
+		}
+	}
+	return host
 }

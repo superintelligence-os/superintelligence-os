@@ -62,10 +62,9 @@ object Marca {
         nombre = nuevoNombre
         acentos = oscuro to claro
         prefs(ctx).edit().putString("id", id).putString("nombre", nombre).putLong("oscuro", oscuro).putLong("claro", claro).apply()
-        // Los colores del sistema (ajustes, barra, teclado) también llevan el acento, y el fondo es el de la IA.
+        // Los colores del sistema y el fondo son los de SIOS: no cambian con la IA.
         runCatching { com.sios.sistema.SistemaSios.aplicarTema(ctx) }
         runCatching { com.sios.sistema.ColoresSistema.aplicar(ctx) }
-        com.sios.sistema.Fondos.aplicar(ctx, id)
         return true
     }
 

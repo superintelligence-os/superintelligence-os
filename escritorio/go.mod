@@ -6,6 +6,8 @@ require (
 	fyne.io/systray v1.12.2
 	github.com/gen2brain/beeep v0.11.3
 	github.com/grandcat/zeroconf v1.0.0
+	github.com/jchv/go-webview2 v0.0.0-20260205173254-56598839c808
+	github.com/webview/webview_go v0.0.0-20240831120633-6173450d4dd6
 	golang.design/x/clipboard v0.11.0
 	golang.org/x/image v0.47.0
 	golang.org/x/net v0.62.0
@@ -20,6 +22,7 @@ require (
 	github.com/go-ole/go-ole v1.3.0 // indirect
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
 	github.com/jackmordaunt/icns/v3 v3.0.1 // indirect
+	github.com/jchv/go-winloader v0.0.0-20250406163304-c1995be93bd1 // indirect
 	github.com/miekg/dns v1.1.73 // indirect
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646 // indirect
 	github.com/sergeymakinen/go-bmp v1.0.0 // indirect

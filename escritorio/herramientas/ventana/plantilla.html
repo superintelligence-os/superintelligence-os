@@ -40,8 +40,9 @@ svg.ic { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-wid
 .movil-mini .fila { display: flex; align-items: center; gap: 10px; }
 .movil-mini .icono-movil { width: 34px; height: 34px; border-radius: 10px; background: var(--acento-2); color: var(--acento); display: grid; place-items: center; flex: none; }
 .movil-mini b { display: block; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.estado-linea { display: flex; align-items: center; gap: 6px; color: var(--texto-3); font-size: 12px; }
-.estado-linea i { width: 7px; height: 7px; border-radius: 50%; background: var(--texto-3); transition: background .4s; }
+.estado-linea { display: flex; align-items: flex-start; gap: 6px; color: var(--texto-3); font-size: 12px; line-height: 17px; }
+/* El punto no se encoge aunque el texto ocupe dos líneas (si no, se ve ovalado) y va a la altura de la primera. */
+.estado-linea i { flex: none; margin-top: 5px; width: 7px; height: 7px; border-radius: 50%; background: var(--texto-3); transition: background .4s; }
 .estado-linea.si i { background: var(--verde); box-shadow: 0 0 0 3px color-mix(in srgb, var(--verde) 20%, transparent); }
 .bateria { height: 4px; border-radius: 2px; background: var(--superficie-3); overflow: hidden; }
 .bateria i { display: block; height: 100%; width: 100%; background: var(--verde); border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform .8s var(--suave); }
@@ -205,7 +206,7 @@ __PANEL_CSS__
 .registro { display: flex; flex-direction: column; gap: 8px; padding: 16px; border-radius: 14px; background: var(--superficie-2); font-size: 13px; }
 .registro div { display: flex; gap: 10px; color: var(--texto-2); animation: vista .35s var(--suave) both; }
 .registro div::before { content: "✓"; color: var(--verde); font-weight: 700; }
-.registro div.ultimo::before { content: ""; width: 9px; height: 9px; margin: 4px 2px 0; border-radius: 50%; background: var(--acento); animation: latido 1s ease-in-out infinite alternate; }
+.registro div.ultimo::before { content: ""; flex: none; width: 9px; height: 9px; margin: 4px 2px 0; border-radius: 50%; background: var(--acento); animation: latido 1s ease-in-out infinite alternate; }
 .registro div.error::before { content: "!"; color: var(--rojo); }
 .registro.numerados div::before { content: var(--n); width: 22px; height: 22px; border-radius: 50%; background: var(--acento-2); color: var(--acento); font-size: 12px; display: grid; place-items: center; flex: none; }
 .registro.numerados div { align-items: center; color: var(--texto); }
@@ -244,7 +245,7 @@ __PANEL_CSS__
 .movil-wifi.si { border-color: var(--acento); }
 .movil-wifi span:last-child { margin-left: auto; color: var(--texto-3); font-size: 12px; }
 .buscando { display: flex; align-items: center; gap: 10px; color: var(--texto-3); font-size: 13px; }
-.buscando::before { content: ""; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--superficie-3); border-top-color: var(--acento); animation: girar .8s linear infinite; }
+.buscando::before { content: ""; flex: none; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--superficie-3); border-top-color: var(--acento); animation: girar .8s linear infinite; }
 @keyframes girar { to { transform: rotate(360deg); } }
 .cajas-codigo { display: flex; gap: 8px; justify-content: space-between; }
 .cajas-codigo input { width: 100%; height: 56px; text-align: center; font: 500 24px "Montserrat"; border-radius: 12px; border: 1px solid var(--borde-2); background: var(--fondo); color: var(--texto); outline: none; transition: border-color .2s, box-shadow .2s; }
@@ -1057,7 +1058,12 @@ function pintarCable() {
     caja.replaceChildren(t); return;
   }
   const img = el("div", "tarjeta"); img.style.cssText = "display:flex;align-items:center;gap:14px;padding:16px 20px";
-  img.innerHTML = `<span class="chip ${c.imagen ? "ok" : ""}">${c.imagen ? "Imagen lista" : "Falta la imagen"}</span><span class="suave">${c.imagen ? c.imagen : "Arrastra aquí la imagen de SIOS (sios-….img.gz) o déjala en Descargas."}</span>`;
+  if (c.imagen) {
+    img.innerHTML = `<span class="chip ok">Imagen lista</span><span class="suave">${c.imagen}</span>`;
+  } else {
+    // Sin imagen en el ordenador, se descarga sola al instalar (SIOS Puro: la que se publica).
+    img.innerHTML = `<span class="chip">Se descarga al instalar</span><span class="suave">La última versión de SIOS, comprobada con su firma. Si tienes una imagen propia, arrástrala aquí.</span>`;
+  }
   n.push(img);
   if (c.tarea) {
     const t = el("div", "tarjeta"); t.append(el("h2", null, c.tarea.nombre));
@@ -1086,7 +1092,6 @@ function pintarCable() {
         const op = el("div", "opciones-instalar");
         const a = el("div", "opcion"); a.innerHTML = `<b>Probar sin borrar nada</b><span class="suave">SIOS arranca como sistema temporal. Reinicia y vuelves a tu Android, con todo como estaba.</span>`;
         const probar = boton("Probar SIOS", () => post("/api/cable/probar", { serie: d.serie }).then(refrescarCable), d.emulador ? "sec" : "");
-        if (!c.imagen) { probar.disabled = true; probar.title = "Falta la imagen de SIOS"; }
         a.append(probar);
         if (d.emulador) a.append(el("span", "suave", "En un emulador esta prueba no llega a arrancar: le falta el almacenamiento que Android usa para ello. En un móvil de verdad sí funciona."));
         const b = el("div", "opcion");

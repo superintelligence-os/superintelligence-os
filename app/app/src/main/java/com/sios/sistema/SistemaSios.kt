@@ -15,17 +15,14 @@ import android.provider.Settings
  */
 object SistemaSios {
     /**
-     * Color del sistema: el naranja del logo de Claude. Android saca toda la paleta de un solo color;
-     * TONAL_SPOT da grises cálidos y un acento naranja (SPRITZ apaga el naranja; una semilla gris
-     * hace que Android se invente el tono, que sale azul).
+     * Colores del sistema (Ajustes, menús, ajustes rápidos): los de SIOS, grafito y hueso
+     * (MONOCHROMATIC con el hueso de la marca), sea cual sea la IA: el agente es SIOS. Solo si el
+     * usuario elige un acento propio en Apariencia, ese color con TONAL_SPOT. La paleta nunca sale
+     * del fondo de pantalla.
      */
-    // La semilla es el color de la IA en uso (el naranja de Claude, el verde de ChatGPT, el morado
-    // de Qwen…): así la paleta no sale del fondo de pantalla.
-    private val SEMILLA get() = "%06X".format(com.sios.ui.Apariencia.colorAcento(true) and 0xFFFFFF)
-    // Sin IA elegida y sin acento propio, SIOS en blanco y negro (MONOCHROMATIC: grafito y hueso, como
-    // su marca); con una IA o un acento elegido, ese color con TONAL_SPOT.
-    private val ESTILO get() =
-        if (com.sios.ui.Marca.sinElegir && com.sios.ui.Apariencia.sigueIa) "MONOCHROMATIC" else "TONAL_SPOT"
+    private val SEMILLA get() =
+        if (com.sios.ui.Apariencia.sigueIa) "F4F1EA" else "%06X".format(com.sios.ui.Apariencia.colorAcento(true) and 0xFFFFFF)
+    private val ESTILO get() = if (com.sios.ui.Apariencia.sigueIa) "MONOCHROMATIC" else "TONAL_SPOT"
     private val TEMA get() =
         "{\"android.theme.customization.color_source\":\"preset\"," +
             "\"android.theme.customization.system_palette\":\"$SEMILLA\"," +
@@ -58,7 +55,7 @@ object SistemaSios {
     }
 
     /**
-     * Tema oscuro con el naranja de Claude como color del sistema. Solo escribe si hace falta: cada cambio
+     * Tema oscuro con los colores de SIOS (o el acento elegido). Solo escribe si hace falta: cada cambio
      * reinicia las pantallas abiertas, y aplicarlo en cada arranque de la pantalla sería un bucle.
      * Devuelve si el tema queda aplicado.
      */

@@ -70,7 +70,7 @@
     <string name="mp_p4_texto">Niente di tutto questo esce dal tuo telefono.</string>
     <string name="mp_p4_1">Un database cifrato (AES-256) con una chiave che si apre solo con il telefono sbloccato.</string>
     <string name="mp_p4_2">Per cercare, la tua impronta o il tuo PIN.</string>
-    <string name="mp_p4_3">Se chiedi alla tua IA, le arrivano solo i frammenti che corrispondono, mai la cronologia.</string>
+    <string name="mp_p4_3">Se chiedi al tuo agente, gli arrivano solo i frammenti che corrispondono, mai la cronologia.</string>
     <string name="mp_p4_4">Occupa circa 2 MB per giorno di uso; con le miniature, circa 3 MB in più al giorno.</string>
     <string name="mp_p5_titulo">Dura quanto vuoi tu</string>
     <string name="mp_p5_texto">Il più vecchio si cancella da solo, dopo il tempo che scegli.</string>

@@ -70,7 +70,7 @@
     <string name="mp_p4_texto">Nichts davon verlässt dein Handy.</string>
     <string name="mp_p4_1">Eine verschlüsselte Datenbank (AES-256) mit einem Schlüssel, der sich nur bei entsperrtem Handy öffnet.</string>
     <string name="mp_p4_2">Zum Suchen dein Fingerabdruck oder deine PIN.</string>
-    <string name="mp_p4_3">Fragst du deine KI, bekommt sie nur die passenden Ausschnitte, nie den Verlauf.</string>
+    <string name="mp_p4_3">Fragst du deinen Agenten, bekommt er nur die passenden Ausschnitte, nie den Verlauf.</string>
     <string name="mp_p4_4">Es braucht etwa 2 MB pro Nutzungstag; mit Miniaturen etwa 3 MB mehr pro Tag.</string>
     <string name="mp_p5_titulo">Es bleibt, so lange du willst</string>
     <string name="mp_p5_texto">Das Älteste wird nach der gewählten Zeit automatisch gelöscht.</string>

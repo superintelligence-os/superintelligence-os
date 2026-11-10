@@ -7,7 +7,7 @@
     <string name="voz_cuando">Cuándo usarlos</string>
     <string name="voz_modo_auto">Automático</string>
     <string name="voz_modo_siempre">Siempre</string>
-    <string name="voz_modo_auto_nota">Con internet, el dictado del sistema y tu IA; sin internet o sin IA, los del móvil.</string>
+    <string name="voz_modo_auto_nota">Con internet, el dictado del sistema y la IA de tu agente; sin internet o sin IA, los del móvil.</string>
     <string name="voz_modo_siempre_nota">Siempre en el móvil, aunque haya internet. Lo más privado.</string>
     <string name="voz_dictado">Dictado</string>
     <string name="voz_preciso">Preciso</string>

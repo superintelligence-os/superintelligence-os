@@ -70,7 +70,7 @@
     <string name="mp_p4_texto">Rien de tout cela ne quitte votre téléphone.</string>
     <string name="mp_p4_1">Une base de données chiffrée (AES-256) avec une clé qui ne s\'ouvre que si le téléphone est déverrouillé.</string>
     <string name="mp_p4_2">Pour chercher, votre empreinte ou votre code.</string>
-    <string name="mp_p4_3">Si vous posez la question à votre IA, elle ne reçoit que les extraits qui correspondent, jamais l\'historique.</string>
+    <string name="mp_p4_3">Si vous posez la question à votre agent, il ne reçoit que les extraits qui correspondent, jamais l’historique.</string>
     <string name="mp_p4_4">Environ 2 Mo par jour d\'utilisation ; avec les miniatures, environ 3 Mo de plus par jour.</string>
     <string name="mp_p5_titulo">Elle dure ce que vous voulez</string>
     <string name="mp_p5_texto">Le plus ancien s\'efface tout seul, après la durée que vous choisissez.</string>

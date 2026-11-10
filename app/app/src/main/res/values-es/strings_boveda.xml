@@ -26,7 +26,7 @@
     <string name="bv_nueva_p2_titulo">Rellena por ti</string>
     <string name="bv_nueva_p2">Propone tus cuentas en apps y webs y guarda las nuevas cuando entras.</string>
     <string name="bv_nueva_p3_titulo">Solo en este móvil</string>
-    <string name="bv_nueva_p3">No hay nube ni cuenta. Nada llega nunca a tu IA.</string>
+    <string name="bv_nueva_p3">No hay nube ni cuenta. Nada llega nunca a tu agente ni a su IA.</string>
     <string name="bv_crear">Crear la Bóveda</string>
     <string name="bv_abrir">Abrir</string>
     <string name="bv_poner_bloqueo">Poner un bloqueo de pantalla</string>
@@ -214,7 +214,7 @@
     <string name="bv_aj_borrar">Borrar la Bóveda</string>
     <string name="bv_aj_borrar_titulo">¿Borrar la Bóveda entera?</string>
     <string name="bv_aj_borrar_nota">Se borran todas las contraseñas, códigos y documentos, y su clave. No se puede deshacer. Si no tienes una exportación, se pierden.</string>
-    <string name="bv_aj_ia">Nada de la Bóveda se envía a tu IA ni a ningún servidor. Mientras está en pantalla, tu IA no puede leerla.</string>
+    <string name="bv_aj_ia">Nada de la Bóveda se envía a la IA ni a ningún servidor. Mientras está en pantalla, tu agente no puede leerla.</string>
     <string name="bv_af_abrir">Abrir la Bóveda</string>
     <string name="bv_af_abrir_nota">Para rellenar con tu cuenta</string>
     <string name="bv_af_buscar">Buscar en la Bóveda…</string>

@@ -56,7 +56,7 @@ class SiosApp : Application() {
         runCatching { com.sios.cortafuegos.Cortafuegos.alArrancar(this) } // si estaba encendido (al arrancar o tras actualizar)
         runCatching { com.sios.sistema.ModoEscritorio.alArrancar(this) } // el monitor como ordenador, de serie (una vez)
         runCatching { com.sios.boveda.Boveda.alArrancar(this) } // la Bóveda, autocompletar de serie (una sola vez)
-        com.sios.sistema.Fondos.aplicar(this, com.sios.ui.Marca.id) // el fondo de la IA elegida
+        com.sios.sistema.Fondos.aplicar(this) // el fondo de SIOS elegido
         runCatching { com.sios.sistema.SistemaSios.aplicarTema(this) } // y su color en la paleta del sistema
         runCatching { com.sios.sistema.SistemaSios.ponerNombre(this) }
         Thread { com.sios.sistema.ColoresSistema.arreglarTelecom(this) }.start()

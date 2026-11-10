@@ -134,6 +134,7 @@ func (c *Cliente) Vincular(host, codigo string) error {
 	if len(codigo) != 6 {
 		return errors.New("el código tiene 6 cifras")
 	}
+	host = puenteEmulador(host)
 	v, err := Vincular(host, codigo, nombreEquipo())
 	if err != nil {
 		return err

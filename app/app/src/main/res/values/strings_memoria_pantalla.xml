@@ -70,7 +70,7 @@
     <string name="mp_p4_texto">None of this leaves your phone.</string>
     <string name="mp_p4_1">An encrypted database (AES-256) with a key that only opens while the phone is unlocked.</string>
     <string name="mp_p4_2">To search, your fingerprint or PIN.</string>
-    <string name="mp_p4_3">If you ask your AI, it only receives the matching snippets, never the history.</string>
+    <string name="mp_p4_3">If you ask your agent, it only receives the matching snippets, never the history.</string>
     <string name="mp_p4_4">It takes about 2 MB per day of use; with thumbnails, about 3 MB more per day.</string>
     <string name="mp_p5_titulo">It lasts as long as you say</string>
     <string name="mp_p5_texto">The oldest is deleted automatically, after the time you choose.</string>

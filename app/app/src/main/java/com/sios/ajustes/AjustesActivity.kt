@@ -21,6 +21,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -588,6 +590,30 @@ private fun SeccionApariencia(seccion: @Composable (String, String?, @Composable
                                 Thread { com.sios.sistema.ColoresSistema.aplicar(ctx) }.start()
                             },
                     )
+                }
+            }
+            // Fondos de SIOS: el elegido, con un borde que entra con muelle.
+            Text(stringResource(R.string.ap_fondo), style = Texto.Cuerpo, color = Colores.Texto)
+            var fondo by remember { mutableStateOf(com.sios.sistema.Fondos.elegido(ctx)) }
+            var propio by remember { mutableStateOf(!com.sios.sistema.Fondos.esNuestro(ctx)) }
+            val miniaturas = remember { com.sios.sistema.Fondos.TODOS.associateWith { com.sios.sistema.Fondos.miniatura(ctx, it)?.asImageBitmap() } }
+            Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                com.sios.sistema.Fondos.TODOS.forEach { nombre ->
+                    val elegido = !propio && fondo == nombre
+                    val borde by androidx.compose.animation.animateColorAsState(
+                        if (elegido) Colores.Texto else androidx.compose.ui.graphics.Color.Transparent, com.sios.ui.Muelle.suave(), label = "borde",
+                    )
+                    val escala by androidx.compose.animation.core.animateFloatAsState(if (elegido) 1f else 0.94f, com.sios.ui.Muelle.suave(), label = "escala")
+                    Box(
+                        Modifier.width(72.dp).height(160.dp).graphicsLayer { scaleX = escala; scaleY = escala }
+                            .clip(Formas.Pequena).border(2.dp, borde, Formas.Pequena).padding(3.dp).clip(Formas.Pequena)
+                            .background(Colores.Superficie)
+                            .pulsable { fondo = nombre; propio = false; com.sios.sistema.Fondos.elegir(ctx, nombre) },
+                    ) {
+                        miniaturas[nombre]?.let {
+                            androidx.compose.foundation.Image(it, null, Modifier.fillMaxSize(), contentScale = androidx.compose.ui.layout.ContentScale.Crop)
+                        }
+                    }
                 }
             }
         }

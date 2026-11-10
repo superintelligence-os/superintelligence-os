@@ -26,7 +26,7 @@
     <string name="bv_nueva_p2_titulo">Preenche por si</string>
     <string name="bv_nueva_p2">Sugere as suas contas em apps e sites e guarda as novas quando inicia sessão.</string>
     <string name="bv_nueva_p3_titulo">Só neste telemóvel</string>
-    <string name="bv_nueva_p3">Sem nuvem nem conta. Nada chega nunca à sua IA.</string>
+    <string name="bv_nueva_p3">Sem nuvem nem conta. Nada chega nunca ao teu agente nem à sua IA.</string>
     <string name="bv_crear">Criar o Cofre</string>
     <string name="bv_abrir">Abrir</string>
     <string name="bv_poner_bloqueo">Definir um bloqueio de ecrã</string>
@@ -214,7 +214,7 @@
     <string name="bv_aj_borrar">Apagar o Cofre</string>
     <string name="bv_aj_borrar_titulo">Apagar o Cofre inteiro?</string>
     <string name="bv_aj_borrar_nota">Apagam-se todas as palavras-passe, códigos e documentos, e a chave. Não se pode anular. Sem uma exportação, perdem-se.</string>
-    <string name="bv_aj_ia">Nada do Cofre é enviado à sua IA nem a nenhum servidor. Enquanto está no ecrã, a sua IA não o pode ler.</string>
+    <string name="bv_aj_ia">Nada do Cofre é enviado à IA nem a nenhum servidor. Enquanto está no ecrã, o teu agente não o pode ler.</string>
     <string name="bv_af_abrir">Abrir o Cofre</string>
     <string name="bv_af_abrir_nota">Para preencher com a sua conta</string>
     <string name="bv_af_buscar">Pesquisar no Cofre…</string>

@@ -7,7 +7,7 @@
     <string name="voz_cuando">Quando usarli</string>
     <string name="voz_modo_auto">Automatico</string>
     <string name="voz_modo_siempre">Sempre</string>
-    <string name="voz_modo_auto_nota">Con internet, la dettatura di sistema e la tua IA; senza internet o senza IA, quelli del telefono.</string>
+    <string name="voz_modo_auto_nota">Con internet, la dettatura di sistema e l’IA del tuo agente; senza internet o senza IA, quelli del telefono.</string>
     <string name="voz_modo_siempre_nota">Sempre sul telefono, anche con internet. Il più privato.</string>
     <string name="voz_dictado">Dettatura</string>
     <string name="voz_preciso">Preciso</string>

@@ -26,7 +26,7 @@
     <string name="bv_nueva_p2_titulo">Remplit à votre place</string>
     <string name="bv_nueva_p2">Propose vos comptes dans les applis et les sites, et enregistre les nouveaux à la connexion.</string>
     <string name="bv_nueva_p3_titulo">Uniquement sur ce téléphone</string>
-    <string name="bv_nueva_p3">Ni cloud ni compte. Rien n’arrive jamais à votre IA.</string>
+    <string name="bv_nueva_p3">Ni cloud ni compte. Rien n’arrive jamais à votre agent ni à son IA.</string>
     <string name="bv_crear">Créer le Coffre</string>
     <string name="bv_abrir">Ouvrir</string>
     <string name="bv_poner_bloqueo">Définir un verrouillage d’écran</string>
@@ -214,7 +214,7 @@
     <string name="bv_aj_borrar">Supprimer le Coffre</string>
     <string name="bv_aj_borrar_titulo">Supprimer tout le Coffre ?</string>
     <string name="bv_aj_borrar_nota">Tous les mots de passe, codes et documents sont supprimés, ainsi que la clé. Impossible d’annuler. Sans export, ils sont perdus.</string>
-    <string name="bv_aj_ia">Rien du Coffre n’est envoyé à votre IA ni à aucun serveur. Tant qu’il est à l’écran, votre IA ne peut pas le lire.</string>
+    <string name="bv_aj_ia">Rien du Coffre n’est envoyé à l’IA ni à aucun serveur. Tant qu’il est à l’écran, votre agent ne peut pas le lire.</string>
     <string name="bv_af_abrir">Ouvrir le Coffre</string>
     <string name="bv_af_abrir_nota">Pour remplir avec votre compte</string>
     <string name="bv_af_buscar">Rechercher dans le Coffre…</string>

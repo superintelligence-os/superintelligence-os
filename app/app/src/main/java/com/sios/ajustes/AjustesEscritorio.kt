@@ -14,6 +14,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -127,6 +128,20 @@ internal fun SeccionModoEscritorio() {
                         },
                         style = Texto.Pequeno, color = Colores.Texto3,
                     )
+                }
+            }
+            // No todos los móviles sacan imagen por el cable: se dice antes de que alguien compre un adaptador.
+            // Con un monitor ya conectado por cable, sobra.
+            AnimatedVisibility(
+                m == null || m.inalambrico,
+                enter = fadeIn(Muelle.suave()) + expandVertically(Muelle.suave()),
+                exit = fadeOut(Muelle.suave()) + shrinkVertically(Muelle.suave()),
+            ) {
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Box(Modifier.fillMaxWidth().height(1.dp).background(Colores.Borde))
+                    Spacer(Modifier.height(10.dp))
+                    Text(stringResource(R.string.modoesc_requisito_titulo), style = Texto.Pequeno.copy(fontWeight = FontWeight.SemiBold), color = Colores.Texto)
+                    Text(stringResource(R.string.modoesc_requisito), style = Texto.Pequeno, color = Colores.Texto3)
                 }
             }
         }

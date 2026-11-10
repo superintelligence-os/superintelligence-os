@@ -29,6 +29,8 @@
     <string name="modoesc_r_duplicar">L\'écran duplique le téléphone</string>
     <string name="modoesc_sin_monitor">Aucun écran connecté</string>
     <string name="modoesc_sin_monitor_nota">Branche-le en USB-C (DisplayPort) ou avec un adaptateur HDMI.</string>
+    <string name="modoesc_requisito_titulo">Uniquement sur les téléphones avec sortie vidéo USB‑C</string>
+    <string name="modoesc_requisito">Beaucoup de téléphones ne l\'ont pas, et l\'écran n\'affiche alors rien. Cherchez « DisplayPort » ou « sortie vidéo » dans la fiche technique de votre modèle. Sinon, vous pouvez caster l\'écran sans fil plus bas.</string>
     <string name="modoesc_inalambrico_nota">Sans fil · %1$d × %2$d · duplique l\'écran</string>
     <string name="modoesc_conectado_ordenador">%1$d × %2$d · bureau avec fenêtres</string>
     <string name="modoesc_conectado_duplicando">%1$d × %2$d · écran dupliqué</string>

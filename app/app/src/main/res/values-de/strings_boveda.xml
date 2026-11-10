@@ -26,7 +26,7 @@
     <string name="bv_nueva_p2_titulo">Füllt für dich aus</string>
     <string name="bv_nueva_p2">Schlägt deine Konten in Apps und Websites vor und speichert neue bei der Anmeldung.</string>
     <string name="bv_nueva_p3_titulo">Nur auf diesem Handy</string>
-    <string name="bv_nueva_p3">Keine Cloud, kein Konto. Nichts davon erreicht je deine KI.</string>
+    <string name="bv_nueva_p3">Keine Cloud, kein Konto. Nichts davon erreicht je deinen Agenten oder seine KI.</string>
     <string name="bv_crear">Tresor anlegen</string>
     <string name="bv_abrir">Öffnen</string>
     <string name="bv_poner_bloqueo">Displaysperre einrichten</string>
@@ -214,7 +214,7 @@
     <string name="bv_aj_borrar">Tresor löschen</string>
     <string name="bv_aj_borrar_titulo">Den ganzen Tresor löschen?</string>
     <string name="bv_aj_borrar_nota">Alle Passwörter, Codes und Dokumente werden gelöscht, samt Schlüssel. Das lässt sich nicht rückgängig machen. Ohne Export sind sie verloren.</string>
-    <string name="bv_aj_ia">Nichts aus dem Tresor geht an deine KI oder an einen Server. Solange er angezeigt wird, kann deine KI ihn nicht lesen.</string>
+    <string name="bv_aj_ia">Nichts aus dem Tresor geht an die KI oder an einen Server. Solange er angezeigt wird, kann dein Agent ihn nicht lesen.</string>
     <string name="bv_af_abrir">Tresor öffnen</string>
     <string name="bv_af_abrir_nota">Um dein Konto einzutragen</string>
     <string name="bv_af_buscar">Im Tresor suchen …</string>

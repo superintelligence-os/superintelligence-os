@@ -30,10 +30,10 @@ import java.util.Locale
 import java.util.zip.ZipInputStream
 
 /**
- * «Oye Claude»: un oído que funciona sin conexión (Vosk, un modelo pequeño de unos 40 MB que se
+ * «Oye SIOS»: un oído que funciona sin conexión (Vosk, un modelo pequeño de unos 40 MB que se
  * descarga al activarlo). Escucha solo con la pantalla encendida o el móvil cargando, para no gastar
- * batería, y mientras escucha hay una notificación fija (Android lo exige). Al oír «oye Claude»
- * (o «hey Claude»), suelta el micrófono y abre la hoja de Claude escuchando la pregunta.
+ * batería, y mientras escucha hay una notificación fija (Android lo exige). Al oír «Oye SIOS»
+ * (o «Hey SIOS»), suelta el micrófono y abre la hoja de Claude escuchando la pregunta.
  */
 class OyeAsistente : Service() {
     override fun attachBaseContext(base: android.content.Context) = super.attachBaseContext(com.sios.ui.Marca.envolver(base))
@@ -102,7 +102,7 @@ class OyeAsistente : Service() {
     }
 
     private val oido = object : RecognitionListener {
-        override fun onPartialResult(h: String?) = mirar(h)
+        override fun onPartialResult(h: String?) = Unit // la llamada cuenta tras la pausa
         override fun onResult(h: String?) = mirar(h)
         override fun onFinalResult(h: String?) = mirar(h)
         override fun onError(e: Exception?) { parar(); principal.postDelayed({ ajustarSegunEstado() }, 3000) }
@@ -110,7 +110,7 @@ class OyeAsistente : Service() {
     }
 
     private fun mirar(json: String?) {
-        val texto = runCatching { JSONObject(json ?: return).let { it.optString("partial").ifBlank { it.optString("text") } } }.getOrNull() ?: return
+        val texto = runCatching { JSONObject(json ?: return).optString("text") }.getOrNull() ?: return
         if (!esLlamada(texto)) return
         // ¡Me llaman! Se suelta el micrófono y se abre la hoja de Claude escuchando.
         pausada = true
@@ -125,6 +125,7 @@ class OyeAsistente : Service() {
 
     private fun aviso(texto: String): Notification {
         val nm = getSystemService(NotificationManager::class.java)
+        nm.deleteNotificationChannel("oye_claude") // el canal de antes de «Oye SIOS»
         if (nm.getNotificationChannel(CANAL) == null) {
             nm.createNotificationChannel(NotificationChannel(CANAL, getString(R.string.oye_canal), NotificationManager.IMPORTANCE_MIN))
         }
@@ -142,63 +143,41 @@ class OyeAsistente : Service() {
     private fun avisar(texto: String) = getSystemService(NotificationManager::class.java).notify(1, aviso(texto))
 
     companion object {
-        private const val CANAL = "oye_claude"
+        private const val CANAL = "oye_sios"
         const val PAUSAR = "com.sios.oye.PAUSAR"
         const val REANUDAR = "com.sios.oye.REANUDAR"
         const val EXTRA_POR_VOZ = "com.sios.oye.POR_VOZ"
 
-        // «oye <nombre>», «hey <nombre>», «dis <nombre>», «hallo <nombre>»… con el nombre de la IA en uso.
-        // El modelo de voz sin conexión escribe los nombres como los oye («oye cloud», «chat ge pe te»,
-        // «yemini», «cuen»…): cada IA lleva sus variantes y, además, se compara por parecido.
-        private val SALUDO = Regex("""\b(oye|hey|ey|ei|hola|dis|hé|he|salut|hallo|hi|ehi|ciao|olá|ola|oi)\s+(.{1,40})""")
-        private val VARIANTES = mapOf(
-            "claude" to listOf("claude", "cloud", "clod", "clau", "claud", "clawed", "clode", "klaud", "klod"),
-            "chatgpt" to listOf("chatgpt", "chat gpt", "chat ge pe te", "chat ji pi ti", "chat g p t", "chat je pe te", "chat"),
-            "gemini" to listOf("gemini", "geminis", "yemini", "jemini", "llemini", "chemini", "gemina"),
-            "kimi" to listOf("kimi", "kimmy", "quimi", "kim", "kimy"),
-            "deepseek" to listOf("deepseek", "deep seek", "dip sik", "dipsic", "deep sick", "dipsik"),
-            "grok" to listOf("grok", "grock", "groc", "grog", "rock"),
-            "mistral" to listOf("mistral", "mistrall", "mistrol"),
-            "openrouter" to listOf("openrouter", "open router", "oupen rauter"),
-            "qwen" to listOf("qwen", "cuen", "kuen", "quen", "güen", "when", "kwen", "kuwen"),
+        // «Oye SIOS», sea cual sea la IA: el agente es SIOS y se le llama siempre igual.
+        // El modelo de voz sin conexión no conoce la palabra y la escribe como la oye («si os»,
+        // «seos», «ceos», «sie uns»…). En español «oye, si os parece…» es una frase normal, así que
+        // la llamada cuenta solo si es lo último que se dice antes de una pausa y la frase es corta:
+        // «Oye SIOS» … y la hoja se abre escuchando. (Un detector acústico propio la sustituirá.)
+        private val SALUDOS = setOf(
+            "oye", "oy", "oie", "oi", "hoy", "voy", "soy", "hey", "ey", "ei", "he", "hi", "hai", "hola", "ola",
+            "ehi", "e", "dis", "di", "hallo", "halo", "herr", "ciao", "salut", "ok", "okey",
         )
+        private val FORMAS = Regex("(sios|sio|sius|seos|seus|sieos|sieus|sieuns|siros|sirus|silos|sieuse|sies|sisos)$")
 
         private fun normal(s: String) = java.text.Normalizer.normalize(s.lowercase(Locale.ROOT), java.text.Normalizer.Form.NFD)
             .replace(Regex("\\p{Mn}+"), "").replace(Regex("[^a-z0-9 ]"), " ").replace(Regex("\\s+"), " ").trim()
 
-        private fun distancia(a: String, b: String): Int {
-            val d = IntArray(b.length + 1) { it }
-            for (i in 1..a.length) {
-                var previo = d[0]
-                d[0] = i
-                for (j in 1..b.length) {
-                    val t = d[j]
-                    d[j] = minOf(d[j] + 1, d[j - 1] + 1, previo + if (a[i - 1] == b[j - 1]) 0 else 1)
-                    previo = t
-                }
-            }
-            return d[b.length]
-        }
-
-        /** Formas de llamar a la IA en uso: sus variantes, o el nombre que se le haya puesto. */
-        private fun nombres(): List<String> {
-            val m = com.sios.ui.Marca
-            val propio = normal(m.nombre)
-            val clave = when (m.id) { "openai" -> "chatgpt"; "anthropic" -> "claude"; "gemini_api" -> "gemini"; "kimi_code" -> "kimi"; else -> m.id }
-            return (VARIANTES[clave].orEmpty() + VARIANTES[propio].orEmpty() + propio).map(::normal).distinct()
-        }
+        /** Fonética simplificada: «ce/ci» y «z» suenan a «s», la «h» no suena, «y» es «i», sin letras dobles. */
+        private fun fonetica(s: String) = s.replace(Regex("c(?=[eiy])"), "s").replace('z', 's').replace('y', 'i')
+            .replace("h", "").replace('x', 's').replace(Regex("(.)\\1+"), "$1")
 
         fun esLlamada(texto: String): Boolean {
-            val t = normal(texto)
-            for (m in SALUDO.findAll(t)) {
-                val resto = m.groupValues[2]
-                val pegado = resto.replace(" ", "")
-                for (n in nombres()) {
-                    val sin = n.replace(" ", "")
-                    if (resto.startsWith(n) || pegado.startsWith(sin)) return true
-                    // Parecido: un fallo por cada cuatro letras (nunca para nombres de 3 o menos).
-                    if (sin.length >= 4 && pegado.length >= sin.length - 1 && distancia(pegado.take(sin.length), sin) <= sin.length / 4) return true
-                }
+            val t = normal(texto).split(' ').filter { it.isNotEmpty() }
+            if (t.isEmpty() || t.size > 4) return false
+            for (n in 1..3) {
+                if (n > t.size) break
+                val cola = fonetica(t.takeLast(n).joinToString(""))
+                if (cola.length > 9 || !FORMAS.containsMatchIn(cola)) continue
+                val antes = t.dropLast(n)
+                // Sin saludo, solo si suena casi igual («sios», «si os»).
+                if (antes.isEmpty()) return cola.length <= 6 || n >= 2
+                val ultimo = antes.last()
+                if (antes.size <= 2 && (ultimo in SALUDOS || fonetica(ultimo) in SALUDOS)) return true
             }
             return false
         }

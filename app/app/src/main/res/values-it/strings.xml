@@ -105,12 +105,12 @@
 
     <!-- Bienvenida de SIOS -->
     <string name="bienvenida_titulo">Ti diamo il benvenuto in SIOS</string>
-    <string name="bienvenida_subtitulo">Collegati, lascia che si prepari e scegli la tua IA.</string>
+    <string name="bienvenida_subtitulo">Collegati, lascia che si prepari e scegli l’IA del tuo agente.</string>
     <string name="bienvenida_mas_tarde">Più tardi</string>
     <string name="bienvenida_tramo_conexion">Connessione</string>
-    <string name="bienvenida_tramo_cuenta">La tua IA</string>
+    <string name="bienvenida_tramo_cuenta">La sua IA</string>
     <string name="bienvenida_conexion_titulo">Connettiti a internet</string>
-    <string name="bienvenida_conexion_texto">SIOS ha bisogno della connessione per prepararsi e perché la tua IA possa risponderti. Meglio con il Wi‑Fi: la prima volta scarica qualche centinaio di MB.</string>
+    <string name="bienvenida_conexion_texto">SIOS ha bisogno della connessione per prepararsi e perché il tuo agente possa risponderti. Meglio con il Wi‑Fi: la prima volta scarica qualche centinaio di MB.</string>
     <string name="bienvenida_elegir_red">Scegli Wi‑Fi o dati mobili</string>
     <string name="bienvenida_sim">SIM ed eSIM</string>
     <string name="bienvenida_esim_nota">Una eSIM già attiva sul telefono funziona senza fare nulla. Una volta connesso, SIOS prosegue da solo.</string>
@@ -188,8 +188,8 @@
     <string name="asistente_rodea">Cerchia o tocca ciò su cui vuoi fare una domanda</string>
     <string name="asistente_seleccion_titulo">Ciò che hai cerchiato</string>
     <string name="manos_nombre">SIOS</string>
-    <string name="manos_resumen">Permette alla tua IA di toccare e scrivere nelle app quando glielo chiedi.</string>
-    <string name="manos_descripcion">La tua IA legge ciò che c\'è sullo schermo e tocca, scorre e scrive nelle app solo quando glielo chiedi. Mentre lo fa, il bordo dello schermo si illumina e puoi fermarla quando vuoi.</string>
+    <string name="manos_resumen">Permette al tuo agente di toccare e scrivere nelle app quando glielo chiedi.</string>
+    <string name="manos_descripcion">Il tuo agente legge ciò che c’è sullo schermo e tocca, scorre e scrive nelle app solo quando glielo chiedi. Mentre lo fa, il bordo dello schermo si illumina e puoi fermarlo quando vuoi.</string>
     <string name="manos_usando">Claude ai comandi</string>
     <string name="manos_parar">Ferma</string>
     <string name="compartido_desde">da %1$s</string>
@@ -273,15 +273,15 @@
     <string name="dia_canal_nota">Una riga con i tuoi impegni e il meteo, nella schermata di blocco.</string>
     <string name="dia_titulo">La tua giornata</string>
     <string name="dia_pregunta">Raccontami la mia giornata</string>
-    <string name="tour_portada_titulo">Questo è SIOS</string>
-    <string name="tour_portada_texto">Un telefono con dentro l’IA che scegli tu. Le chiedi le cose con parole tue e le fa: nelle tue app, nelle notifiche e con le tue cose.</string>
+    <string name="tour_portada_titulo">Un agente in tasca</string>
+    <string name="tour_portada_texto">Questo è SIOS: chiedi con parole tue e lo fa lui, nelle tue app, nelle notifiche e con le tue cose. Con l’IA che scegli tu.</string>
     <string name="tour_pedir_titulo">Chiedi da qualsiasi punto</string>
     <string name="tour_pedir_texto">Dalla barra della Home, tenendo premuta la barra in basso per chiedere di ciò che vedi, con il tasto di accensione per parlargli, oppure con «Condividi» e il testo selezionato in qualsiasi app.</string>
     <string name="tour_pedir_1">Cos\'è questo? (cerchiando qualcosa sullo schermo)</string>
     <string name="tour_pedir_2">Riassumimi questo link</string>
     <string name="tour_pedir_3">Migliora questo messaggio prima che lo invii</string>
     <string name="tour_apps_titulo">Usa le tue app al posto tuo</string>
-    <string name="tour_apps_texto">La tua IA tocca, scrive e naviga in qualsiasi app. Mentre lo fa, il bordo si illumina e vedi ogni tocco; puoi fermarla quando vuoi.</string>
+    <string name="tour_apps_texto">Il tuo agente tocca, scrive e naviga in qualsiasi app. Mentre lo fa, il bordo si illumina e vedi ogni tocco; puoi fermarlo quando vuoi.</string>
     <string name="tour_apps_1">Scrivi a Marta su WhatsApp che arrivo tra 10 minuti</string>
     <string name="tour_apps_2">Attiva la modalità scura e abbassa la luminosità</string>
     <string name="tour_apps_3">Installami Spotify</string>
@@ -301,7 +301,7 @@
     <string name="tour_solo_2">Fammi un widget con la lista della spesa</string>
     <string name="tour_solo_3">Avvisami ogni mattina se pioverà</string>
     <string name="tour_control_titulo">Hai tu il controllo</string>
-    <string name="tour_control_texto">La tua IA ti chiede prima di inviare, chiamare o pagare, e nelle Impostazioni scegli quanto fa da sola. Quello che ricorda resta sul telefono; all’IA arriva solo il necessario per aiutarti.</string>
+    <string name="tour_control_texto">Il tuo agente ti chiede prima di inviare, chiamare o pagare, e nelle Impostazioni scegli quanto fa da solo. Quello che ricorda resta sul telefono; all’IA arriva solo il necessario per aiutarti.</string>
     <string name="tour_saltar">Salta</string>
     <string name="tour_atras">Indietro</string>
     <string name="tour_ver">Scopri cosa fa</string>
@@ -384,16 +384,16 @@
     <string name="local_abriendo">Apro %1$s.</string>
     <string name="local_no_entiendo">Non c\'è connessione, quindi Claude ora non può rispondere. Senza internet posso impostare sveglie e timer, accendere la torcia, il Wi-Fi o il Bluetooth, cambiare volume o luminosità, aprire app e chiamare i tuoi contatti.</string>
     <string name="local_sin_agente">Claude si sta avviando. Nel frattempo posso impostare sveglie e timer, accendere la torcia, il Wi-Fi o il Bluetooth, cambiare volume o luminosità, aprire app e chiamare i tuoi contatti.</string>
-    <string name="oye_canal">Ehi Claude</string>
-    <string name="oye_titulo">Ehi Claude</string>
+    <string name="oye_canal">Ehi SIOS</string>
+    <string name="oye_titulo">Ehi SIOS</string>
     <string name="oye_preparando">Preparazione dell\'ascolto (la prima volta scarica circa 40 MB)…</string>
-    <string name="oye_escuchando">Di\' «Ehi Claude». Tutto resta sul telefono.</string>
+    <string name="oye_escuchando">Di\' «Ehi SIOS». Tutto resta sul telefono.</string>
     <string name="oye_en_espera">In attesa: ascolta con lo schermo acceso o in carica</string>
     <string name="oye_pausada">In pausa mentre parli con Claude</string>
     <string name="oye_error">Impossibile prepararsi: %1$s</string>
     <string name="ajustes_voz">Voce</string>
     <string name="ajustes_voz_nota">Parla con Claude senza toccare il telefono.</string>
-    <string name="ajustes_oye_titulo">Ehi Claude</string>
+    <string name="ajustes_oye_titulo">Ehi SIOS</string>
     <string name="ajustes_oye_nota">Ascolta la frase sul telefono stesso, senza inviare nulla, solo con lo schermo acceso o in carica.</string>
     <string name="ajustes_envoz_titulo">Rispondi ad alta voce</string>
     <string name="ajustes_envoz_nota">Quando gli parli, Claude ti risponde a voce.</string>
@@ -493,7 +493,7 @@
     <string name="comp_ubicacion">Posizione</string>
     <string name="comp_ubicacion_no">Serve solo per le routine per luogo</string>
     <string name="comp_permiso_no">Senza autorizzazione</string>
-    <string name="comp_oye">Ehi Claude</string>
+    <string name="comp_oye">Ehi SIOS</string>
     <string name="comp_oye_si">Attivo</string>
     <string name="comp_oye_no">Disattivato (Impostazioni di SIOS › Voce)</string>
     <string name="comp_actualizaciones">Aggiornamenti</string>
@@ -661,6 +661,7 @@
     <string name="ap_claro">Chiaro</string>
     <string name="ap_oscuro">Scuro</string>
     <string name="ap_acento">Colore d’accento</string>
+    <string name="ap_fondo">Sfondo</string>
     <string name="sug_iban_ok">IBAN corretto ✓</string>
     <string name="sug_iban_mal">IBAN con errori</string>
     <string name="sug_seguimiento">Traccia la spedizione</string>
@@ -850,7 +851,7 @@
     <string name="gal_diario">Il tuo diario</string>
     <string name="gal_diario_d">Cosa ha scritto Claude ieri sera</string>
     <string name="ia_titulo">Intelligenza</string>
-    <string name="ia_nota">L’IA che guida il tuo telefono. Colori e logo seguono quella che scegli.</string>
+    <string name="ia_nota">Il cervello del tuo agente: l’IA che pensa per lui. Colori e logo seguono quella che scegli.</string>
     <string name="ia_cargando">Caricamento…</string>
     <string name="ia_grupo_suscripcion">Con il tuo abbonamento</string>
     <string name="ia_grupo_clave">A consumo con la tua chiave</string>
@@ -892,7 +893,7 @@
     <string name="ia_local_descargar">Scarica</string>
     <string name="ia_local_nota">Funziona senza internet né account, e nulla esce dal telefono. È più lento e meno capace di quelli online.</string>
     <string name="ia_local_nombre">Il suo nome</string>
-    <string name="ia_local_nombre_nota">Si presenta con questo nome e lo chiami con «Ehi %1$s».</string>
+    <string name="ia_local_nombre_nota">Si presenta con questo nome. Per chiamarlo, di\' «Ehi SIOS».</string>
     <string name="chat_pensando">Sto pensando</string>
     <string name="chat_pensando_segundos">Sto pensando · %1$d s</string>
     <string name="chat_pensando_local">Il modello sul telefono ci mette un po’ di più, soprattutto al primo messaggio.</string>
@@ -932,7 +933,7 @@
     <string name="demo_mensajes">Riassumi i messaggi non letti</string>
     <string name="demo_mensajes_nota">Da tutte le app, in poche righe, e cosa richiede risposta.</string>
     <string name="demo_saltar">Non ora</string>
-    <string name="bienvenida_ia_titulo">Scegli la tua IA</string>
+    <string name="bienvenida_ia_titulo">Scegli l’IA del tuo agente</string>
     <string name="bienvenida_ia_texto">Accedi con il tuo abbonamento (Claude⁠, ChatGPT, Gemini, Kimi…), inserisci una chiave API o usa un modello sul telefono stesso, senza internet. Puoi cambiarla quando vuoi nelle Impostazioni.</string>
     <string name="ia_desc_ia">Con il tuo piano Claude⁠ Pro o Max.</string>
     <string name="ia_desc_chatgpt">Con il tuo piano ChatGPT Plus, Pro o Business.</string>
@@ -966,5 +967,5 @@
     <string name="ia_error_respondio">%1$s ha risposto con un errore (%2$s).</string>
     <string name="ia_error_local_no_arranca">Il modello locale non si è avviato.</string>
     <string name="ia_error_falta_clave">Manca la chiave API.</string>
-    <string name="chat_sin_ia">Non hai ancora scelto la tua IA. Sceglila in Impostazioni di SIOS › Intelligenza: Claude⁠, ChatGPT, Gemini, Kimi, una chiave API o un modello sul telefono.</string>
+    <string name="chat_sin_ia">Non hai ancora scelto l’IA del tuo agente. Sceglila in Impostazioni di SIOS › Intelligenza: Claude⁠, ChatGPT, Gemini, Kimi, una chiave API o un modello sul telefono.</string>
 </resources>

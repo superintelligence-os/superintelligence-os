@@ -29,6 +29,8 @@
     <string name="modoesc_r_duplicar">Il monitor duplica lo schermo</string>
     <string name="modoesc_sin_monitor">Nessun monitor collegato</string>
     <string name="modoesc_sin_monitor_nota">Collegalo via USB-C (DisplayPort) o con un adattatore HDMI.</string>
+    <string name="modoesc_requisito_titulo">Solo sui telefoni con uscita video USB‑C</string>
+    <string name="modoesc_requisito">Molti telefoni non ce l\'hanno e il monitor non mostra niente. Cerca «DisplayPort» o «uscita video» nelle specifiche del tuo modello. Se manca, più sotto puoi trasmettere lo schermo senza fili.</string>
     <string name="modoesc_inalambrico_nota">Wireless · %1$d × %2$d · duplica lo schermo</string>
     <string name="modoesc_conectado_ordenador">%1$d × %2$d · desktop con finestre</string>
     <string name="modoesc_conectado_duplicando">%1$d × %2$d · schermo duplicato</string>

@@ -482,7 +482,7 @@ private fun DetalleLocal(p: JSONObject, activa: Boolean, local: JSONObject, colo
     var nombre by remember(p.optString("nombre")) { mutableStateOf(p.optString("nombre")) }
     Text(stringResource(R.string.ia_local_nombre), style = Texto.Pequeno, color = Colores.Texto3)
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        Box(Modifier.weight(1f)) { com.sios.inicio.Campo(nombre, { nombre = it.take(24) }, "Qwen", KeyboardType.Text, secreto = false) }
+        Box(Modifier.weight(1f)) { com.sios.inicio.Campo(nombre, { nombre = it.take(24) }, p.optString("nombre").ifBlank { "Qwen" }, KeyboardType.Text, secreto = false) }
         AnimatedVisibility(nombre.trim() != p.optString("nombre") && nombre.isNotBlank()) {
             Text(
                 stringResource(R.string.ia_clave_guardar), style = Texto.Pequeno.copy(fontWeight = FontWeight.SemiBold), color = color,
@@ -490,7 +490,7 @@ private fun DetalleLocal(p: JSONObject, activa: Boolean, local: JSONObject, colo
             )
         }
     }
-    Text(stringResource(R.string.ia_local_nombre_nota, p.optString("nombre")), style = Texto.Pequeno, color = Colores.Texto3)
+    Text(stringResource(R.string.ia_local_nombre_nota), style = Texto.Pequeno, color = Colores.Texto3)
     for (m in modelos) {
         val mid = m.optString("id")
         val t = m.optJSONObject("tarea")

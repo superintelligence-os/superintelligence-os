@@ -148,6 +148,40 @@ class PerdidoActivity : ComponentActivity() {
 
     override fun attachBaseContext(base: Context) = super.attachBaseContext(com.sios.ui.Marca.envolver(base))
 
+    /** El dueño ha demostrado que lo es (PIN, patrón o huella): ya puede quitar el modo perdido. */
+    private val dueno = mutableStateOf(false)
+
+    /**
+     * «Soy el dueño». Con el móvil bloqueado, se le pide desbloquearlo. Si ya estaba desbloqueado
+     * (o el bloqueo no puede quitarse desde aquí), se le pide el PIN o la huella igualmente: si no,
+     * cualquiera que lo encuentre podría quitarlo. Sin bloqueo de pantalla no hay nada que pedir.
+     */
+    private fun comprobarDueno() {
+        val km = getSystemService(KeyguardManager::class.java)
+        if (km.isKeyguardLocked) {
+            km.requestDismissKeyguard(this, object : KeyguardManager.KeyguardDismissCallback() {
+                override fun onDismissSucceeded() { dueno.value = true }
+                override fun onDismissError() { pedirCredencial() }
+            })
+        } else pedirCredencial()
+    }
+
+    private fun pedirCredencial() {
+        if (!getSystemService(KeyguardManager::class.java).isDeviceSecure) { dueno.value = true; return }
+        runCatching {
+            android.hardware.biometrics.BiometricPrompt.Builder(this)
+                .setTitle(getString(R.string.perdido_confirmar))
+                .setAllowedAuthenticators(
+                    android.hardware.biometrics.BiometricManager.Authenticators.BIOMETRIC_STRONG or
+                        android.hardware.biometrics.BiometricManager.Authenticators.DEVICE_CREDENTIAL,
+                )
+                .build()
+                .authenticate(android.os.CancellationSignal(), mainExecutor, object : android.hardware.biometrics.BiometricPrompt.AuthenticationCallback() {
+                    override fun onAuthenticationSucceeded(r: android.hardware.biometrics.BiometricPrompt.AuthenticationResult) { dueno.value = true }
+                })
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -161,7 +195,7 @@ class PerdidoActivity : ComponentActivity() {
         val telefono = Antirrobo.telefono(this)
         setContent {
             TemaSios {
-                var dueno by remember { mutableStateOf(false) }
+                val dueno by this@PerdidoActivity.dueno
                 val latido = rememberInfiniteTransition(label = "latido")
                 val brillo by latido.animateFloat(0.35f, 1f, infiniteRepeatable(tween(1400), RepeatMode.Reverse), label = "brillo")
                 Box(
@@ -195,15 +229,7 @@ class PerdidoActivity : ComponentActivity() {
                                 finish()
                             }
                         }
-                        if (!dueno) BotonTexto(stringResource(R.string.perdido_soy_dueno), Modifier.fillMaxWidth()) {
-                            // Hace falta el PIN: solo el dueño puede quitar el modo perdido desde el móvil.
-                            getSystemService(KeyguardManager::class.java).requestDismissKeyguard(
-                                this@PerdidoActivity,
-                                object : KeyguardManager.KeyguardDismissCallback() {
-                                    override fun onDismissSucceeded() { dueno = true }
-                                },
-                            )
-                        }
+                        if (!dueno) BotonTexto(stringResource(R.string.perdido_soy_dueno), Modifier.fillMaxWidth()) { comprobarDueno() }
                     }
                 }
             }

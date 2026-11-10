@@ -5,5 +5,6 @@
     <string name="perdido_texto_defecto">If you found it, please call its owner. Thank you.</string>
     <string name="perdido_llamar">Call the owner</string>
     <string name="perdido_soy_dueno">I’m the owner</string>
+    <string name="perdido_confirmar">Confirm you’re the owner</string>
     <string name="perdido_quitar">I have it: turn off lost mode</string>
 </resources>

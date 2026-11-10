@@ -21,8 +21,15 @@ func abrir(url string) {
 	sinVentana(exec.Command("rundll32", "url.dll,FileProtocolHandler", url)).Start()
 }
 
-// La ventana como app con Edge (viene con Windows); si no, el navegador.
+// La ventana, nativa (ventana_windows.go); si no se pudiera, Edge en modo app.
 func abrirComoApp(url string) {
+	if !abrirVentanaNativa(url) {
+		abrirConEdge(url)
+	}
+}
+
+// Edge en modo app (viene con Windows); si no, el navegador.
+func abrirConEdge(url string) {
 	w, h, x, y := medidaVentana()
 	if err := sinVentana(exec.Command("cmd", "/c", "start", "", "msedge", "--app="+url, "--user-data-dir="+filepath.Join(carpetaApp(), "ventana"),
 		"--no-first-run", "--no-default-browser-check",
@@ -69,3 +76,6 @@ func ponerAlIniciar(si bool) {
 	ejecutable, _ := os.Executable()
 	k.SetStringValue("SIOS Desktop", `"`+ejecutable+`"`)
 }
+
+// En Windows la entrada de inicio ya apunta al programa: no hay nada que rehacer.
+func alIniciarPuesto() bool { return false }

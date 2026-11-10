@@ -7,7 +7,7 @@
     <string name="voz_cuando">Quand les utiliser</string>
     <string name="voz_modo_auto">Automatique</string>
     <string name="voz_modo_siempre">Toujours</string>
-    <string name="voz_modo_auto_nota">Avec internet, la dictée du système et ton IA ; sans internet ou sans IA, ceux du téléphone.</string>
+    <string name="voz_modo_auto_nota">Avec internet, la dictée du système et l’IA de votre agent ; sans internet ou sans IA, ceux du téléphone.</string>
     <string name="voz_modo_siempre_nota">Toujours sur le téléphone, même avec internet. Le plus privé.</string>
     <string name="voz_dictado">Dictée</string>
     <string name="voz_preciso">Précis</string>

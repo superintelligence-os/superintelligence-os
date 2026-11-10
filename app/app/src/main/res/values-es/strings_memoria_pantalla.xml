@@ -70,7 +70,7 @@
     <string name="mp_p4_texto">Nada de esto sale de tu móvil.</string>
     <string name="mp_p4_1">Una base de datos cifrada (AES-256) con una clave que solo se abre con el móvil desbloqueado.</string>
     <string name="mp_p4_2">Para buscar, tu huella o tu PIN.</string>
-    <string name="mp_p4_3">Si preguntas a tu IA, solo le llegan los fragmentos que coinciden, nunca el historial.</string>
+    <string name="mp_p4_3">Si preguntas a tu agente, solo le llegan los fragmentos que coinciden, nunca el historial.</string>
     <string name="mp_p4_4">Ocupa unos 2 MB por día de uso; con miniaturas, unos 3 MB más al día.</string>
     <string name="mp_p5_titulo">Dura lo que tú digas</string>
     <string name="mp_p5_texto">Lo más antiguo se borra solo, pasado el tiempo que elijas.</string>

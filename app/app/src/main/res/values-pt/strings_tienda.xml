@@ -29,6 +29,8 @@
     <string name="modoesc_r_duplicar">O monitor duplica o ecrã</string>
     <string name="modoesc_sin_monitor">Nenhum monitor ligado</string>
     <string name="modoesc_sin_monitor_nota">Liga-o por USB-C (DisplayPort) ou com um adaptador HDMI.</string>
+    <string name="modoesc_requisito_titulo">Só em telemóveis com saída de vídeo por USB‑C</string>
+    <string name="modoesc_requisito">Muitos telemóveis não a têm e, neles, o monitor não mostra nada. Procura «DisplayPort» ou «saída de vídeo» nas especificações do teu modelo. Se não a tiver, mais abaixo podes transmitir o ecrã sem fios.</string>
     <string name="modoesc_inalambrico_nota">Sem fios · %1$d × %2$d · duplica o ecrã</string>
     <string name="modoesc_conectado_ordenador">%1$d × %2$d · ambiente de trabalho com janelas</string>
     <string name="modoesc_conectado_duplicando">%1$d × %2$d · a duplicar o ecrã</string>

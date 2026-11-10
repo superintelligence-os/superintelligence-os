@@ -242,14 +242,15 @@ func (w *Ventana) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 	case "/api/cable/herramientas":
 		w.resultado(rw, nil, descargarHerramientas())
 	case "/api/cable/probar":
-		var d struct{ Serie string }
+		var d struct{ Serie, Edicion string }
 		json.NewDecoder(r.Body).Decode(&d)
-		w.resultado(rw, nil, probarSIOS(d.Serie))
+		w.resultado(rw, nil, probarSIOS(d.Serie, d.Edicion))
 	case "/api/cable/instalar":
 		var d struct {
 			Serie        string
 			Borrar       bool
 			Confirmacion string
+			Edicion      string
 		}
 		json.NewDecoder(r.Body).Decode(&d)
 		// Grabar el sistema no tiene vuelta atrás sencilla: se pide escribirlo.
@@ -257,7 +258,7 @@ func (w *Ventana) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 			responder(rw, 400, map[string]string{"error": "escribe INSTALAR para confirmar"})
 			return
 		}
-		w.resultado(rw, nil, instalarSIOS(d.Serie, d.Borrar))
+		w.resultado(rw, nil, instalarSIOS(d.Serie, d.Borrar, d.Edicion))
 	case "/api/cable/desbloquear":
 		var d struct{ Serie, Confirmacion string }
 		json.NewDecoder(r.Body).Decode(&d)

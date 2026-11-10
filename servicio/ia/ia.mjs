@@ -121,7 +121,8 @@ export function ponerModelo(id, m) {
 }
 
 /** Nombre con el que se presenta el asistente (Claude, ChatGPT, Gemini, DeepSeek… o el que el usuario le ponga al local). */
-export const nombreLocal = () => ajustes.nombreLocal || "Qwen";
+// Sin nombre propio, el de la familia del modelo elegido (Qwen, Granite, Gemma…).
+export const nombreLocal = () => ajustes.nombreLocal || MODELOS_LOCALES.find((x) => x.id === ajustes.local)?.familia || "Qwen";
 export const nombreAsistente = () => (activo() === "local" ? nombreLocal() : PROVEEDORES[activo()].nombre);
 
 export function ponerNombreLocal(nombre) {

@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-"""Fondos de pantalla de SIOS: uno por IA y el propio de SIOS (sin IA elegida). 1080×2400.
+"""Fondos de pantalla de SIOS, 1080×2400. Todos de la marca SIOS (no de las IA: el agente es SIOS,
+la IA es su cerebro), con su símbolo «io», el grafito y el hueso, y el espectro de las IA solo en
+el punto y en la luz:
+  · sios (Origen): el anillo apenas marcado y el punto encendido con su halo. El de serie.
+  · orbita: el trazo del anillo enorme, saliendo de la pantalla, con una luz que lo recorre.
+  · espectro: una aurora suave con los colores del espectro subiendo desde abajo.
+  · guias: las guías de construcción del símbolo (como en el arranque), finas, y el punto.
+  · hueso: claro, el símbolo en grafito sobre hueso.
+Grano fino contra las bandas y la parte de arriba limpia para el reloj.
 
-Una familia, «objeto iluminado»: el logo de cada IA, entero y en el centro de la mitad baja, como
-una pieza de cristal (cuerpo tintado, filo de luz, reflejo en diagonal) con la luz de su marca
-saliendo por detrás y bañando el suelo. Base casi negra teñida de su color, grano fino contra las
-bandas y la parte de arriba limpia para el reloj.
-
-Los dibuja Chrome sin ventana. Salen en WebP para la app (que cambia el fondo al cambiar de IA) y
-el de SIOS, también en PNG, como fondo por defecto de la ROM.
+Los dibuja Chrome sin ventana. Salen en WebP para la app y el de serie, también en PNG, como
+fondo por defecto de la ROM.
 
 Uso: fondos.py <carpeta de salida>
 """
@@ -26,19 +29,6 @@ CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 ANCHO, ALTO = 1080, 2400
 CENTRO_Y = 1420  # el objeto, bajo el reloj y las notificaciones
 TAM = 560
-
-# id → (logo, base, luz de detrás, segunda luz, tinte del cristal)
-FONDOS = {
-    "claude": ("claude", "#14110E", "#D97757", "#F0B08A", "#F6C7AE"),
-    "chatgpt": ("openai", "#0B1110", "#10A37F", "#63D6B4", "#BDF2E1"),
-    "gemini": ("gemini", "#0B0D18", "#4C8DF6", "#D96570", "url(#gem)"),
-    "deepseek": ("deepseek", "#0B0E1C", "#4D6BFE", "#8EA2FF", "#C3CEFF"),
-    "kimi": ("kimi", "#0B0D14", "#2F6BFF", "#8AB4FF", "#D3E1FF"),
-    "mistral": ("mistral", "#120D09", "#FA520F", "#FFD800", "url(#mis)"),
-    "grok": ("grok", "#090909", "#BDBDBD", "#5C5C5C", "#F2F2F2"),
-    "openrouter": ("openrouter", "#0C0C17", "#6467F2", "#A5A7FF", "#CDCEFF"),
-    "local": ("qwen-3d", "#0E0C1A", "#6F5BEF", "#A99BFF", "#CFC6FF"),
-}
 
 GRANO = """<filter id="grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/>
 <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0"/></filter>"""
@@ -67,22 +57,6 @@ def html_fondo(base, figura, luz, luz2):
 </svg></body></html>"""
 
 
-def figura_logo(nombre, color):
-    """El logo como una pieza de cristal: cuerpo tintado, filo de luz y un reflejo en diagonal."""
-    s = open(os.path.join(AQUI, "sios", "logos", f"{nombre}.svg")).read()
-    vb = [float(v) for v in re.search(r'viewBox="([^"]+)"', s).group(1).split()]
-    cuerpo = re.sub(r"<title>.*?</title>", "", re.search(r"<svg[^>]*>(.*)</svg>", s, re.S).group(1))
-    cuerpo = re.sub(r'\sfill="[^"]*"', "", cuerpo).replace("currentColor", "")
-    regla = ' fill-rule="evenodd"' if "evenodd" in s else ""
-    k = TAM / max(vb[2], vb[3])
-    t = f'transform="translate({ANCHO / 2 - vb[2] * k / 2},{CENTRO_Y - vb[3] * k / 2}) scale({k}) translate({-vb[0]},{-vb[1]})"'
-    return (f'<clipPath id="forma"><g {t}{regla}>{cuerpo}</g></clipPath>'
-            f'<g {t}{regla} fill="{color}" opacity=".26">{cuerpo}</g>'
-            f'<g {t}{regla} fill="url(#vidrio)">{cuerpo}</g>'
-            f'<rect width="{ANCHO}" height="{ALTO}" fill="url(#reflejo)" clip-path="url(#forma)" opacity=".9"/>'
-            f'<g {t}{regla} fill="none" stroke="url(#filo)" stroke-width="{1.6 / k}" opacity=".55">{cuerpo}</g>')
-
-
 def figura_sios():
     d, (px, py, rp) = trazo_io()
     k = TAM / 100
@@ -95,11 +69,86 @@ def figura_sios():
             f'<circle cx="{px}" cy="{py}" r="{rp}" fill="url(#esp)"/></g>')
 
 
+
+PARADAS = "".join(f'<stop offset="{o}" stop-color="{c}"/>' for o, c in ESPECTRO)
+
+
+def lienzo(base, cuerpo, arriba=True):
+    return f"""<html><body style="margin:0;width:{ANCHO}px;height:{ALTO}px;overflow:hidden;background:{base}">
+<svg width="{ANCHO}" height="{ALTO}" style="position:absolute;inset:0"><defs>{GRANO}
+<linearGradient id="esp" x1="0" y1="0" x2="1" y2="1">{PARADAS}</linearGradient>
+<filter id="desenfoque" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="70"/></filter>
+<linearGradient id="arriba" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{base}"/><stop offset=".40" stop-color="{base}" stop-opacity="0"/></linearGradient>
+</defs>{cuerpo}{f'<rect width="{ANCHO}" height="{ALTO}" fill="url(#arriba)"/>' if arriba else ""}
+<rect width="{ANCHO}" height="{ALTO}" filter="url(#grano)" opacity=".06"/></svg></body></html>"""
+
+
+def fondo_orbita():
+    """El anillo de SIOS enorme, saliendo por la derecha: un filo fino de hueso con una luz del espectro
+    que lo recorre y su sombra ancha, muy suave. Sin el punto: el anillo solo, como una órbita."""
+    cx, cy, r = ANCHO * 1.02, ALTO * 0.70, 760
+    return lienzo(GRAFITO, f"""<defs><linearGradient id="barrido" x1="0" y1="1" x2=".6" y2="0">
+<stop offset=".05" stop-color="{HUESO}" stop-opacity=".06"/><stop offset=".30" stop-color="#D97757" stop-opacity=".75"/>
+<stop offset=".42" stop-color="#E9B44C" stop-opacity=".85"/><stop offset=".55" stop-color="#4C8DF6" stop-opacity=".7"/>
+<stop offset=".68" stop-color="#7B6CF6" stop-opacity=".35"/><stop offset=".9" stop-color="{HUESO}" stop-opacity=".06"/></linearGradient>
+<filter id="suave" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter></defs>
+<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="{HUESO}" stroke-opacity=".035" stroke-width="300"/>
+<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="url(#barrido)" stroke-width="26" opacity=".35" filter="url(#suave)"/>
+<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="url(#barrido)" stroke-width="2.5"/>""")
+
+
+def fondo_espectro():
+    """Una aurora: los colores del espectro, muy desenfocados, subiendo desde abajo; el punto, pequeño."""
+    manchas = "".join(
+        f'<ellipse cx="{x}" cy="{y}" rx="{rx}" ry="{ry}" fill="{c}" opacity="{o}" filter="url(#desenfoque)"/>'
+        for x, y, rx, ry, c, o in [
+            (60, 2480, 620, 330, "#D97757", .42), (430, 2440, 520, 300, "#E9B44C", .26),
+            (800, 2470, 560, 320, "#4C8DF6", .36), (1120, 2300, 420, 360, "#7B6CF6", .34), (560, 2200, 700, 200, "#7B6CF6", .12),
+        ])
+    return lienzo(GRAFITO, manchas + f'<circle cx="{ANCHO / 2}" cy="1520" r="11" fill="{HUESO}" opacity=".9"/>')
+
+
+def fondo_guias():
+    """Las guías de construcción del símbolo, finas, como en la animación de arranque, y el punto encendido."""
+    d, (px, py, rp) = trazo_io()
+    k = 7.2
+    cx, cy = ANCHO / 2, 1460
+    t = f'transform="translate({cx - 52 * k},{cy - 56 * k}) scale({k})"'
+    finas = "".join(f'<circle cx="52" cy="56" r="{r}" fill="none" stroke="{HUESO}" stroke-opacity="{o}" stroke-width="{w}"/>'
+                    for r, o, w in [(29, .16, .14), (42, .08, .12), (58, .05, .1), (80, .035, .1)])
+    ejes = (f'<line x1="-200" y1="56" x2="300" y2="56" stroke="{HUESO}" stroke-opacity=".07" stroke-width=".1"/>'
+            f'<line x1="52" y1="-200" x2="52" y2="300" stroke="{HUESO}" stroke-opacity=".07" stroke-width=".1"/>'
+            f'<line x1="{px}" y1="-200" x2="{px}" y2="300" stroke="{HUESO}" stroke-opacity=".05" stroke-width=".1"/>')
+    return lienzo(GRAFITO, f"""<defs><radialGradient id="halo"><stop offset="0" stop-color="#E9B44C" stop-opacity=".5"/>
+<stop offset=".5" stop-color="#7B6CF6" stop-opacity=".14"/><stop offset="1" stop-color="#7B6CF6" stop-opacity="0"/></radialGradient></defs>
+<g {t}>{finas}{ejes}<path d="{d}" fill="none" stroke="{HUESO}" stroke-opacity=".22" stroke-width=".45" stroke-linecap="round"/>
+<circle cx="{px}" cy="{py}" r="{rp * 5}" fill="url(#halo)"/><circle cx="{px}" cy="{py}" r="{rp}" fill="url(#esp)"/></g>""")
+
+
+def fondo_hueso():
+    """Claro: el símbolo en grafito sobre hueso, con el punto del espectro."""
+    d, (px, py, rp) = trazo_io()
+    k = TAM / 100
+    t = f'transform="translate({ANCHO / 2 - 52 * k},{CENTRO_Y - 50 * k}) scale({k})"'
+    return lienzo(HUESO, f"""<defs><radialGradient id="sombra"><stop offset="0" stop-color="#141413" stop-opacity=".10"/><stop offset="1" stop-color="#141413" stop-opacity="0"/></radialGradient></defs>
+<ellipse cx="{ANCHO / 2}" cy="{CENTRO_Y + TAM * .62}" rx="420" ry="70" fill="url(#sombra)"/>
+<g {t}><path d="{d}" fill="none" stroke="{GRAFITO}" stroke-width="12.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="{px}" cy="{py}" r="{rp}" fill="url(#esp)"/></g>""")
+
+
 def dibujar(html, png):
     ruta = png + ".html"
     open(ruta, "w").write(html)
-    subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", f"--screenshot={png}",
-                    f"--window-size={ANCHO},{ALTO}", "file://" + ruta], check=True, capture_output=True)
+    # Chrome sin ventana a veces sale con error al cerrarse aunque haya hecho la captura: se mira el PNG.
+    for _ in range(3):
+        if os.path.exists(png):
+            os.remove(png)
+        subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", f"--screenshot={png}",
+                        f"--window-size={ANCHO},{ALTO}", "file://" + ruta], capture_output=True)
+        if os.path.exists(png) and os.path.getsize(png) > 0:
+            break
+    else:
+        raise RuntimeError(f"Chrome no ha dibujado {png}")
     os.remove(ruta)
 
 
@@ -110,9 +159,9 @@ def main():
     png = os.path.join(salida, "sios.png")
     dibujar(html_fondo(GRAFITO, figura_sios(), "#5B4BE0", "#D97757"), png)
     hechos.append(("sios", png))
-    for id_, (logo, base, luz, luz2, cristal) in FONDOS.items():
+    for id_, html in [("orbita", fondo_orbita()), ("espectro", fondo_espectro()), ("guias", fondo_guias()), ("hueso", fondo_hueso())]:
         png = os.path.join(salida, f"{id_}.png")
-        dibujar(html_fondo(base, figura_logo(logo, cristal), luz, luz2), png)
+        dibujar(html, png)
         hechos.append((id_, png))
     for id_, png in hechos:
         Image.open(png).convert("RGB").save(png[:-4] + ".webp", "WEBP", quality=96, method=6)

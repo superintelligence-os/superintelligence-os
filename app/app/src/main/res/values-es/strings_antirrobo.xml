@@ -5,5 +5,6 @@
     <string name="perdido_texto_defecto">Si lo has encontrado, por favor, llama a su dueño. Gracias.</string>
     <string name="perdido_llamar">Llamar al dueño</string>
     <string name="perdido_soy_dueno">Soy el dueño</string>
+    <string name="perdido_confirmar">Confirma que eres el dueño</string>
     <string name="perdido_quitar">Ya lo tengo: quitar el modo perdido</string>
 </resources>

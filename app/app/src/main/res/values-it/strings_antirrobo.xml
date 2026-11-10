@@ -5,5 +5,6 @@
     <string name="perdido_texto_defecto">Se lo hai trovato, chiama il proprietario. Grazie.</string>
     <string name="perdido_llamar">Chiama il proprietario</string>
     <string name="perdido_soy_dueno">Sono il proprietario</string>
+    <string name="perdido_confirmar">Conferma di essere il proprietario</string>
     <string name="perdido_quitar">Ce l’ho: disattiva la modalità smarrito</string>
 </resources>

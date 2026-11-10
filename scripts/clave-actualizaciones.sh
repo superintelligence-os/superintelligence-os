@@ -21,7 +21,9 @@ else
   echo "Ya había clave privada en $PRIVADA."
 fi
 openssl pkey -in "$PRIVADA" -pubout -out "$PUBLICA" 2>/dev/null
-echo "Clave pública en $PUBLICA"
+# SIOS Desktop la lleva dentro para comprobar las imágenes que descarga.
+cp "$PUBLICA" "$RAIZ/escritorio/recursos/clave-actualizaciones.pem"
+echo "Clave pública en $PUBLICA (y en escritorio/recursos)"
 
 PRIVADA_SISTEMA="$DIR/sistema.key"
 CERTIFICADO="$RAIZ/rom/ota/clave-sistema.x509.pem"

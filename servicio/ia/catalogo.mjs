@@ -92,14 +92,21 @@ export const PROVEEDORES = {
  * ram: GB mínimos de RAM total del móvil para que vaya con soltura junto al resto del sistema.
  */
 export const MODELOS_LOCALES = [
-  { id: "qwen3-8b", nombre: "Qwen3 8B", ram: 12, tamano: 5.0, url: "https://huggingface.co/Qwen/Qwen3-8B-GGUF/resolve/main/Qwen3-8B-Q4_K_M.gguf", nota: "El más capaz que cabe en un móvil de gama alta." },
-  { id: "qwen3-4b", nombre: "Qwen3 4B", ram: 8, tamano: 2.5, url: "https://huggingface.co/Qwen/Qwen3-4B-GGUF/resolve/main/Qwen3-4B-Q4_K_M.gguf", nota: "Buen equilibrio: maneja bien las herramientas." },
-  { id: "qwen3-1.7b", nombre: "Qwen3 1.7B", ram: 6, tamano: 1.1, url: "https://huggingface.co/unsloth/Qwen3-1.7B-GGUF/resolve/main/Qwen3-1.7B-Q4_K_M.gguf", nota: "Ligero, para tareas sencillas." },
-  { id: "qwen3-0.6b", nombre: "Qwen3 0.6B", ram: 3, tamano: 0.6, url: "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q8_0.gguf", nota: "Mínimo: preguntas cortas, poco fiable con herramientas." },
+  // Qwen3.5: los recomendados según la RAM (los mejores con herramientas a su tamaño).
+  { id: "qwen3.5-9b", familia: "Qwen", nombre: "Qwen3.5 9B", ram: 12, tamano: 5.3, recomendable: true, url: "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/resolve/main/Qwen3.5-9B-Q4_K_M.gguf", nota: "El más capaz que cabe en un móvil de gama alta." },
+  { id: "qwen3.5-4b", familia: "Qwen", nombre: "Qwen3.5 4B", ram: 6, tamano: 2.55, recomendable: true, url: "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q4_K_M.gguf", nota: "Buen equilibrio: maneja muy bien las herramientas." },
+  { id: "qwen3.5-2b", familia: "Qwen", nombre: "Qwen3.5 2B", ram: 4, tamano: 1.19, recomendable: true, url: "https://huggingface.co/unsloth/Qwen3.5-2B-GGUF/resolve/main/Qwen3.5-2B-Q4_K_M.gguf", nota: "Ligero, para tareas sencillas." },
+  { id: "qwen3-0.6b", familia: "Qwen", nombre: "Qwen3 0.6B", ram: 3, tamano: 0.6, recomendable: true, url: "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q8_0.gguf", nota: "Mínimo: preguntas cortas, poco fiable con herramientas." },
+  // Otra familia abierta (Apache 2.0), para quien la prefiera. Probadas con llama.cpp 0.9.0 y
+  // herramientas: Gemma 4 y Granite 4.2 llaman bien a las herramientas pero escriben su razonamiento
+  // en la respuesta; SmolLM3 no las usa. Por eso no están.
+  { id: "ministral-3-8b", familia: "Ministral", nombre: "Ministral 3 8B", ram: 12, tamano: 4.84, url: "https://huggingface.co/mistralai/Ministral-3-8B-Instruct-2512-GGUF/resolve/main/Ministral-3-8B-Instruct-2512-Q4_K_M.gguf", nota: "De Mistral. Natural en español, francés, alemán, italiano y portugués." },
+  { id: "ministral-3-3b", familia: "Ministral", nombre: "Ministral 3 3B", ram: 6, tamano: 2.0, url: "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512-GGUF/resolve/main/Ministral-3-3B-Instruct-2512-Q4_K_M.gguf", nota: "De Mistral. Ligero y muy natural en tu idioma." },
 ];
 
+/** El recomendado para esta RAM: el Qwen más grande que cabe. */
 export function modeloLocalPara(ramGb) {
-  return MODELOS_LOCALES.find((m) => ramGb >= m.ram) || null;
+  return MODELOS_LOCALES.find((m) => m.recomendable && ramGb >= m.ram) || null;
 }
 
 /** Lo que ve la app (y el escritorio): sin claves. */

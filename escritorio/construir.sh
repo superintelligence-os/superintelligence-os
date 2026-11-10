@@ -14,7 +14,7 @@ echo "● Mac"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 CGO_ENABLED=1 GOARCH=arm64 go build -trimpath -ldflags "-s -w" -o dist/mac-arm64 .
 CGO_ENABLED=1 GOARCH=amd64 CC="clang -arch x86_64" go build -trimpath -ldflags "-s -w" -o dist/mac-amd64 .
-lipo -create dist/mac-arm64 dist/mac-amd64 -output "$APP/Contents/MacOS/sios-escritorio"
+lipo -create dist/mac-arm64 dist/mac-amd64 -output "$APP/Contents/MacOS/SIOS Desktop"
 rm dist/mac-arm64 dist/mac-amd64
 iconutil -c icns recursos/SIOS.iconset -o "$APP/Contents/Resources/AppIcon.icns"
 cat > "$APP/Contents/Info.plist" <<PLIST
@@ -24,7 +24,7 @@ cat > "$APP/Contents/Info.plist" <<PLIST
 <key>CFBundleName</key><string>SIOS Desktop</string>
 <key>CFBundleDisplayName</key><string>SIOS Desktop</string>
 <key>CFBundleIdentifier</key><string>com.sios.escritorio</string>
-<key>CFBundleExecutable</key><string>sios-escritorio</string>
+<key>CFBundleExecutable</key><string>SIOS Desktop</string>
 <key>CFBundleIconFile</key><string>AppIcon</string>
 <key>CFBundlePackageType</key><string>APPL</string>
 <key>CFBundleShortVersionString</key><string>$VERSION</string>
@@ -41,6 +41,6 @@ codesign --force --deep -s - "$APP" 2>/dev/null
 
 echo "● Windows"
 go run github.com/akavel/rsrc@v0.10.2 -ico recursos/app.ico -arch amd64 -o rsrc_windows_amd64.syso
-CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -trimpath -ldflags "-H windowsgui -s -w" -o "dist/SIOS Desktop.exe" .
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -trimpath -ldflags "-H windowsgui -s -w" -o "dist/SIOS-Desktop-Windows.exe" .
 rm -f rsrc_windows_amd64.syso
 ls -la dist
