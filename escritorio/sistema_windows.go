@@ -6,6 +6,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"syscall"
+	"unsafe"
 
 	"golang.org/x/sys/windows/registry"
 )
@@ -79,3 +80,17 @@ func ponerAlIniciar(si bool) {
 
 // En Windows la entrada de inicio ya apunta al programa: no hay nada que rehacer.
 func alIniciarPuesto() bool { return false }
+
+// libreEnOrdenador: GB libres donde SIOS Desktop guarda la imagen.
+func libreEnOrdenador() float64 {
+	var libre uint64
+	ruta, err := syscall.UTF16PtrFromString(carpetaApp())
+	if err != nil {
+		return 0
+	}
+	p := syscall.NewLazyDLL("kernel32.dll").NewProc("GetDiskFreeSpaceExW")
+	if r, _, _ := p.Call(uintptr(unsafe.Pointer(ruta)), uintptr(unsafe.Pointer(&libre)), 0, 0); r == 0 {
+		return 0
+	}
+	return float64(libre) / (1 << 30)
+}

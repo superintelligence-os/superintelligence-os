@@ -144,22 +144,23 @@ func adb(serie string, args ...string) (string, error) {
 // ---------- Móviles conectados ----------
 
 type Dispositivo struct {
-	Serie        string `json:"serie"`
-	Estado       string `json:"estado"` // device, unauthorized, fastboot…
-	Marca        string `json:"marca"`
-	Modelo       string `json:"modelo"`
-	Android      string `json:"android"`
-	SDK          int    `json:"sdk"`
-	Vendor       int    `json:"vendor"`
-	Treble       bool   `json:"treble"`
-	Arm64        bool   `json:"arm64"`
-	Desbloqueado bool   `json:"desbloqueado"`
-	DSU          bool   `json:"dsu"`
-	EsSIOS       bool   `json:"es_sios"`
-	Compatible   bool   `json:"compatible"`
-	Emulador     bool   `json:"emulador"`
-	OemPermitido bool   `json:"oem_permitido"` // «Desbloqueo OEM» activado en opciones de desarrollador
-	Motivo       string `json:"motivo,omitempty"`
+	Serie        string  `json:"serie"`
+	Estado       string  `json:"estado"` // device, unauthorized, fastboot…
+	Marca        string  `json:"marca"`
+	Modelo       string  `json:"modelo"`
+	Android      string  `json:"android"`
+	SDK          int     `json:"sdk"`
+	Vendor       int     `json:"vendor"`
+	Treble       bool    `json:"treble"`
+	Arm64        bool    `json:"arm64"`
+	Desbloqueado bool    `json:"desbloqueado"`
+	DSU          bool    `json:"dsu"`
+	EsSIOS       bool    `json:"es_sios"`
+	Compatible   bool    `json:"compatible"`
+	Emulador     bool    `json:"emulador"`
+	OemPermitido bool    `json:"oem_permitido"` // «Desbloqueo OEM» activado en opciones de desarrollador
+	LibreGB      float64 `json:"libre_gb"`      // espacio libre en el móvil (datos), en GB
+	Motivo       string  `json:"motivo,omitempty"`
 }
 
 var propRe = regexp.MustCompile(`^\[([^\]]+)\]: \[([^\]]*)\]$`)
@@ -200,6 +201,7 @@ func dispositivos() ([]Dispositivo, error) {
 			if p, _ := adb(d.Serie, "shell", "pm", "path", "com.android.dynsystem"); strings.Contains(p, "package:") {
 				d.DSU = true
 			}
+			d.LibreGB = libreEnMovil(d.Serie)
 			switch {
 			case d.EsSIOS:
 				d.Motivo = "Ya tiene SIOS"
@@ -227,6 +229,29 @@ func dispositivos() ([]Dispositivo, error) {
 		}
 	}
 	return lista, nil
+}
+
+// Probar SIOS sin borrar nada (DSU) ocupa en el móvil: la imagen copiada (~1,5 GB, se borra al
+// acabar), el sistema instalado (~3,6 GB) y 2 GB para sus datos, más margen. Al volver a tu Android
+// y descartar la prueba, se libera. Instalarlo del todo no ocupa espacio libre (borra el móvil).
+const espacioPruebaGB = 8.0
+
+// Para descargar SIOS y descomprimirlo en el ordenador (instalar del todo usa la imagen sin comprimir).
+const espacioOrdenadorGB = 6.0
+
+// libreEnMovil: GB libres en /data, de «df -k» (columna «Available»).
+func libreEnMovil(serie string) float64 {
+	out, err := adb(serie, "shell", "df", "-k", "/data")
+	if err != nil {
+		return 0
+	}
+	lineas := strings.Split(strings.TrimSpace(out), "\n")
+	campos := strings.Fields(lineas[len(lineas)-1])
+	if len(campos) < 4 {
+		return 0
+	}
+	kb, _ := strconv.ParseFloat(campos[3], 64)
+	return kb / (1 << 20)
 }
 
 // ---------- Imagen de SIOS ----------
@@ -324,6 +349,9 @@ func estadoTarea() *Tarea {
 // una notificación del propio móvil pide reiniciar en SIOS. Reiniciar otra vez vuelve al de siempre.
 func probarSIOS(serie, edicion string) error {
 	return empezarTarea("Probar SIOS sin borrar nada", func(t *Tarea) error {
+		if libre := libreEnMovil(serie); libre > 0 && libre < espacioPruebaGB {
+			return fmt.Errorf("el móvil tiene %.1f GB libres y la prueba necesita unos %.0f GB: libera espacio (fotos, vídeos, apps) y vuelve a intentarlo", libre, espacioPruebaGB)
+		}
 		img, err := imagenLista(t, edicion, false)
 		if err != nil {
 			return err
@@ -350,7 +378,11 @@ func probarSIOS(serie, edicion string) error {
 			return fmt.Errorf("Android no ha aceptado la instalación temporal: %s", out)
 		}
 		t.paso("Si el móvil lo pide, confirma la instalación en su pantalla.")
-		return seguirDSU(serie, t)
+		if err := seguirDSU(serie, t); err != nil {
+			return err
+		}
+		adb(serie, "shell", "rm", "-f", remoto) // ya está instalada: la copia solo ocupaba sitio
+		return nil
 	})
 }
 

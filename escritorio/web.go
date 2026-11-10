@@ -231,7 +231,8 @@ func (w *Ventana) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 			lista = []Dispositivo{}
 		}
 		img := imagenSIOS()
-		res := map[string]any{"herramientas": herramienta("adb") != "", "dispositivos": lista, "imagen": filepath.Base(img), "tarea": estadoTarea(), "apps": appsAnteriores()}
+		res := map[string]any{"herramientas": herramienta("adb") != "", "dispositivos": lista, "imagen": filepath.Base(img), "tarea": estadoTarea(), "apps": appsAnteriores(),
+			"espacio_prueba_gb": espacioPruebaGB, "espacio_ordenador_gb": espacioOrdenadorGB, "libre_ordenador_gb": libreEnOrdenador()}
 		if img == "" {
 			res["imagen"] = ""
 		}

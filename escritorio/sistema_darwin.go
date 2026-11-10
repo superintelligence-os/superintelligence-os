@@ -6,6 +6,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
+	"syscall"
 )
 
 func nombreBonito() string {
@@ -76,4 +77,13 @@ func ponerAlIniciar(si bool) {
 <key>ProcessType</key><string>Interactive</string>
 </dict></plist>
 `, agente, ejecutable, agente)), 0o644)
+}
+
+// libreEnOrdenador: GB libres donde SIOS Desktop guarda la imagen.
+func libreEnOrdenador() float64 {
+	var st syscall.Statfs_t
+	if syscall.Statfs(carpetaApp(), &st) != nil {
+		return 0
+	}
+	return float64(st.Bavail) * float64(st.Bsize) / (1 << 30)
 }

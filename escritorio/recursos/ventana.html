@@ -91,7 +91,7 @@ main { overflow: auto; min-height: 0; scroll-behavior: smooth; }
 textarea.campo { height: 92px; padding: 12px 14px; resize: none; }
 .fila-campo { display: flex; gap: 10px; }
 .fila-campo .campo { flex: 1; }
-.chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 99px; background: var(--superficie-2); color: var(--texto-2); font-size: 12px; font-weight: 600; }
+.chip { display: inline-flex; flex: none; white-space: nowrap; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 99px; background: var(--superficie-2); color: var(--texto-2); font-size: 12px; font-weight: 600; }
 .chip.ok { background: color-mix(in srgb, var(--verde) 16%, transparent); color: var(--verde); }
 .chip.acento { background: var(--acento-2); color: var(--acento); }
 .chip.mal { background: color-mix(in srgb, var(--rojo) 14%, transparent); color: var(--rojo); }
@@ -1149,6 +1149,7 @@ async function refrescarCable() {
   clearTimeout(refrescarCable.t);
   if (vista === "cable") refrescarCable.t = setTimeout(refrescarCable, cable?.tarea && !cable.tarea.hecho ? 1500 : 5000);
 }
+const gb = (n) => n.toLocaleString("es-ES", { maximumFractionDigits: 1 }) + " GB";
 function pintarCable() {
   const caja = $("cable-cuerpo"); if (!caja) return;
   refrescarCable.firma = firmaDe(cable);
@@ -1164,7 +1165,8 @@ function pintarCable() {
     img.innerHTML = `<span class="chip ok">Imagen lista</span><span class="suave">${c.imagen}</span>`;
   } else {
     // Sin imagen en el ordenador, se descarga sola al instalar (SIOS Puro: la que se publica).
-    img.innerHTML = `<span class="chip">Se descarga al instalar</span><span class="suave">La última versión de SIOS, comprobada con su firma. Si tienes una imagen propia, arrástrala aquí.</span>`;
+    const poco = c.libre_ordenador_gb > 0 && c.libre_ordenador_gb < c.espacio_ordenador_gb;
+    img.innerHTML = `<span class="chip ${poco ? "mal" : ""}">Se descarga al instalar</span><span class="suave">La última versión de SIOS (unos 1,5 GB), comprobada con su firma. ${poco ? `<b style="color:var(--rojo)">Este ordenador tiene ${gb(c.libre_ordenador_gb)} libres y hacen falta unos ${gb(c.espacio_ordenador_gb)}.</b>` : `Necesita unos ${gb(c.espacio_ordenador_gb)} libres en este ordenador.`} Si tienes una imagen propia, arrástrala aquí.</span>`;
   }
   n.push(img);
   if (c.tarea) {
@@ -1189,11 +1191,15 @@ function pintarCable() {
       ch(!(d.vendor > 0 && d.vendor < 33), "Base reciente", "Base demasiado antigua");
       if (d.emulador) comp.append(el("span", "chip", "Emulador")); else ch(d.dsu, "Prueba sin borrar", "Sin prueba temporal");
       comp.append(el("span", "chip " + (d.desbloqueado ? "ok" : ""), d.desbloqueado ? "Cargador desbloqueado" : "Cargador bloqueado"));
+      if (d.libre_gb > 0) ch(d.libre_gb >= c.espacio_prueba_gb, `${gb(d.libre_gb)} libres`, `Solo ${gb(d.libre_gb)} libres`);
       t.append(comp);
       if (d.compatible) {
         const op = el("div", "opciones-instalar");
-        const a = el("div", "opcion"); a.innerHTML = `<b>Probar sin borrar nada</b><span class="suave">SIOS arranca como sistema temporal. Reinicia y vuelves a tu Android, con todo como estaba.</span>`;
+        const falta = d.libre_gb > 0 && d.libre_gb < c.espacio_prueba_gb;
+        const a = el("div", "opcion"); a.innerHTML = `<b>Probar sin borrar nada</b><span class="suave">SIOS arranca como sistema temporal. Reinicia y vuelves a tu Android, con todo como estaba. Necesita unos ${gb(c.espacio_prueba_gb)} libres en el móvil, que se recuperan al quitar la prueba.</span>`
+          + (falta ? `<span class="error">Al móvil le faltan ${gb(c.espacio_prueba_gb - d.libre_gb)}: libera fotos, vídeos o apps y vuelve a mirar.</span>` : "");
         const probar = boton("Probar SIOS", () => post("/api/cable/probar", { serie: d.serie }).then(refrescarCable), d.emulador ? "sec" : "");
+        if (falta) { probar.disabled = true; probar.title = "Falta espacio en el móvil"; }
         a.append(probar);
         if (d.emulador) a.append(el("span", "suave", "En un emulador esta prueba no llega a arrancar: le falta el almacenamiento que Android usa para ello. En un móvil de verdad sí funciona."));
         const b = el("div", "opcion");
@@ -1202,7 +1208,7 @@ function pintarCable() {
           const conf = el("input", "campo"); conf.placeholder = "INSTALAR";
           b.append(conf, boton("Instalar SIOS", () => post("/api/cable/emulador", { serie: d.serie, confirmacion: conf.value.trim() }).then(refrescarCable), "peligro"));
         } else if (d.desbloqueado) {
-          b.innerHTML = `<b>Quedarme con SIOS</b><span class="suave">Se instala del todo y empieza de cero. Escribe INSTALAR para confirmar.</span>`;
+          b.innerHTML = `<b>Quedarme con SIOS</b><span class="suave">Se instala del todo y empieza de cero: se borra lo que hay en el móvil, así que no necesita espacio libre. Pasa antes tus fotos y contactos. Escribe INSTALAR para confirmar.</span>`;
           const conf = el("input", "campo"); conf.placeholder = "INSTALAR";
           b.append(conf, boton("Instalar SIOS", () => post("/api/cable/instalar", { serie: d.serie, borrar: true, confirmacion: conf.value.trim() }).then(refrescarCable), "peligro"));
         } else {
