@@ -83,6 +83,7 @@ Wrangler (Apache-2.0 / MIT), not bundled.
 | --- | --- | --- | --- |
 | PP-OCRv5_mobile_det (PaddlePaddle) | Text detection (OCR of photos, screenshots, documents, screen memory) | Apache-2.0 | Hugging Face `PaddlePaddle/PP-OCRv5_mobile_det_onnx`, pinned revision and SHA-256 in `app/app/build.gradle.kts` (task `modelosOcr`, downloaded at build time, not in the repository) |
 | latin_PP-OCRv5_mobile_rec + its dictionary (PaddlePaddle) | Text recognition (Latin script) | Apache-2.0 | `PaddlePaddle/latin_PP-OCRv5_mobile_rec_onnx`, same task |
+| openWakeWord melspectrogram + embedding models (David Scripka; embedding based on Google's speech_embedding) | «Oye SIOS» acoustic wake-word detector | Apache-2.0 | In the repository: `app/app/src/main/assets/oye/` (v0.5.1, unchanged) |
 
 SIOS contains **no Google ML Kit or Google Play services code**: OCR, the document scanner and
 photo labelling are open source and run on the phone.

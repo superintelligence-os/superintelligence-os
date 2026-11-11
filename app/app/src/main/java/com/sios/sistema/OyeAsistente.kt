@@ -30,8 +30,8 @@ import java.util.Locale
 import java.util.zip.ZipInputStream
 
 /**
- * «Oye SIOS»: un oído que funciona sin conexión (Vosk, un modelo pequeño de unos 40 MB que se
- * descarga al activarlo). Escucha solo con la pantalla encendida o el móvil cargando, para no gastar
+ * «Oye SIOS»: un oído que funciona sin conexión. Con el detector acústico de «SIOS» (DetectorSios,
+ * dentro de la app); si no lo trae, con Vosk (un modelo de unos 40 MB que se descarga al activarlo). Escucha solo con la pantalla encendida o el móvil cargando, para no gastar
  * batería, y mientras escucha hay una notificación fija (Android lo exige). Al oír «Oye SIOS»
  * (o «Hey SIOS»), suelta el micrófono y abre la hoja de Claude escuchando la pregunta.
  */
@@ -40,6 +40,10 @@ class OyeAsistente : Service() {
 
     private var escucha: SpeechService? = null
     private var modelo: Model? = null
+    // Con el detector acústico de «SIOS» (assets/oye) no hace falta el reconocedor de voz ni descargar nada.
+    private var detector: DetectorSios? = null
+    private var pararDetector: (() -> Unit)? = null
+    private val listo get() = detector != null || modelo != null
     private val principal = Handler(Looper.getMainLooper())
     private var pausada = false
 
@@ -57,7 +61,7 @@ class OyeAsistente : Service() {
             addAction(Intent.ACTION_POWER_CONNECTED); addAction(Intent.ACTION_POWER_DISCONNECTED)
         }, RECEIVER_EXPORTED)
         Thread {
-            runCatching { modelo = Model(asegurarModelo(this).path) }
+            runCatching { if (DetectorSios.disponible(this)) detector = DetectorSios(this) else modelo = Model(asegurarModelo(this).path) }
                 .onFailure { e -> principal.post { avisar(getString(R.string.oye_error, e.message ?: "")) ; stopSelf() } }
                 .onSuccess { principal.post { ajustarSegunEstado() } }
         }.start()
@@ -75,6 +79,7 @@ class OyeAsistente : Service() {
         runCatching { unregisterReceiver(pantalla) }
         parar()
         modelo?.close()
+        detector?.close()
         super.onDestroy()
     }
 
@@ -82,11 +87,19 @@ class OyeAsistente : Service() {
     private fun ajustarSegunEstado() {
         val encendida = getSystemService(PowerManager::class.java).isInteractive
         val cargando = getSystemService(BatteryManager::class.java).isCharging
-        if (!pausada && modelo != null && (encendida || cargando)) empezar() else parar()
+        if (!pausada && listo && (encendida || cargando)) empezar() else parar()
     }
 
     private fun empezar() {
-        if (escucha != null) return
+        if (escucha != null || pararDetector != null) return
+        detector?.let { d ->
+            pararDetector = d.escuchar(
+                alOir = { principal.post { meLlaman() } },
+                alFallar = { e -> principal.post { avisar(getString(R.string.oye_error, e.message ?: "")); pararDetector = null; principal.postDelayed({ ajustarSegunEstado() }, 3000) } },
+            )
+            avisar(getString(R.string.oye_escuchando))
+            return
+        }
         val m = modelo ?: return
         runCatching {
             val r = Recognizer(m, 16000f)
@@ -98,7 +111,9 @@ class OyeAsistente : Service() {
     private fun parar() {
         escucha?.let { runCatching { it.stop(); it.shutdown() } }
         escucha = null
-        if (modelo != null) avisar(getString(if (pausada) R.string.oye_pausada else R.string.oye_en_espera))
+        pararDetector?.invoke()
+        pararDetector = null
+        if (listo) avisar(getString(if (pausada) R.string.oye_pausada else R.string.oye_en_espera))
     }
 
     private val oido = object : RecognitionListener {
@@ -111,7 +126,11 @@ class OyeAsistente : Service() {
 
     private fun mirar(json: String?) {
         val texto = runCatching { JSONObject(json ?: return).optString("text") }.getOrNull() ?: return
-        if (!esLlamada(texto)) return
+        if (esLlamada(texto)) meLlaman()
+    }
+
+    private fun meLlaman() {
+        if (pausada) return
         // ¡Me llaman! Se suelta el micrófono y se abre la hoja de Claude escuchando.
         pausada = true
         parar()
