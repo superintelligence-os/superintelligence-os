@@ -55,6 +55,8 @@ for O in "$ROM"/overlay-*; do
   # La pantalla final animada del asistente solo con Google: sin Google el mismo logo sale también en
   # la primera pantalla de LineageOS (y diría «Ya está todo listo» al empezar).
   [ "$VARIANTE" != GAPPS ] && [ "$(basename "$O")" = overlay-bienvenidafinal ] && continue
+  # Las animaciones de SIOS para el asistente de Google: sin Google no existe ese asistente.
+  [ "$VARIANTE" != GAPPS ] && [ "$(basename "$O")" = overlay-googlesetup ] && continue
   N="Sios$(basename "$O" | sed 's/overlay-//' | awk '{print toupper(substr($0,1,1)) substr($0,2)}')"
   rm -rf "$O/build" && mkdir "$O/build"
   "$BT/aapt2" compile --dir "$O/res" -o "$O/build/res.zip"

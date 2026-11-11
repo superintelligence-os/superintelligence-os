@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIOS: las animaciones del asistente de bienvenida de Google («Preparando tu dispositivo»,
+     «Copiando…», esperas) con el símbolo de SIOS en lugar de las de Google (marca/lottie_sios.py:
+     entrada = el anillo se dibuja y sale el punto; bucle = el punto respira). Solo en la edición
+     con Google. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sios.overlay.googlesetup">
+    <overlay android:targetPackage="com.google.android.setupwizard" android:isStatic="true" android:priority="911" />
+    <application android:hasCode="false" />
+</manifest>
