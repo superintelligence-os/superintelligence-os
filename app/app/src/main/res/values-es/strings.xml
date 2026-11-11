@@ -385,17 +385,8 @@
     <string name="local_abriendo">Abriendo %1$s.</string>
     <string name="local_no_entiendo">No hay conexión, así que Claude no puede responder ahora. Sin internet puedo poner alarmas y temporizadores, encender la linterna, el Wi-Fi o el Bluetooth, cambiar el volumen o el brillo, abrir apps y llamar a tus contactos.</string>
     <string name="local_sin_agente">Claude se está poniendo en marcha. Mientras tanto puedo poner alarmas y temporizadores, encender la linterna, el Wi-Fi o el Bluetooth, cambiar el volumen o el brillo, abrir apps y llamar a tus contactos.</string>
-    <string name="oye_canal">Oye SIOS</string>
-    <string name="oye_titulo">Oye SIOS</string>
-    <string name="oye_preparando">Preparando el oído (la primera vez descarga unos 40 MB)…</string>
-    <string name="oye_escuchando">Di «Oye SIOS». Todo se queda en el móvil.</string>
-    <string name="oye_en_espera">En espera: escucha con la pantalla encendida o cargando</string>
-    <string name="oye_pausada">En pausa mientras hablas con Claude</string>
-    <string name="oye_error">No se pudo preparar: %1$s</string>
     <string name="ajustes_voz">Voz</string>
-    <string name="ajustes_voz_nota">Háblale a Claude sin tocar el móvil.</string>
-    <string name="ajustes_oye_titulo">Oye SIOS</string>
-    <string name="ajustes_oye_nota">Escucha la frase en el propio móvil, sin enviar nada, solo con la pantalla encendida o cargando.</string>
+    <string name="ajustes_voz_nota">Cuando le hablas, te contesta también en voz alta.</string>
     <string name="ajustes_envoz_titulo">Responder en voz alta</string>
     <string name="ajustes_envoz_nota">Cuando le hablas, Claude te contesta hablando.</string>
     <string name="camara_titulo">Cámara de Claude</string>
@@ -494,9 +485,6 @@
     <string name="comp_ubicacion">Ubicación</string>
     <string name="comp_ubicacion_no">Solo hace falta para rutinas por lugar</string>
     <string name="comp_permiso_no">Sin permiso</string>
-    <string name="comp_oye">Oye SIOS</string>
-    <string name="comp_oye_si">Activado</string>
-    <string name="comp_oye_no">Apagado (se activa en Ajustes de SIOS › Voz)</string>
     <string name="comp_actualizaciones">Actualizaciones</string>
     <string name="comp_sin_canal">Sin canal de actualizaciones</string>
     <string name="comp_arreglar">Arreglar</string>
@@ -894,7 +882,7 @@
     <string name="ia_local_descargar">Descargar</string>
     <string name="ia_local_nota">Funciona sin internet ni cuenta, y nada sale del móvil. Es más lento y menos capaz que los de internet.</string>
     <string name="ia_local_nombre">Su nombre</string>
-    <string name="ia_local_nombre_nota">Se presenta con este nombre. Para llamarlo, di «Oye SIOS».</string>
+    <string name="ia_local_nombre_nota">Se presenta con este nombre.</string>
     <string name="chat_pensando">Pensando</string>
     <string name="chat_pensando_segundos">Pensando · %1$d s</string>
     <string name="chat_pensando_local">El modelo del móvil tarda un poco más, sobre todo en el primer mensaje.</string>

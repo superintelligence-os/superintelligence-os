@@ -83,7 +83,6 @@ Wrangler (Apache-2.0 / MIT), not bundled.
 | --- | --- | --- | --- |
 | PP-OCRv5_mobile_det (PaddlePaddle) | Text detection (OCR of photos, screenshots, documents, screen memory) | Apache-2.0 | Hugging Face `PaddlePaddle/PP-OCRv5_mobile_det_onnx`, pinned revision and SHA-256 in `app/app/build.gradle.kts` (task `modelosOcr`, downloaded at build time, not in the repository) |
 | latin_PP-OCRv5_mobile_rec + its dictionary (PaddlePaddle) | Text recognition (Latin script) | Apache-2.0 | `PaddlePaddle/latin_PP-OCRv5_mobile_rec_onnx`, same task |
-| openWakeWord melspectrogram + embedding models (David Scripka; embedding based on Google's speech_embedding) | «Oye SIOS» acoustic wake-word detector | Apache-2.0 | In the repository: `app/app/src/main/assets/oye/` (v0.5.1, unchanged) |
 
 SIOS contains **no Google ML Kit or Google Play services code**: OCR, the document scanner and
 photo labelling are open source and run on the phone.
@@ -98,7 +97,7 @@ on Hugging Face or the publisher's site, only when the user turns the feature on
 | CLIP ViT-B/32 (OpenAI), ONNX 8-bit by Xenova | Screen memory: image search | MIT | `app/.../sistema/MemoriaPantallaModelo.kt` |
 | clip-ViT-B-32-multilingual-v1 (sentence-transformers) | Screen memory: query text | Apache-2.0 | same |
 | Whisper small (OpenAI), ONNX by onnx-community | Offline dictation (accurate) | MIT (model); Apache-2.0 (ONNX export) | `app/.../voz/ModelosVoz.kt` |
-| Vosk small models (Alpha Cephei), one per language | Offline dictation (light), "Hey …", call answering | Apache-2.0 | same |
+| Vosk small models (Alpha Cephei), one per language | Offline dictation (light), call answering | Apache-2.0 | same |
 | OPUS-MT (University of Helsinki), ONNX by Xenova | Offline translation | Apache-2.0 / CC-BY-4.0 | same |
 | IS-Net "DIS general use" | Photo editor: subject cut-out | Apache-2.0 | `app/.../fotos/ModelosFotos.kt` |
 | MI-GAN pipeline v2 (Picsart) | Photo editor: object eraser | MIT | same |

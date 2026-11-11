@@ -384,17 +384,8 @@
     <string name="local_abriendo">J\'ouvre %1$s.</string>
     <string name="local_no_entiendo">Il n\'y a pas de connexion, Claude ne peut donc pas répondre pour l\'instant. Hors connexion, je peux régler des alarmes et des minuteurs, allumer la lampe torche, le Wi-Fi ou le Bluetooth, changer le volume ou la luminosité, ouvrir des apps et appeler vos contacts.</string>
     <string name="local_sin_agente">Claude est en train de démarrer. En attendant, je peux régler des alarmes et des minuteurs, allumer la lampe torche, le Wi-Fi ou le Bluetooth, changer le volume ou la luminosité, ouvrir des apps et appeler vos contacts.</string>
-    <string name="oye_canal">Dis SIOS</string>
-    <string name="oye_titulo">Dis SIOS</string>
-    <string name="oye_preparando">Préparation de l\'écoute (la première fois, environ 40 Mo à télécharger)…</string>
-    <string name="oye_escuchando">Dites « Dis SIOS ». Tout reste sur le téléphone.</string>
-    <string name="oye_en_espera">En attente : écoute quand l\'écran est allumé ou pendant la charge</string>
-    <string name="oye_pausada">En pause pendant que vous parlez à Claude</string>
-    <string name="oye_error">Préparation impossible : %1$s</string>
     <string name="ajustes_voz">Voix</string>
-    <string name="ajustes_voz_nota">Parlez à Claude sans toucher le téléphone.</string>
-    <string name="ajustes_oye_titulo">Dis SIOS</string>
-    <string name="ajustes_oye_nota">Détecte la phrase directement sur le téléphone, sans rien envoyer, uniquement quand l\'écran est allumé ou pendant la charge.</string>
+    <string name="ajustes_voz_nota">Quand vous lui parlez, il répond aussi à voix haute.</string>
     <string name="ajustes_envoz_titulo">Répondre à voix haute</string>
     <string name="ajustes_envoz_nota">Quand vous parlez à Claude, il vous répond à voix haute.</string>
     <string name="camara_titulo">Appareil photo Claude</string>
@@ -493,9 +484,6 @@
     <string name="comp_ubicacion">Localisation</string>
     <string name="comp_ubicacion_no">Nécessaire seulement pour les routines par lieu</string>
     <string name="comp_permiso_no">Sans autorisation</string>
-    <string name="comp_oye">Dis SIOS</string>
-    <string name="comp_oye_si">Activé</string>
-    <string name="comp_oye_no">Désactivé (Réglages de SIOS › Voix)</string>
     <string name="comp_actualizaciones">Mises à jour</string>
     <string name="comp_sin_canal">Aucun canal de mise à jour</string>
     <string name="comp_arreglar">Réparer</string>
@@ -893,7 +881,7 @@
     <string name="ia_local_descargar">Télécharger</string>
     <string name="ia_local_nota">Fonctionne sans internet ni compte, et rien ne quitte le téléphone. Plus lent et moins capable que ceux en ligne.</string>
     <string name="ia_local_nombre">Son nom</string>
-    <string name="ia_local_nombre_nota">Il se présente avec ce nom. Pour l’appeler, dis « Dis SIOS ».</string>
+    <string name="ia_local_nombre_nota">Il se présente avec ce nom.</string>
     <string name="chat_pensando">Réflexion</string>
     <string name="chat_pensando_segundos">Réflexion · %1$d s</string>
     <string name="chat_pensando_local">Le modèle du téléphone prend un peu plus de temps, surtout au premier message.</string>

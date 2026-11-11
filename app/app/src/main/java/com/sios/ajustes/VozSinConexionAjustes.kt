@@ -116,7 +116,7 @@ internal fun SeccionVozSinConexion(seccion: @Composable (String, String?, @Compo
         HojaVoz(
             titulo = stringResource(R.string.voz_borrar_titulo, nombre),
             texto = stringResource(R.string.voz_borrar_texto) +
-                if (m.clase == ModelosVoz.Clase.DICTADO_LIGERO && com.sios.sistema.OyeAsistente.activo(ctx) && m.idioma == Locale.getDefault().language)
+                if (false)
                     "\n\n" + stringResource(R.string.voz_borrar_oye) else "",
             boton = stringResource(R.string.voz_borrar), peligro = true,
             onCerrar = { borrar = null },

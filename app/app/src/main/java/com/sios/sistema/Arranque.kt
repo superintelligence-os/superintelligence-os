@@ -22,7 +22,6 @@ class Arranque : BroadcastReceiver() {
             Preparacion.alDiaTrasActualizar(context)
             Manos.activarUnaVez(context)
             SistemaSios.botonEncendido(context)
-            OyeAsistente.alArrancar(context)
         }
         // El teclado de SIOS de serie, una sola vez, ya desde el primer encendido (antes de desbloquear
         // también: así el asistente de bienvenida del sistema lo usa para el PIN y la wifi).

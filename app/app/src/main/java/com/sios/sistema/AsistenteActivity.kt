@@ -96,7 +96,6 @@ class AsistenteActivity : ComponentActivity() {
         // Mantener pulsado el botón de encendido: Claude escucha directamente.
         val voz = intent.getBooleanExtra(EXTRA_VOZ, false)
         // La hoja usa el micrófono: «Oye Claude» lo suelta mientras está abierta.
-        if (OyeAsistente.activo(this)) runCatching { startService(Intent(this, OyeAsistente::class.java).setAction(OyeAsistente.PAUSAR)) }
         // La voz (para responder en alto) se prepara después del primer fotograma: conectar con el
         // motor de voz retrasaba la aparición de la hoja.
         window.decorView.postDelayed({ if (!isFinishing) Voz.preparar(this) }, 400)
@@ -206,7 +205,6 @@ class AsistenteActivity : ComponentActivity() {
         super.onDestroy()
         if (isFinishing) {
             Voz.callar()
-            OyeAsistente.reanudar(this)
         }
     }
 }
@@ -291,7 +289,7 @@ private fun HojaAsistente(
     var porVoz by remember { mutableStateOf(voz) }
     LaunchedEffect(escucha.escuchando) { if (escucha.escuchando) porVoz = true }
     LaunchedEffect(estado.ocupado, preguntado) {
-        if (!estado.ocupado && preguntado && porVoz && OyeAsistente.responderEnVoz(contexto)) {
+        if (!estado.ocupado && preguntado && porVoz && VozAsistente.responderEnVoz(contexto)) {
             val ultima = estado.elementos.lastOrNull { it is Elemento.Respuesta } as? Elemento.Respuesta
             if (ultima != null && !ultima.escribiendo) Voz.decir(contexto, ultima.texto)
         }

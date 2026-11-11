@@ -96,7 +96,6 @@ class Puente : ContentProvider() {
                 "llamadas_bloquear" -> { Llamadas.bloquear(ctx, texto("numero"), e.getString("si") != "0"); Llamadas.json(ctx) }
                 "llamadas_silenciar" -> { Llamadas.ponerSilenciar(ctx, texto("si") == "1"); Llamadas.json(ctx) }
                 "llamadas_atender" -> { Llamadas.ponerAtender(ctx, texto("si") == "1"); Llamadas.json(ctx) }
-                "oye_probar" -> OyeAsistente.probarArchivo(ctx, java.io.File(texto("archivo")))
                 "manos" -> JSONObject().put("activo", Manos.instancia != null && Manos.permitido(context!!))
                 "manos_leer" -> manos().leer()
                 "manos_tocar" -> JSONObject().put("hecho", manos().tocar(texto("x").toFloat(), texto("y").toFloat(), e.getString("largo") == "1"))

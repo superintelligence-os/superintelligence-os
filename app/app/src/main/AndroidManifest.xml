@@ -29,7 +29,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <!-- «Oye Claude»: escuchar en segundo plano (con su notificación fija). -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
     <!-- Cortafuegos: si se enciende desde segundo plano (al arrancar), unos segundos en primer plano. -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
     <!-- Colores de Claude en todo el sistema (capa de colores propia, como SystemUI). -->
@@ -247,12 +246,6 @@
 
         <!-- Copia de seguridad semanal automática. -->
         <service android:name=".sistema.CopiaJob" android:exported="false" android:permission="android.permission.BIND_JOB_SERVICE" />
-
-        <!-- «Oye Claude»: reconocimiento sin conexión de la palabra de activación. -->
-        <service
-            android:name=".sistema.OyeAsistente"
-            android:exported="false"
-            android:foregroundServiceType="microphone" />
 
         <!-- Teléfono de Claude: marcador (también para «tel:»), pantalla de llamada y servicio de llamadas. -->
         <activity

@@ -16,7 +16,7 @@
     <string name="ajs_g_puede">Ce qu’il peut faire</string>
     <string name="ajs_g_desconocidos">Numéros inconnus</string>
     <string name="ajs_g_ayuda">Aide et vérification</string>
-    <string name="ajs_r_asistente">« Dis SIOS », voix et tes apps</string>
+    <string name="ajs_r_asistente">Voix, assistant et tes apps</string>
     <string name="ajs_r_creaciones_vacio">Widgets, apps et agents</string>
     <string name="ajs_r_memoria">Retient photos et documents</string>
     <string name="ajs_r_uso">Cette semaine, %1$d %%</string>

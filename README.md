@@ -37,8 +37,7 @@ one, the system takes on its name, logo and colour.
 - All of them use the same phone tools over MCP. Anything not on the allowed list asks for
   confirmation. Text that comes from third parties (SMS, notifications, web pages) is marked as data,
   and after reading it, actions that send, call, install or run something ask again.
-- System-wide: home screen bar, assistant sheet, long-press of the power button, a "Hey …" wake
-  word, on-screen search, share sheet, text selection menu (improve, translate, ask), and an
+- System-wide: home screen bar, assistant sheet, long-press of the power button, on-screen search, share sheet, text selection menu (improve, translate, ask), and an
   accessibility service ("Hands") that lets the agent act inside any app, with a visible halo and a
   Stop button.
 - Creations: the agent builds home-screen widgets (fixed templates, or free HTML in a sandbox),

@@ -210,7 +210,7 @@ internal val OPCIONES = listOf(
     Opcion(Pagina.INTELIGENCIA, "conversacion", R.string.selector_permisos),
 
     Opcion(Pagina.ASISTENTE, null, R.string.ajs_asistente, alias = listOf(R.string.ajustes_voz)),
-    Opcion(Pagina.ASISTENTE, "voz", R.string.ajustes_oye_titulo),
+    Opcion(Pagina.ASISTENTE, "voz", R.string.ajustes_envoz_titulo),
     Opcion(Pagina.ASISTENTE, "voz", R.string.ajustes_envoz_titulo),
     Opcion(Pagina.ASISTENTE, "sinconexion", R.string.voz_titulo, alias = listOf(R.string.voz_dictado, R.string.voz_traduccion), claves = "offline whisper vosk opus"),
     Opcion(Pagina.ASISTENTE, "asistente", R.string.ajustes_asistente_titulo),

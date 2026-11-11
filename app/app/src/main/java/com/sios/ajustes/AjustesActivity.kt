@@ -254,24 +254,11 @@ private fun ContenidoPagina(p: Pagina, estado: Estado, creaciones: List<Creacion
         }
 
         Pagina.ASISTENTE -> {
-            // Voz: «Oye Claude» (opcional) y responder en voz alta.
+            // Voz: responder en voz alta cuando se le habla.
             Grupo("voz", stringResource(R.string.ajustes_voz), stringResource(R.string.ajustes_voz_nota), Estilo.Tarjeta) {
-                Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
-                    var oye by remember { mutableStateOf(com.sios.sistema.OyeAsistente.activo(ctx)) }
-                    var enVoz by remember { mutableStateOf(com.sios.sistema.OyeAsistente.responderEnVoz(ctx)) }
-                    val permiso = androidx.activity.compose.rememberLauncherForActivityResult(
-                        androidx.activity.result.contract.ActivityResultContracts.RequestPermission(),
-                    ) { si -> if (si) { oye = true; com.sios.sistema.OyeAsistente.activar(ctx, true) } }
-                    Fila(stringResource(R.string.ajustes_oye_titulo), stringResource(R.string.ajustes_oye_nota)) {
-                        Interruptor(oye) { si ->
-                            if (si && ctx.checkSelfPermission(android.Manifest.permission.RECORD_AUDIO) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
-                                permiso.launch(android.Manifest.permission.RECORD_AUDIO)
-                            } else { oye = si; com.sios.sistema.OyeAsistente.activar(ctx, si) }
-                        }
-                    }
-                    Fila(stringResource(R.string.ajustes_envoz_titulo), stringResource(R.string.ajustes_envoz_nota)) {
-                        Interruptor(enVoz) { enVoz = it; com.sios.sistema.OyeAsistente.ponerResponderEnVoz(ctx, it) }
-                    }
+                var enVoz by remember { mutableStateOf(com.sios.sistema.VozAsistente.responderEnVoz(ctx)) }
+                Fila(stringResource(R.string.ajustes_envoz_titulo), stringResource(R.string.ajustes_envoz_nota)) {
+                    Interruptor(enVoz) { enVoz = it; com.sios.sistema.VozAsistente.ponerResponderEnVoz(ctx, it) }
                 }
             }
             // Dictado y traducción sin conexión: en el móvil, sin internet y sin IA.

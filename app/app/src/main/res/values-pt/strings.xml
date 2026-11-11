@@ -384,17 +384,8 @@
     <string name="local_abriendo">A abrir %1$s.</string>
     <string name="local_no_entiendo">Não há ligação, por isso o Claude não pode responder agora. Sem internet, posso definir alarmes e temporizadores, acender a lanterna, ativar o Wi-Fi ou o Bluetooth, alterar o volume ou o brilho, abrir apps e telefonar aos seus contactos.</string>
     <string name="local_sin_agente">O Claude está a arrancar. Entretanto, posso definir alarmes e temporizadores, acender a lanterna, ativar o Wi-Fi ou o Bluetooth, alterar o volume ou o brilho, abrir apps e telefonar aos seus contactos.</string>
-    <string name="oye_canal">Hey SIOS</string>
-    <string name="oye_titulo">Hey SIOS</string>
-    <string name="oye_preparando">A preparar a escuta (da primeira vez transfere cerca de 40 MB)…</string>
-    <string name="oye_escuchando">Diga «Hey SIOS». Tudo fica no telefone.</string>
-    <string name="oye_en_espera">Em espera: ouve com o ecrã ligado ou a carregar</string>
-    <string name="oye_pausada">Em pausa enquanto fala com o Claude</string>
-    <string name="oye_error">Não foi possível preparar: %1$s</string>
     <string name="ajustes_voz">Voz</string>
-    <string name="ajustes_voz_nota">Fale com o Claude sem tocar no telefone.</string>
-    <string name="ajustes_oye_titulo">Hey SIOS</string>
-    <string name="ajustes_oye_nota">Ouve a frase no próprio telefone, sem enviar nada, só com o ecrã ligado ou a carregar.</string>
+    <string name="ajustes_voz_nota">Quando lhe falas, também responde em voz alta.</string>
     <string name="ajustes_envoz_titulo">Responder em voz alta</string>
     <string name="ajustes_envoz_nota">Quando fala com o Claude, ele responde em voz alta.</string>
     <string name="camara_titulo">Câmara do Claude</string>
@@ -493,9 +484,6 @@
     <string name="comp_ubicacion">Localização</string>
     <string name="comp_ubicacion_no">Só é precisa para rotinas por local</string>
     <string name="comp_permiso_no">Sem permissão</string>
-    <string name="comp_oye">Hey SIOS</string>
-    <string name="comp_oye_si">Ativado</string>
-    <string name="comp_oye_no">Desativado (Definições do SIOS › Voz)</string>
     <string name="comp_actualizaciones">Atualizações</string>
     <string name="comp_sin_canal">Sem canal de atualizações</string>
     <string name="comp_arreglar">Corrigir</string>
@@ -893,7 +881,7 @@
     <string name="ia_local_descargar">Transferir</string>
     <string name="ia_local_nota">Funciona sem internet nem conta, e nada sai do telemóvel. É mais lento e menos capaz do que os da internet.</string>
     <string name="ia_local_nombre">O nome dele</string>
-    <string name="ia_local_nombre_nota">Apresenta-se com este nome. Para o chamares, diz «Olá SIOS».</string>
+    <string name="ia_local_nombre_nota">Apresenta-se com este nome.</string>
     <string name="chat_pensando">A pensar</string>
     <string name="chat_pensando_segundos">A pensar · %1$d s</string>
     <string name="chat_pensando_local">O modelo do telemóvel demora um pouco mais, sobretudo na primeira mensagem.</string>

@@ -43,7 +43,6 @@ class SiosApp : Application() {
         runCatching { com.sios.sistema.SistemaSios.botonEncendido(this) }
         runCatching { com.sios.sistema.IndexarJob.programar(this) }
         runCatching { com.sios.sistema.Disparadores.iniciar(this) }
-        runCatching { com.sios.sistema.OyeAsistente.alArrancar(this) }
         runCatching { com.sios.teclado.Teclados.deSerie(this) } // el teclado de SIOS de serie, una sola vez
         runCatching { com.sios.teclado.Teclados.habilitar(this) }
         runCatching { com.sios.sistema.ColoresSistema.vigilar(this) }

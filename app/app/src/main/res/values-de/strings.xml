@@ -384,17 +384,8 @@
     <string name="local_abriendo">Ich öffne %1$s.</string>
     <string name="local_no_entiendo">Es gibt keine Verbindung, deshalb kann Claude gerade nicht antworten. Offline kann ich Wecker und Timer stellen, die Taschenlampe, WLAN oder Bluetooth einschalten, Lautstärke oder Helligkeit ändern, Apps öffnen und deine Kontakte anrufen.</string>
     <string name="local_sin_agente">Claude startet gerade. Bis dahin kann ich Wecker und Timer stellen, die Taschenlampe, WLAN oder Bluetooth einschalten, Lautstärke oder Helligkeit ändern, Apps öffnen und deine Kontakte anrufen.</string>
-    <string name="oye_canal">Hey SIOS</string>
-    <string name="oye_titulo">Hey SIOS</string>
-    <string name="oye_preparando">Wird vorbereitet (beim ersten Mal werden etwa 40 MB geladen)…</string>
-    <string name="oye_escuchando">Sag „Hey SIOS“. Alles bleibt auf dem Handy.</string>
-    <string name="oye_en_espera">Bereit: hört zu, wenn der Bildschirm an ist oder das Handy lädt</string>
-    <string name="oye_pausada">Pausiert, während du mit Claude sprichst</string>
-    <string name="oye_error">Vorbereitung fehlgeschlagen: %1$s</string>
     <string name="ajustes_voz">Stimme</string>
-    <string name="ajustes_voz_nota">Sprich mit Claude, ohne das Handy zu berühren.</string>
-    <string name="ajustes_oye_titulo">Hey SIOS</string>
-    <string name="ajustes_oye_nota">Erkennt den Satz direkt auf dem Handy, ohne etwas zu senden – nur bei eingeschaltetem Bildschirm oder beim Laden.</string>
+    <string name="ajustes_voz_nota">Wenn du mit ihm sprichst, antwortet es auch laut.</string>
     <string name="ajustes_envoz_titulo">Laut antworten</string>
     <string name="ajustes_envoz_nota">Wenn du mit Claude sprichst, antwortet Claude gesprochen.</string>
     <string name="camara_titulo">Claude-Kamera</string>
@@ -493,9 +484,6 @@
     <string name="comp_ubicacion">Standort</string>
     <string name="comp_ubicacion_no">Nur für Ortsroutinen nötig</string>
     <string name="comp_permiso_no">Keine Berechtigung</string>
-    <string name="comp_oye">Hey SIOS</string>
-    <string name="comp_oye_si">An</string>
-    <string name="comp_oye_no">Aus (SIOS-Einstellungen › Stimme)</string>
     <string name="comp_actualizaciones">Updates</string>
     <string name="comp_sin_canal">Kein Update-Kanal</string>
     <string name="comp_arreglar">Beheben</string>
@@ -893,7 +881,7 @@
     <string name="ia_local_descargar">Laden</string>
     <string name="ia_local_nota">Läuft ohne Internet und Konto, nichts verlässt das Handy. Langsamer und weniger fähig als die Online-Modelle.</string>
     <string name="ia_local_nombre">Sein Name</string>
-    <string name="ia_local_nombre_nota">Er stellt sich mit diesem Namen vor. Um ihn zu rufen, sag „Hey SIOS“.</string>
+    <string name="ia_local_nombre_nota">Er stellt sich mit diesem Namen vor.</string>
     <string name="chat_pensando">Denkt nach</string>
     <string name="chat_pensando_segundos">Denkt nach · %1$d s</string>
     <string name="chat_pensando_local">Das Modell auf dem Handy braucht etwas länger, vor allem bei der ersten Nachricht.</string>

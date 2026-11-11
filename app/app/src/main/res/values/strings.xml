@@ -392,17 +392,8 @@
     <string name="local_abriendo">Opening %1$s.</string>
     <string name="local_no_entiendo">There\'s no connection, so Claude can\'t answer right now. Offline I can set alarms and timers, turn on the flashlight, Wi-Fi or Bluetooth, change volume or brightness, open apps and call your contacts.</string>
     <string name="local_sin_agente">Claude is starting up. Meanwhile I can set alarms and timers, turn on the flashlight, Wi-Fi or Bluetooth, change volume or brightness, open apps and call your contacts.</string>
-    <string name="oye_canal">Hey SIOS</string>
-    <string name="oye_titulo">Hey SIOS</string>
-    <string name="oye_preparando">Getting ready (the first time it downloads about 40 MB)…</string>
-    <string name="oye_escuchando">Say «Hey SIOS». Everything stays on the phone.</string>
-    <string name="oye_en_espera">Waiting: listens with the screen on or while charging</string>
-    <string name="oye_pausada">Paused while you talk to Claude</string>
-    <string name="oye_error">Couldn\'t get ready: %1$s</string>
     <string name="ajustes_voz">Voice</string>
-    <string name="ajustes_voz_nota">Talk to Claude without touching the phone.</string>
-    <string name="ajustes_oye_titulo">Hey SIOS</string>
-    <string name="ajustes_oye_nota">Listens for the phrase on the phone itself, sending nothing, only with the screen on or while charging.</string>
+    <string name="ajustes_voz_nota">When you talk to it, it answers out loud too.</string>
     <string name="ajustes_envoz_titulo">Answer out loud</string>
     <string name="ajustes_envoz_nota">When you talk to Claude, it answers by speaking.</string>
     <string name="camara_titulo">Claude Camera</string>
@@ -501,9 +492,6 @@
     <string name="comp_ubicacion">Location</string>
     <string name="comp_ubicacion_no">Only needed for place routines</string>
     <string name="comp_permiso_no">No permission</string>
-    <string name="comp_oye">Hey SIOS</string>
-    <string name="comp_oye_si">On</string>
-    <string name="comp_oye_no">Off (turn on in SIOS settings › Voice)</string>
     <string name="comp_actualizaciones">Updates</string>
     <string name="comp_sin_canal">No update channel</string>
     <string name="comp_arreglar">Fix</string>
@@ -901,7 +889,7 @@
     <string name="ia_local_descargar">Download</string>
     <string name="ia_local_nota">Works without internet or account, and nothing leaves the phone. It’s slower and less capable than the online ones.</string>
     <string name="ia_local_nombre">Its name</string>
-    <string name="ia_local_nombre_nota">It introduces itself with this name. To call it, say «Hey SIOS».</string>
+    <string name="ia_local_nombre_nota">It introduces itself with this name.</string>
     <string name="chat_pensando">Thinking</string>
     <string name="chat_pensando_segundos">Thinking · %1$d s</string>
     <string name="chat_pensando_local">The on-phone model takes a bit longer, especially the first message.</string>

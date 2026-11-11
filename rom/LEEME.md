@@ -50,7 +50,7 @@ de SIOS con el espectro de las IA, que se enfría al hueso (`marca/animacion.py`
 
 **Al elegir una IA, el sistema toma su marca**: su nombre en los textos (la app escribe «Claude» como
 comodín y `Marca` lo cambia por el de la IA elegida; sin IA, por «SIOS»), su logo, su color como
-semilla de la paleta, su fondo de pantalla, la cabecera de las notificaciones y el «Oye …». Los colores
+semilla de la paleta, su fondo de pantalla, y la cabecera de las notificaciones. Los colores
 del sistema los pone `sistema/ColoresSistema.kt` como capa propia encima de la de Android (igual que
 SystemUI con la suya): grises neutros con el acento de la IA y, con Claude, su paleta exacta. Así
 Ajustes, Mensajes, Contactos, Reloj y cualquier app con colores del sistema siguen a la IA. Sin IA
@@ -348,11 +348,11 @@ SIOS (SuperIntelligence OS) funciona con la IA que elijas en Ajustes › Intelig
 
 - **Con tu suscripción:** Claude (Claude Code), ChatGPT (Codex de OpenAI, código de dispositivo), Gemini (Gemini CLI, cuenta de Google), Kimi (Kimi Code, planes Plus a Ultra), Grok (la API va incluida en Plus, Premium y Super: se pega la clave del plan) y Mistral (el plan Pro de Le Chat incluye crédito de API). Los programas se instalan la primera vez que se eligen (`servicio/ia/instalar.sh`).
 - **Pago por uso con clave:** DeepSeek, Kimi, Gemini, OpenAI, Anthropic, OpenRouter… La clave se comprueba antes de guardarla, viaja cifrada desde el ordenador y se queda en el móvil con permisos 600.
-- **En el móvil:** modelo local con llama.cpp, recomendado según la RAM (12 GB: Qwen3 8B; 8 GB: 4B; 6 GB: 1.7B; 3 GB: 0.6B). Solo se pueden elegir los descargados que caben. Se le puede poner nombre («Oye …» lo usa). El motor precalienta sus instrucciones: el primer mensaje tarda unos segundos en vez de minutos.
+- **En el móvil:** modelo local con llama.cpp, recomendado según la RAM (12 GB: Qwen3 8B; 8 GB: 4B; 6 GB: 1.7B; 3 GB: 0.6B). Solo se pueden elegir los descargados que caben. Se le puede poner nombre. El motor precalienta sus instrucciones: el primer mensaje tarda unos segundos en vez de minutos.
 
 Todas usan las mismas herramientas del móvil por MCP. Las que no son Claude Code van por `/mcp/vigilado`, donde el propio servicio aplica el modo de permisos y pide confirmación con la tarjeta de siempre. Kimi Code y Codex no tienen terminal ni edición de archivos (agente con herramientas cerradas; sandbox de solo lectura).
 
-La marca sigue a la IA: nombre en los textos, logo, color del sistema (semilla de la paleta), fondo de pantalla (`rom/marca/fondos.py`), cabecera de las notificaciones y «Oye …». Sin IA elegida, todo es SIOS (ver «Aspecto»).
+La marca sigue a la IA: nombre en los textos, logo, color del sistema (semilla de la paleta), fondo de pantalla (`rom/marca/fondos.py`), y cabecera de las notificaciones. Sin IA elegida, todo es SIOS (ver «Aspecto»).
 
 ## La marca SIOS
 
@@ -481,7 +481,7 @@ raíz.
   emulador con `adb forward`; en un móvil real hace falta la misma Wi-Fi. La app de escritorio no va
   firmada con certificado de desarrollador: la primera vez, en el Mac, clic derecho › Abrir; en
   Windows, SmartScreen › Más información › Ejecutar de todos modos.
-- Idiomas de la app: español, inglés, francés, alemán, italiano y portugués (también «Oye …» y el
+- Idiomas de la app: español, inglés, francés, alemán, italiano y portugués (también el
   contestador, con el modelo de Vosk de cada idioma). El teclado sugiere palabras en los seis.
 
 ## Fallos que encontró la prueba en el emulador (ya corregidos)

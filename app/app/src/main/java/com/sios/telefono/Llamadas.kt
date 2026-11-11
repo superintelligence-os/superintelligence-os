@@ -23,7 +23,7 @@ import androidx.core.app.NotificationCompat
 import com.sios.R
 import com.sios.datos.Servicio
 import com.sios.sistema.Memoria
-import com.sios.sistema.OyeAsistente
+import com.sios.sistema.VozAsistente
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -222,7 +222,7 @@ object Contestador {
         hilo = Thread {
             val texto = StringBuilder()
             runCatching {
-                val modelo = Model(OyeAsistente.asegurarModelo(ctx).path)
+                val modelo = Model(VozAsistente.asegurarModelo(ctx).path)
                 val rec = Recognizer(modelo, 16000f)
                 val tam = AudioRecord.getMinBufferSize(16000, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT).coerceAtLeast(4096)
                 @Suppress("MissingPermission")

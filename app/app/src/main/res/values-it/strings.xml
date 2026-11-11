@@ -384,17 +384,8 @@
     <string name="local_abriendo">Apro %1$s.</string>
     <string name="local_no_entiendo">Non c\'è connessione, quindi Claude ora non può rispondere. Senza internet posso impostare sveglie e timer, accendere la torcia, il Wi-Fi o il Bluetooth, cambiare volume o luminosità, aprire app e chiamare i tuoi contatti.</string>
     <string name="local_sin_agente">Claude si sta avviando. Nel frattempo posso impostare sveglie e timer, accendere la torcia, il Wi-Fi o il Bluetooth, cambiare volume o luminosità, aprire app e chiamare i tuoi contatti.</string>
-    <string name="oye_canal">Ehi SIOS</string>
-    <string name="oye_titulo">Ehi SIOS</string>
-    <string name="oye_preparando">Preparazione dell\'ascolto (la prima volta scarica circa 40 MB)…</string>
-    <string name="oye_escuchando">Di\' «Ehi SIOS». Tutto resta sul telefono.</string>
-    <string name="oye_en_espera">In attesa: ascolta con lo schermo acceso o in carica</string>
-    <string name="oye_pausada">In pausa mentre parli con Claude</string>
-    <string name="oye_error">Impossibile prepararsi: %1$s</string>
     <string name="ajustes_voz">Voce</string>
-    <string name="ajustes_voz_nota">Parla con Claude senza toccare il telefono.</string>
-    <string name="ajustes_oye_titulo">Ehi SIOS</string>
-    <string name="ajustes_oye_nota">Ascolta la frase sul telefono stesso, senza inviare nulla, solo con lo schermo acceso o in carica.</string>
+    <string name="ajustes_voz_nota">Quando gli parli, risponde anche ad alta voce.</string>
     <string name="ajustes_envoz_titulo">Rispondi ad alta voce</string>
     <string name="ajustes_envoz_nota">Quando gli parli, Claude ti risponde a voce.</string>
     <string name="camara_titulo">Fotocamera di Claude</string>
@@ -493,9 +484,6 @@
     <string name="comp_ubicacion">Posizione</string>
     <string name="comp_ubicacion_no">Serve solo per le routine per luogo</string>
     <string name="comp_permiso_no">Senza autorizzazione</string>
-    <string name="comp_oye">Ehi SIOS</string>
-    <string name="comp_oye_si">Attivo</string>
-    <string name="comp_oye_no">Disattivato (Impostazioni di SIOS › Voce)</string>
     <string name="comp_actualizaciones">Aggiornamenti</string>
     <string name="comp_sin_canal">Nessun canale di aggiornamento</string>
     <string name="comp_arreglar">Sistema</string>
@@ -893,7 +881,7 @@
     <string name="ia_local_descargar">Scarica</string>
     <string name="ia_local_nota">Funziona senza internet né account, e nulla esce dal telefono. È più lento e meno capace di quelli online.</string>
     <string name="ia_local_nombre">Il suo nome</string>
-    <string name="ia_local_nombre_nota">Si presenta con questo nome. Per chiamarlo, di\' «Ehi SIOS».</string>
+    <string name="ia_local_nombre_nota">Si presenta con questo nome.</string>
     <string name="chat_pensando">Sto pensando</string>
     <string name="chat_pensando_segundos">Sto pensando · %1$d s</string>
     <string name="chat_pensando_local">Il modello sul telefono ci mette un po’ di più, soprattutto al primo messaggio.</string>

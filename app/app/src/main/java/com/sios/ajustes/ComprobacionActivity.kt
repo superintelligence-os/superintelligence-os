@@ -53,7 +53,6 @@ import com.sios.datos.Servicio
 import com.sios.sistema.Bandeja
 import com.sios.sistema.SistemaSios
 import com.sios.sistema.Manos
-import com.sios.sistema.OyeAsistente
 import com.sios.sistema.Preparacion
 import com.sios.sistema.SinConexion
 import com.sios.teclado.Teclados
@@ -148,8 +147,6 @@ private fun comprobar(ctx: Context): List<Punto> {
         Punto(R.string.comp_camara, permiso(ctx, Manifest.permission.CAMERA), if (permiso(ctx, Manifest.permission.CAMERA)) ok else ctx.getString(R.string.comp_permiso_no), opcional = true) { detallesApp(it) },
         Punto(R.string.comp_contactos, permiso(ctx, Manifest.permission.READ_CONTACTS), if (permiso(ctx, Manifest.permission.READ_CONTACTS)) ok else ctx.getString(R.string.comp_permiso_no), opcional = true) { detallesApp(it) },
         Punto(R.string.comp_ubicacion, permiso(ctx, Manifest.permission.ACCESS_FINE_LOCATION), if (permiso(ctx, Manifest.permission.ACCESS_FINE_LOCATION)) ok else ctx.getString(R.string.comp_ubicacion_no), opcional = true) { detallesApp(it) },
-        Punto(R.string.comp_oye, if (OyeAsistente.activo(ctx)) true else null,
-            ctx.getString(if (OyeAsistente.activo(ctx)) R.string.comp_oye_si else R.string.comp_oye_no), opcional = true),
         Punto(R.string.comp_actualizaciones, if (a?.optString("canal").isNullOrBlank()) null else true,
             a?.optString("canal")?.takeIf { it.isNotBlank() } ?: ctx.getString(R.string.comp_sin_canal), opcional = true),
     )
