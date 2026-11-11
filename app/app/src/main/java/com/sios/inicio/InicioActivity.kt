@@ -153,8 +153,24 @@ class InicioActivity : ComponentActivity() {
     private var volverAlInicio by mutableStateOf(0)
     private var abrirPanel by mutableStateOf(0)
 
+    /**
+     * Mientras el asistente de configuración del sistema no ha terminado, la pantalla de inicio es la
+     * suya: el inicio de SIOS tiene más prioridad (100) que el de LineageOS (9), y sin esto, en la
+     * edición sin Google, Android abría SIOS y el asistente no salía nunca.
+     */
+    private fun cederAlAsistente(): Boolean {
+        if (android.provider.Settings.Secure.getInt(contentResolver, "user_setup_complete", 1) != 0) return false
+        val casa = android.content.Intent(android.content.Intent.ACTION_MAIN).addCategory(android.content.Intent.CATEGORY_HOME)
+        val asistente = packageManager.queryIntentActivities(casa, 0)
+            .firstOrNull { it.activityInfo.packageName != packageName && it.activityInfo.packageName.contains("setupwizard") } ?: return false
+        return runCatching {
+            startActivity(android.content.Intent(casa).setClassName(asistente.activityInfo.packageName, asistente.activityInfo.name).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK))
+        }.isSuccess
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (cederAlAsistente()) { finish(); return }
         enableEdgeToEdge(SystemBarStyle.auto(ColorAndroid.TRANSPARENT, ColorAndroid.TRANSPARENT), SystemBarStyle.auto(ColorAndroid.TRANSPARENT, ColorAndroid.TRANSPARENT))
         Servicio.iniciar()
         if (intent?.getBooleanExtra(EXTRA_PANEL, false) == true) abrirPanel = 1
