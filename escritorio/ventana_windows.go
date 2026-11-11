@@ -19,6 +19,7 @@ func ventanaNativa(direccion string) {
 	defer w.Destroy()
 	w.Bind("abrirFuera", abrirFuera)
 	w.Init(scriptVentana)
+	vigilarPadre(func() { w.Dispatch(w.Terminate) })
 	w.Navigate(direccion)
 	w.Run()
 }

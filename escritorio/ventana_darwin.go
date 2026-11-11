@@ -53,6 +53,7 @@ func ventanaNativa(direccion string) {
 			w.Dispatch(func() { C.siosAlFrente() })
 		}
 	}()
+	vigilarPadre(func() { w.Dispatch(w.Terminate) })
 	w.Navigate(direccion)
 	w.Run()
 }

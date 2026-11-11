@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/exec"
 	"sync"
+	"time"
 )
 
 // La ventana de SIOS Desktop es nativa (WKWebView en el Mac, WebView2 en Windows), no un navegador:
@@ -42,6 +43,21 @@ func abrirVentanaNativa(direccion string) bool {
 		ventanaMu.Unlock()
 	}()
 	return true
+}
+
+// vigilarPadre: si SIOS Desktop (el proceso de la barra de menús) se cierra o se cae, la ventana se
+// cierra con él en vez de quedarse abierta sin nada detrás.
+func vigilarPadre(cerrar func()) {
+	padre := os.Getppid()
+	go func() {
+		for {
+			time.Sleep(2 * time.Second)
+			if os.Getppid() != padre {
+				cerrar()
+				return
+			}
+		}
+	}()
 }
 
 // Fuera de la ventana solo se abren páginas web, en el navegador del ordenador.
